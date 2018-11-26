@@ -8,7 +8,7 @@ labels: story
 - Actor 1
 - ...
 
-**Requirements and/or assumptions**
+**Prerequisite and/or assumptions**
 - The application is automatically deployed with AppVeyor
 - ...
 
