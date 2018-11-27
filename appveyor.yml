@@ -1,0 +1,15 @@
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: "{version}"
+  package_version: "{version}"
+  assembly_version: "{version}"
+  file_version: "{version}"
+  informational_version: "{version}"
+
+# Don't get the full history when cloning the repository
+clone_depth: 1
+
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
