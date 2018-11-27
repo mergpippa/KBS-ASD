@@ -15,7 +15,7 @@ clone_depth: 1
 version: 1.0.{build}
 
 cache:
-  - packages -> **\packages.config
+  - '%USERPROFILE%\.nuget\packages'
 
 before_build:
   # Display .NET Core version
