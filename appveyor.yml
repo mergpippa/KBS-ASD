@@ -1,0 +1,26 @@
+image: Visual Studio 2017
+
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: "{version}"
+  package_version: "{version}"
+  assembly_version: "{version}"
+  file_version: "{version}"
+  informational_version: "{version}"
+
+# Don't get the full history when cloning the repository
+clone_depth: 1
+
+version: 1.0.{build}
+
+cache:
+  - '%USERPROFILE%\.nuget\packages'
+
+before_build:
+  # Display .NET Core version
+  - cmd: dotnet --version
+  - cmd: nuget restore
+
+build:
+  verbosity: normal
