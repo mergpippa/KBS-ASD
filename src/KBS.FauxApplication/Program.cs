@@ -18,6 +18,7 @@ namespace KBS.FauxApplication
             }
 
             Console.Read();
+            fauxApp.StopBusControl();
         }
     }
 }
