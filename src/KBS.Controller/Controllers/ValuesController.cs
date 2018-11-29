@@ -2,44 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/testsuite")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
-            return new string[] { "value1", "value2" };
+      
+        private IManager _manager;
+
+        public ValuesController(IManager manager){
+            _manager = manager;
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet, Route("get")]
+        public ActionResult<string> Get()
         {
-            return "value";
+            return _manager.GetResult();
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost, Route("post")]
+        public void Post([FromBody] Configuration configuration)
         {
+            _manager.StartTest(configuration);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
