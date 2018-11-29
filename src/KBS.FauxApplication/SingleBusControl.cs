@@ -37,6 +37,8 @@ namespace KBS.FauxApplication
             }
         }
 
+        public void StopBusControl() => BusControl.Stop();
+
         /// <summary>
         /// Creates a new bus with respective queues
         /// </summary>
