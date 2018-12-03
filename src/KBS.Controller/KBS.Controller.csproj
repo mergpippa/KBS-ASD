@@ -13,4 +13,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\KBS.Infrastructure\KBS.Infrastructure.csproj" />
+    <ProjectReference Include="..\KBS.FauxApplication\KBS.FauxApplication.csproj" />
+  </ItemGroup>
 </Project>
