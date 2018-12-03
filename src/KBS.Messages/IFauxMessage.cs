@@ -12,6 +12,6 @@ namespace KBS.Messages
         /// <summary>
         /// A byte array used to bloat the message
         /// </summary>
-        byte[] B { get; }
+        byte[] ByteArray { get; }
     }
 }
