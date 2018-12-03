@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Threading;
 
 namespace KBS.FauxApplication
 {
@@ -9,10 +11,13 @@ namespace KBS.FauxApplication
             // TODO: Configurable setup
             FauxApp fauxApp = new FauxApp();
 
+            Randomizer randomizer = new Randomizer(1, 40, 4, 66);
+
             for (int i = 0; i < 10; i++)
             {
-                fauxApp.PublishRandomBytes(1048576);
+                //fauxApp.PublishRandomBytes(1048576);
                 fauxApp.PublishLike();
+                Thread.Sleep(randomizer.GetNextNoiseInt());
             }
 
             Console.Read();
