@@ -43,7 +43,7 @@ namespace KBS.FauxApplication
         /// Creates a new bus with respective queues
         /// </summary>
         /// <returns>Returns a new bus control</returns>
-        private static IBusControl GetNewBus()
+        private static IBusControl CreateBusControl()
         {
             return Bus.Factory.CreateUsingInMemory(cfg =>
             {
