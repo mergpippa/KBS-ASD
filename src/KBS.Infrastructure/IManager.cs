@@ -3,7 +3,7 @@ namespace KBS.Infrastructure
 {
     public interface IManager
     {
-        string GetResult();
+        string GetState();
         void StartTest(Configuration configuration);
     }
 }
