@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using KBS.Messages;
 using MassTransit;
 
@@ -28,7 +25,7 @@ namespace KBS.FauxApplication
                     {
                         if (busControl == null)
                         {
-                            busControl = GetNewBus();
+                            busControl = CreateBusControl();
                             BusControl.Start();
                         }
                     }
