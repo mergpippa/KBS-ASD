@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.MessageBus", "src\KBS.MessageBus\KBS.MessageBus.csproj", "{DF273731-99B1-45BE-A6E4-2FD07F3D5498}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.MessageBus", "src\KBS.MessageBus\KBS.MessageBus.csproj", "{DF273731-99B1-45BE-A6E4-2FD07F3D5498}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.MessageBusTests", "src\KBS.MessageBusTests\KBS.MessageBusTests.csproj", "{67976D6F-73CB-4412-B153-9AD6700813E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.MessageBusTests", "src\KBS.MessageBusTests\KBS.MessageBusTests.csproj", "{67976D6F-73CB-4412-B153-9AD6700813E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Messages", "src\KBS.Messages\KBS.Messages.csproj", "{A596AC67-E778-4B17-A66C-60B22F7E9F89}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.Messages", "src\KBS.Messages\KBS.Messages.csproj", "{A596AC67-E778-4B17-A66C-60B22F7E9F89}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Controller", "src\KBS.Controller\KBS.Controller.csproj", "{D9A8DE8F-59D4-421A-BB2A-19F327B24032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.Controller", "src\KBS.Controller\KBS.Controller.csproj", "{D9A8DE8F-59D4-421A-BB2A-19F327B24032}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.ControllerTests", "src\KBS.ControllerTests\KBS.ControllerTests.csproj", "{467CC1C7-BD32-4203-B99B-0914D316AA97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.ControllerTests", "src\KBS.ControllerTests\KBS.ControllerTests.csproj", "{467CC1C7-BD32-4203-B99B-0914D316AA97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.Infrastructure", "src\KBS.Infrastructure\KBS.Infrastructure.csproj", "{A48B130E-C5CA-4D0B-BA02-85562DEBD1C6}"
 EndProject

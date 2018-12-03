@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KBS.FauxApplication;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
 {
-    [Route("api/testsuite")]
+    [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class TestController : ControllerBase
     {
       
         private IManager _manager;
 
-        public ValuesController(IManager manager){
+        public TestController(IManager manager){
             _manager = manager;
         }
 

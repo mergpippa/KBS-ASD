@@ -1,4 +1,6 @@
 using System;
+using KBS.FauxApplication;
+
 namespace KBS.Infrastructure
 {
     public interface IManager
