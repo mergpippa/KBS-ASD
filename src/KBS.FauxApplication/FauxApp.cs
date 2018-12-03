@@ -15,7 +15,7 @@ namespace KBS.FauxApplication
         /// Publish an array of random bytes
         /// </summary>
         /// <param name="n">Size of the array to publish</param>
-        public Task PublishRandomBytes(uint n)
+        public Task PublishRandomBytes(uint arraySize)
         {
             byte[] bytes = new byte[n];
             rnd.NextBytes(bytes);
