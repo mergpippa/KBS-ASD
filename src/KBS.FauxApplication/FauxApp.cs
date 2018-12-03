@@ -9,7 +9,7 @@ namespace KBS.FauxApplication
 {
     public class FauxApp : SingleBusControl
     {
-        private readonly Random rnd = new Random();
+        private readonly Random random = new Random();
 
         /// <summary>
         /// Publish an array of random bytes
