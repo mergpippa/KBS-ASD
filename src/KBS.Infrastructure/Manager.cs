@@ -7,9 +7,9 @@ namespace KBS.Infrastructure
         {
         }
 
-        public string GetResult()
+        public string GetState()
         {
-            return "NOT IMPLEMENTED";
+            throw new NotImplementedException();
         }
 
         public void StartTest(Configuration configuration)

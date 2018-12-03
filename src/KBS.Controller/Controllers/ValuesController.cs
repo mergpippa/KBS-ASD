@@ -21,7 +21,7 @@ namespace KBS.Controller.Controllers
         [HttpGet, Route("get")]
         public ActionResult<string> Get()
         {
-            return _manager.GetResult();
+            return _manager.GetState();
         }
 
         // POST api/values
