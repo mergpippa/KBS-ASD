@@ -9,6 +9,7 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
+            // TODO: Configurable setup
             FauxApp fauxApp = new FauxApp();
 
             for (int i = 0; i < 10; i++)
