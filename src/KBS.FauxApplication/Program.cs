@@ -3,24 +3,23 @@ using System.Threading;
 
 namespace KBS.FauxApplication
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main(string[] args)
         {
             // TODO: Configurable setup
-            FauxApp fauxApp = new FauxApp();
+            var fauxApplication = new FauxApp();
+            var randomizer = new Randomizer(1, 40, 4, 66);
 
-            Randomizer randomizer = new Randomizer(1, 40, 4, 66);
-
-            for (int i = 0; i < 10; i++)
+            for (var i = 0; i < 10; i++)
             {
-                //fauxApp.PublishRandomBytes(1048576);
-                fauxApp.PublishLike();
+                //fauxApplication.PublishRandomBytes(1048576);
+                fauxApplication.PublishLike();
                 Thread.Sleep(randomizer.GetNextNoiseInt());
             }
 
             Console.Read();
-            fauxApp.StopBusControl();
+            fauxApplication.StopBusControl();
         }
     }
 }
