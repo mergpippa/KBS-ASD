@@ -22,14 +22,16 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(404)]
         public List<TestEnviroment> GetAll()
         {
-            return _manager.GetTests();
+            //return _manager.GetTests();
+            return null;
         }
 
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
         public TestEnviroment GetTest(int id){
-            return _manager.GetTest(id);
+            //return _manager.GetTest(id);
+            return null;
         }
 
         // POST api/test
@@ -37,8 +39,9 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(400)]
         public ActionResult Post([FromBody] TestConfiguration configuration)
         {
-             _manager.CreateTest(configuration);
-            return Ok();
+            // _manager.CreateTest(configuration);
+            //return Ok();
+            return BadRequest();
         }
 
     }
