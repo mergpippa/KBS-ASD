@@ -5,10 +5,6 @@ namespace KBS.Infrastructure
 {
     public class Manager: IManager
     {
-        public Manager()
-        {
-        }
-
         /// <summary>
         /// Gets the current state of the test
         /// </summary>
@@ -22,7 +18,7 @@ namespace KBS.Infrastructure
         /// Starts the test based on the configuration.
         /// </summary>
         /// <param name="configuration">Configuration of the test.</param>
-        public void StartTest(Configuration configuration)
+        public void StartTest(ITestConfiguration configuration)
         {
             throw new NotImplementedException();
         }

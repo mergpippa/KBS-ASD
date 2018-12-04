@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 
 namespace KBS.FauxApplication
 {
-    public interface Configuration
+    public interface ITestConfiguration
     {
         int Frequency { get; set; }
         int Size { get; set; }
