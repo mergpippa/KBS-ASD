@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using KBS.Controller.Models;
+using KBS.FauxApplication;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,9 +20,18 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public ActionResult GetAll()
+        public List<TestEnviroment> GetAll()
         {
-            return NotFound();
+            //return _manager.GetTests();
+            return null;
+        }
+
+        // Get api/test/{id}
+        [HttpGet, Route("{id}")]
+        [ProducesResponseType(404)]
+        public TestEnviroment GetTest(int id){
+            //return _manager.GetTest(id);
+            return null;
         }
 
         // POST api/test
@@ -28,6 +39,8 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(400)]
         public ActionResult Post([FromBody] TestConfiguration configuration)
         {
+            // _manager.CreateTest(configuration);
+            //return Ok();
             return BadRequest();
         }
 
