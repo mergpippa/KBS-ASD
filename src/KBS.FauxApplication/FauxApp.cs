@@ -4,7 +4,7 @@ using KBS.Messages;
 
 namespace KBS.FauxApplication
 {
-    public class FauxApp : SingleBusControl
+    public class FauxAppClient : SingleBusControl
     {
         private readonly Random random = new Random();
 

@@ -6,6 +6,7 @@ namespace KBS.FauxApplication
 {
     /// <summary>
     /// Holds the bus control singleton
+    /// This class needs to be extended to access the singelton bus
     /// </summary>
     public abstract class SingleBusControl
     {
@@ -14,6 +15,7 @@ namespace KBS.FauxApplication
 
         /// <summary>
         /// Get the bus control singleton, it's already started
+        /// Only the classes that extend 'SingleBusControl' have access to the bus singleton
         /// </summary>
         protected IBusControl BusControl
         {
@@ -34,6 +36,9 @@ namespace KBS.FauxApplication
             }
         }
 
+        /// <summary>
+        /// The Bus must be stopped at the end of the application
+        /// </summary>
         public void StopBusControl() => BusControl.Stop();
 
         /// <summary>
