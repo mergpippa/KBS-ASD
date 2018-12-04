@@ -15,7 +15,7 @@ namespace KBS.Infrastructure
         /// Gets test status of test with given identifier
         /// </summary>
         /// <param name="identifier"></param>
-        TestEnviroment GetTest(int identifier);
+        Task<TestEnviroment> GetTest(int identifier);
 
         /// <summary>
         /// Creates a test environment with the given configuration
