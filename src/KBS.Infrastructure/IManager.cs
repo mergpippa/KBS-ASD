@@ -21,6 +21,6 @@ namespace KBS.Infrastructure
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        void CreateTest(ITestConfiguration configuration);
+        Task CreateTest(ITestConfiguration configuration);
     }
 }
