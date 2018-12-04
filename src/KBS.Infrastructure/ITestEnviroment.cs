@@ -1,5 +1,5 @@
 using System;
-namespace KBS.FauxApplication
+namespace KBS.Infrastructure
 {
     public interface ITestEnviroment
     {
