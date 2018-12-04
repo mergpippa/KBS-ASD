@@ -8,4 +8,13 @@
   <ItemGroup>
     <Folder Include="Models\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KBS.Messages\KBS.Messages.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,25 @@
-﻿using System;
+using System;
+using System.Threading;
 
 namespace KBS.FauxApplication
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // TODO: Configurable setup
+            var fauxApplication = new FauxApp();
+            var randomizer = new Randomizer(1, 40, 4, 66);
+
+            for (var i = 0; i < 10; i++)
+            {
+                //fauxApplication.PublishRandomBytes(1048576);
+                fauxApplication.PublishLike();
+                Thread.Sleep(randomizer.GetNextNoiseInt());
+            }
+
+            Console.Read();
+            fauxApplication.StopBusControl();
         }
     }
 }
