@@ -9,7 +9,7 @@ namespace KBS.Infrastructure
         /// <summary>
         /// Get currently running tests
         /// </summary>
-        List<TestEnviroment> GetTests();
+        Task<List<TestEnviroment>> GetTests();
 
         /// <summary>
         /// Gets test status of test with given identifier
