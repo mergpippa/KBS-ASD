@@ -6,6 +6,7 @@ namespace KBS.Infrastructure
     public interface IManager
     {
         string GetState();
-        void StartTest(Configuration configuration);
+
+        void StartTest(ITestConfiguration configuration);
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace KBS.Controller
 {
-    public class Program
+    public static class Program
     {
         public static void Main(string[] args)
         {
