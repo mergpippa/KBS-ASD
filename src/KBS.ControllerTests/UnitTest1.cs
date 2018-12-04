@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace KBS.ControllerTests
@@ -8,7 +7,6 @@ namespace KBS.ControllerTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

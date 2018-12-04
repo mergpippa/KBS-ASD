@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace KBS.MessageBusTests
@@ -8,7 +7,6 @@ namespace KBS.MessageBusTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }

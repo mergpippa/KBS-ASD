@@ -1,4 +1,3 @@
-using System;
 using Xunit;
 
 namespace KBS.FauxApplicationTests
@@ -8,7 +7,6 @@ namespace KBS.FauxApplicationTests
         [Fact]
         public void Test1()
         {
-
         }
     }
 }
