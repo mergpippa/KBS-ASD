@@ -20,7 +20,7 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public List<TestEnviroment> GetAll()
+        public List<TestEnvironment> GetAll()
         {
             //return _manager.GetTests();
             return null;
@@ -29,7 +29,7 @@ namespace KBS.Controller.Controllers
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public TestEnviroment GetTest(int id){
+        public TestEnvironment GetTest(int id){
             //return _manager.GetTest(id);
             return null;
         }

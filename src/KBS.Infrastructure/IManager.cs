@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.FauxApplication;
@@ -10,18 +9,18 @@ namespace KBS.Infrastructure
         /// <summary>
         /// Get currently running tests
         /// </summary>
-        Task<List<TestEnviroment>> GetTests();
+        Task<List<TestEnvironment>> GetTests();
 
         /// <summary>
         /// Gets test status of test with given identifier
         /// </summary>
         /// <param name="identifier"></param>
-        Task<TestEnviroment> GetTest(int identifier);
+        Task<TestEnvironment> GetTest(string testName);
 
         /// <summary>
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        Task CreateTest(ITestConfiguration configuration);
+        Task<TestEnvironment> CreateTest(ITestConfiguration configuration);
     }
 }
