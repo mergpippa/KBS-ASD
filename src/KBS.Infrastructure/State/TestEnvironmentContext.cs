@@ -1,20 +1,22 @@
 using KBS.Infrastructure.Data;
+using KBS.Infrastructure.Models;
 using System;
 
-namespace KBS.Infrastructure.Models
+namespace KBS.Infrastructure.State
 {
-    public class TestEnvironment : ITestEnvironment
+    public class TestEnvironmentContext : ITestEnvironmentContext
+
     {
         public ITestConfiguration Configuration { get; }
         public TestEnvironmentState Status { get; }
         public DateTime StartTime { get; }
 
-        public TestEnvironment(ITestConfiguration configuration)
+        public TestEnvironmentContext(ITestConfiguration configuration)
         {
             Configuration = configuration;
             Status = TestEnvironmentState.Initial;
 
-            StartTime = new DateTime();
+            StartTime = DateTime.UtcNow;
         }
     }
 }

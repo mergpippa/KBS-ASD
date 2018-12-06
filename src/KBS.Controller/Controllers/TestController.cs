@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Infrastructure;
 using KBS.Infrastructure.Models;
+using KBS.Infrastructure.State;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -20,19 +21,19 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public async Task<List<TestEnvironment>> GetAllAsync() =>
+        public async Task<List<TestEnvironmentContext>> GetAllAsync() =>
             await _manager.GetTestEnvironmentsAsync();
 
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public async Task<TestEnvironment> GetTestAsync(string name) =>
+        public async Task<TestEnvironmentContext> GetTestAsync(string name) =>
             await _manager.GetTestEnvironmentAsync(name);
 
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public async Task<TestEnvironment> PostAsync([FromBody] TestConfiguration configuration)
+        public async Task<TestEnvironmentContext> PostAsync([FromBody] TestConfiguration configuration)
         {
             /*if (!ModelState.IsValid)
                 return BadRequest(ModelState);*/

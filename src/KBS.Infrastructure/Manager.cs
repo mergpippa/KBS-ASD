@@ -1,22 +1,23 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Infrastructure.Models;
+using KBS.Infrastructure.State;
 
 namespace KBS.Infrastructure
 {
     public class Manager : IManager
     {
-        private readonly List<TestEnvironment> _testEnvironments = new List<TestEnvironment>();
+        private readonly List<TestEnvironmentContext> _testEnvironments = new List<TestEnvironmentContext>();
 
         /// <summary>
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        public Task<TestEnvironment> CreateTestEnvironmentAsync(TestConfiguration configuration) =>
+        public Task<TestEnvironmentContext> CreateTestEnvironmentAsync(TestConfiguration configuration) =>
             Task.Run(() =>
             {
-                var testEnvironment = new TestEnvironment(configuration);
-                _testEnvironments.Add(new TestEnvironment(configuration));
+                var testEnvironment = new TestEnvironmentContext(configuration);
+                _testEnvironments.Add(new TestEnvironmentContext(configuration));
 
                 return testEnvironment;
             });
@@ -27,7 +28,7 @@ namespace KBS.Infrastructure
         /// </summary>
         /// <param name="identifier"></param>
         /// <returns></returns>
-        public Task<TestEnvironment> GetTestEnvironmentAsync(string name) => 
+        public Task<TestEnvironmentContext> GetTestEnvironmentAsync(string name) => 
             Task.Run(() => _testEnvironments.Find(
                 testEnvironment => testEnvironment.Configuration.Name == name
             ));
@@ -37,7 +38,7 @@ namespace KBS.Infrastructure
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<List<TestEnvironment>> GetTestEnvironmentsAsync() =>
+        public Task<List<TestEnvironmentContext>> GetTestEnvironmentsAsync() =>
             Task.Run(() => _testEnvironments);
     }
 }

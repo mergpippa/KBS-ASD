@@ -1,9 +1,10 @@
 using KBS.Infrastructure.Data;
+using KBS.Infrastructure.Models;
 using System;
 
-namespace KBS.Infrastructure.Models
+namespace KBS.Infrastructure.State
 {
-    public interface ITestEnvironment
+    public interface ITestEnvironmentContext
     {
         ITestConfiguration Configuration { get; }
         TestEnvironmentState Status { get; }
