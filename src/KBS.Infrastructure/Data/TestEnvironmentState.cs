@@ -1,4 +1,4 @@
-﻿namespace KBS.Infrastructure.Resources
+namespace KBS.Infrastructure.Data
 {
     public enum TestEnvironmentState
     {

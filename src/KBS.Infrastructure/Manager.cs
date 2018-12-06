@@ -1,7 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication;
+using KBS.Infrastructure.Models;
 
 namespace KBS.Infrastructure
 {
@@ -13,8 +12,8 @@ namespace KBS.Infrastructure
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        public Task<TestEnvironment> CreateTest(ITestConfiguration configuration) => 
-            new Task<TestEnvironment>(() =>
+        public Task<ITestEnvironment> CreateTest(ITestConfiguration configuration) => 
+            new Task<ITestEnvironment>(() =>
             {
                 var testEnvironment = new TestEnvironment(configuration);
                 _testEnvironments.Add(new TestEnvironment(configuration));
@@ -27,16 +26,16 @@ namespace KBS.Infrastructure
         /// </summary>
         /// <param name="identifier"></param>
         /// <returns></returns>
-        public Task<TestEnvironment> GetTest(string testName) =>
-            new Task<TestEnvironment>(() => 
-                _testEnvironments.Find(testEnvironment => testEnvironment.Name == testName)
+        public Task<ITestEnvironment> GetTest(string name) =>
+            new Task<ITestEnvironment>(() => 
+                _testEnvironments.Find(testEnvironment => testEnvironment.Configuration.Name == name)
             );
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public Task<List<TestEnvironment>> GetTests() =>
-            new Task<List<TestEnvironment>>(() => _testEnvironments);
+        public Task<IList<ITestEnvironment>> GetTests() =>
+            new Task<IList<ITestEnvironment>>(() => (IList<ITestEnvironment>) _testEnvironments);
     }
 }

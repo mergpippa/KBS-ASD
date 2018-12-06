@@ -1,14 +1,13 @@
 using KBS.Infrastructure.Resources;
 using System;
 
-namespace KBS.Infrastructure
+namespace KBS.Infrastructure.Models
 {
     public interface ITestEnvironment
     {
-        string Name { get; set; }
+        ITestConfiguration Configuration { get; }
+        TestEnvironmentState Status { get; }
 
-        TestEnvironmentState Status { get; set; }
-
-        DateTime StartTime { get; set; }
+        DateTime StartTime { get; }
     }
 }

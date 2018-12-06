@@ -1,22 +1,20 @@
-using KBS.FauxApplication;
 using KBS.Infrastructure.Resources;
 using System;
 
-namespace KBS.Infrastructure
+namespace KBS.Infrastructure.Models
 {
     public class TestEnvironment : ITestEnvironment
     {
-        private readonly ITestConfiguration configuration;
+        public ITestConfiguration Configuration { get; }
+        public TestEnvironmentState Status { get; }
+        public DateTime StartTime { get; }
 
         public TestEnvironment(ITestConfiguration configuration)
         {
-            this.configuration = configuration;
+            Configuration = configuration;
+            Status = TestEnvironmentState.Initial;
+
+            StartTime = new DateTime();
         }
-
-        public string Name { get; set; }
-
-        public TestEnvironmentState Status { get; set; }
-
-        public DateTime StartTime { get; set; }
     }
 }

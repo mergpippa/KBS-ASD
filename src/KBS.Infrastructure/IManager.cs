@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication;
+using KBS.Infrastructure.Models;
 
 namespace KBS.Infrastructure
 {
@@ -9,18 +9,18 @@ namespace KBS.Infrastructure
         /// <summary>
         /// Get currently running tests
         /// </summary>
-        Task<List<TestEnvironment>> GetTests();
+        Task<IList<ITestEnvironment>> GetTests();
 
         /// <summary>
         /// Gets test status of test with given identifier
         /// </summary>
         /// <param name="identifier"></param>
-        Task<TestEnvironment> GetTest(string testName);
+        Task<ITestEnvironment> GetTest(string name);
 
         /// <summary>
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        Task<TestEnvironment> CreateTest(ITestConfiguration configuration);
+        Task<ITestEnvironment> CreateTest(ITestConfiguration configuration);
     }
 }
