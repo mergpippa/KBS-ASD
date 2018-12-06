@@ -1,6 +1,5 @@
 using System;
-using System.Threading;
-using KBS.Infrastructure.Resources;
+using System.Threading.Tasks;
 
 namespace KBS.Infrastructure
 {
@@ -10,26 +9,27 @@ namespace KBS.Infrastructure
         {
             int testEnvironmentState;
 
-
-
             Resources.ResourceGroup.CreatingResourceGroup();
-            testEnvironmentState = (int) Data.TestEnvironmentState.Initial | (int) Data.TestEnvironmentState.CreatingResourceGroup;
+            testEnvironmentState = (int)Data.TestEnvironmentState.Initial | (int)Data.TestEnvironmentState.CreatingResourceGroup;
             Console.WriteLine(Convert.ToString(testEnvironmentState, 2));
 
             if (Convert.ToString(testEnvironmentState, 2).Equals("11"))
             {
                 Resources.ResourceGroup.CreatedResourceGroup();
-                testEnvironmentState = testEnvironmentState | (int) Data.TestEnvironmentState.CreatedResourceGroup;
+                testEnvironmentState = testEnvironmentState | (int)Data.TestEnvironmentState.CreatedResourceGroup;
                 Console.WriteLine(Convert.ToString(testEnvironmentState, 2));
             }
 
-            if(Convert.ToString(testEnvironmentState, 2).Equals("111"))
+            void CreateMessageBroker()
             {
                 Resources.MessageBroker.CreatingMessageBroker();
-                testEnvironmentState = (int) Data.TestEnvironmentState.CreatingMessageBroker;
+                testEnvironmentState = (int)Data.TestEnvironmentState.CreatingMessageBroker;
                 Console.WriteLine(Convert.ToString(testEnvironmentState, 2));
             }
-            
+
+            if (Convert.ToString(testEnvironmentState, 2).Equals("111"))
+                new Task(CreateMessageBroker).Start();
+
             Console.ReadKey();
         }
     }
