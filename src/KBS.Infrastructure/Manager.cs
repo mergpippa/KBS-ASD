@@ -1,24 +1,23 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using KBS.FauxApplication;
 
 namespace KBS.Infrastructure
 {
     public class Manager : IManager
     {
-        /// <summary>
-        /// Gets the current state of the test
-        /// </summary>
-        /// <returns>The state.</returns>
-        public string GetState()
+        public Task CreateTest(ITestConfiguration configuration)
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Starts the test based on the configuration.
-        /// </summary>
-        /// <param name="configuration">Configuration of the test.</param>
-        public void StartTest(ITestConfiguration configuration)
+        public Task<TestEnviroment> GetTest(int identifier)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<TestEnviroment>> GetTests()
         {
             throw new NotImplementedException();
         }
