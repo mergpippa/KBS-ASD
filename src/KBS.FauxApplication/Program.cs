@@ -18,8 +18,8 @@ namespace KBS.FauxApplication
 
             void seperateLiker()
             {
-                var la = new LikeAppClient();
-                for (int i = 0; i < 10; i++)
+                var la = new LikeAppClient(Task.CurrentId);
+                for (int i = 0; i < 4; i++)
                     la.PublishLike();
                 Thread.Sleep(5000);
                 la.StopBusControl();
@@ -27,16 +27,16 @@ namespace KBS.FauxApplication
 
             List<Task> likers = new List<Task>();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 2; i++)
                 likers.Add(new Task(seperateLiker));
 
-            likers.ForEach(liker => Console.WriteLine($"Liker status: {liker.Status}"));
+            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.Id}] status: {liker.Status}"));
 
             likers.ForEach(liker => liker.Start());
 
-            likers.ForEach(liker => Console.WriteLine($"Liker status: {liker.Status}"));
+            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.Id}] status: {liker.Status}"));
 
-            Console.WriteLine("End...");
+            Console.WriteLine(">>>>>> Waiting to receive... >>>>>>");
             Console.Read();
             likeCounter.StopBusControl();
         }

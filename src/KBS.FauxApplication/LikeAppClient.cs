@@ -11,8 +11,18 @@ namespace KBS.FauxApplication
     {
         private readonly Random random = new Random();
 
-        public LikeAppClient()
+        /// <summary>
+        /// Task id
+        /// </summary>
+        private int? _id;
+
+        /// <summary>
+        /// Constructor first IBusManager then LikeAppClient, to create a new bus and set it's own task id
+        /// </summary>
+        /// <param name="id">Task id</param>
+        public LikeAppClient(int? id)
         {
+            _id = id;
             Console.WriteLine("LikeAppClient constructor done");
         }
 
@@ -27,17 +37,24 @@ namespace KBS.FauxApplication
             return BusControl.Publish<IFauxMessage>(new { ByteArray = bytes });
         }
 
+        /// <summary>
+        /// Method to easily publish a like
+        /// </summary>
+        /// <returns></returns>
         public Task PublishLike() => BusControl.Publish<ILiked>(new { });
 
         protected override IBusControl CreateBusControl()
         {
             return Bus.Factory.CreateUsingAzureServiceBus(cfg =>
             {
-                cfg.Host(new Uri("sb://personal-test-service-bus.servicebus.windows.net/"), h =>
+                cfg.Host(new Uri("sb://kbs-asd-test-bus.servicebus.windows.net/"), h =>
                 {
                     h.OperationTimeout = TimeSpan.FromSeconds(5);
                     h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", Program.KEY);
                 });
+
+                // Receive any changes to the like count and write the new count to console, with it's own task id
+                cfg.ReceiveEndpoint("like_count", ep => ep.Handler<ILikeCount>(c => Console.Out.WriteLineAsync($"{$"+1 like: {c.Message.Likes}",-20} (client [{_id}])")));
             });
         }
     }
