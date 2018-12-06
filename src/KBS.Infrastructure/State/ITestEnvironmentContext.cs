@@ -9,6 +9,6 @@ namespace KBS.Infrastructure.State
         ITestConfiguration Configuration { get; }
         TestEnvironmentState Status { get; }
 
-        DateTime StartTime { get; }
+        DateTime CreatedAtUTC { get; }
     }
 }

@@ -9,14 +9,14 @@ namespace KBS.Infrastructure.State
     {
         public ITestConfiguration Configuration { get; }
         public TestEnvironmentState Status { get; }
-        public DateTime StartTime { get; }
+        public DateTime CreatedAtUTC { get; }
 
         public TestEnvironmentContext(ITestConfiguration configuration)
         {
             Configuration = configuration;
             Status = TestEnvironmentState.Initial;
 
-            StartTime = DateTime.UtcNow;
+            CreatedAtUTC = DateTime.UtcNow;
         }
     }
 }

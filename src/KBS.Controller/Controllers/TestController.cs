@@ -21,14 +21,19 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public async Task<List<TestEnvironmentContext>> GetAllAsync() =>
-            await _manager.GetTestEnvironmentsAsync();
+        public async Task<List<TestEnvironmentContext>> GetAllAsync()
+        {
+            return await _manager.GetTestEnvironmentsAsync();
+        }
 
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public async Task<TestEnvironmentContext> GetTestAsync(string name) =>
-            await _manager.GetTestEnvironmentAsync(name);
+        public async Task<TestEnvironmentContext> GetTestAsync(string name)
+        {
+            return await _manager.GetTestEnvironmentAsync(name);
+        }
+            
 
         // POST api/test
         [HttpPost]

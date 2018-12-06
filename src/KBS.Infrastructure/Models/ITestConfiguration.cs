@@ -1,3 +1,5 @@
+using System;
+
 namespace KBS.Infrastructure.Models
 {
     public interface ITestConfiguration
@@ -5,7 +7,7 @@ namespace KBS.Infrastructure.Models
         string Name { get; }
         int Frequency { get; }
         int Size { get; }
-        int TestDuration { get; }
+        DateTime EndingAtUTC { get; }
         int BatchSize { get; }
         string Protocol { get; }
     }
