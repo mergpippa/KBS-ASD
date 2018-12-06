@@ -1,13 +1,14 @@
-using KBS.FauxApplication;
+using KBS.Infrastructure.Models;
 
 namespace KBS.Controller.Models
 {
     public class TestConfiguration : ITestConfiguration
     {
-        public int Frequency { get; set; }
-        public int Size { get; set; }
-        public int TestDuration { get; set; }
-        public int BatchSize { get; set; }
-        public string Protocol { get; set; }
+        public int Frequency { get; }
+        public int Size { get; }
+        public int TestDuration { get; }
+        public int BatchSize { get; }
+        public string Protocol { get; }
+        public string Name { get; }
     }
 }

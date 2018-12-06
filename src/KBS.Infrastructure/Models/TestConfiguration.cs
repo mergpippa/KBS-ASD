@@ -2,11 +2,11 @@ namespace KBS.Infrastructure.Models
 {
     public class TestConfiguration : ITestConfiguration
     {
-        public string Name { get; }
-        public int Frequency { get; }
-        public int Size { get; }
-        public int TestDuration { get; }
-        public int BatchSize { get; }
-        public string Protocol { get; }
+        public string Name { get; set; }
+        public int Frequency { get; set; }
+        public int Size { get; set; }
+        public int TestDuration { get; set; }
+        public int BatchSize { get; set; }
+        public string Protocol { get; set; }
     }
 }

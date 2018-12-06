@@ -9,18 +9,19 @@ namespace KBS.Infrastructure
         /// <summary>
         /// Get currently running tests
         /// </summary>
-        Task<IList<ITestEnvironment>> GetTests();
+        Task<List<TestEnvironment>> GetTestEnvironmentsAsync();
 
         /// <summary>
         /// Gets test status of test with given identifier
         /// </summary>
         /// <param name="identifier"></param>
-        Task<ITestEnvironment> GetTest(string name);
+        /// <param name="name"></param>
+        Task<TestEnvironment> GetTestEnvironmentAsync(string name);
 
         /// <summary>
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        Task<ITestEnvironment> CreateTest(ITestConfiguration configuration);
+        Task<TestEnvironment> CreateTestEnvironmentAsync(TestConfiguration configuration);
     }
 }

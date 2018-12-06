@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using KBS.Controller.Models;
-using KBS.FauxApplication;
+using System.Threading.Tasks;
 using KBS.Infrastructure;
+using KBS.Infrastructure.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -13,35 +13,31 @@ namespace KBS.Controller.Controllers
     {
         private readonly IManager _manager;
 
-        public TestController(IManager manager){
+        public TestController(IManager manager) {
             _manager = manager;
         }
 
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public List<TestEnvironment> GetAll()
-        {
-            //return _manager.GetTests();
-            return null;
-        }
+        public async Task<List<TestEnvironment>> GetAllAsync() =>
+            await _manager.GetTestEnvironmentsAsync();
 
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public TestEnvironment GetTest(int id){
-            //return _manager.GetTest(id);
-            return null;
-        }
+        public async Task<TestEnvironment> GetTestAsync(string name) =>
+            await _manager.GetTestEnvironmentAsync(name);
 
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult Post([FromBody] TestConfiguration configuration)
+        public async Task<TestEnvironment> PostAsync([FromBody] TestConfiguration configuration)
         {
-            // _manager.CreateTest(configuration);
-            //return Ok();
-            return BadRequest();
+            /*if (!ModelState.IsValid)
+                return BadRequest(ModelState);*/
+
+            return await _manager.CreateTestEnvironmentAsync(configuration);
         }
 
     }

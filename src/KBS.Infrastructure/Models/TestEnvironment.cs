@@ -1,4 +1,4 @@
-using KBS.Infrastructure.Resources;
+using KBS.Infrastructure.Data;
 using System;
 
 namespace KBS.Infrastructure.Models
