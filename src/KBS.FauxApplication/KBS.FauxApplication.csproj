@@ -7,11 +7,16 @@
 
   <ItemGroup>
     <PackageReference Include="MassTransit" Version="5.1.5" />
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.1.5" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="5.1.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\KBS.Messages\KBS.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

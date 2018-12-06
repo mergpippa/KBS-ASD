@@ -2,12 +2,19 @@ using System;
 using System.Threading.Tasks;
 using KBS.Messages;
 using MassTransit;
+using MassTransit.Azure.ServiceBus.Core;
+using Microsoft.Azure.ServiceBus.Primitives;
 
 namespace KBS.FauxApplication
 {
     internal class LikeAppClient : IBusManager
     {
         private readonly Random random = new Random();
+
+        public LikeAppClient()
+        {
+            Console.WriteLine("LikeAppClient constructor done");
+        }
 
         /// <summary>
         /// Publish an array of random bytes
@@ -24,23 +31,12 @@ namespace KBS.FauxApplication
 
         protected override IBusControl CreateBusControl()
         {
-            return Bus.Factory.CreateUsingRabbitMq(cfg =>
+            return Bus.Factory.CreateUsingAzureServiceBus(cfg =>
             {
-                cfg.Host(new Uri("rabbitmq://flamingo.rmq.cloudamqp.com:1883"), host =>
+                cfg.Host(new Uri("sb://personal-test-service-bus.servicebus.windows.net/"), h =>
                 {
-                    host.Username("jyqmasmw:jyqmasmw");
-                    host.Password("n1390tQb0ctiN6It1vbNG5Gr6d2hFHh0");
-                });
-
-                //cfg.ReceiveEndpoint("queue_name", ep =>
-                //{
-                //    ep.Handler<ILiked>(_ => Console.Out.WriteLineAsync(ILikeCounter.Likes.ToString()));
-                //    ep.Handler<IFauxMessage>(_ => Console.Out.WriteLineAsync("Bytes received"));
-                //});
-
-                cfg.ReceiveEndpoint("like_queue", ep =>
-                {
-                    ep.Handler<ILiked>(_ => Console.Out.WriteLineAsync("Liked"));
+                    h.OperationTimeout = TimeSpan.FromSeconds(5);
+                    h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", Program.KEY);
                 });
             });
         }
