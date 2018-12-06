@@ -11,7 +11,8 @@ namespace KBS.Controller.Controllers
     {
         private readonly IManager _manager;
 
-        public TestController(IManager manager){
+        public TestController(IManager manager)
+        {
             _manager = manager;
         }
 
@@ -30,6 +31,5 @@ namespace KBS.Controller.Controllers
         {
             return BadRequest();
         }
-
     }
 }

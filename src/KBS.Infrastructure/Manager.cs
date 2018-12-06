@@ -3,7 +3,7 @@ using KBS.FauxApplication;
 
 namespace KBS.Infrastructure
 {
-    public class Manager: IManager
+    public class Manager : IManager
     {
         /// <summary>
         /// Gets the current state of the test

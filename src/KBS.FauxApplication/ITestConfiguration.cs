@@ -1,5 +1,3 @@
-using System;
-
 namespace KBS.FauxApplication
 {
     public interface ITestConfiguration

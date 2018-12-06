@@ -1,5 +1,4 @@
 using System;
-using System.Threading.Tasks;
 using KBS.Messages;
 using MassTransit;
 using MassTransit.Azure.ServiceBus.Core;

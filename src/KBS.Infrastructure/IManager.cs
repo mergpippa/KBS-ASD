@@ -1,4 +1,3 @@
-using System;
 using KBS.FauxApplication;
 
 namespace KBS.Infrastructure
