@@ -1,6 +1,6 @@
 namespace KBS.Infrastructure.Data
 {
-    public enum TestEnvironmentState
+    public enum TestEnvironmentStatus
     {
         Initial = 1 << 0,
 

@@ -16,6 +16,5 @@
 
   <ItemGroup>
     <ProjectReference Include="..\KBS.Infrastructure\KBS.Infrastructure.csproj" />
-    <ProjectReference Include="..\KBS.FauxApplication\KBS.FauxApplication.csproj" />
   </ItemGroup>
 </Project>
