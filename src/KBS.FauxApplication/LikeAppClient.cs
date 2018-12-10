@@ -7,23 +7,22 @@ using Microsoft.Azure.ServiceBus.Primitives;
 
 namespace KBS.FauxApplication
 {
-    internal class LikeAppClient : IBusManager
+    internal class LikeAppClient : IBusManager, IConsumer<ILikeCount>
     {
         private readonly Random random = new Random();
 
         /// <summary>
         /// Task id
         /// </summary>
-        private int? _id;
+        public int? Id;
 
         /// <summary>
         /// Constructor first IBusManager then LikeAppClient, to create a new bus and set it's own task id
         /// </summary>
         /// <param name="id">Task id</param>
-        public LikeAppClient(int? id)
+        public LikeAppClient()
         {
-            _id = id;
-            Console.WriteLine("LikeAppClient constructor done");
+            Console.WriteLine($"LikeAppClient constructor done");
         }
 
         /// <summary>
@@ -47,15 +46,22 @@ namespace KBS.FauxApplication
         {
             return Bus.Factory.CreateUsingAzureServiceBus(cfg =>
             {
-                cfg.Host(new Uri("sb://kbs-asd-test-bus.servicebus.windows.net/"), h =>
+                var host = cfg.Host(new Uri("sb://kbs-asd-test-bus.servicebus.windows.net/"), h =>
                 {
                     h.OperationTimeout = TimeSpan.FromSeconds(5);
                     h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", Program.KEY);
                 });
 
                 // Receive any changes to the like count and write the new count to console, with it's own task id
-                cfg.ReceiveEndpoint("like_count", ep => ep.Handler<ILikeCount>(c => Console.Out.WriteLineAsync($"{$"+1 like: {c.Message.Likes}",-20} (client [{_id}])")));
+                //cfg.ReceiveEndpoint("like_count", ep => ep.Handler<ILikeCount>(c => Console.Out.WriteLineAsync($"{$"+1 like: {c.Message.Likes}",-20} (client [{Id}])")));
+
+                cfg.ReceiveEndpoint(host, "like_count", ep => ep.Consumer<LikeAppClient>());
             });
+        }
+
+        public async Task Consume(ConsumeContext<ILikeCount> context)
+        {
+            await Console.Out.WriteLineAsync($"{$"+1 like: {context.Message.Likes}",-20} (client [{Id}])");
         }
     }
 }

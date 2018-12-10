@@ -16,19 +16,22 @@ namespace KBS.FauxApplication
             var likeCounter = new LikeAppCounter();
             var randomizer = new Randomizer(1, 40, 4, 66);
 
-            void seperateLiker()
+            void seperateLiker(LikeAppClient client)
             {
-                var la = new LikeAppClient(Task.CurrentId);
+                client.Id = Task.CurrentId;
                 for (int i = 0; i < 4; i++)
-                    la.PublishLike();
+                    client.PublishLike();
                 Thread.Sleep(5000);
-                la.StopBusControl();
+                client.StopBusControl();
             }
 
             List<Task> likers = new List<Task>();
 
             for (int i = 0; i < 2; i++)
-                likers.Add(new Task(seperateLiker));
+            {
+                var client = new LikeAppClient();
+                likers.Add(new Task(() => seperateLiker(client)));
+            }
 
             likers.ForEach(liker => Console.WriteLine($"Liker [{liker.Id}] status: {liker.Status}"));
 

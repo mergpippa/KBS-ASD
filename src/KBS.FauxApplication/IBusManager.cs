@@ -4,7 +4,7 @@ namespace KBS.FauxApplication
 {
     internal abstract class IBusManager
     {
-        private IBusControl _busControl;
+        private volatile IBusControl _busControl;
 
         protected IBusManager() => BusControl.Start();
 
