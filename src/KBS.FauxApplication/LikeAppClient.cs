@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using KBS.Messages;
 using MassTransit;
@@ -12,14 +13,8 @@ namespace KBS.FauxApplication
         private readonly Random random = new Random();
 
         /// <summary>
-        /// Task id
-        /// </summary>
-        public int? Id;
-
-        /// <summary>
         /// Constructor first IBusManager then LikeAppClient, to create a new bus and set it's own task id
         /// </summary>
-        /// <param name="id">Task id</param>
         public LikeAppClient()
         {
             Console.WriteLine($"LikeAppClient constructor done");
@@ -52,16 +47,13 @@ namespace KBS.FauxApplication
                     h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", Program.KEY);
                 });
 
-                // Receive any changes to the like count and write the new count to console, with it's own task id
-                //cfg.ReceiveEndpoint("like_count", ep => ep.Handler<ILikeCount>(c => Console.Out.WriteLineAsync($"{$"+1 like: {c.Message.Likes}",-20} (client [{Id}])")));
-
-                cfg.ReceiveEndpoint(host, "like_count", ep => ep.Consumer<LikeAppClient>());
+                cfg.ReceiveEndpoint(host, "like_count", ep => ep.Instance(this));
             });
         }
 
         public async Task Consume(ConsumeContext<ILikeCount> context)
         {
-            await Console.Out.WriteLineAsync($"{$"+1 like: {context.Message.Likes}",-20} (client [{Id}])");
+            await Console.Out.WriteLineAsync($"{$"+1 like: {context.Message.Likes}",-20} (client [{Thread.GetCurrentProcessorId()}])").ConfigureAwait(false);
         }
     }
 }

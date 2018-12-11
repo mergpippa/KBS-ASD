@@ -10,7 +10,7 @@ namespace KBS.FauxApplication
     /// <summary>
     /// A LikeAppCounter is notified of new likes, counts them and publishes the new count
     /// </summary>
-    internal class LikeAppCounter : IBusManager
+    internal class LikeAppCounter : IBusManager, IConsumer<ILiked>
     {
         private int likes;
 
@@ -33,27 +33,29 @@ namespace KBS.FauxApplication
         {
             return Bus.Factory.CreateUsingAzureServiceBus(cfg =>
             {
-                cfg.Host(new Uri("sb://kbs-asd-test-bus.servicebus.windows.net/"), h =>
+                var host = cfg.Host(new Uri("sb://kbs-asd-test-bus.servicebus.windows.net/"), h =>
                 {
                     h.OperationTimeout = TimeSpan.FromSeconds(5);
                     h.TokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider("RootManageSharedAccessKey", Program.KEY);
                 });
 
-                cfg.ReceiveEndpoint("like_queue", ep => ep.Handler<ILiked>(_ =>
-                {
-                    #region Fake work
-
-                    //System.Threading.Thread.Sleep(50);
-
-                    #endregion Fake work
-
-                    likes++;
-                    // Publish/ update the new like count
-                    UpdateLikeCount();
-                    // Write number of counts to console, according to the counter
-                    return Console.Out.WriteLineAsync($"{$"Likes counted: {likes}",-20} (counter)");
-                }));
+                cfg.ReceiveEndpoint(host, "like_queue", ep => ep.Instance(this));
             });
+        }
+
+        public Task Consume(ConsumeContext<ILiked> context)
+        {
+            #region Fake work
+
+            //System.Threading.Thread.Sleep(50);
+
+            #endregion Fake work
+
+            likes++;
+            // Publish/ update the new like count
+            UpdateLikeCount();
+            // Write number of counts to console, according to the counter
+            return Console.Out.WriteLineAsync($"{$"Likes counted: {likes}",-20} (counter)");
         }
     }
 }

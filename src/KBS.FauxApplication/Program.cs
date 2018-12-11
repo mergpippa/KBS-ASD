@@ -15,27 +15,33 @@ namespace KBS.FauxApplication
             var likeCounter = new LikeAppCounter();
             var randomizer = new Randomizer(1, 40, 4, 66);
 
-            void seperateLiker()
+            void seperateLiker(LikeAppClient client)
             {
-                var client = new LikeAppClient();
                 for (int i = 0; i < 4; i++)
                     client.PublishLike();
+                Thread.Sleep(5000);
                 client.StopBusControl();
             }
 
             List<Thread> likers = new List<Thread>();
 
             for (int i = 0; i < 2; i++)
-                likers.Add(new Thread(seperateLiker));
+            {
+                var c = new LikeAppClient();
+                likers.Add(new Thread(() => seperateLiker(c)));
+            }
 
             likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
+
+            Console.WriteLine("<<<<<< Ready to send messages <<<<<<");
+            Console.ReadKey();
 
             likers.ForEach(liker => liker.Start());
 
             likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
 
             Console.WriteLine(">>>>>> Waiting to receive... >>>>>>");
-            Console.Read();
+            Console.ReadKey();
             likeCounter.StopBusControl();
         }
     }
