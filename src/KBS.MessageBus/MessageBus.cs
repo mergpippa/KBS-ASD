@@ -3,6 +3,7 @@ using KBS.MessageBus.Data;
 using KBS.MessageBus.Transports;
 using MassTransit;
 using System;
+using System.Threading.Tasks;
 
 namespace KBS.MessageBus
 {
@@ -34,9 +35,18 @@ namespace KBS.MessageBus
                     throw new InvalidEnvironmentVariableException("TRANSPORT_TYPE");
             }
         }
+
+        /// <summary>
+        /// Publishes command onto bus control
+        /// </summary>
+        /// <typeparam name="T">Should be an interface</typeparam>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        public Task Publish<T>(params object[] args) where T : class
+            => _busControl.Publish<T>(args);
     }
 
-    class InvalidEnvironmentVariableException : Exception
+    internal class InvalidEnvironmentVariableException : Exception
     {
         public InvalidEnvironmentVariableException(string environmentVariableName) : 
             base($"Environment variable `{environmentVariableName}` invalid or missing")
