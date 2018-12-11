@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using KBS.Controller.Models;
-using KBS.FauxApplication;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +29,8 @@ namespace KBS.Controller.Controllers
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public TestEnviroment GetTest(int id){
+        public TestEnviroment GetTest(int id)
+        {
             //return _manager.GetTest(id);
             return null;
         }
