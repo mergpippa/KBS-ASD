@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
@@ -13,11 +14,13 @@ namespace KBS.FauxApplication.WebshopCase
     {
         public Task Consume(ConsumeContext<IWebshopError> context)
         {
-            throw new System.NotImplementedException();
+            throw new Exception(context.Message.ErrorMessage);
         }
 
-        public Task Consume(ConsumeContext<ICatalogueRequest> context)
+        public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
+            await Console.Out.WriteLineAsync("Received request for item list").ConfigureAwait(false);
+            // TODO:: Needs to publish or send item list to buyer
             throw new System.NotImplementedException();
         }
 

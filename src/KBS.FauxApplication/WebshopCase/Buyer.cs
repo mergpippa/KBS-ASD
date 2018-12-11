@@ -1,6 +1,7 @@
 using MassTransit;
 using KBS.Messages.WebshopCase;
 using System.Threading.Tasks;
+using System;
 
 namespace KBS.FauxApplication.WebshopCase
 {
@@ -10,14 +11,17 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
-        public Task Consume(ConsumeContext<ICatalogueReply> context)
+        public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
-            throw new System.NotImplementedException();
+            string str = "";
+            foreach (var item in context.Message.SalableItems)
+                str += item + "\n";
+            await Console.Out.WriteAsync(str).ConfigureAwait(false);
         }
 
         public Task Consume(ConsumeContext<IWebshopError> context)
         {
-            throw new System.NotImplementedException();
+            throw new Exception(context.Message.ErrorMessage);
         }
     }
 }

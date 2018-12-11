@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace KBS.Messages.WebshopCase
 {
     /// <summary>
@@ -13,6 +15,6 @@ namespace KBS.Messages.WebshopCase
         /// <summary>
         /// String array of all available items
         /// </summary>
-        string[] SalableItems { get; }
+        List<string> SalableItems { get; }
     }
 }
