@@ -3,14 +3,14 @@ namespace KBS.MessageBus.Data
     internal static class EnvironmentVariable
     {
         public const string TransportType = "TRANSPORT_TYPE";
-        public const string OperationTimeout = "TRANSPORT_TYPE";
+        public const string OperationTimeout = "OPERATION_TIMEOUT";
 
         //
-        public const string AzureServiceBusToken = "TRANSPORT_TYPE";
+        public const string AzureServiceBusToken = "AZURE_SERVICE_BUS_TOKEN";
 
         //
-        public const string RabbitMQHost = "TRANSPORT_TYPE";
-        public const string RabbitMQUsername = "TRANSPORT_TYPE";
-        public const string RabbitMQPassword = "TRANSPORT_TYPE";
+        public const string RabbitMQHost = "RABBIT_MQ_HOST";
+        public const string RabbitMQUsername = "RABBIT_MQ_USERNAME";
+        public const string RabbitMQPassword = "RABBIT_MQ_PASSWORD";
     }
 }
