@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace KBS.FauxApplication
 {
@@ -16,28 +15,24 @@ namespace KBS.FauxApplication
             var likeCounter = new LikeAppCounter();
             var randomizer = new Randomizer(1, 40, 4, 66);
 
-            void seperateLiker(LikeAppClient client)
+            void seperateLiker()
             {
-                client.Id = Task.CurrentId;
+                var client = new LikeAppClient();
                 for (int i = 0; i < 4; i++)
                     client.PublishLike();
-                Thread.Sleep(5000);
                 client.StopBusControl();
             }
 
-            List<Task> likers = new List<Task>();
+            List<Thread> likers = new List<Thread>();
 
             for (int i = 0; i < 2; i++)
-            {
-                var client = new LikeAppClient();
-                likers.Add(new Task(() => seperateLiker(client)));
-            }
+                likers.Add(new Thread(seperateLiker));
 
-            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.Id}] status: {liker.Status}"));
+            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
 
             likers.ForEach(liker => liker.Start());
 
-            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.Id}] status: {liker.Status}"));
+            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
 
             Console.WriteLine(">>>>>> Waiting to receive... >>>>>>");
             Console.Read();

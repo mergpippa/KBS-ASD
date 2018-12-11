@@ -43,7 +43,7 @@ namespace KBS.FauxApplication
                 {
                     #region Fake work
 
-                    System.Threading.Thread.Sleep(50);
+                    //System.Threading.Thread.Sleep(50);
 
                     #endregion Fake work
 
