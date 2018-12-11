@@ -11,6 +11,7 @@ namespace KBS.FauxApplication
         private static void Main(string[] args)
         {
             KEY = args[0];
+
             // TODO: Configurable setup
             var likeCounter = new LikeAppCounter();
             var randomizer = new Randomizer(1, 40, 4, 66);
@@ -19,7 +20,9 @@ namespace KBS.FauxApplication
             {
                 for (int i = 0; i < 4; i++)
                     client.PublishLike();
+
                 Thread.Sleep(5000);
+
                 client.StopBusControl();
             }
 
