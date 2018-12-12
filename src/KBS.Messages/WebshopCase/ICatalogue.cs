@@ -15,6 +15,6 @@ namespace KBS.Messages.WebshopCase
         /// <summary>
         /// String array of all available items
         /// </summary>
-        List<string> SalableItems { get; }
+        Dictionary<string, int> SalableItems { get; }
     }
 }

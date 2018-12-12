@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
@@ -11,6 +13,30 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
+        private BusControl _busControl;
+
+        private Dictionary<string, int> _perceivedItems;
+
+        public Buyer(BusControl busControl)
+        {
+            _busControl = busControl;
+            // Request updated item list
+            //_busControl.Publish<ICatalogueRequest>(new { });
+        }
+
+        public void RequestItemList()
+        {
+            _busControl.Publish<ICatalogueRequest>(new { });
+        }
+
+        public void OrderItem(string itemName, int quantity)
+        {
+            var bankInfo = new { AccountID = 6699u, Withdrawal = 8 };
+            var order = new { ItemName = itemName, Quantity = quantity, Purchase = bankInfo };
+            Console.WriteLine("Order send...");
+            _busControl.Publish<IOrder>(order);
+        }
+
         /// <summary>
         /// Consumer for receiving catalogue from webshop
         /// </summary>
@@ -18,9 +44,11 @@ namespace KBS.FauxApplication.WebshopCase
         /// <returns>Task to run asynchronously</returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
-            string str = "";
+            _perceivedItems = context.Message.SalableItems;
+
+            string str = "----Buyer:\n";
             foreach (var item in context.Message.SalableItems)
-                str += item + "\n";
+                str += "\t" + item + "\n";
             await Console.Out.WriteAsync(str).ConfigureAwait(false);
         }
 
@@ -29,7 +57,7 @@ namespace KBS.FauxApplication.WebshopCase
         /// </summary>
         /// <param name="context">Context containing message</param>
         /// <returns>Task to run asynchronously</returns>
-        public async Task Consume(ConsumeContext<IWebshopError> context)
+        public Task Consume(ConsumeContext<IWebshopError> context)
         {
             throw new Exception(context.Message.ErrorMessage);
         }

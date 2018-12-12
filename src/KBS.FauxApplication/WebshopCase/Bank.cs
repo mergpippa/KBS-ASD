@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
@@ -9,6 +10,13 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Bank : IConsumer<ITransaction>
     {
+        private BusControl _busControl;
+
+        public Bank(BusControl busControl)
+        {
+            _busControl = busControl;
+        }
+
         /// <summary>
         /// Consumes transaction message from webshop and checks and publishes validity
         /// </summary>

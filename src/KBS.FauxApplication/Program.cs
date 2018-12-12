@@ -1,51 +1,33 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
+using KBS.FauxApplication.WebshopCase;
+using KBS.MessageBus;
+using KBS.MessageBus.Configuration;
+using KBS.MessageBus.Model;
 
 namespace KBS.FauxApplication
 {
     internal static class Program
     {
-        public static string KEY;
-
         private static void Main(string[] args)
         {
-            KEY = args[0];
+            Buyer buyer = null;
+            Webshop webshop = null;
+            Bank bank = null;
 
-            // TODO: Configurable setup
-            var likeCounter = new LikeAppCounter();
-            var randomizer = new Randomizer(1, 40, 4, 66);
-
-            void seperateLiker(LikeAppClient client)
+            var consumers = new List<MassTransit.IConsumer> { buyer, webshop, bank };
+            var busControl = new BusControl(new MessageBusConfigurator()
             {
-                for (int i = 0; i < 4; i++)
-                    client.PublishLike();
+                ReceiveEndpoints = new List<ReceiveEndpoint>() {
+                    new ReceiveEndpoint() { QueueName = "webshop_queue", Consumers = consumers } }
+            });
 
-                Thread.Sleep(5000);
+            buyer = new Buyer(busControl);
+            webshop = new Webshop(busControl);
+            bank = new Bank(busControl);
 
-                client.StopBusControl();
-            }
-
-            List<Thread> likers = new List<Thread>();
-
-            for (int i = 0; i < 2; i++)
-            {
-                var c = new LikeAppClient();
-                likers.Add(new Thread(() => seperateLiker(c)));
-            }
-
-            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
-
-            Console.WriteLine("<<<<<< Ready to send messages <<<<<<");
+            buyer.RequestItemList();
             Console.ReadKey();
-
-            likers.ForEach(liker => liker.Start());
-
-            likers.ForEach(liker => Console.WriteLine($"Liker [{liker.ManagedThreadId}] status: {liker.ThreadState}"));
-
-            Console.WriteLine(">>>>>> Waiting to receive... >>>>>>");
-            Console.ReadKey();
-            likeCounter.StopBusControl();
         }
     }
 }

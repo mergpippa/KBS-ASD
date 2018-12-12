@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
@@ -12,12 +14,25 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Webshop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<IWebshopError>
     {
+        private BusControl _busControl;
+
+        /// <summary>
+        /// All salable items in the webshop and their quantity
+        /// </summary>
+        private Dictionary<string, int> _items;
+
+        public Webshop(BusControl busControl)
+        {
+            _busControl = busControl;
+            _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
+        }
+
         /// <summary>
         /// Consumes any error that migh have occured
         /// </summary>
         /// <param name="context">Context containing message</param>
         /// <returns>Task to run asynchronously</returns>
-        public async Task Consume(ConsumeContext<IWebshopError> context)
+        public Task Consume(ConsumeContext<IWebshopError> context)
         {
             throw new Exception(context.Message.ErrorMessage);
         }
@@ -29,9 +44,9 @@ namespace KBS.FauxApplication.WebshopCase
         /// <returns>Task to run asynchronously</returns>
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
-            await Console.Out.WriteLineAsync("Received request for item list").ConfigureAwait(false);
             // TODO:: Needs to publish or send item list to buyer
-            throw new System.NotImplementedException();
+            await Console.Out.WriteLineAsync("Received request for item list").ConfigureAwait(false);
+            await _busControl.Publish<ICatalogueReply>(new { SalableItems = _items }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -41,7 +56,19 @@ namespace KBS.FauxApplication.WebshopCase
         /// <returns>Task to run asynchronously</returns>
         public async Task Consume(ConsumeContext<IOrder> context)
         {
-            throw new System.NotImplementedException();
+            string orderedItem = context.Message.ItemName;
+            int orderedQuantity = context.Message.Quantity;
+            if (!_items.ContainsKey(orderedItem) || _items[orderedItem] < orderedQuantity)
+            {
+                await Console.Out.WriteLineAsync($"Tried to order {orderedQuantity} {orderedItem}, " +
+                    $"but there are {_items[orderedItem]} left").ConfigureAwait(false);
+            }
+            else
+            {
+                ITransaction transaction = context.Message.Purchase;
+                await Console.Out.WriteLineAsync("Publishing transaction");
+                await _busControl.Publish<ITransaction>(transaction).ConfigureAwait(false);
+            }
         }
 
         /// <summary>

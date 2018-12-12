@@ -11,6 +11,12 @@ namespace KBS.MessageBus
     {
         private static IBusControl _busControl;
 
+        protected BusControl()
+        {
+            if (_busControl == null)
+                throw new Exception("The message bus is not yet configured");
+        }
+
         public BusControl(MessageBusConfigurator messageBusConfigurator)
         {
             var transportType = (TransportType)Convert.ToInt32(
