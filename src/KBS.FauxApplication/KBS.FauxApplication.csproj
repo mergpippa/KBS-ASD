@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
     <ProjectReference Include="..\KBS.Messages\KBS.Messages.csproj" />
   </ItemGroup>
 

@@ -7,16 +7,11 @@ using MassTransit;
 
 namespace KBS.MessageBus
 {
-    public interface ITest
-    {
-        int Val { get; }
-    }
-
-    public class MessageBus
+    public class BusControl
     {
         private static IBusControl _busControl;
 
-        public MessageBus(MessageBusConfigurator messageBusConfigurator)
+        public BusControl(MessageBusConfigurator messageBusConfigurator)
         {
             var transportType = (TransportType)Convert.ToInt32(
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
