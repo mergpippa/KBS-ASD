@@ -10,6 +10,7 @@ namespace KBS.MessageBus.Data
 
         //
         public const string RabbitMQHost = "RABBIT_MQ_HOST";
+
         public const string RabbitMQUsername = "RABBIT_MQ_USERNAME";
         public const string RabbitMQPassword = "RABBIT_MQ_PASSWORD";
     }

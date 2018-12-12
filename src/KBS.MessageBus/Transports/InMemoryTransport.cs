@@ -1,4 +1,3 @@
-using System;
 using KBS.MessageBus.Configuration;
 using MassTransit;
 

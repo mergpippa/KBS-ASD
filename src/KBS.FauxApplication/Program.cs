@@ -11,10 +11,12 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
+            // Webshop objects need a BusControl
             Buyer buyer = null;
             Webshop webshop = null;
             Bank bank = null;
 
+            // The BusControl needs the webshop objects
             var consumers = new List<MassTransit.IConsumer> { buyer, webshop, bank };
             var busControl = new BusControl(new MessageBusConfigurator()
             {

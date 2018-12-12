@@ -1,6 +1,6 @@
 namespace KBS.MessageBus
 {
-    enum TransportType
+    internal enum TransportType
     {
         InMemory = 0,
         RabbitMQ = 1,

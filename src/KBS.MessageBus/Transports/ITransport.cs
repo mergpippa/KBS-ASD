@@ -3,7 +3,7 @@ using MassTransit;
 
 namespace KBS.MessageBus.Transports
 {
-    interface ITransport
+    internal interface ITransport
     {
         IBusControl GetInstance(MessageBusConfigurator messageBusConfigurator);
     }
