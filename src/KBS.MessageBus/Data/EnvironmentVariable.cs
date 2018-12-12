@@ -6,7 +6,8 @@ namespace KBS.MessageBus.Data
         public const string OperationTimeout = "OPERATION_TIMEOUT";
 
         //
-        public const string AzureServiceBusToken = "AZURE_SERVICE_BUS_TOKEN";
+        public const string AzureServiceBusToken = "AZURE_SERVICE_BUS_PRIMARY_KEY";
+        public const string AzureServiceBusHost = "AZURE_SERVICE_BUS_HOST";
 
         //
         public const string RabbitMQHost = "RABBIT_MQ_HOST";
