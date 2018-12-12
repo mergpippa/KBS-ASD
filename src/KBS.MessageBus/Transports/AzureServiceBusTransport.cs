@@ -18,7 +18,7 @@ namespace KBS.MessageBus.Transports
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
-                busFactoryConfigurator.Host(new Uri("sb://localhost"), host =>
+                busFactoryConfigurator.Host(new Uri("sb://kbs-asd.servicebus.windows.net/"), host =>
                 {
                     var operationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
                         Environment.GetEnvironmentVariable(EnvironmentVariable.OperationTimeout)

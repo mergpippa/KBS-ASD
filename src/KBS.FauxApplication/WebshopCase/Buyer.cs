@@ -11,14 +11,14 @@ namespace KBS.FauxApplication.WebshopCase
     /// The buyer receives a list of shop items which they can buy.
     /// Such a buy order will be wrapped into a message which contains, or comes occompanied with, a transaction message.
     /// </summary>
-    internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
+    internal class Buyer
     {
-        private BusControl _busControl;
+        private readonly BuyerConsumer _consumer;
+        private readonly BusControl _busControl;
 
-        private Dictionary<string, int> _perceivedItems;
-
-        public Buyer(BusControl busControl)
+        public Buyer(BuyerConsumer consumer, BusControl busControl)
         {
+            _consumer = consumer;
             _busControl = busControl;
             // Request updated item list
             //_busControl.Publish<ICatalogueRequest>(new { });
@@ -36,6 +36,11 @@ namespace KBS.FauxApplication.WebshopCase
             Console.WriteLine("Order send...");
             _busControl.Publish<IOrder>(order);
         }
+    }
+
+    internal class BuyerConsumer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
+    {
+        protected Dictionary<string, int> _perceivedItems;
 
         /// <summary>
         /// Consumer for receiving catalogue from webshop
