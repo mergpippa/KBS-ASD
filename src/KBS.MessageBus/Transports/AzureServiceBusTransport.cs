@@ -10,6 +10,19 @@ namespace KBS.MessageBus.Transports
     internal class AzureServiceBusTransport : ITransport
     {
         /// <summary>
+        /// URI to Azure Service Bus
+        /// </summary>
+        private readonly Uri _uri = new Uri(Environment.GetEnvironmentVariable(EnvironmentVariable.AzureServiceBusHost));
+
+        /// <summary>
+        /// Private token that is used to authenticate this MassTransit client
+        /// </summary>
+        private readonly ITokenProvider _tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(
+            TokenProviderKeyName.RootManageSharedAccessKey,
+            Environment.GetEnvironmentVariable(EnvironmentVariable.AzureServiceBusToken)
+        );
+
+        /// <summary>
         /// Creates a MassTransit instance using the Azure Service Bus transport
         /// </summary>
         /// <param name="messageBusConfigurator"></param>
@@ -18,19 +31,13 @@ namespace KBS.MessageBus.Transports
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
-                busFactoryConfigurator.Host(new Uri("sb://kbs-asd.servicebus.windows.net/"), host =>
+                busFactoryConfigurator.Host(_uri, host =>
                 {
-                    var operationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
+                    host.OperationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
                         Environment.GetEnvironmentVariable(EnvironmentVariable.OperationTimeout)
                     ));
 
-                    var tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(
-                        TokenProviderKeyName.RootManageSharedAccessKey,
-                        Environment.GetEnvironmentVariable(EnvironmentVariable.AzureServiceBusToken)
-                    );
-
-                    host.OperationTimeout = operationTimeout;
-                    host.TokenProvider = tokenProvider;
+                    host.TokenProvider = _tokenProvider;
                 });
 
                 // Create receive endpoints
