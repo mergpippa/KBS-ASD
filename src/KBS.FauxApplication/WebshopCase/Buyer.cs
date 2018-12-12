@@ -1,7 +1,7 @@
-using MassTransit;
-using KBS.Messages.WebshopCase;
-using System.Threading.Tasks;
 using System;
+using System.Threading.Tasks;
+using KBS.Messages.WebshopCase;
+using MassTransit;
 
 namespace KBS.FauxApplication.WebshopCase
 {
@@ -11,6 +11,11 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
+        /// <summary>
+        /// Consumer for receiving catalogue from webshop
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
             string str = "";
@@ -19,7 +24,12 @@ namespace KBS.FauxApplication.WebshopCase
             await Console.Out.WriteAsync(str).ConfigureAwait(false);
         }
 
-        public Task Consume(ConsumeContext<IWebshopError> context)
+        /// <summary>
+        /// Consumes any error that might have occured
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
+        public async Task Consume(ConsumeContext<IWebshopError> context)
         {
             throw new Exception(context.Message.ErrorMessage);
         }

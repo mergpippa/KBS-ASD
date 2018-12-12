@@ -12,11 +12,21 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Webshop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<IWebshopError>
     {
-        public Task Consume(ConsumeContext<IWebshopError> context)
+        /// <summary>
+        /// Consumes any error that migh have occured
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
+        public async Task Consume(ConsumeContext<IWebshopError> context)
         {
             throw new Exception(context.Message.ErrorMessage);
         }
 
+        /// <summary>
+        /// Consumes request to publish the new catalogue
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
             await Console.Out.WriteLineAsync("Received request for item list").ConfigureAwait(false);
@@ -24,12 +34,22 @@ namespace KBS.FauxApplication.WebshopCase
             throw new System.NotImplementedException();
         }
 
-        public Task Consume(ConsumeContext<IOrder> context)
+        /// <summary>
+        /// Consumes a buy order and forwards a transaction message to a bank for validation
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
+        public async Task Consume(ConsumeContext<IOrder> context)
         {
             throw new System.NotImplementedException();
         }
 
-        public Task Consume(ConsumeContext<ITransactionValidation> context)
+        /// <summary>
+        /// Consumes the transaction reply from bank
+        /// </summary>
+        /// <param name="context">Context containing message</param>
+        /// <returns>Task to run asynchronously</returns>
+        public async Task Consume(ConsumeContext<ITransactionValidation> context)
         {
             throw new System.NotImplementedException();
         }

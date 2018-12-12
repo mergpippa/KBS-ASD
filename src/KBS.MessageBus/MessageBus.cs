@@ -1,19 +1,24 @@
+using System;
+using System.Threading.Tasks;
 using KBS.MessageBus.Configuration;
 using KBS.MessageBus.Data;
 using KBS.MessageBus.Transports;
 using MassTransit;
-using System;
-using System.Threading.Tasks;
 
 namespace KBS.MessageBus
 {
+    public interface ITest
+    {
+        int Val { get; }
+    }
+
     public class MessageBus
     {
         private static IBusControl _busControl;
 
         public MessageBus(MessageBusConfigurator messageBusConfigurator)
         {
-            var transportType = (TransportType) Convert.ToInt32(
+            var transportType = (TransportType)Convert.ToInt32(
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
             );
 
@@ -40,15 +45,14 @@ namespace KBS.MessageBus
         /// Publishes command onto bus control
         /// </summary>
         /// <typeparam name="T">Should be an interface</typeparam>
-        /// <param name="args"></param>
+        /// <param name="message">Must be an anonymous type; expl: "new { Val = 0 }"</param>
         /// <returns></returns>
-        public Task Publish<T>(params object[] args) where T : class
-            => _busControl.Publish<T>(args);
+        public Task Publish<T>(object message) where T : class => _busControl.Publish<T>(message);
     }
 
     internal class InvalidEnvironmentVariableException : Exception
     {
-        public InvalidEnvironmentVariableException(string environmentVariableName) : 
+        public InvalidEnvironmentVariableException(string environmentVariableName) :
             base($"Environment variable `{environmentVariableName}` invalid or missing")
         { }
 
