@@ -37,7 +37,7 @@ namespace KBS.MessageBus
                     break;
 
                 default:
-                    throw new InvalidEnvironmentVariableException("TRANSPORT_TYPE");
+                    throw new InvalidEnvironmentVariableException(EnvironmentVariable.TransportType);
             }
         }
 
