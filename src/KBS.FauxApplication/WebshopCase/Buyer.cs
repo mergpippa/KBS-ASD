@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GreenPipes;
 using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
@@ -11,21 +12,19 @@ namespace KBS.FauxApplication.WebshopCase
     /// The buyer receives a list of shop items which they can buy.
     /// Such a buy order will be wrapped into a message which contains, or comes occompanied with, a transaction message.
     /// </summary>
-    internal class Buyer
+    public class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
-        private readonly BuyerConsumer _consumer;
+        private Dictionary<string, int> _perceivedItems;
         private readonly BusControl _busControl;
 
-        public Buyer(BuyerConsumer consumer, BusControl busControl)
+        public Buyer(BusControl busControl)
         {
-            _consumer = consumer;
             _busControl = busControl;
-            // Request updated item list
-            //_busControl.Publish<ICatalogueRequest>(new { });
         }
 
         public void RequestItemList()
         {
+            Console.WriteLine("Buyer: Requested catalogue...");
             _busControl.Publish<ICatalogueRequest>(new { });
         }
 
@@ -36,11 +35,6 @@ namespace KBS.FauxApplication.WebshopCase
             Console.WriteLine("Order send...");
             _busControl.Publish<IOrder>(order);
         }
-    }
-
-    internal class BuyerConsumer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
-    {
-        protected Dictionary<string, int> _perceivedItems;
 
         /// <summary>
         /// Consumer for receiving catalogue from webshop
