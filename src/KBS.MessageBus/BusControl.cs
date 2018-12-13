@@ -11,10 +11,7 @@ namespace KBS.MessageBus
     {
         private static IBusControl _busControl;
 
-        public BusControl()
-        { }
-
-        public void Create(MessageBusConfigurator messageBusConfigurator)
+        public BusControl(MessageBusConfigurator messageBusConfigurator)
         {
             var transportType = (TransportType)Convert.ToInt32(
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
@@ -37,6 +34,13 @@ namespace KBS.MessageBus
                 default:
                     throw new InvalidEnvironmentVariableException(EnvironmentVariable.TransportType);
             }
+
+            _busControl.Start();
+        }
+
+        public void Stop()
+        {
+            _busControl.Stop();
         }
 
         /// <summary>

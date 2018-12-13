@@ -14,17 +14,15 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Webshop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<IWebshopError>
     {
-        public BusControl BusControl { private get; set; }
-
         /// <summary>
         /// All salable items in the webshop and their quantity
         /// </summary>
         private Dictionary<string, int> _items;
 
-        public Webshop()
-        {
-            _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
-        }
+        //public Webshop()
+        //{
+        //    _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
+        //}
 
         /// <summary>
         /// Consumes any error that migh have occured
@@ -45,7 +43,8 @@ namespace KBS.FauxApplication.WebshopCase
         {
             // TODO:: Needs to publish or send item list to buyer
             await Console.Out.WriteLineAsync("Received request for item list");
-            await BusControl.Publish<ICatalogueReply>(new { SalableItems = _items }).ConfigureAwait(false);
+            //await context.Publish<ICatalogueReply>(new { SalableItems = _items });
+            await context.Publish<ICatalogueReply>(new { Text = "Reply..." });
         }
 
         /// <summary>
@@ -66,7 +65,7 @@ namespace KBS.FauxApplication.WebshopCase
             {
                 ITransaction transaction = context.Message.Purchase;
                 await Console.Out.WriteLineAsync("Publishing transaction");
-                await BusControl.Publish<ITransaction>(transaction).ConfigureAwait(false);
+                await context.Publish<ITransaction>(transaction).ConfigureAwait(false);
             }
         }
 

@@ -15,16 +15,11 @@ namespace KBS.FauxApplication.WebshopCase
     internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
         private Dictionary<string, int> _perceivedItems;
-        public BusControl BusControl { private get; set; }
-
-        public Buyer()
-        {
-        }
 
         public void RequestItemList()
         {
             Console.WriteLine("Buyer: Requested catalogue...");
-            BusControl.Publish<ICatalogueRequest>(new { });
+            //BusControl.Publish<ICatalogueRequest>(new { });
         }
 
         public void OrderItem(string itemName, int quantity)
@@ -32,7 +27,7 @@ namespace KBS.FauxApplication.WebshopCase
             var bankInfo = new { AccountID = 6699u, Withdrawal = 8 };
             var order = new { ItemName = itemName, Quantity = quantity, Purchase = bankInfo };
             Console.WriteLine("Order send...");
-            BusControl.Publish<IOrder>(order);
+            //BusControl.Publish<IOrder>(order);
         }
 
         /// <summary>

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using KBS.MessageBus.Model;
+using KBS.Messages.WebshopCase;
 using MassTransit;
 
 namespace KBS.MessageBus.Configuration
@@ -28,11 +30,26 @@ namespace KBS.MessageBus.Configuration
             return (ReceiveEndpoint receiveEndpoint) =>
                 busConfigurator.ReceiveEndpoint(receiveEndpoint.QueueName, receiveEndpointConfigurator =>
                 {
+                    //receiveEndpointConfigurator.Consumer<MyConsumer>();
                     receiveEndpoint.Consumers.ForEach((consumer) =>
                     {
-                        receiveEndpointConfigurator.Instance(consumer);
+                        receiveEndpointConfigurator.Consumer(() => consumer);
                     });
                 });
+        }
+    }
+
+    internal class MyConsumer : IConsumer<ICatalogueRequest>, IConsumer<ICatalogueReply>
+    {
+        public async Task Consume(ConsumeContext<ICatalogueRequest> context)
+        {
+            await Console.Out.WriteLineAsync("Requested");
+            await context.Publish<ICatalogueReply>(new { Text = "Test" });
+        }
+
+        public Task Consume(ConsumeContext<ICatalogueReply> context)
+        {
+            return Console.Out.WriteLineAsync(context.Message.Text);
         }
     }
 }
