@@ -12,20 +12,19 @@ namespace KBS.FauxApplication.WebshopCase
     /// The buyer receives a list of shop items which they can buy.
     /// Such a buy order will be wrapped into a message which contains, or comes occompanied with, a transaction message.
     /// </summary>
-    public class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
+    internal class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
     {
         private Dictionary<string, int> _perceivedItems;
-        private readonly BusControl _busControl;
+        public BusControl BusControl { private get; set; }
 
-        public Buyer(BusControl busControl)
+        public Buyer()
         {
-            _busControl = busControl;
         }
 
         public void RequestItemList()
         {
             Console.WriteLine("Buyer: Requested catalogue...");
-            _busControl.Publish<ICatalogueRequest>(new { });
+            BusControl.Publish<ICatalogueRequest>(new { });
         }
 
         public void OrderItem(string itemName, int quantity)
@@ -33,7 +32,7 @@ namespace KBS.FauxApplication.WebshopCase
             var bankInfo = new { AccountID = 6699u, Withdrawal = 8 };
             var order = new { ItemName = itemName, Quantity = quantity, Purchase = bankInfo };
             Console.WriteLine("Order send...");
-            _busControl.Publish<IOrder>(order);
+            BusControl.Publish<IOrder>(order);
         }
 
         /// <summary>

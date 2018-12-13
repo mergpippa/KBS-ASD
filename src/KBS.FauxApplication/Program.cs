@@ -14,9 +14,9 @@ namespace KBS.FauxApplication
             // Webshop objects need a BusControl
             BusControl busControl = new BusControl();
 
-            Buyer buyer = new Buyer(busControl);
-            Webshop webshop = new Webshop(busControl);
-            Bank bank = new Bank(busControl);
+            Buyer buyer = new Buyer();
+            Webshop webshop = new Webshop();
+            Bank bank = new Bank();
 
             // The BusControl needs the webshop objects
             var consumers = new List<MassTransit.IConsumer> { buyer, webshop, bank };
@@ -25,6 +25,10 @@ namespace KBS.FauxApplication
                 ReceiveEndpoints = new List<ReceiveEndpoint>() {
                     new ReceiveEndpoint() { QueueName = "webshop_queue", Consumers = consumers } }
             });
+
+            buyer.BusControl = busControl;
+            webshop.BusControl = busControl;
+            bank.BusControl = busControl;
 
             buyer.RequestItemList();
             Console.WriteLine("Waiting...");

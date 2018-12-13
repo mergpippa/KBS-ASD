@@ -10,11 +10,10 @@ namespace KBS.FauxApplication.WebshopCase
     /// </summary>
     internal class Bank : IConsumer<ITransaction>
     {
-        private BusControl _busControl;
+        public BusControl BusControl { private get; set; }
 
-        public Bank(BusControl busControl)
+        public Bank()
         {
-            _busControl = busControl;
         }
 
         /// <summary>
