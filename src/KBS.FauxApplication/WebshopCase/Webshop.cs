@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
@@ -12,17 +11,17 @@ namespace KBS.FauxApplication.WebshopCase
     /// When a webshop receives a buy order message it will check if the items are available.
     /// Any transaction messages will be send to the bank for validation.
     /// </summary>
-    internal class Webshop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<IWebshopError>
+    public class Webshop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<IWebshopError>
     {
         /// <summary>
         /// All salable items in the webshop and their quantity
         /// </summary>
         private Dictionary<string, int> _items;
 
-        //public Webshop()
-        //{
-        //    _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
-        //}
+        public Webshop()
+        {
+            _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
+        }
 
         /// <summary>
         /// Consumes any error that migh have occured
@@ -43,8 +42,7 @@ namespace KBS.FauxApplication.WebshopCase
         {
             // TODO:: Needs to publish or send item list to buyer
             await Console.Out.WriteLineAsync("Received request for item list");
-            //await context.Publish<ICatalogueReply>(new { SalableItems = _items });
-            await context.Publish<ICatalogueReply>(new { Text = "Reply..." });
+            await context.Publish<ICatalogueReply>(new { SalableItems = _items });
         }
 
         /// <summary>

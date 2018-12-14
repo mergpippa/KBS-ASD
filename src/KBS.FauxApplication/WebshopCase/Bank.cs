@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
@@ -8,12 +7,8 @@ namespace KBS.FauxApplication.WebshopCase
     /// <summary>
     /// A bank receives transaction messages from a webshop and returns whether they are valid or not.
     /// </summary>
-    internal class Bank : IConsumer<ITransaction>
+    public class Bank : IConsumer<ITransaction>
     {
-        public Bank()
-        {
-        }
-
         /// <summary>
         /// Consumes transaction message from webshop and checks and publishes validity
         /// </summary>
