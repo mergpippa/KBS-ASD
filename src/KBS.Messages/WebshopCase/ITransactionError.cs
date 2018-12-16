@@ -3,7 +3,7 @@ namespace KBS.Messages.WebshopCase
     /// <summary>
     /// Error message topic/interface
     /// </summary>
-    public interface IWebshopError
+    public interface ITransactionError
     {
         /// <summary>
         /// Error code for fast checking

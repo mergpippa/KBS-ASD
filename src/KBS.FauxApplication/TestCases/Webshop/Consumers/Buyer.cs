@@ -4,19 +4,20 @@ using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
-namespace KBS.FauxApplication.WebshopCase
+namespace KBS.FauxApplication.TestCases.Webshop.Consumers
 {
     /// <summary>
-    /// The buyer receives a list of shop items which they can buy.
-    /// Such a buy order will be wrapped into a message which contains, or comes occompanied with, a transaction message.
+    /// The buyer receives a list of shop items which they can buy. Such a buy order will be wrapped
+    /// into a message which contains, or comes occompanied with, a transaction message.
     /// </summary>
-    public class Buyer : IConsumer<ICatalogueReply>, IConsumer<IWebshopError>
+    public class Buyer : IConsumer<ICatalogueReply>, IConsumer<ITransactionError>
     {
         private Dictionary<string, int> _perceivedItems;
 
         public void RequestItemList()
         {
             Console.WriteLine("Buyer: Requested catalogue...");
+
             //BusControl.Publish<ICatalogueRequest>(new { });
         }
 
@@ -25,14 +26,19 @@ namespace KBS.FauxApplication.WebshopCase
             var bankInfo = new { AccountID = 6699u, Withdrawal = 8 };
             var order = new { ItemName = itemName, Quantity = quantity, Purchase = bankInfo };
             Console.WriteLine("Order send...");
+
             //BusControl.Publish<IOrder>(order);
         }
 
         /// <summary>
         /// Consumer for receiving catalogue from webshop
         /// </summary>
-        /// <param name="context">Context containing message</param>
-        /// <returns>Task to run asynchronously</returns>
+        /// <param name="context">
+        /// Context containing message
+        /// </param>
+        /// <returns>
+        /// Task to run asynchronously
+        /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
             _perceivedItems = context.Message.SalableItems;
@@ -46,9 +52,13 @@ namespace KBS.FauxApplication.WebshopCase
         /// <summary>
         /// Consumes any error that might have occured
         /// </summary>
-        /// <param name="context">Context containing message</param>
-        /// <returns>Task to run asynchronously</returns>
-        public Task Consume(ConsumeContext<IWebshopError> context)
+        /// <param name="context">
+        /// Context containing message
+        /// </param>
+        /// <returns>
+        /// Task to run asynchronously
+        /// </returns>
+        public Task Consume(ConsumeContext<ITransactionError> context)
         {
             throw new Exception(context.Message.ErrorMessage);
         }

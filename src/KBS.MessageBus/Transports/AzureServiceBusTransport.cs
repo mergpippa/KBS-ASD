@@ -1,5 +1,5 @@
 using System;
-using KBS.MessageBus.Configuration;
+using KBS.MessageBus.Configurator;
 using KBS.MessageBus.Data;
 using MassTransit;
 using MassTransit.Azure.ServiceBus.Core;
@@ -25,9 +25,11 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the Azure Service Bus transport
         /// </summary>
-        /// <param name="messageBusConfigurator"></param>
-        /// <returns></returns>
-        public IBusControl GetInstance(MessageBusConfigurator messageBusConfigurator)
+        /// <param name="messageBusConfigurator">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public IBusControl GetBusControl(IMessageBusEndpointConfigurator endpointConfigurator)
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
@@ -40,8 +42,8 @@ namespace KBS.MessageBus.Transports
                     host.TokenProvider = _tokenProvider;
                 });
 
-                // Create receive endpoints
-                messageBusConfigurator.ApplyConfiguration(busFactoryConfigurator);
+                // Create receive endpoints for test case
+                endpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
             });
         }
     }

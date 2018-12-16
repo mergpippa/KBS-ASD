@@ -1,11 +1,8 @@
 using System;
-using System.Collections.Generic;
-using KBS.FauxApplication.WebshopCase;
+using System.Threading;
+using KBS.FauxApplication.TestCases;
 using KBS.MessageBus;
-using KBS.MessageBus.Configuration;
-using KBS.MessageBus.Model;
 using KBS.Messages.WebshopCase;
-using MassTransit;
 
 namespace KBS.FauxApplication
 {
@@ -13,42 +10,18 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
-            // The BusControl needs the webshop objects
-            var consumers = new List<MassTransit.IConsumer> { new Buyer(), new Webshop(), new Bank() };
+            var testCase = TestCaseFactory.Create(TestCaseType.Webshop);
 
-            var busControl = new BusControl(new MessageBusConfigurator(new List<ReceiveEndpoint>()
-                    {
-                        new ReceiveEndpoint("webshop_queue", consumers)
-                    }));
-
-            //busControl.Publish<ICatalogueRequest>(new { });
-
-            #region Working in memory
-
-            var buyer = new Buyer();
-            var shop = new Webshop();
-            var bank = new Bank();
-
-            var bus = Bus.Factory.CreateUsingInMemory(cfg =>
+            using (var busControl = new BusControl(testCase))
             {
-                cfg.ReceiveEndpoint("mem_queue", ep =>
-                {
-                    ep.Consumer(() => buyer);
-                    ep.Consumer(() => shop);
-                    ep.Consumer(() => bank);
-                });
-            });
-            bus.Start();
+                busControl.Publish<ICatalogueRequest>(new { });
 
-            #endregion Working in memory
+                Console.WriteLine("Waiting...");
+                Console.ReadLine();
+            }
 
-            bus.Publish<ICatalogueRequest>(new { });
-
-            Console.WriteLine("Waiting...");
-            Console.ReadLine();
-
-            bus.Stop();
-            busControl.Stop();
+            Console.WriteLine("Closing application...");
+            Thread.Sleep(1500);
         }
     }
 }
