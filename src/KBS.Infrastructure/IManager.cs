@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication;
+using KBS.FauxApplication.Model;
 
 namespace KBS.Infrastructure
 {
@@ -21,6 +21,6 @@ namespace KBS.Infrastructure
         /// Creates a test environment with the given configuration
         /// </summary>
         /// <param name="configuration"></param>
-        Task CreateTest(ITestConfiguration configuration);
+        Task CreateTest(TestConfiguration configuration);
     }
 }

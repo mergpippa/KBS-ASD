@@ -15,7 +15,7 @@ namespace KBS.MessageBus
         /// </summary>
         /// <param name="testCase">
         /// </param>
-        public BusControl(ITestCase testCase)
+        public BusControl(IMessageBusEndpointConfigurator testCase)
         {
             // Get transport type from environment
             var transportType = (TransportType)Convert.ToInt32(

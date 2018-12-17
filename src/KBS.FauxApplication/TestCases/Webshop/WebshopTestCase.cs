@@ -1,5 +1,8 @@
+using System.Threading.Tasks;
+using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases.Webshop.Consumers;
-using KBS.MessageBus.Configurator;
+using KBS.MessageBus;
+using KBS.Messages.WebshopCase;
 using MassTransit;
 
 namespace KBS.FauxApplication.TestCases.Webshop
@@ -21,9 +24,16 @@ namespace KBS.FauxApplication.TestCases.Webshop
                 {
                     receiveEndpointConfigurator.Consumer<Buyer>();
                     receiveEndpointConfigurator.Consumer<Bank>();
-                    receiveEndpointConfigurator.Consumer<Transaction>();
+                    receiveEndpointConfigurator.Consumer<Shop>();
                 }
             );
+        }
+
+        public async Task Run(BusControl busControl, TestConfiguration testConfiguration)
+        {
+            busControl.Publish<ICatalogueRequest>(new { });
+
+            await Task.Delay(testConfiguration.Duration);
         }
     }
 }

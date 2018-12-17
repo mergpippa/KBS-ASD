@@ -17,7 +17,7 @@ namespace KBS.MessageBus
 
     internal static class MessageBusTransportFactory
     {
-        public static IBusControl Create(TransportType transportType, ITestCase testCase)
+        public static IBusControl Create(TransportType transportType, IMessageBusEndpointConfigurator testCase)
         {
             switch (transportType)
             {

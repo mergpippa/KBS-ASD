@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using KBS.Controller.Models;
+using KBS.FauxApplication.Model;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 

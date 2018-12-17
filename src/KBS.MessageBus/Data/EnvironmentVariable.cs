@@ -7,6 +7,7 @@ namespace KBS.MessageBus.Data
 
         //
         public const string AzureServiceBusToken = "AZURE_SERVICE_BUS_PRIMARY_KEY";
+
         public const string AzureServiceBusHost = "AZURE_SERVICE_BUS_HOST";
 
         //

@@ -11,14 +11,14 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
     /// receives a buy order message it will check if the items are available. Any transaction
     /// messages will be send to the bank for validation.
     /// </summary>
-    public class Transaction : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<ITransactionError>
+    public class Shop : IConsumer<ICatalogueRequest>, IConsumer<IOrder>, IConsumer<ITransactionValidation>, IConsumer<ITransactionError>
     {
         /// <summary>
         /// All salable items in the webshop and their quantity
         /// </summary>
         private Dictionary<string, int> _items;
 
-        public Transaction()
+        public Shop()
         {
             _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 } };
         }

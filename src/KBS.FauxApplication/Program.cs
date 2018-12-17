@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
+using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases;
 using KBS.MessageBus;
-using KBS.Messages.WebshopCase;
 
 namespace KBS.FauxApplication
 {
@@ -11,14 +11,13 @@ namespace KBS.FauxApplication
         private static void Main(string[] args)
         {
             var testCase = TestCaseFactory.Create(TestCaseType.Webshop);
+            var config = new TestConfiguration
+            {
+                Duration = new TimeSpan(0, 0, 2)
+            };
 
             using (var busControl = new BusControl(testCase))
-            {
-                busControl.Publish<ICatalogueRequest>(new { });
-
-                Console.WriteLine("Waiting...");
-                Console.ReadLine();
-            }
+                testCase.Run(busControl, config).Wait();
 
             Console.WriteLine("Closing application...");
             Thread.Sleep(1500);

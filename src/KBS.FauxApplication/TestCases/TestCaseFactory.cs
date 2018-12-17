@@ -1,7 +1,7 @@
 using System;
+using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases.RequestResponse;
 using KBS.FauxApplication.TestCases.Webshop;
-using KBS.MessageBus.Configurator;
 
 namespace KBS.FauxApplication.TestCases
 {
