@@ -18,8 +18,7 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// </summary>
         public static Dictionary<string, int> Items;
 
-        private static List<IOrder> _orders = new List<IOrder>();
-        private bool _colorSet = false;
+        private static readonly List<IOrder> _orders = new List<IOrder>();
 
         public Shop()
         {
@@ -37,10 +36,8 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
-            SwitchColor();
             await Console.Out.WriteLineAsync("\tReceived request for item list");
             await context.Publish<ICatalogueReply>(new { SalableItems = Items });
-            SwitchColor();
         }
 
         /// <summary>
@@ -54,7 +51,6 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<IOrder> context)
         {
-            SwitchColor();
             await Console.Out.WriteLineAsync($"\tOrder received from {context.Message.Purchase.AccountID}");
             string orderedItem = context.Message.ItemName;
             int orderedQuantity = context.Message.Quantity;
@@ -70,7 +66,6 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
                 await Console.Out.WriteLineAsync("\tPublishing transaction");
                 await context.Publish<ITransaction>(transaction).ConfigureAwait(false);
             }
-            SwitchColor();
         }
 
         /// <summary>
@@ -84,7 +79,6 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ITransactionValidation> context)
         {
-            SwitchColor();
             await Console.Out.WriteAsync($"\tTransaction from {context.Message.Transaction.AccountID} is ");
             if (context.Message.IsValid)
             {
@@ -95,13 +89,6 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
             }
             else
                 await Console.Out.WriteLineAsync("INVALID");
-            SwitchColor();
-        }
-
-        private void SwitchColor()
-        {
-            Console.ForegroundColor = !_colorSet ? ConsoleColor.Blue : ConsoleColor.Gray;
-            _colorSet = !_colorSet;
         }
     }
 }

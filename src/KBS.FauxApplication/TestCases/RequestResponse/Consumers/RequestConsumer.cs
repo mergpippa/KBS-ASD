@@ -9,11 +9,9 @@ namespace KBS.FauxApplication.TestCases.RequestResponse.Consumers
     {
         public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
             await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}");
             await context.Publish<IResponseMessage>(new { context.Message.Count });
             await Console.Out.WriteLineAsync("Responding...");
-            Console.ForegroundColor = ConsoleColor.Gray;
         }
     }
 }

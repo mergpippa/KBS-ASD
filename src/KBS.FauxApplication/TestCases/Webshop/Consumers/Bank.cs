@@ -10,8 +10,6 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
     /// </summary>
     public class Bank : IConsumer<ITransaction>
     {
-        private bool _colorSet = false;
-
         /// <summary>
         /// Consumes transaction message from webshop and checks and publishes validity
         /// </summary>
@@ -23,22 +21,11 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ITransaction> context)
         {
-            SwitchColor();
             await Console.Out.WriteLineAsync("\tBank received transaction");
-            var validation = new { Transaction = context.Message, IsValid = true };
-            await context.Publish<ITransactionValidation>(validation);
-            SwitchColor();
-        }
 
-        private void SwitchColor()
-        {
-            if (!_colorSet)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-            }
-            else
-                Console.ForegroundColor = ConsoleColor.Gray;
-            _colorSet = !_colorSet;
+            await context.Publish<ITransactionValidation>(
+                new { Transaction = context.Message, IsValid = true }
+            );
         }
     }
 }
