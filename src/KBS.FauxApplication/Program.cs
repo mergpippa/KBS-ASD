@@ -10,7 +10,7 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
-            var testCase = TestCaseFactory.Create(TestCaseType.Webshop);
+            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
             var config = new TestConfiguration
             {
                 Duration = new TimeSpan(0, 0, 2),
