@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
@@ -9,6 +10,8 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
     /// </summary>
     public class Bank : IConsumer<ITransaction>
     {
+        private bool _colorSet = false;
+
         /// <summary>
         /// Consumes transaction message from webshop and checks and publishes validity
         /// </summary>
@@ -18,9 +21,24 @@ namespace KBS.FauxApplication.TestCases.Webshop.Consumers
         /// <returns>
         /// Task to run asynchronously
         /// </returns>
-        public Task Consume(ConsumeContext<ITransaction> context)
+        public async Task Consume(ConsumeContext<ITransaction> context)
         {
-            throw new System.NotImplementedException();
+            SwitchColor();
+            await Console.Out.WriteLineAsync("\tBank received transaction");
+            var validation = new { Transaction = context.Message, IsValid = true };
+            await context.Publish<ITransactionValidation>(validation);
+            SwitchColor();
+        }
+
+        private void SwitchColor()
+        {
+            if (!_colorSet)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            else
+                Console.ForegroundColor = ConsoleColor.Gray;
+            _colorSet = !_colorSet;
         }
     }
 }

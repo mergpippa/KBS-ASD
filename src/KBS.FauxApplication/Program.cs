@@ -13,7 +13,8 @@ namespace KBS.FauxApplication
             var testCase = TestCaseFactory.Create(TestCaseType.Webshop);
             var config = new TestConfiguration
             {
-                Duration = new TimeSpan(0, 0, 2)
+                Duration = new TimeSpan(0, 0, 2),
+                UserInput = true,
             };
 
             using (var busControl = new BusControl(testCase))

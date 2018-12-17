@@ -12,6 +12,16 @@ namespace KBS.FauxApplication.Model
 
         public string Protocol { get; set; }
 
+        /// <summary>
+        /// Time duration of a test case
+        /// </summary>
         public TimeSpan Duration { get; set; }
+
+        /// <summary>
+        /// Configure whether the test case uses user input, defaults to false
+        /// </summary>
+        public bool UserInput { get => _userInput ?? false; set => _userInput = value; }
+
+        private bool? _userInput;
     }
 }
