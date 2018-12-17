@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication.Model;
+using KBS.FauxApplication.TestCases;
 
 namespace KBS.Infrastructure
 {
     public class Manager : IManager
     {
-        public Task CreateTest(TestConfiguration configuration)
+        public Task CreateTest(TestCaseConfiguration configuration)
         {
             throw new NotImplementedException();
         }

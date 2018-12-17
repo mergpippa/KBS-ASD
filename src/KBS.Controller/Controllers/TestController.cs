@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using KBS.FauxApplication.Model;
+using KBS.FauxApplication.TestCases;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,7 +38,7 @@ namespace KBS.Controller.Controllers
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult Post([FromBody] TestConfiguration configuration)
+        public ActionResult Post([FromBody] TestCaseConfiguration configuration)
         {
             // _manager.CreateTest(configuration);
             //return Ok();
