@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases;
 using KBS.MessageBus;
 
@@ -8,20 +7,26 @@ namespace KBS.FauxApplication
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
-            var config = new TestConfiguration
+            var configuration = new TestCaseConfiguration()
             {
-                Duration = new TimeSpan(0, 0, 2),
-                UserInput = true,
+                Duration = 5000,
+                MessageFrequency = 10,
+                MinimalSize = 1024
             };
 
+            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
+
             using (var busControl = new BusControl(testCase))
-                testCase.Run(busControl, config).Wait();
+            {
+                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.AddMilliseconds(configuration.Duration)}");
+
+                testCase.Run(busControl, configuration).Wait();
+            }
 
             Console.WriteLine("Closing application...");
-            Thread.Sleep(1500);
+            Thread.Sleep(500);
         }
     }
 }

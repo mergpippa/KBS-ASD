@@ -10,11 +10,11 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the RabbitMQ transport
         /// </summary>
-        /// <param name="messageBusConfigurator">
+        /// <param name="messageBusEndpointConfigurator">
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusConfigurator)
+        public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
         {
             return Bus.Factory.CreateUsingRabbitMq(busFactoryConfigurator =>
             {
@@ -28,7 +28,7 @@ namespace KBS.MessageBus.Transports
                 );
 
                 // Configure endpoints for specific test case
-                messageBusConfigurator.ConfigureEndpoints(busFactoryConfigurator);
+                messageBusEndpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
             });
         }
     }

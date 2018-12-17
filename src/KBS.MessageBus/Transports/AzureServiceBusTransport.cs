@@ -29,7 +29,7 @@ namespace KBS.MessageBus.Transports
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(IMessageBusEndpointConfigurator endpointConfigurator)
+        public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
@@ -43,7 +43,7 @@ namespace KBS.MessageBus.Transports
                 });
 
                 // Create receive endpoints for test case
-                endpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
+                messageBusEndpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
             });
         }
     }

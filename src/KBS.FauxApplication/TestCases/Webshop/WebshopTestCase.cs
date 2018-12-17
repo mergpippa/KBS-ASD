@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases.Webshop.Consumers;
@@ -30,15 +29,13 @@ namespace KBS.FauxApplication.TestCases.Webshop
             );
         }
 
-        public async Task Run(BusControl busControl, TestConfiguration testConfiguration)
+        public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            if (!testConfiguration.UserInput)
-            {
-                busControl.Publish<ICatalogueRequest>(new { });
-                await Task.Delay(testConfiguration.Duration);
-            }
-            else
-            {
+            await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false);
+
+            await Task.Delay(testCaseConfiguration.Duration);
+
+            /*
                 var run = true;
                 string[] command;
                 Console.WriteLine("[quit], [list], [buy Apple 2]");
@@ -82,7 +79,7 @@ namespace KBS.FauxApplication.TestCases.Webshop
                             break;
                     }
                 } while (run);
-            }
+            */
         }
     }
 }

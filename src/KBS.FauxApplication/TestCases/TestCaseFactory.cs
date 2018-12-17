@@ -1,4 +1,4 @@
-using System;
+using KBS.FauxApplication.Exceptions;
 using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases.RequestResponse;
 using KBS.FauxApplication.TestCases.Webshop;
@@ -29,15 +29,5 @@ namespace KBS.FauxApplication.TestCases
 
             throw new UnknownTestCaseException(testCaseType.ToString());
         }
-    }
-
-    /// <summary>
-    /// Exception used when test case does not exist
-    /// </summary>
-    internal class UnknownTestCaseException : Exception
-    {
-        public UnknownTestCaseException(string testCaseType)
-            : base($"Unknown test case type {testCaseType}")
-        { }
     }
 }

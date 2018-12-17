@@ -5,6 +5,6 @@ namespace KBS.MessageBus.Transports
 {
     internal interface ITransport
     {
-        IBusControl GetBusControl(IMessageBusEndpointConfigurator endpointConfigurator);
+        IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator);
     }
 }

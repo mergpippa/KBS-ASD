@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.FauxApplication.Model;
 using KBS.FauxApplication.TestCases.RequestResponse.Consumers;
@@ -21,13 +20,11 @@ namespace KBS.FauxApplication.TestCases.RequestResponse
             });
         }
 
-        public async Task Run(BusControl busControl, TestConfiguration testConfiguration)
+        public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            await Console.Out.WriteLineAsync("Starting");
-            await busControl.Publish<IRequestMessage>(new { Count = 2 });
-            Console.ReadLine();
-            await Task.Delay(testConfiguration.Duration);
-            await Console.Out.WriteLineAsync("Done!");
+            await busControl.Publish<IRequestMessage>(new { Count = 2 }).ConfigureAwait(false);
+
+            await Task.Delay(testCaseConfiguration.Duration);
         }
     }
 }
