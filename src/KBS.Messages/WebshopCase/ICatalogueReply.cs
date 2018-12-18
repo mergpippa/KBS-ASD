@@ -10,7 +10,7 @@ namespace KBS.Messages.WebshopCase
         /// <summary>
         /// String array of all available items
         /// </summary>
-        Dictionary<string, int> Catalog { get; }
+        Dictionary<string, int> Catalogue { get; }
 
         string Text { get; }
     }
