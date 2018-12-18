@@ -12,7 +12,7 @@ namespace KBS.FauxApplication
             // Get test case configuration from environment
             var configuration = new TestCaseConfiguration()
             {
-                Duration = 5000,
+                Duration = TimeSpan.FromMilliseconds(5000),
                 MessageFrequency = 10,
                 MinimalSize = 1024
             };
@@ -21,7 +21,7 @@ namespace KBS.FauxApplication
 
             using (var busControl = new BusControl(testCase))
             {
-                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.AddMilliseconds(configuration.Duration)}");
+                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.Add(configuration.Duration)}");
 
                 testCase.Run(busControl, configuration).Wait();
             }

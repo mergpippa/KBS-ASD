@@ -13,7 +13,7 @@ namespace KBS.CLI
             var testCaseType = (TestCaseType)Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Fill in the duration: ");
-            int duration = Convert.ToInt32(Console.ReadLine());
+            TimeSpan duration = TimeSpan.FromMilliseconds(long.Parse(Console.ReadLine()));
 
             Console.Write("Fill in the message frequency: ");
             int messageFrequency = Convert.ToInt32(Console.ReadLine());
@@ -33,7 +33,7 @@ namespace KBS.CLI
 
             using (var busControl = new BusControl(testCase))
             {
-                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.AddMilliseconds(configuration.Duration)}");
+                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.Add(configuration.Duration)}");
 
                 testCase.Run(busControl, configuration).Wait();
             }

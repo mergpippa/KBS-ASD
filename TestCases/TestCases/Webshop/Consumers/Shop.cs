@@ -88,7 +88,9 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
                 await Console.Out.WriteLineAsync($"\t{order.Quantity} {order.ItemName} purchased by {order.Purchase.AccountID} for ${order.Purchase.Withdrawal}");
             }
             else
+            {
                 await Console.Out.WriteLineAsync("INVALID");
+            }
         }
     }
 }

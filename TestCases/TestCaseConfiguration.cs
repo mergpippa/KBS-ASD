@@ -1,3 +1,5 @@
+using System;
+
 namespace KBS.TestCases
 {
     public struct TestCaseConfiguration
@@ -7,7 +9,7 @@ namespace KBS.TestCases
         /// <summary>
         /// Time duration in milliseconds of a test case
         /// </summary>
-        public int Duration { get; set; }
+        public TimeSpan Duration { get; set; }
 
         #endregion general configuration
 
