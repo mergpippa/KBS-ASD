@@ -1,6 +1,5 @@
+using System;
 using KBS.MessageBus.Configurator;
-using KBS.MessageBus.Data;
-using KBS.MessageBus.Exceptions;
 using KBS.MessageBus.Transports;
 using MassTransit;
 
@@ -29,9 +28,9 @@ namespace KBS.MessageBus
 
                 case TransportType.AzureServiceBus:
                     return new AzureServiceBusTransport().GetBusControl(testCase);
-
+                
                 default:
-                    throw new InvalidEnvironmentVariableException(EnvironmentVariable.TransportType);
+                    throw new ArgumentOutOfRangeException(nameof(transportType), transportType, null);
             }
         }
     }

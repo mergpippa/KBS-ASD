@@ -1,5 +1,5 @@
+using System;
 using KBS.TestCases.Contracts;
-using KBS.TestCases.Exceptions;
 using KBS.TestCases.TestCases.RequestResponse;
 using KBS.TestCases.TestCases.Webshop;
 
@@ -25,9 +25,10 @@ namespace KBS.TestCases
 
                 case TestCaseType.Webshop:
                     return new WebshopTestCase();
+                
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);
             }
-
-            throw new UnknownTestCaseException(testCaseType.ToString());
         }
     }
 }
