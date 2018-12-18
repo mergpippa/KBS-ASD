@@ -13,7 +13,8 @@ namespace KBS.FauxApplication.TestCases.RequestResponse.Consumers
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             await Console.Out.WriteLineAsync("Response received");
-            if (context.Message.Count - 1 > 0)
+
+            if (context.Message.Count >= 0)
                 await context.Publish<IRequestMessage>(new { Count = context.Message.Count - 1 });
             Console.ForegroundColor = ConsoleColor.Gray;
         }
