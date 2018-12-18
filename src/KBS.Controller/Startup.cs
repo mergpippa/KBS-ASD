@@ -25,11 +25,12 @@ namespace KBS.Controller
 
             services.AddScoped<IManager, Manager>();
 
-
             #region snippet_SetCompatibilityVersion
+
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            #endregion
+
+            #endregion snippet_SetCompatibilityVersion
 
             services.AddSwaggerGen(c =>
             {
