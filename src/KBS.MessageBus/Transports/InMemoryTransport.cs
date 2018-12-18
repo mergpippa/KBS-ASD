@@ -12,9 +12,9 @@ namespace KBS.MessageBus.Transports
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
+        public IBusControl GetBusControl(MessageBusConfigurator messageBusEndpointConfigurator)
         {
-            return Bus.Factory.CreateUsingInMemory(messageBusEndpointConfigurator.ConfigureEndpoints);
+            return Bus.Factory.CreateUsingInMemory(messageBusEndpointConfigurator.ApplyConfiguration);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Contracts;
@@ -22,6 +23,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
 
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
+            Console.WriteLine("Sending message");
+            
             await busControl.Publish<IRequestMessage>(new { Count = 2 }).ConfigureAwait(false);
 
             await Task.Delay(testCaseConfiguration.Duration);

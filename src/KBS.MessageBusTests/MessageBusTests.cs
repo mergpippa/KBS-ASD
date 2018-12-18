@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using KBS.MessageBus;
+using KBS.MessageBus.Configurator;
 using KBS.TestCases;
 using KBS.TestCases.Contracts;
 using MassTransit;
@@ -23,7 +24,10 @@ namespace KBS.MessageBusTests
         [Fact]
         public void Should_CreateMessageBusWithInMemoryTransport()
         {
-            var busControl = MessageBusTransportFactory.Create(TransportType.InMemory, new TestCase());
+            var busControl = MessageBusTransportFactory.Create(
+                TransportType.InMemory, 
+                new MessageBusConfigurator(new TestCase())
+            );
 
             Assert.IsType<MassTransitBus>(busControl);
         }

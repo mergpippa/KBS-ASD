@@ -8,21 +8,24 @@ namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
-        private static IBusControl _busControl;
+        private readonly IBusControl _busControl;
 
         /// <summary>
         /// Creates a new bus control with given test case
         /// </summary>
-        /// <param name="testCase">
+        /// <param name="testCaseConfigurator">
         /// </param>
-        public BusControl(IMessageBusEndpointConfigurator testCase)
+        public BusControl(IMessageBusEndpointConfigurator testCaseConfigurator)
         {
             // Get transport type from environment
             var transportType = (TransportType)Convert.ToInt32(
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
             );
 
-            _busControl = MessageBusTransportFactory.Create(transportType, testCase);
+            _busControl = MessageBusTransportFactory.Create(
+                transportType, 
+                new MessageBusConfigurator(testCaseConfigurator)
+            );
 
             // Starts bus (The bus must be started before sending any messages!)
             _busControl.Start();
@@ -35,7 +38,7 @@ namespace KBS.MessageBus
         /// Should be an interface
         /// </typeparam>
         /// <param name="message">
-        /// Must be an anonymous type; expl: "new { Val = 0 }"
+        /// Must be an anonymous type; explanation: "new { Val = 0 }"
         /// </param>
         /// <returns>
         /// </returns>
@@ -44,6 +47,7 @@ namespace KBS.MessageBus
             return _busControl.Publish<T>(message);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Stops bus control when this class is being disposed
         /// </summary>

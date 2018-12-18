@@ -25,11 +25,11 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the Azure Service Bus transport
         /// </summary>
-        /// <param name="messageBusEndpointConfigurator">
+        /// <param name="messageBusConfigurator">
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
+        public IBusControl GetBusControl(MessageBusConfigurator messageBusConfigurator)
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
@@ -43,7 +43,7 @@ namespace KBS.MessageBus.Transports
                 });
 
                 // Create receive endpoints for test case
-                messageBusEndpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
+                messageBusConfigurator.ApplyConfiguration(busFactoryConfigurator);
             });
         }
     }
