@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Common" Version="2.2.1" />
+    <PackageReference Include="Microsoft.Azure.Management.ResourceManager" Version="2.0.0-preview" />
     <PackageReference Include="Microsoft.Azure.Management.Resources" Version="2.20.1-preview" />
   </ItemGroup>
 

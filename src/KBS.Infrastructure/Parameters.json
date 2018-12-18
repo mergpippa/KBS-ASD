@@ -1,0 +1,18 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "serverfarms_KBS_ASD_AJtest_name": {
+            "value": null
+        },
+        "sites_AJServiceApp_KBS_ASD_name": {
+            "value": null
+        },
+        "config_web_name": {
+            "value": null
+        },
+        "hostNameBindings_ajserviceapp_kbs_asd.azurewebsites.net_name": {
+            "value": null
+        }
+    }
+}

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using KBS.Infrastructure;
 
 namespace KBS.Controller
 {
@@ -20,6 +21,8 @@ namespace KBS.Controller
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            TestEnvironmentContext.TestEnvironmentContext();
+
             services.AddScoped<IManager, Manager>();
 
 
