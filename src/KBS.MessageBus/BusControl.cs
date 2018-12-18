@@ -1,14 +1,24 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
+using GreenPipes;
 using KBS.MessageBus.Configurator;
 using KBS.MessageBus.Data;
+using KBS.Topics.RequestResponseCase;
 using MassTransit;
+using MassTransit.Topology;
 
 namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
         private static IBusControl _busControl;
+
+        public Uri Address => _busControl.Address;
+
+        public IBusTopology Topology => _busControl.Topology;
+
+        public IRequestClient<IRequestMessage, IResponseMessage> RequestClient { get; }
 
         /// <summary>
         /// Creates a new bus control with given test case
@@ -23,6 +33,10 @@ namespace KBS.MessageBus
             );
 
             _busControl = MessageBusTransportFactory.Create(transportType, testCase);
+
+            RequestClient = _busControl.CreateRequestClient<IRequestMessage, IResponseMessage>(
+                Address,
+                TimeSpan.FromSeconds(10));
 
             // Starts bus (The bus must be started before sending any messages!)
             _busControl.Start();
