@@ -8,7 +8,7 @@ namespace KBS.Messages.WebshopCase
         /// <summary>
         /// Account ID number
         /// </summary>
-        uint AccountID { get; }
+        uint AccountId { get; }
 
         /// <summary>
         /// Amount to withdraw, negative for a refund

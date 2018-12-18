@@ -7,19 +7,19 @@ namespace KBS.CLI
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
             Console.Write("Fill in the test case type (0 or 1): ");
             var testCaseType = (TestCaseType)Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Fill in the duration: ");
-            int duration = Convert.ToInt32(Console.ReadLine());
+            var duration = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Fill in the message frequency: ");
-            int messageFrequency = Convert.ToInt32(Console.ReadLine());
+            var messageFrequency = Convert.ToInt32(Console.ReadLine());
 
             Console.Write("Fill in the message minimal size: ");
-            int minimalSize = Convert.ToInt32(Console.ReadLine());
+            var minimalSize = Convert.ToInt32(Console.ReadLine());
 
             // Create test case configuration using the console input
             var configuration = new TestCaseConfiguration()

@@ -20,7 +20,7 @@ namespace KBS.TestCases.Exceptions
         /// <param name="testCaseType">
         /// </param>
         public UnknownTestCaseException(string testCaseType)
-            : base(testCaseType.ToString(), null)
+            : base(testCaseType, null)
         { }
 
         /// <summary>

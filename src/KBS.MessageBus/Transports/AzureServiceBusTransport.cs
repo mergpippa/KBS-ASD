@@ -25,7 +25,7 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the Azure Service Bus transport
         /// </summary>
-        /// <param name="messageBusConfigurator">
+        /// <param name="messageBusEndpointConfigurator">
         /// </param>
         /// <returns>
         /// </returns>

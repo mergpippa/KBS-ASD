@@ -1,5 +1,5 @@
+using KBS.TestCases.Contracts;
 using KBS.TestCases.Exceptions;
-using KBS.TestCases.Model;
 using KBS.TestCases.TestCases.RequestResponse;
 using KBS.TestCases.TestCases.Webshop;
 

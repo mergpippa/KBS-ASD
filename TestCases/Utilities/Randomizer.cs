@@ -7,17 +7,17 @@ namespace KBS.TestCases.Utilities
         /// <summary>
         /// Random number generator
         /// </summary>
-        private readonly Random random;
+        private readonly Random _random;
 
         /// <summary>
         /// Previously generated noise value, needed to generate next value
         /// </summary>
-        private double noiseValue;
+        private double _noiseValue;
 
         /// <summary>
         /// The randomizer for generating noise or other random values for simulation
         /// </summary>
-        /// <param name="lowerLimt">
+        /// <param name="lowerLimit">
         /// Inclusive lower limit of random value
         /// </param>
         /// <param name="upperLimit">
@@ -31,14 +31,14 @@ namespace KBS.TestCases.Utilities
             LowerLimit = lowerLimit;
             UpperLimit = upperLimit;
             Smoothness = smoothness;
-            random = new Random();
-            noiseValue = NextDouble;
+            _random = new Random();
+            _noiseValue = NextDouble;
         }
 
         /// <summary>
         /// The randomizer for generating noise or other random values for simulation
         /// </summary>
-        /// <param name="lowerLimt">
+        /// <param name="lowerLimit">
         /// Inclusive lower limit of random value
         /// </param>
         /// <param name="upperLimit">
@@ -50,10 +50,10 @@ namespace KBS.TestCases.Utilities
         /// <param name="seed">
         /// Seed for random generator
         /// </param>
-        public Randomizer(int lowerLimt, int upperLimit, double smoothness, int seed) : this(lowerLimt, upperLimit, smoothness)
+        public Randomizer(int lowerLimit, int upperLimit, double smoothness, int seed) : this(lowerLimit, upperLimit, smoothness)
         {
-            random = new Random(seed);
-            noiseValue = NextDouble;
+            _random = new Random(seed);
+            _noiseValue = NextDouble;
         }
 
         /// <summary>
@@ -64,32 +64,33 @@ namespace KBS.TestCases.Utilities
         /// </returns>
         public int GetNextNoiseInt()
         {
-            double next = random.NextDouble() / Smoothness - (0.5 / Smoothness);
-            if (noiseValue + next > UpperLimit || noiseValue + next < LowerLimit)
-                noiseValue -= next;
+            var next = _random.NextDouble() / Smoothness - (0.5 / Smoothness);
+            
+            if (_noiseValue + next > UpperLimit || _noiseValue + next < LowerLimit)
+                _noiseValue -= next;
             else
-                noiseValue += next;
-            return (int)noiseValue;
+                _noiseValue += next;
+            return (int)_noiseValue;
         }
 
         /// <summary>
         /// Inclusive lower limit of random value
         /// </summary>
-        public int LowerLimit { get; }
+        private int LowerLimit { get; }
 
         /// <summary>
         /// Exclusive upper limit of random value
         /// </summary>
-        public int UpperLimit { get; }
+        private int UpperLimit { get; }
 
         /// <summary>
         /// Rate of change in generated noise, higher smoothness means lower rate of change
         /// </summary>
-        public double Smoothness { get; }
+        private double Smoothness { get; }
 
         /// <summary>
         /// Random double within the limits given in the contructor, this is NO noise!
         /// </summary>
-        private double NextDouble { get => random.NextDouble() * (UpperLimit - LowerLimit) + LowerLimit; }
+        private double NextDouble { get => _random.NextDouble() * (UpperLimit - LowerLimit) + LowerLimit; }
     }
 }

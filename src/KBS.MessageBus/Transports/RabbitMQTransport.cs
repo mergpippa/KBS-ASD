@@ -5,7 +5,7 @@ using MassTransit;
 
 namespace KBS.MessageBus.Transports
 {
-    internal class RabbitMQTransport : ITransport
+    internal class RabbitMqTransport : ITransport
     {
         /// <summary>
         /// Creates a MassTransit instance using the RabbitMQ transport
@@ -19,11 +19,11 @@ namespace KBS.MessageBus.Transports
             return Bus.Factory.CreateUsingRabbitMq(busFactoryConfigurator =>
             {
                 busFactoryConfigurator.Host(
-                    new Uri(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMQHost)),
+                    new Uri(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMqHost)),
                     host =>
                     {
-                        host.Username(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMQUsername));
-                        host.Password(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMQPassword));
+                        host.Username(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMqUsername));
+                        host.Password(Environment.GetEnvironmentVariable(EnvironmentVariable.RabbitMqPassword));
                     }
                 );
 

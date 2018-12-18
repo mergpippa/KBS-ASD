@@ -8,7 +8,7 @@ namespace KBS.MessageBus.Exceptions
             base($"Environment variable `{environmentVariableName}` invalid or missing")
         { }
 
-        public InvalidEnvironmentVariableException() : base()
+        public InvalidEnvironmentVariableException()
         { }
 
         public InvalidEnvironmentVariableException(string message, Exception innerException) : base(message, innerException)

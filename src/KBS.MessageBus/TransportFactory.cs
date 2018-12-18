@@ -10,7 +10,7 @@ namespace KBS.MessageBus
     {
         InMemory = 0,
 
-        RabbitMQ = 1,
+        RabbitMq = 1,
 
         AzureServiceBus = 2,
     }
@@ -24,8 +24,8 @@ namespace KBS.MessageBus
                 case TransportType.InMemory:
                     return new InMemoryTransport().GetBusControl(testCase);
 
-                case TransportType.RabbitMQ:
-                    return new RabbitMQTransport().GetBusControl(testCase);
+                case TransportType.RabbitMq:
+                    return new RabbitMqTransport().GetBusControl(testCase);
 
                 case TransportType.AzureServiceBus:
                     return new AzureServiceBusTransport().GetBusControl(testCase);
