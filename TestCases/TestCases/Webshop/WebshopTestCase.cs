@@ -9,7 +9,7 @@ namespace KBS.TestCases.TestCases.Webshop
 {
     internal class WebshopTestCase : ITestCase
     {
-        private readonly string _endpointQueueName = "webshop_queue";
+        private const string EndpointQueueName = "webshop_queue";
 
         /// <summary>
         /// Method used to configure the available endpoints for a test case
@@ -19,7 +19,7 @@ namespace KBS.TestCases.TestCases.Webshop
         public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
             busFactoryConfigurator.ReceiveEndpoint(
-                _endpointQueueName,
+                EndpointQueueName,
                 receiveEndpointConfigurator =>
                 {
                     receiveEndpointConfigurator.Consumer<Buyer>();
