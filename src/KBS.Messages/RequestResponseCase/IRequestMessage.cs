@@ -1,4 +1,4 @@
-namespace KBS.Messages.RequestResponseCase
+namespace KBS.Topics.RequestResponseCase
 {
     public interface IRequestMessage
     {
