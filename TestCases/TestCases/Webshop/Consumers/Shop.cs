@@ -16,13 +16,13 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// <summary>
         /// All salable items in the webshop and their quantity
         /// </summary>
-        public static Dictionary<string, int> Items;
+        private static Dictionary<string, int> _items;
 
-        private static readonly List<IOrder> _orders = new List<IOrder>();
+        private static readonly List<IOrder> Orders = new List<IOrder>();
 
         public Shop()
         {
-            Items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 }, };
+            _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 }, };
         }
 
         /// <summary>
@@ -37,7 +37,8 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
             await Console.Out.WriteLineAsync("\tReceived request for item list");
-            await context.Publish<ICatalogueReply>(new { SalableItems = Items });
+
+            await context.Publish<ICatalogueReply>(new { SalableItems = _items });
         }
 
         /// <summary>
@@ -51,20 +52,26 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<IOrder> context)
         {
-            await Console.Out.WriteLineAsync($"\tOrder received from {context.Message.Purchase.AccountID}");
-            string orderedItem = context.Message.ItemName;
-            int orderedQuantity = context.Message.Quantity;
-            if (!Items.ContainsKey(orderedItem) || Items[orderedItem] < orderedQuantity)
+            await Console.Out.WriteLineAsync($"\tOrder received from {context.Message.Purchase.AccountId}");
+
+            var orderedItem = context.Message.ItemName;
+            var orderedQuantity = context.Message.Quantity;
+
+            if (!_items.ContainsKey(orderedItem) || _items[orderedItem] < orderedQuantity)
             {
-                await Console.Out.WriteLineAsync($"\tTried to order {orderedQuantity} {orderedItem}, " +
-                    $"but there are {Items[orderedItem]} left").ConfigureAwait(false);
+                await Console.Out.WriteLineAsync(
+                    $"\tTried to order {orderedQuantity} {orderedItem}, " + $"but there are {_items[orderedItem]} left"
+                ).ConfigureAwait(false);
             }
             else
             {
                 ITransaction transaction = context.Message.Purchase;
-                _orders.Add(context.Message);
+
+                Orders.Add(context.Message);
+
                 await Console.Out.WriteLineAsync("\tPublishing transaction");
-                await context.Publish<ITransaction>(transaction).ConfigureAwait(false);
+
+                await context.Publish(transaction).ConfigureAwait(false);
             }
         }
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace KBS.Infrastructure
+namespace KBS.Infrastructure.Models
 {
     public class TestEnviroment : ITestEnviroment
     {

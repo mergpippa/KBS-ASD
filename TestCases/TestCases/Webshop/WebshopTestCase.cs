@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.Messages.WebshopCase;
-using KBS.TestCases.Model;
+using KBS.TestCases.Contracts;
 using KBS.TestCases.TestCases.Webshop.Consumers;
 using MassTransit;
 

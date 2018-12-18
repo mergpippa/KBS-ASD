@@ -8,17 +8,13 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the InMemory transport
         /// </summary>
-        /// <param name="messageBusConfigurator">
+        /// <param name="messageBusEndpointConfigurator">
         /// </param>
         /// <returns>
         /// </returns>
         public IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
         {
-            return Bus.Factory.CreateUsingInMemory(busFactoryConfigurator =>
-            {
-                // Configure endpoints for specific test case
-                messageBusEndpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
-            });
+            return Bus.Factory.CreateUsingInMemory(messageBusEndpointConfigurator.ConfigureEndpoints);
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using KBS.Infrastructure;
+using KBS.Infrastructure.Models;
 using KBS.TestCases;
 using Microsoft.AspNetCore.Mvc;
 
