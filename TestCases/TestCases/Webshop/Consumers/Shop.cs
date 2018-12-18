@@ -86,13 +86,13 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ITransactionValidation> context)
         {
-            await Console.Out.WriteAsync($"\tTransaction from {context.Message.Transaction.AccountID} is ");
+            await Console.Out.WriteAsync($"\tTransaction from {context.Message.Transaction.AccountId} is ");
             if (context.Message.IsValid)
             {
                 await Console.Out.WriteLineAsync("VALID");
-                var order = _orders.Find(o => o.Purchase.AccountID == context.Message.Transaction.AccountID);
-                _orders.Remove(order);
-                await Console.Out.WriteLineAsync($"\t{order.Quantity} {order.ItemName} purchased by {order.Purchase.AccountID} for ${order.Purchase.Withdrawal}");
+                var order = Orders.Find(o => o.Purchase.AccountId == context.Message.Transaction.AccountId);
+                Orders.Remove(order);
+                await Console.Out.WriteLineAsync($"\t{order.Quantity} {order.ItemName} purchased by {order.Purchase.AccountId} for ${order.Purchase.Withdrawal}");
             }
             else
             {
