@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.Messages.RequestResponseCase;
 using KBS.TestCases.Contracts;
 using KBS.TestCases.TestCases.RequestResponse.Consumers;
+using KBS.Topics.RequestResponseCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse

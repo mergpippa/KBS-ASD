@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.Messages.WebshopCase;
 using KBS.TestCases.Contracts;
 using KBS.TestCases.TestCases.Webshop.Consumers;
+using KBS.Topics.WebshopCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop
