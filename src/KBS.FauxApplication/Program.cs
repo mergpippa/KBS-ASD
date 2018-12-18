@@ -13,7 +13,8 @@ namespace KBS.FauxApplication
             {
                 Duration = TimeSpan.FromMilliseconds(5000),
                 MessageFrequency = 10,
-                MinimalSize = 88425
+                // Azure limit 262144 bytes
+                FillerSize = 12
             };
 
             var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);

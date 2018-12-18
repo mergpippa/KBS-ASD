@@ -41,8 +41,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
             await busControl.Publish<IRequestMessage>(new
             {
-                Count = 2,
-                Filler = new byte[testCaseConfiguration.MinimalSize]
+                Count = 3,
+                Filler = new byte[testCaseConfiguration.FillerSize]
             }).ConfigureAwait(false);
 
             await Task.Delay(testCaseConfiguration.Duration);

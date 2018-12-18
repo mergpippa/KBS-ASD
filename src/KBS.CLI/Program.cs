@@ -26,7 +26,7 @@ namespace KBS.CLI
             {
                 Duration = duration,
                 MessageFrequency = messageFrequency,
-                MinimalSize = minimalSize
+                FillerSize = minimalSize
             };
 
             var testCase = TestCaseFactory.Create(testCaseType);
