@@ -25,7 +25,7 @@ namespace KBS.TestCases
 
                 case TestCaseType.Webshop:
                     return new WebshopTestCase();
-                
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);
             }

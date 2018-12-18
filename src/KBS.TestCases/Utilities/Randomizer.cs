@@ -65,7 +65,7 @@ namespace KBS.TestCases.Utilities
         public int GetNextNoiseInt()
         {
             var next = _random.NextDouble() / Smoothness - (0.5 / Smoothness);
-            
+
             if (_noiseValue + next > UpperLimit || _noiseValue + next < LowerLimit)
                 _noiseValue -= next;
             else
