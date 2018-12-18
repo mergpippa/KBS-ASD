@@ -18,7 +18,11 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
             await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}");
-            await context.Publish<IResponseMessage>(new { context.Message.Count });
+            await context.Publish<IResponseMessage>(new
+            {
+                context.Message.Count,
+                context.Message.Filler
+            });
             await Console.Out.WriteLineAsync("Responding...");
         }
     }

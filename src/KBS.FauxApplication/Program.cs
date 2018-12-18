@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using KBS.MessageBus;
 using KBS.TestCases;
 
@@ -14,7 +13,7 @@ namespace KBS.FauxApplication
             {
                 Duration = TimeSpan.FromMilliseconds(5000),
                 MessageFrequency = 10,
-                MinimalSize = 1024
+                MinimalSize = 88425
             };
 
             var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
@@ -27,7 +26,6 @@ namespace KBS.FauxApplication
             }
 
             Console.WriteLine("Closing application...");
-            Thread.Sleep(500);
         }
     }
 }

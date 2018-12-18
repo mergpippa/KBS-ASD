@@ -17,10 +17,16 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         /// <returns></returns>
         public async Task Consume(ConsumeContext<IResponseMessage> context)
         {
-            await Console.Out.WriteLineAsync("Response received");
+            await Console.Out.WriteLineAsync($"Response received; {context.Message.Filler.Length} bytes");
 
-            if (context.Message.Count >= 0)
-                await context.Publish<IRequestMessage>(new { Count = context.Message.Count - 1 });
+            if (context.Message.Count - 1 > 0)
+            {
+                await context.Publish<IRequestMessage>(new
+                {
+                    Count = context.Message.Count - 1,
+                    context.Message.Filler
+                });
+            }
         }
     }
 }

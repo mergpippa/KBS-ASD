@@ -28,7 +28,7 @@ namespace KBS.MessageBus
 
                 case TransportType.AzureServiceBus:
                     return new AzureServiceBusTransport().GetBusControl(testCase);
-                
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(transportType), transportType, null);
             }

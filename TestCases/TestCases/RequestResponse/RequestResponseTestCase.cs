@@ -39,7 +39,11 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <returns></returns>
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            await busControl.Publish<IRequestMessage>(new { Count = 2 }).ConfigureAwait(false);
+            await busControl.Publish<IRequestMessage>(new
+            {
+                Count = 2,
+                Filler = new byte[testCaseConfiguration.MinimalSize]
+            }).ConfigureAwait(false);
 
             await Task.Delay(testCaseConfiguration.Duration);
         }

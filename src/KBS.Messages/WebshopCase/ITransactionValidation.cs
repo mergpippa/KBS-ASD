@@ -1,6 +1,5 @@
-﻿namespace KBS.Messages.WebshopCase
+namespace KBS.Messages.WebshopCase
 {
-
     /// <summary>
     /// Transaction validation topic/interface
     /// </summary>

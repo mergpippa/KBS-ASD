@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
@@ -25,10 +24,10 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
             var str = "";
-            
+
             foreach (var item in context.Message.Catalogue)
                 str += "\t" + item + "\n";
-            
+
             await Console.Out.WriteAsync(str).ConfigureAwait(false);
         }
     }

@@ -21,7 +21,7 @@ namespace KBS.TestCases
         public int MessageFrequency { get; set; }
 
         /// <summary>
-        /// Message size (a message will be filled with a byte array of the given size)
+        /// Message size in bytes (a message will be filled with a byte array of the given size)
         /// </summary>
         public int MinimalSize { get; set; }
 
