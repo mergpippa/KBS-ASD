@@ -5,8 +5,14 @@ namespace KBS.Messages.WebshopCase
     /// </summary>
     public interface IOrder
     {
+        /// <summary>
+        /// Unique name of the item
+        /// </summary>
         string ItemName { get; }
 
+        /// <summary>
+        /// Number of ordered items
+        /// </summary>
         int Quantity { get; }
 
         /// <summary>

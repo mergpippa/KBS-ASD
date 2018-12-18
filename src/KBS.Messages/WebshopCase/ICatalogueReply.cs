@@ -11,7 +11,5 @@ namespace KBS.Messages.WebshopCase
         /// String array of all available items
         /// </summary>
         Dictionary<string, int> Catalogue { get; }
-
-        string Text { get; }
     }
 }

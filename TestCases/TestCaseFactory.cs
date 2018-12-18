@@ -7,10 +7,14 @@ namespace KBS.TestCases
 {
     public enum TestCaseType
     {
-        // Request response test case
+        /// <summary>
+        /// Request response test case
+        /// </summary>
         RequestResponse = 0,
 
-        // Real world test case
+        /// <summary>
+        /// Real world test case
+        /// </summary>
         Webshop = 1,
     }
 
@@ -25,7 +29,7 @@ namespace KBS.TestCases
 
                 case TestCaseType.Webshop:
                     return new WebshopTestCase();
-                
+
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);
             }

@@ -18,8 +18,14 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </summary>
         private static Dictionary<string, int> _items;
 
-        private static readonly List<IOrder> Orders = new List<IOrder>();
+        /// <summary>
+        /// The List of orders that have been made
+        /// </summary>
+        private static readonly List<IOrder> _orders = new List<IOrder>();
 
+        /// <summary>
+        /// Constructor of the shop, sets the starting conditions for the shop
+        /// </summary>
         public Shop()
         {
             _items = new Dictionary<string, int> { { "Apple", 3 }, { "Pear", 4 }, { "Banana", 9 }, };
@@ -38,7 +44,7 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         {
             await Console.Out.WriteLineAsync("\tReceived request for item list");
 
-            await context.Publish<ICatalogueReply>(new { SalableItems = _items });
+            await context.Publish<ICatalogueReply>(new { Catalogue = _items });
         }
 
         /// <summary>
@@ -67,7 +73,7 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
             {
                 ITransaction transaction = context.Message.Purchase;
 
-                Orders.Add(context.Message);
+                _orders.Add(context.Message);
 
                 await Console.Out.WriteLineAsync("\tPublishing transaction");
 
@@ -90,8 +96,8 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
             if (context.Message.IsValid)
             {
                 await Console.Out.WriteLineAsync("VALID");
-                var order = Orders.Find(o => o.Purchase.AccountId == context.Message.Transaction.AccountId);
-                Orders.Remove(order);
+                var order = _orders.Find(o => o.Purchase.AccountId == context.Message.Transaction.AccountId);
+                _orders.Remove(order);
                 await Console.Out.WriteLineAsync($"\t{order.Quantity} {order.ItemName} purchased by {order.Purchase.AccountId} for ${order.Purchase.Withdrawal}");
             }
             else
