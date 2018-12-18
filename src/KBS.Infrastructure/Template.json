@@ -3,20 +3,24 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "serverfarms_KBS_ASD_AJtest_name": {
-            "defaultValue": "KBS-ASD-AJtest",
-            "type": "String"
+
+            //"defaultValue": "KBS-ASD-AJtest",
+            "type": "string"
         },
-        "sites_AJServiceApp_KBS_ASD_name": {
-            "defaultValue": "AJServiceApp-KBS-ASD",
-            "type": "String"
+        "sites_ServiceApp-ThroughCS-KBS-ASD_name": {
+
+            //"defaultValue": "ServiceApp-ThroughCS-KBS-ASD",
+            "type": "string"
         },
         "config_web_name": {
-            "defaultValue": "web",
-            "type": "String"
+
+            //"defaultValue": "web",
+            "type": "string"
         },
-        "hostNameBindings_ajserviceapp_kbs_asd.azurewebsites.net_name": {
-            "defaultValue": "ajserviceapp-kbs-asd.azurewebsites.net",
-            "type": "String"
+        "hostNameBindings_ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net_name": {
+
+            //"defaultValue": "ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net",
+            "type": "string"
         }
     },
     "variables": {},
@@ -49,10 +53,10 @@
             "dependsOn": []
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/AJServiceApp-KBS-ASD'.",
+            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/ServiceApp-ThroughCS-KBS-ASD'.",
             "type": "Microsoft.Web/sites",
             "kind": "app",
-            "name": "[parameters('sites_AJServiceApp_KBS_ASD_name')]",
+            "name": "[parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name')]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "scale": null,
@@ -60,7 +64,7 @@
                 "enabled": true,
                 "hostNameSslStates": [
                     {
-                        "name": "[concat(parameters('sites_AJServiceApp_KBS_ASD_name'),'ajserviceapp-kbs-asd.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'),'ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -68,7 +72,7 @@
                         "hostType": "Standard"
                     },
                     {
-                        "name": "[concat(parameters('sites_AJServiceApp_KBS_ASD_name'),'ajserviceapp-kbs-asd.scm.azurewebsites.net')]",
+                        "name": "[concat(parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'),'ServiceApp-ThroughCS-KBS-ASD.scm.azurewebsites.net')]",
                         "sslState": "Disabled",
                         "virtualIP": null,
                         "thumbprint": null,
@@ -94,9 +98,9 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/AJServiceApp-KBS-ASD/config/web'.",
+            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/ServiceApp-ThroughCS-KBS-ASD/config/web'.",
             "type": "Microsoft.Web/sites/config",
-            "name": "[concat(parameters('sites_AJServiceApp_KBS_ASD_name'), '/', parameters('config_web_name'))]",
+            "name": "[concat(parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'), '/', parameters('config_web_name'))]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "scale": null,
@@ -125,7 +129,7 @@
                 "httpLoggingEnabled": false,
                 "logsDirectorySizeLimit": 35,
                 "detailedErrorLoggingEnabled": false,
-                "publishingUsername": "$AJServiceApp-KBS-ASD",
+                "publishingUsername": "$ServiceApp-ThroughCS-KBS-ASD",
                 "publishingPassword": null,
                 "appSettings": null,
                 "azureStorageAccounts": {},
@@ -207,23 +211,23 @@
                 "reservedInstanceCount": 0
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_AJServiceApp_KBS_ASD_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'))]"
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/AJServiceApp-KBS-ASD/hostNameBindings/ajserviceapp-kbs-asd.azurewebsites.net'.",
+            "comments": "Generalized from resource: '/subscriptions/60b91b72-e8f0-412f-99af-7349fd751812/resourceGroups/TestAJ2/providers/Microsoft.Web/sites/ServiceApp-ThroughCS-KBS-ASD/hostNameBindings/ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net'.",
             "type": "Microsoft.Web/sites/hostNameBindings",
-            "name": "[concat(parameters('sites_AJServiceApp_KBS_ASD_name'), '/', parameters('hostNameBindings_ajserviceapp_kbs_asd.azurewebsites.net_name'))]",
+            "name": "[concat(parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'), '/', parameters('hostNameBindings_ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net_name'))]",
             "apiVersion": "2016-08-01",
             "location": "West Europe",
             "scale": null,
             "properties": {
-                "siteName": "AJServiceApp-KBS-ASD",
+                "siteName": "ServiceApp-ThroughCS-KBS-ASD",
                 "domainId": null,
                 "hostNameType": "Verified"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Web/sites', parameters('sites_AJServiceApp_KBS_ASD_name'))]"
+                "[resourceId('Microsoft.Web/sites', parameters('sites_ServiceApp-ThroughCS-KBS-ASD_name'))]"
             ]
         }
     ]

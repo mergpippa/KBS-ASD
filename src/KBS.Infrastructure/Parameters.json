@@ -3,16 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "serverfarms_KBS_ASD_AJtest_name": {
-            "value": null
+            "value": "KBS-ASD-AJtest"
         },
-        "sites_AJServiceApp_KBS_ASD_name": {
-            "value": null
+        "sites_ServiceApp-ThroughCS-KBS-ASD_name": {
+            "value": "ServiceApp-ThroughCS-KBS-ASD"
         },
         "config_web_name": {
-            "value": null
+            "value": "web"
         },
-        "hostNameBindings_ajserviceapp_kbs_asd.azurewebsites.net_name": {
-            "value": null
+        "hostNameBindings_ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net_name": {
+            "value": "ServiceApp-ThroughCS-KBS-ASD.azurewebsites.net"
         }
     }
 }
