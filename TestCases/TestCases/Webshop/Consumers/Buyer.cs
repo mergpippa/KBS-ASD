@@ -25,10 +25,10 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
-            _perceivedItems = context.Message.SalableItems;
+            _perceivedItems = context.Message.Catalogue;
 
             string str = "";
-            foreach (var item in context.Message.SalableItems)
+            foreach (var item in context.Message.Catalogue)
                 str += "\t" + item + "\n";
             await Console.Out.WriteAsync(str).ConfigureAwait(false);
         }
