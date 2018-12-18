@@ -1,4 +1,4 @@
-namespace KBS.FauxApplication.TestCases
+namespace KBS.TestCases
 {
     public struct TestCaseConfiguration
     {

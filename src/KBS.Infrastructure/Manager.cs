@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication.TestCases;
+using KBS.TestCases;
 
 namespace KBS.Infrastructure
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace KBS.FauxApplication.Exceptions
+namespace KBS.TestCases.Exceptions
 {
     /// <summary>
     /// Exception used when test case does not exist

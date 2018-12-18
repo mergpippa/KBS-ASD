@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
-namespace KBS.FauxApplication.TestCases.Webshop.Consumers
+namespace KBS.TestCases.TestCases.Webshop.Consumers
 {
     /// <summary>
     /// The buyer receives a list of shop items which they can buy. Such a buy order will be wrapped

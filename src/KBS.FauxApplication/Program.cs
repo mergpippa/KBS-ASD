@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
-using KBS.FauxApplication.TestCases;
 using KBS.MessageBus;
+using KBS.TestCases;
 
 namespace KBS.FauxApplication
 {
@@ -9,6 +9,7 @@ namespace KBS.FauxApplication
     {
         private static void Main()
         {
+            // Get test case configuration from environment
             var configuration = new TestCaseConfiguration()
             {
                 Duration = 5000,

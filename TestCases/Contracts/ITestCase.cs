@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
-using KBS.FauxApplication.TestCases;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
 
-namespace KBS.FauxApplication.Model
+namespace KBS.TestCases.Model
 {
     public interface ITestCase : IMessageBusEndpointConfigurator
     {

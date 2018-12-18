@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using KBS.Messages.RequestResponseCase;
 using MassTransit;
 
-namespace KBS.FauxApplication.TestCases.RequestResponse.Consumers
+namespace KBS.TestCases.TestCases.RequestResponse.Consumers
 {
     internal class RequestConsumer : IConsumer<IRequestMessage>
     {

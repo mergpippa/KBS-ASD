@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using KBS.FauxApplication.TestCases;
 using KBS.Infrastructure;
+using KBS.TestCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers

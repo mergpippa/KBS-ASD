@@ -1,11 +1,11 @@
-using KBS.FauxApplication.Exceptions;
-using KBS.FauxApplication.Model;
-using KBS.FauxApplication.TestCases.RequestResponse;
-using KBS.FauxApplication.TestCases.Webshop;
+using KBS.TestCases.Exceptions;
+using KBS.TestCases.Model;
+using KBS.TestCases.TestCases.RequestResponse;
+using KBS.TestCases.TestCases.Webshop;
 
-namespace KBS.FauxApplication.TestCases
+namespace KBS.TestCases
 {
-    internal enum TestCaseType
+    public enum TestCaseType
     {
         // Request response test case
         RequestResponse = 0,
@@ -14,7 +14,7 @@ namespace KBS.FauxApplication.TestCases
         Webshop = 1,
     }
 
-    internal static class TestCaseFactory
+    public static class TestCaseFactory
     {
         public static ITestCase Create(TestCaseType testCaseType)
         {

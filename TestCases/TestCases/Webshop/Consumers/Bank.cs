@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
-namespace KBS.FauxApplication.TestCases.Webshop.Consumers
+namespace KBS.TestCases.TestCases.Webshop.Consumers
 {
     /// <summary>
     /// A bank receives transaction messages from a webshop and returns whether they are valid or not.

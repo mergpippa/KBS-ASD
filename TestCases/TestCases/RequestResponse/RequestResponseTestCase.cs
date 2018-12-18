@@ -1,11 +1,11 @@
 using System.Threading.Tasks;
-using KBS.FauxApplication.Model;
-using KBS.FauxApplication.TestCases.RequestResponse.Consumers;
 using KBS.MessageBus;
 using KBS.Messages.RequestResponseCase;
+using KBS.TestCases.Model;
+using KBS.TestCases.TestCases.RequestResponse.Consumers;
 using MassTransit;
 
-namespace KBS.FauxApplication.TestCases.RequestResponse
+namespace KBS.TestCases.TestCases.RequestResponse
 {
     internal class RequestResponseTestCase : ITestCase
     {

@@ -3,6 +3,7 @@ namespace KBS.MessageBus.Data
     internal static class EnvironmentVariable
     {
         public const string TransportType = "TRANSPORT_TYPE";
+
         public const string OperationTimeout = "OPERATION_TIMEOUT";
 
         //
@@ -14,6 +15,7 @@ namespace KBS.MessageBus.Data
         public const string RabbitMQHost = "RABBIT_MQ_HOST";
 
         public const string RabbitMQUsername = "RABBIT_MQ_USERNAME";
+
         public const string RabbitMQPassword = "RABBIT_MQ_PASSWORD";
     }
 }

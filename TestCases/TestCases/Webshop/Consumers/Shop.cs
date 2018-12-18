@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using KBS.Messages.WebshopCase;
 using MassTransit;
 
-namespace KBS.FauxApplication.TestCases.Webshop.Consumers
+namespace KBS.TestCases.TestCases.Webshop.Consumers
 {
     /// <summary>
     /// The webshop contains a list of salable items, which will be send to any buyer. When a webshop
