@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using KBS.Messages.RequestResponseCase;
+using KBS.Topics.RequestResponseCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse.Consumers

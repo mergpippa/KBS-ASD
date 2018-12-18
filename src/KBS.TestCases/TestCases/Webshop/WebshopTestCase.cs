@@ -1,21 +1,18 @@
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.Messages.RequestResponseCase;
 using KBS.TestCases.Contracts;
-using KBS.TestCases.TestCases.RequestResponse.Consumers;
+using KBS.TestCases.TestCases.Webshop.Consumers;
+using KBS.Topics.WebshopCase;
 using MassTransit;
 
-namespace KBS.TestCases.TestCases.RequestResponse
+namespace KBS.TestCases.TestCases.Webshop
 {
-    /// <summary>
-    /// Test case for request and response
-    /// </summary>
-    internal class RequestResponseTestCase : ITestCase
+    internal class WebshopTestCase : ITestCase
     {
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
-        private readonly string _queueName = "request-response_queue";
+        private readonly string _queueName = "webshop_queue";
 
         /// <summary>
         /// Method used to configure the available endpoints for a test case
@@ -24,11 +21,15 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </param>
         public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
-            busFactoryConfigurator.ReceiveEndpoint(_queueName, endpointConfigurator =>
-            {
-                endpointConfigurator.Consumer<RequestConsumer>();
-                endpointConfigurator.Consumer<ResponseConsumer>();
-            });
+            busFactoryConfigurator.ReceiveEndpoint(
+                _queueName,
+                endpointConfigurator =>
+                {
+                    endpointConfigurator.Consumer<Buyer>();
+                    endpointConfigurator.Consumer<Bank>();
+                    endpointConfigurator.Consumer<Shop>();
+                }
+            );
         }
 
         /// <summary>
@@ -39,11 +40,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <returns></returns>
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            await busControl.Publish<IRequestMessage>(new
-            {
-                Count = 2,
-                Filler = new byte[testCaseConfiguration.MinimalSize]
-            }).ConfigureAwait(false);
+            await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false);
 
             await Task.Delay(testCaseConfiguration.Duration);
         }

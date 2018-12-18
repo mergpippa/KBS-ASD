@@ -1,4 +1,4 @@
-namespace KBS.Messages.WebshopCase
+namespace KBS.Topics.WebshopCase
 {
     /// <summary>
     /// Bank information from buyer

@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.MessageBus", "src\KBS.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.MessageBusTests", "src\KBS.MessageBusTests\KBS.MessageBusTests.csproj", "{67976D6F-73CB-4412-B153-9AD6700813E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Messages", "src\KBS.Messages\KBS.Messages.csproj", "{A596AC67-E778-4B17-A66C-60B22F7E9F89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Topics", "src\KBS.Messages\KBS.Topics.csproj", "{A596AC67-E778-4B17-A66C-60B22F7E9F89}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Controller", "src\KBS.Controller\KBS.Controller.csproj", "{D9A8DE8F-59D4-421A-BB2A-19F327B24032}"
 EndProject
@@ -21,9 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.FauxApplication", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.FauxApplicationTests", "src\KBS.FauxApplicationTests\KBS.FauxApplicationTests.csproj", "{599BF972-119D-447A-A138-44E02FA1ECFA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.CLI", "KBS.CLI\KBS.CLI.csproj", "{205F1E0C-B516-4773-8376-B0A36A6DCB46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.CLI", "src\KBS.CLI\KBS.CLI.csproj", "{205F1E0C-B516-4773-8376-B0A36A6DCB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.TestCases", "TestCases\KBS.TestCases.csproj", "{3A6A501A-DBE7-4C0C-A086-2BCF301ED72B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.TestCases", "src\KBS.TestCases\KBS.TestCases.csproj", "{3A6A501A-DBE7-4C0C-A086-2BCF301ED72B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

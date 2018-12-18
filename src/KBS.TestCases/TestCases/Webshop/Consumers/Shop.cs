@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.Messages.WebshopCase;
+using KBS.Topics.WebshopCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop.Consumers

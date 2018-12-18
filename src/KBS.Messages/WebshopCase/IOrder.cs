@@ -1,4 +1,4 @@
-namespace KBS.Messages.WebshopCase
+namespace KBS.Topics.WebshopCase
 {
     /// <summary>
     /// The order message as made by a buyer

@@ -12,12 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\TestCases\KBS.TestCases.csproj" />
+    <ProjectReference Include="..\KBS.TestCases\KBS.TestCases.csproj" />
     <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Properties\" />
   </ItemGroup>
 
 </Project>

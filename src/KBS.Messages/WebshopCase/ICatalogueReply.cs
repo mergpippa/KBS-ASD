@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace KBS.Messages.WebshopCase
+namespace KBS.Topics.WebshopCase
 {
     /// <summary>
     /// Complete item list from the webshop, received by buyer

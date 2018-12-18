@@ -1,11 +1,12 @@
 using System;
 using System.Threading.Tasks;
-using KBS.Messages.WebshopCase;
+using KBS.Topics.WebshopCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop.Consumers
 {
     /// <inheritdoc />
+    ///    /// ///
     /// <summary>
     /// The buyer receives a list of shop items which they can buy. Such a buy order will be wrapped
     /// into a message which contains, or comes accompanied with, a transaction message.

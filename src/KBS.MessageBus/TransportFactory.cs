@@ -5,7 +5,7 @@ using MassTransit;
 
 namespace KBS.MessageBus
 {
-    internal enum TransportType
+    public enum TransportType
     {
         InMemory = 0,
 
@@ -14,7 +14,7 @@ namespace KBS.MessageBus
         AzureServiceBus = 2,
     }
 
-    internal static class MessageBusTransportFactory
+    public static class MessageBusTransportFactory
     {
         public static IBusControl Create(TransportType transportType, IMessageBusEndpointConfigurator testCase)
         {
