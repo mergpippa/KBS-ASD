@@ -1,10 +1,7 @@
 using System;
 using Microsoft.Azure.Management.ResourceManager;
 using Microsoft.Azure.Management.ResourceManager.Models;
-using Microsoft.Rest.Azure.Authentication;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.IO;
 
 namespace KBS.Infrastructure.Resources
 {
@@ -13,11 +10,21 @@ namespace KBS.Infrastructure.Resources
         /// <summary>
         /// Starts a template deployment.
         /// </summary>
-        /// <param name="resourceManagementClient">The resource manager client.</param>
-        /// <param name="resourceGroupName">The name of the resource group.</param>
-        /// <param name="deploymentName">The name of the deployment.</param>
-        /// <param name="templateFileContents">The template file contents.</param>
-        /// <param name="parameterFileContents">The parameter file contents.</param>
+        /// <param name="resourceManagementClient">
+        /// The resource manager client.
+        /// </param>
+        /// <param name="resourceGroupName">
+        /// The name of the resource group.
+        /// </param>
+        /// <param name="deploymentName">
+        /// The name of the deployment.
+        /// </param>
+        /// <param name="templateFileContents">
+        /// The template file contents.
+        /// </param>
+        /// <param name="parameterFileContents">
+        /// The parameter file contents.
+        /// </param>
         public static void DeployTemplate(ResourceManagementClient resourceManagementClient, string resourceGroupName, string deploymentName, JObject templateFileContents, JObject parameterFileContents)
         {
             Console.WriteLine(string.Format("Starting template deployment '{0}' in resource group '{1}'", deploymentName, resourceGroupName));
