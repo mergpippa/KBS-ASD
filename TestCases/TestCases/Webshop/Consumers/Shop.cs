@@ -37,6 +37,7 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
             await Console.Out.WriteLineAsync("\tReceived request for item list");
+            
             await context.Publish<ICatalogueReply>(new { SalableItems = _items });
         }
 
@@ -69,7 +70,8 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
                 Orders.Add(context.Message);
                 
                 await Console.Out.WriteLineAsync("\tPublishing transaction");
-                await context.Publish<ITransaction>(transaction).ConfigureAwait(false);
+                
+                await context.Publish(transaction).ConfigureAwait(false);
             }
         }
 
