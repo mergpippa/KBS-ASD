@@ -1,25 +1,31 @@
 using System;
-using System.Threading;
+using KBS.MessageBus;
+using KBS.TestCases;
 
 namespace KBS.FauxApplication
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main()
         {
-            // TODO: Configurable setup
-            var fauxApplication = new FauxApp();
-            var randomizer = new Randomizer(1, 40, 4, 66);
-
-            for (var i = 0; i < 10; i++)
+            // Get test case configuration from environment
+            var configuration = new TestCaseConfiguration()
             {
-                //fauxApplication.PublishRandomBytes(1048576);
-                fauxApplication.PublishLike();
-                Thread.Sleep(randomizer.GetNextNoiseInt());
+                Duration = TimeSpan.FromMilliseconds(5000),
+                MessageFrequency = 10,
+                MinimalSize = 88425
+            };
+
+            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
+
+            using (var busControl = new BusControl(testCase))
+            {
+                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.Add(configuration.Duration)}");
+
+                testCase.Run(busControl, configuration).Wait();
             }
 
-            Console.Read();
-            fauxApplication.StopBusControl();
+            Console.WriteLine("Closing application...");
         }
     }
 }

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using KBS.Controller.Models;
-using KBS.FauxApplication;
 using KBS.Infrastructure;
+using KBS.Infrastructure.Models;
+using KBS.TestCases;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -13,7 +13,8 @@ namespace KBS.Controller.Controllers
     {
         private readonly IManager _manager;
 
-        public TestController(IManager manager){
+        public TestController(IManager manager)
+        {
             _manager = manager;
         }
 
@@ -29,7 +30,8 @@ namespace KBS.Controller.Controllers
         // Get api/test/{id}
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
-        public TestEnviroment GetTest(int id){
+        public TestEnviroment GetTest(int id)
+        {
             //return _manager.GetTest(id);
             return null;
         }
@@ -37,12 +39,11 @@ namespace KBS.Controller.Controllers
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult Post([FromBody] TestConfiguration configuration)
+        public ActionResult Post([FromBody] TestCaseConfiguration configuration)
         {
             // _manager.CreateTest(configuration);
             //return Ok();
             return BadRequest();
         }
-
     }
 }

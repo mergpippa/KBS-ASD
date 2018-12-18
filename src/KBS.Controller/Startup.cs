@@ -1,16 +1,9 @@
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using KBS.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace KBS.Controller
@@ -29,11 +22,12 @@ namespace KBS.Controller
         {
             services.AddScoped<IManager, Manager>();
 
-
             #region snippet_SetCompatibilityVersion
+
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            #endregion
+
+            #endregion snippet_SetCompatibilityVersion
 
             services.AddSwaggerGen(c =>
             {

@@ -1,7 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.FauxApplication;
+using KBS.Infrastructure.Models;
+using KBS.TestCases;
 
 namespace KBS.Infrastructure
 {
@@ -15,13 +15,15 @@ namespace KBS.Infrastructure
         /// <summary>
         /// Gets test status of test with given identifier
         /// </summary>
-        /// <param name="identifier"></param>
+        /// <param name="identifier">
+        /// </param>
         Task<TestEnviroment> GetTest(int identifier);
 
         /// <summary>
         /// Creates a test environment with the given configuration
         /// </summary>
-        /// <param name="configuration"></param>
-        Task CreateTest(ITestConfiguration configuration);
+        /// <param name="configuration">
+        /// </param>
+        Task CreateTest(TestCaseConfiguration configuration);
     }
 }
