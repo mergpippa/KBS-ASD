@@ -27,7 +27,7 @@ namespace KBS.FauxApplication
                 testCase.Run(busControl, configuration).Wait();
             }
 
-            Console.WriteLine("Closing application...");
+            Console.WriteLine("Press any key to close the application");
             Console.ReadLine();
         }
     }
