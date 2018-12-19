@@ -13,6 +13,7 @@ namespace KBS.FauxApplication
             {
                 Duration = TimeSpan.FromMilliseconds(5000),
                 MessagesCount = 25,
+
                 // Azure limit 262144 bytes
                 FillerSize = 12
             };

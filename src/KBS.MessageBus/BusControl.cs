@@ -22,7 +22,10 @@ namespace KBS.MessageBus
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
             );
 
-            Instance = MessageBusTransportFactory.Create(transportType, testCase);
+            Instance = MessageBusTransportFactory.Create(
+                transportType, 
+                new MessageBusConfigurator(testCaseConfigurator)
+            );
 
             // Starts bus (The bus must be started before sending any messages!)
             Instance.Start();

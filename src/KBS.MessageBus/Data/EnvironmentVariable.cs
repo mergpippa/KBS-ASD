@@ -1,6 +1,6 @@
 namespace KBS.MessageBus.Data
 {
-    internal static class EnvironmentVariable
+    public static class EnvironmentVariable
     {
         public const string TransportType = "TRANSPORT_TYPE";
 
