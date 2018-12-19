@@ -1,6 +1,5 @@
 using System;
 using System.Threading.Tasks;
-using GreenPipes;
 using KBS.MessageBus.Configurator;
 using KBS.MessageBus.Data;
 using MassTransit;
