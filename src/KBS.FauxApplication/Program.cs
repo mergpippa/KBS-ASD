@@ -1,5 +1,6 @@
 using System;
 using KBS.MessageBus;
+using KBS.MessageBus.Data;
 using KBS.TestCases;
 
 namespace KBS.FauxApplication
@@ -8,6 +9,11 @@ namespace KBS.FauxApplication
     {
         private static void Main()
         {
+            var appInsightsInstrumentationKey = Environment.GetEnvironmentVariable(EnvironmentVariable.AppInsightsInstrumentationKey);
+
+            if (appInsightsInstrumentationKey == null)
+                throw new Exception("Missing the `APPINSIGHTS_INSTRUMENTATIONKEY` environment variable");
+
             // Get test case configuration from environment
             var configuration = new TestCaseConfiguration()
             {

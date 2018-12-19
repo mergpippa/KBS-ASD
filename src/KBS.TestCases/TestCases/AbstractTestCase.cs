@@ -11,6 +11,7 @@ namespace KBS.TestCases.TestCases
         private readonly TestCaseConfiguration _testCaseConfiguration;
 
         /// <summary>
+        /// Abstract class with a Benchmark method that is used to call a callback on given test parameters
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
@@ -39,7 +40,9 @@ namespace KBS.TestCases.TestCases
 
             for (var index = 0; index < _testCaseConfiguration.MessagesCount; index++)
             {
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
                 callback(index);
+#pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 
                 await Task.Delay(messageInterval);
             }

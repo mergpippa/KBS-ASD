@@ -1,19 +1,21 @@
 using KBS.MessageBus.Middleware;
 using MassTransit;
+using Microsoft.ApplicationInsights;
 
 namespace KBS.MessageBus.Configurator
 {
     /// <summary>
-    /// Class used to configure the message bus for testing purposes 
+    /// Class used to configure the message bus for testing purposes
     /// </summary>
     public class MessageBusConfigurator
     {
         private readonly IMessageBusEndpointConfigurator _messageBusEndpointConfigurator;
 
         /// <summary>
-        /// Constructor with endpoint configurator as the first argument 
+        /// Constructor with endpoint configurator as the first argument
         /// </summary>
-        /// <param name="messageBusEndpointConfigurator"></param>
+        /// <param name="messageBusEndpointConfigurator">
+        /// </param>
         public MessageBusConfigurator(IMessageBusEndpointConfigurator messageBusEndpointConfigurator)
         {
             _messageBusEndpointConfigurator = messageBusEndpointConfigurator;
@@ -22,12 +24,15 @@ namespace KBS.MessageBus.Configurator
         /// <summary>
         /// Apply all configurations to bus factory configurator
         /// </summary>
-        /// <param name="busFactoryConfigurator"></param>
+        /// <param name="busFactoryConfigurator">
+        /// </param>
         public void ApplyConfiguration(IBusFactoryConfigurator busFactoryConfigurator)
         {
+            var telemetryClient = new TelemetryClient();
+
             // Add middleware
-            busFactoryConfigurator.UseMessagePerformanceDiagnostics();
-            
+            busFactoryConfigurator.UseMessagePerformanceDiagnostics(telemetryClient);
+
             // Apply endpoint configuration
             _messageBusEndpointConfigurator.ConfigureEndpoints(busFactoryConfigurator);
         }

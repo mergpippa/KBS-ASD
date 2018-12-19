@@ -17,5 +17,8 @@ namespace KBS.MessageBus.Data
         public const string RabbitMqUsername = "RABBIT_MQ_USERNAME";
 
         public const string RabbitMqPassword = "RABBIT_MQ_PASSWORD";
+
+        //
+        public const string AppInsightsInstrumentationKey = "APPINSIGHTS_INSTRUMENTATIONKEY";
     }
 }

@@ -9,7 +9,7 @@ using MassTransit;
 namespace KBS.TestCases.TestCases.RequestResponse
 {
     /// <inheritdoc cref="AbstractTestCase" />
-    /// <summary>
+    ///    /// <summary>
     /// Test case for request and response
     /// </summary>
     internal class RequestResponseTestCase : AbstractTestCase, ITestCase
@@ -20,7 +20,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         private const string QueueName = "request-response_queue";
 
         /// <inheritdoc />
-        /// <summary>
+        ///        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="testCaseConfiguration">
@@ -30,7 +30,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         }
 
         /// <inheritdoc />
-        /// <summary>
+        ///        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -70,11 +70,11 @@ namespace KBS.TestCases.TestCases.RequestResponse
             {
                 var response = await requestClient.Request(new
                 {
-                    Count = index,
+                    Id = index,
                     Filler = new byte[testCaseConfiguration.FillerSize]
                 });
 
-                await Console.Out.WriteLineAsync($"Response received {response.Count} - {response.Filler.Length} bytes");
+                await Console.Out.WriteLineAsync($"Response received {response.Id} - {response.Filler.Length} bytes");
             });
         }
     }
