@@ -8,6 +8,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse
 {
+    /// <inheritdoc cref="AbstractTestCase" />
     /// <summary>
     /// Test case for request and response
     /// </summary>
@@ -16,16 +17,18 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
-        private readonly string _queueName = "request-response_queue";
+        private const string _queueName = "request-response_queue";
 
+        /// <inheritdoc />
         /// <summary>
-        ///
+        /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="testCaseConfiguration"></param>
         public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
         {
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
@@ -56,7 +59,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
             var requestClient = busControl
                 .Instance
                 .CreateRequestClient<IRequestMessage, IResponseMessage>(
-                    new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
+                    new Uri($"{busControl.Instance.Address}{_queueName}"),
                     TimeSpan.FromSeconds(10)
                 );
 
