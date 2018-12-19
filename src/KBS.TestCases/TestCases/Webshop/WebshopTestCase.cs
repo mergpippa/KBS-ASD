@@ -12,15 +12,16 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
-        private readonly string _queueName = "webshop_queue";
+        private const string _queueName = "webshop_queue";
 
         /// <summary>
-        /// 
+        /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="testCaseConfiguration"></param>
         public WebshopTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
         { }
         
+        /// <inheritdoc />
         /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
@@ -39,8 +40,9 @@ namespace KBS.TestCases.TestCases.Webshop
             );
         }
 
+        /// <inheritdoc />
         /// <summary>
-        /// Methode to run the test case
+        /// Method to run the test case
         /// </summary>
         /// <param name="busControl">The bus for the test case to use</param>
         /// <param name="testCaseConfiguration">The configuration for this test case</param>

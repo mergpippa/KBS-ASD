@@ -3,9 +3,12 @@ using System.Threading.Tasks;
 
 namespace KBS.TestCases.TestCases
 {
+    /// <summary>
+    /// Abstract test case with a method that is used to run the benchmark
+    /// </summary>
     public abstract class AbstractTestCase
     {
-        private TestCaseConfiguration _testCaseConfiguration;
+        private readonly TestCaseConfiguration _testCaseConfiguration;
         
         /// <summary>
         /// 
@@ -17,7 +20,9 @@ namespace KBS.TestCases.TestCases
         }
         
         /// <summary>
-        /// 
+        /// Method used to benchmark a service bus. This method calls a function that should send a message
+        /// to the message bus. The frequency and amount of messages that are sent should be configured
+        /// in the TestCaseConfiguration
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
