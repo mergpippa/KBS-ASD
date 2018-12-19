@@ -8,7 +8,7 @@ namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
-        public IBusControl Instance;
+        public readonly IBusControl Instance;
 
         /// <summary>
         /// Creates a new bus control with given test case
@@ -44,6 +44,7 @@ namespace KBS.MessageBus
             return Instance.Publish<T>(message);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Stops bus control when this class is being disposed
         /// </summary>
