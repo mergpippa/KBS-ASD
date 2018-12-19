@@ -72,8 +72,6 @@ namespace KBS.TestCases.TestCases.RequestResponse
 
                 await Console.Out.WriteLineAsync($"Response received {response.Count} - {response.Filler.Length} bytes");
             });
-
-            await Task.Delay(testCaseConfiguration.Duration);
         }
     }
 }
