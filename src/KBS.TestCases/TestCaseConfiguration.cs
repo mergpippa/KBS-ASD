@@ -11,6 +11,11 @@ namespace KBS.TestCases
         /// </summary>
         public TimeSpan Duration { get; set; }
 
+        /// <summary>
+        /// Time to wait for the last response
+        /// </summary>
+        public TimeSpan Timeout { get; set; }
+
         #endregion general configuration
 
         #region message configuration

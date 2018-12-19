@@ -17,6 +17,7 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         /// <returns></returns>
         public async Task Consume(ConsumeContext<IResponseMessage> context)
         {
+            throw new NotSupportedException("This consumer should not be activated");
             await Console.Out.WriteLineAsync($"Response received; {context.Message.Filler.Length} bytes");
 
             if (context.Message.Count - 1 > 0)

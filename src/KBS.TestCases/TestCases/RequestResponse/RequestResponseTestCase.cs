@@ -41,36 +41,17 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
             System.Console.WriteLine("Sending first request");
 
-            //await busControl.Publish<IRequestMessage>(new
-            //{
-            //    Count = 3,
-            //    Filler = new byte[testCaseConfiguration.FillerSize]
-            //});
-
             for (int i = 3; i > 0; i--)
             {
-                var res = await busControl.RequestClient.Request(new
+                var response = await busControl.RequestClient.Request(new
                 {
                     Count = i,
                     Filler = new byte[testCaseConfiguration.FillerSize]
                 });
-                System.Console.WriteLine($"Response received {res.Filler.Length} bytes");
+                System.Console.WriteLine($"Response received {response.Filler.Length} bytes, count {response.Count}");
             }
 
             await Task.Delay(testCaseConfiguration.Duration);
-        }
-
-        private class RequestMessage : IRequestMessage
-        {
-            public RequestMessage(int count, byte[] filler)
-            {
-                Count = count;
-                Filler = filler;
-            }
-
-            public int Count { get; }
-
-            public byte[] Filler { get; }
         }
     }
 }

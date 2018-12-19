@@ -19,22 +19,9 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         {
             await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}");
 
-            context.Respond<IResponseMessage>(new ResponseMessage(context.Message.Count, context.Message.Filler));
+            context.Respond((IResponseMessage)context.Message);
 
             await Console.Out.WriteLineAsync("Response send...");
-        }
-
-        private class ResponseMessage : IResponseMessage
-        {
-            public ResponseMessage(int count, byte[] filler)
-            {
-                Count = count;
-                Filler = filler;
-            }
-
-            public int Count { get; }
-
-            public byte[] Filler { get; }
         }
     }
 }
