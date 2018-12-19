@@ -15,9 +15,6 @@ namespace KBS.CLI
             Console.Write("Fill in the duration: ");
             var duration = TimeSpan.FromMilliseconds(long.Parse(Console.ReadLine()));
 
-            Console.Write("Fill in the message frequency: ");
-            var messageFrequency = Convert.ToInt32(Console.ReadLine());
-
             Console.Write("Fill in the message minimal size: ");
             var minimalSize = Convert.ToInt32(Console.ReadLine());
 
@@ -25,11 +22,10 @@ namespace KBS.CLI
             var configuration = new TestCaseConfiguration()
             {
                 Duration = duration,
-                MessageFrequency = messageFrequency,
                 FillerSize = minimalSize
             };
 
-            var testCase = TestCaseFactory.Create(testCaseType);
+            var testCase = TestCaseFactory.Create(testCaseType, configuration);
 
             using (var busControl = new BusControl(testCase))
             {
