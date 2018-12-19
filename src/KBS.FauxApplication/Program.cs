@@ -13,12 +13,12 @@ namespace KBS.FauxApplication
             var configuration = new TestCaseConfiguration()
             {
                 Duration = TimeSpan.FromMilliseconds(5000),
-                MessageFrequency = 10,
+                MessagesCount = 25,
                 // Azure limit 262144 bytes
                 FillerSize = 12
             };
 
-            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
+            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse, configuration);
 
             using (var busControl = new BusControl(testCase))
             {
@@ -27,7 +27,7 @@ namespace KBS.FauxApplication
                 testCase.Run(busControl, configuration).Wait();
             }
 
-            Console.WriteLine("Closing application...");
+            Console.WriteLine("Press any key to close the application");
             Console.ReadLine();
         }
     }

@@ -7,13 +7,20 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop
 {
-    internal class WebshopTestCase : ITestCase
+    internal class WebshopTestCase : AbstractTestCase, ITestCase
     {
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
         private readonly string _queueName = "webshop_queue";
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="testCaseConfiguration"></param>
+        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
+        { }
+        
         /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
@@ -40,7 +47,9 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <returns></returns>
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false);
+            await Benchmark(async _ => 
+                await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false)
+            );
 
             await Task.Delay(testCaseConfiguration.Duration);
         }

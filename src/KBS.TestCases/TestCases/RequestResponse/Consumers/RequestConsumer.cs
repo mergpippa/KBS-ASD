@@ -13,8 +13,11 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         /// <summary>
         /// Always replies by publishing a 'IResponseMesage' topic
         /// </summary>
-        /// <param name="context">Received context from message bus</param>
-        /// <returns></returns>
+        /// <param name="context">
+        /// Received context from message bus
+        /// </param>
+        /// <returns>
+        /// </returns>
         public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
             await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}");

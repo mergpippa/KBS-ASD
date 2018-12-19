@@ -20,15 +20,15 @@ namespace KBS.TestCases
 
     public static class TestCaseFactory
     {
-        public static ITestCase Create(TestCaseType testCaseType)
+        public static ITestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration)
         {
             switch (testCaseType)
             {
                 case TestCaseType.RequestResponse:
-                    return new RequestResponseTestCase();
+                    return new RequestResponseTestCase(testCaseConfiguration);
 
                 case TestCaseType.Webshop:
-                    return new WebshopTestCase();
+                    return new WebshopTestCase(testCaseConfiguration);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);
