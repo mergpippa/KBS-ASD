@@ -34,8 +34,13 @@ namespace KBS.MessageBus
 
             _busControl = MessageBusTransportFactory.Create(transportType, testCase);
 
-            RequestClient = _busControl.CreateRequestClient<IRequestMessage, IResponseMessage>(
-                Address,
+            //RequestClient = _busControl.CreateRequestClient<IRequestMessage, IResponseMessage>(
+            //    new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
+            //    TimeSpan.FromSeconds(10));
+
+            RequestClient = new MessageRequestClient<IRequestMessage, IResponseMessage>(
+                _busControl,
+                new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
                 TimeSpan.FromSeconds(10));
 
             // Starts bus (The bus must be started before sending any messages!)

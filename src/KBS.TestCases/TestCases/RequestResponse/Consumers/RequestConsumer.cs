@@ -21,7 +21,7 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
 
             context.Respond<IResponseMessage>(new ResponseMessage(context.Message.Count, context.Message.Filler));
 
-            await Console.Out.WriteLineAsync("Responding...");
+            await Console.Out.WriteLineAsync("Response send...");
         }
 
         private class ResponseMessage : IResponseMessage

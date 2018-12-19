@@ -1,6 +1,7 @@
 using System;
 using KBS.MessageBus;
 using KBS.TestCases;
+using KBS.Topics.RequestResponseCase;
 
 namespace KBS.FauxApplication
 {
@@ -27,6 +28,7 @@ namespace KBS.FauxApplication
             }
 
             Console.WriteLine("Closing application...");
+            Console.ReadLine();
         }
     }
 }

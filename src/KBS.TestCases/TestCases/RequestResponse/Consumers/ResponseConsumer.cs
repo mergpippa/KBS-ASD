@@ -26,6 +26,7 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
                     Count = context.Message.Count - 1,
                     context.Message.Filler
                 });
+                await Console.Out.WriteLineAsync("New request send...");
             }
         }
     }
