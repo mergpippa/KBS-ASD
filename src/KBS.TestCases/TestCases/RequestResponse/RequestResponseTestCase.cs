@@ -17,13 +17,14 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
-        private const string _queueName = "request-response_queue";
+        private const string QueueName = "request-response_queue";
 
         /// <inheritdoc />
         /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
-        /// <param name="testCaseConfiguration"></param>
+        /// <param name="testCaseConfiguration">
+        /// </param>
         public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
         {
         }
@@ -36,7 +37,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </param>
         public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
-            busFactoryConfigurator.ReceiveEndpoint(_queueName, endpointConfigurator =>
+            busFactoryConfigurator.ReceiveEndpoint(QueueName, endpointConfigurator =>
                 endpointConfigurator.Consumer<RequestConsumer>()
             );
         }
@@ -56,14 +57,14 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
             Console.WriteLine("Initializing request/response test case");
 
+            var hostUri = busControl.Instance.Address;
+
             var requestClient = busControl
                 .Instance
                 .CreateRequestClient<IRequestMessage, IResponseMessage>(
-                    new Uri($"{busControl.Instance.Address}{_queueName}"),
+                    new Uri($"{hostUri.Scheme}://{hostUri.Host}/{QueueName}"),
                     TimeSpan.FromSeconds(10)
                 );
-
-            Console.WriteLine("Starting benchmark");
 
             await Benchmark(async index =>
             {
@@ -71,7 +72,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
                 {
                     Count = index,
                     Filler = new byte[testCaseConfiguration.FillerSize]
-                }).ConfigureAwait(false);
+                });
 
                 await Console.Out.WriteLineAsync($"Response received {response.Count} - {response.Filler.Length} bytes");
             });
