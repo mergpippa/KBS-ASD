@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Contracts;
@@ -25,52 +26,46 @@ namespace KBS.TestCases.TestCases.RequestResponse
         public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
             busFactoryConfigurator.ReceiveEndpoint(_queueName, endpointConfigurator =>
-            {
-                endpointConfigurator.Consumer<RequestConsumer>();
-                endpointConfigurator.Consumer<ResponseConsumer>();
-            });
+                endpointConfigurator.Consumer<RequestConsumer>()
+            );
         }
 
         /// <summary>
         /// Methode to run the test case
         /// </summary>
-        /// <param name="busControl">The bus for the test case to use</param>
-        /// <param name="testCaseConfiguration">The configuration for this test case</param>
-        /// <returns></returns>
+        /// <param name="busControl">
+        /// The bus for the test case to use
+        /// </param>
+        /// <param name="testCaseConfiguration">
+        /// The configuration for this test case
+        /// </param>
+        /// <returns>
+        /// </returns>
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            System.Console.WriteLine("Sending first request");
+            Console.WriteLine("Initializing request/response test case");
 
-            //await busControl.Publish<IRequestMessage>(new
-            //{
-            //    Count = 3,
-            //    Filler = new byte[testCaseConfiguration.FillerSize]
-            //});
+            var requestClient = busControl
+                .Instance
+                .CreateRequestClient<IRequestMessage, IResponseMessage>(
+                    new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
+                    TimeSpan.FromSeconds(10)
+                );
+
+            Console.WriteLine("Starting benchmark");
 
             for (int i = 3; i > 0; i--)
             {
-                var res = await busControl.RequestClient.Request(new
+                var response = await requestClient.Request(new
                 {
                     Count = i,
                     Filler = new byte[testCaseConfiguration.FillerSize]
-                });
-                System.Console.WriteLine($"Response received {res.Filler.Length} bytes");
+                }).ConfigureAwait(false);
+
+                Console.WriteLine($"Response received {response.Filler.Length} bytes");
             }
 
             await Task.Delay(testCaseConfiguration.Duration);
-        }
-
-        private class RequestMessage : IRequestMessage
-        {
-            public RequestMessage(int count, byte[] filler)
-            {
-                Count = count;
-                Filler = filler;
-            }
-
-            public int Count { get; }
-
-            public byte[] Filler { get; }
         }
     }
 }

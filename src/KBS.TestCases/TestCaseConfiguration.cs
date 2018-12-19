@@ -11,6 +11,8 @@ namespace KBS.TestCases
         /// </summary>
         public TimeSpan Duration { get; set; }
 
+        public int MessagesCount { get; set; }
+
         #endregion general configuration
 
         #region message configuration

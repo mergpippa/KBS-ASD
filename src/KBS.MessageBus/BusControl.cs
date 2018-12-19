@@ -1,24 +1,15 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using GreenPipes;
 using KBS.MessageBus.Configurator;
 using KBS.MessageBus.Data;
-using KBS.Topics.RequestResponseCase;
 using MassTransit;
-using MassTransit.Topology;
 
 namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
-        private static IBusControl _busControl;
-
-        public Uri Address => _busControl.Address;
-
-        public IBusTopology Topology => _busControl.Topology;
-
-        public IRequestClient<IRequestMessage, IResponseMessage> RequestClient { get; }
+        public IBusControl Instance;
 
         /// <summary>
         /// Creates a new bus control with given test case
@@ -32,19 +23,10 @@ namespace KBS.MessageBus
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
             );
 
-            _busControl = MessageBusTransportFactory.Create(transportType, testCase);
-
-            //RequestClient = _busControl.CreateRequestClient<IRequestMessage, IResponseMessage>(
-            //    new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
-            //    TimeSpan.FromSeconds(10));
-
-            RequestClient = new MessageRequestClient<IRequestMessage, IResponseMessage>(
-                _busControl,
-                new Uri("sb://kbs-asd.servicebus.windows.net/request-response_queue"),
-                TimeSpan.FromSeconds(10));
+            Instance = MessageBusTransportFactory.Create(transportType, testCase);
 
             // Starts bus (The bus must be started before sending any messages!)
-            _busControl.Start();
+            Instance.Start();
         }
 
         /// <summary>
@@ -60,7 +42,7 @@ namespace KBS.MessageBus
         /// </returns>
         public Task Publish<T>(object message) where T : class
         {
-            return _busControl.Publish<T>(message);
+            return Instance.Publish<T>(message);
         }
 
         /// <summary>
@@ -68,7 +50,7 @@ namespace KBS.MessageBus
         /// </summary>
         public void Dispose()
         {
-            _busControl.Stop();
+            Instance.Stop();
         }
     }
 }
