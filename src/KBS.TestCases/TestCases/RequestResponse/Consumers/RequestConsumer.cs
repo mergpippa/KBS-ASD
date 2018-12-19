@@ -5,15 +5,24 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse.Consumers
 {
+    /// <inheritdoc />
+    /// <summary>
+    /// Consumer of 'IRequestMessage' topics
+    /// </summary>
     internal class RequestConsumer : IConsumer<IRequestMessage>
     {
+        /// <summary>
+        /// Always replies by publishing a 'IResponseMessage' topic
+        /// </summary>
+        /// <param name="context">
+        /// Received context from message bus
+        /// </param>
+        /// <returns>
+        /// </returns>
         public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
-            Console.WriteLine("Sending message");
-
-            await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}");
-            await context.Publish<IResponseMessage>(new { context.Message.Count });
-            await Console.Out.WriteLineAsync("Responding...");
+            await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Count}. Responding immediately!");
+            context.Respond((IResponseMessage)context.Message);
         }
     }
 }

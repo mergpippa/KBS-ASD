@@ -8,26 +8,73 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse
 {
-    internal class RequestResponseTestCase : ITestCase
+    /// <inheritdoc cref="AbstractTestCase" />
+    /// <summary>
+    /// Test case for request and response
+    /// </summary>
+    internal class RequestResponseTestCase : AbstractTestCase, ITestCase
     {
-        private readonly string _endpointQueueName = "request-response_queue";
+        /// <summary>
+        /// Name of queue to use for test case
+        /// </summary>
+        private const string _queueName = "request-response_queue";
 
-        public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
+        /// <inheritdoc />
+        /// <summary>
+        /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
+        /// </summary>
+        /// <param name="testCaseConfiguration"></param>
+        public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
         {
-            busFactoryConfigurator.ReceiveEndpoint(_endpointQueueName, receiveEndpointConfigurator =>
-            {
-                receiveEndpointConfigurator.Consumer<RequestConsumer>();
-                receiveEndpointConfigurator.Consumer<ResponseConsumer>();
-            });
         }
 
+        /// <inheritdoc />
+        /// <summary>
+        /// Method used to configure the available endpoints for a test case
+        /// </summary>
+        /// <param name="busFactoryConfigurator">
+        /// </param>
+        public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
+        {
+            busFactoryConfigurator.ReceiveEndpoint(_queueName, endpointConfigurator =>
+                endpointConfigurator.Consumer<RequestConsumer>()
+            );
+        }
+
+        /// <summary>
+        /// Methode to run the test case
+        /// </summary>
+        /// <param name="busControl">
+        /// The bus for the test case to use
+        /// </param>
+        /// <param name="testCaseConfiguration">
+        /// The configuration for this test case
+        /// </param>
+        /// <returns>
+        /// </returns>
         public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
         {
-            Console.WriteLine("Sending message");
-            
-            await busControl.Publish<IRequestMessage>(new { Count = 2 }).ConfigureAwait(false);
+            Console.WriteLine("Initializing request/response test case");
 
-            await Task.Delay(testCaseConfiguration.Duration);
+            var requestClient = busControl
+                .Instance
+                .CreateRequestClient<IRequestMessage, IResponseMessage>(
+                    new Uri($"{busControl.Instance.Address}{_queueName}"),
+                    TimeSpan.FromSeconds(10)
+                );
+
+            Console.WriteLine("Starting benchmark");
+
+            await Benchmark(async index =>
+            {
+                var response = await requestClient.Request(new
+                {
+                    Count = index,
+                    Filler = new byte[testCaseConfiguration.FillerSize]
+                }).ConfigureAwait(false);
+
+                await Console.Out.WriteLineAsync($"Response received {response.Count} - {response.Filler.Length} bytes");
+            });
         }
     }
 }

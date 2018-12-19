@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using KBS.MessageBus;
 using KBS.TestCases;
 
@@ -13,11 +12,12 @@ namespace KBS.FauxApplication
             var configuration = new TestCaseConfiguration()
             {
                 Duration = TimeSpan.FromMilliseconds(5000),
-                MessageFrequency = 10,
-                MinimalSize = 1024
+                MessagesCount = 25,
+                // Azure limit 262144 bytes
+                FillerSize = 12
             };
 
-            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse);
+            var testCase = TestCaseFactory.Create(TestCaseType.RequestResponse, configuration);
 
             using (var busControl = new BusControl(testCase))
             {
@@ -26,8 +26,8 @@ namespace KBS.FauxApplication
                 testCase.Run(busControl, configuration).Wait();
             }
 
-            Console.WriteLine("Closing application...");
-            Thread.Sleep(500);
+            Console.WriteLine("Press any key to close the application");
+            Console.ReadLine();
         }
     }
 }

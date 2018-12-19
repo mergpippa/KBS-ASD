@@ -14,8 +14,17 @@ namespace KBS.MessageBus
         AzureServiceBus = 2,
     }
 
+    /// <summary>
+    /// Factory to create bus controler
+    /// </summary>
     public static class MessageBusTransportFactory
     {
+        /// <summary>
+        /// Create the bus controler of a specified transport type with the given configurator
+        /// </summary>
+        /// <param name="transportType">Transport type (RabbitMQ, Azure Service Bus or in memory)</param>
+        /// <param name="testCase">Configuration of message bus</param>
+        /// <returns></returns>
         public static IBusControl Create(TransportType transportType, MessageBusConfigurator testCase)
         {
             switch (transportType)

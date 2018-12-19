@@ -1,7 +1,9 @@
 namespace KBS.Topics.RequestResponseCase
 {
-    public interface IRequestMessage
+    /// <summary>
+    /// A request will contain the same properties as a response for this test case
+    /// </summary>
+    public interface IRequestMessage : IResponseMessage
     {
-        int Count { get; }
     }
 }

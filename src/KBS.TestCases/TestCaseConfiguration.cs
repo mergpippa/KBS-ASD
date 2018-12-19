@@ -7,23 +7,28 @@ namespace KBS.TestCases
         #region general configuration
 
         /// <summary>
-        /// Time duration in milliseconds of a test case
+        /// Time duration of the test case in milliseconds
         /// </summary>
         public TimeSpan Duration { get; set; }
+
+        /// <summary>
+        /// Time to wait for the last response
+        /// </summary>
+        public TimeSpan Timeout { get; set; }
+
+        /// <summary>
+        /// Amount of messages to send
+        /// </summary>
+        public int MessagesCount { get; set; }
 
         #endregion general configuration
 
         #region message configuration
 
         /// <summary>
-        /// Amount of messages to send each second
+        /// Message size in bytes (a message will be filled with a byte array of the given size)
         /// </summary>
-        public int MessageFrequency { get; set; }
-
-        /// <summary>
-        /// Message size (a message will be filled with a byte array of the given size)
-        /// </summary>
-        public int MinimalSize { get; set; }
+        public int FillerSize { get; set; }
 
         #endregion message configuration
     }

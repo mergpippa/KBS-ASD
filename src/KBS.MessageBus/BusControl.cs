@@ -8,7 +8,7 @@ namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
-        private readonly IBusControl _busControl;
+        public readonly IBusControl Instance;
 
         /// <summary>
         /// Creates a new bus control with given test case
@@ -22,13 +22,10 @@ namespace KBS.MessageBus
                 Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
             );
 
-            _busControl = MessageBusTransportFactory.Create(
-                transportType, 
-                new MessageBusConfigurator(testCaseConfigurator)
-            );
+            Instance = MessageBusTransportFactory.Create(transportType, testCase);
 
             // Starts bus (The bus must be started before sending any messages!)
-            _busControl.Start();
+            Instance.Start();
         }
 
         /// <summary>
@@ -44,7 +41,7 @@ namespace KBS.MessageBus
         /// </returns>
         public Task Publish<T>(object message) where T : class
         {
-            return _busControl.Publish<T>(message);
+            return Instance.Publish<T>(message);
         }
 
         /// <inheritdoc />
@@ -53,7 +50,7 @@ namespace KBS.MessageBus
         /// </summary>
         public void Dispose()
         {
-            _busControl.Stop();
+            Instance.Stop();
         }
     }
 }
