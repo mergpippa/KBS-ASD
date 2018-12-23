@@ -32,20 +32,25 @@ namespace KBS.TestCases.TestCases
         protected async Task Benchmark(Func<int, Task> callback)
         {
             Console.WriteLine("Starting benchmark");
-
+            var startTime = DateTime.Now;
+            
             // Force this method to run asynchronously
             await Task.Yield();
 
             var tasks = new Task[_testCaseConfiguration.MessagesCount];
 
             for (var i = 0; i < _testCaseConfiguration.MessagesCount; i++)
-            {
+            { 
                 tasks[i] = callback(i);
             }
 
             Console.WriteLine("waiting");
             
-            await Task.WhenAll(tasks);
+            Task.WaitAll(tasks);
+            
+            var totalRunTime = DateTime.Now - startTime;
+            
+            Console.WriteLine($"Total duration test: {totalRunTime}");
 
             Console.WriteLine("Ending benchmark");
         }

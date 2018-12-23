@@ -7,16 +7,6 @@ namespace KBS.TestCases
         #region general configuration
 
         /// <summary>
-        /// Time duration of the test case in milliseconds
-        /// </summary>
-        public TimeSpan Duration { get; set; }
-
-        /// <summary>
-        /// Time to wait for the last response
-        /// </summary>
-        public TimeSpan Timeout { get; set; }
-
-        /// <summary>
         /// Amount of messages to send
         /// </summary>
         public int MessagesCount { get; set; }

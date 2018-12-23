@@ -52,8 +52,6 @@ namespace KBS.TestCases.TestCases.Webshop
             await Benchmark(async _ => 
                 await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false)
             );
-
-            await Task.Delay(testCaseConfiguration.Duration);
         }
     }
 }

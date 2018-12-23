@@ -17,8 +17,7 @@ namespace KBS.FauxApplication
             // Get test case configuration from environment
             var configuration = new TestCaseConfiguration()
             {
-                Duration = TimeSpan.FromMilliseconds(5000),
-                MessagesCount = 25,
+                MessagesCount = 100,
 
                 // Azure limit 262144 bytes
                 FillerSize = 12
@@ -28,7 +27,7 @@ namespace KBS.FauxApplication
 
             using (var busControl = new BusControl(testCase))
             {
-                Console.WriteLine($"Running {testCase.GetType().Name} till {DateTime.Now.Add(configuration.Duration)}");
+                Console.WriteLine($"Running {testCase.GetType().Name}");
 
                 testCase.Run(busControl, configuration).Wait();
             }
