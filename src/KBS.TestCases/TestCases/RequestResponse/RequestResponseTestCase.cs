@@ -57,6 +57,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
             Console.WriteLine("Initializing request/response test case");
 
+            var startTime = DateTime.Now;
+
             var hostUri = busControl.Instance.Address;
 
             var requestClient = busControl
@@ -76,6 +78,9 @@ namespace KBS.TestCases.TestCases.RequestResponse
 
                 await Console.Out.WriteLineAsync($"Response received {response.Id} - {response.Filler.Length} bytes");
             });
+
+            var totalRunTime = DateTime.Now - startTime;
+            Console.WriteLine($"Total duration test: {totalRunTime}");
         }
     }
 }
