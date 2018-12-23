@@ -34,7 +34,7 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
             TelemetryClient.TrackEvent(
                 "Message received",
                 new Dictionary<string, string>() {
-                    { "type", messageContext.Message.Type },
+                    { "type", messageContext.Message.MessageType },
                     { "id", messageContext.Message.Id.ToString() }
                 }
             );
