@@ -44,7 +44,18 @@ namespace KBS.MessageBus
         /// </returns>
         public Task Publish<T>(object message) where T : class
         {
-            return Instance.Publish<T>(message);
+            var task = Instance.Publish<T>(message);
+          
+            // Track message publish
+//            TelemetryClient.TrackEvent(
+//                "bus_published",
+//                new Dictionary<string, string>
+//                {
+//                    { "startedAt", DateTime.Now }
+//                }
+//            );
+
+            return task;
         }
 
         /// <inheritdoc />

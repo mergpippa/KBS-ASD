@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights;
 
 namespace KBS.TestCases.TestCases
 {
@@ -31,28 +33,42 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         protected async Task Benchmark(Func<int, Task> callback)
         {
-            Console.WriteLine("Starting benchmark");
+            // Make sure that this method runs asynchronous
+            await Task.Yield();
+
             var startTime = DateTime.Now;
             
+            // Track event on benchmark start
+//            TelemetryClient.TrackEvent(
+//                "benchmark_start",
+//                new Dictionary<string, string>
+//                {
+//                    { "startTime", startTime.ToString() }
+//                }
+//            );
+
+
             // Force this method to run asynchronously
-            await Task.Yield();
 
             var tasks = new Task[_testCaseConfiguration.MessagesCount];
 
             for (var i = 0; i < _testCaseConfiguration.MessagesCount; i++)
-            { 
+            {
                 tasks[i] = callback(i);
             }
 
-            Console.WriteLine("waiting");
-            
             Task.WaitAll(tasks);
-            
-            var totalRunTime = DateTime.Now - startTime;
-            
-            Console.WriteLine($"Total duration test: {totalRunTime}");
 
-            Console.WriteLine("Ending benchmark");
+            // Track event on benchmark end
+//            TelemetryClient.TrackEvent(
+//                "benchmark_end",
+//                new Dictionary<string, string>
+//                {
+//                    { "endTime", (DateTime.Now - startTime).ToString() }
+//                }
+//            );
+
+            Console.WriteLine($"Benchmark completed in: {DateTime.Now - startTime}");
         }
     }
 }

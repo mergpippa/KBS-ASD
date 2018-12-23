@@ -32,7 +32,7 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 
             // Track message send
             TelemetryClient.TrackEvent(
-                "Message received",
+                "bus_received",
                 new Dictionary<string, string>() {
                     { "type", messageContext.Message.MessageType },
                     { "id", messageContext.Message.Id.ToString() }
