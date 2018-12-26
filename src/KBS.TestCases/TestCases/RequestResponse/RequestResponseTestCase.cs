@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Contracts;
@@ -59,6 +60,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
 
             var hostUri = busControl.Instance.Address;
 
+            var receivedMessages = 0;
+
             var requestClient = busControl
                 .Instance
                 .CreateRequestClient<IRequestMessage, IResponseMessage>(
@@ -73,9 +76,10 @@ namespace KBS.TestCases.TestCases.RequestResponse
                     Id = index,
                     Filler = new byte[testCaseConfiguration.FillerSize]
                 });
-
+                receivedMessages++;
                 await Console.Out.WriteLineAsync($"Response received {response.Id} - {response.Filler.Length} bytes");
             });
+            Console.WriteLine($"Received {receivedMessages}/{testCaseConfiguration.MessagesCount} messages.");
         }
     }
 }
