@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using KBS.Infrastructure;
-using KBS.Infrastructure.Models;
-using KBS.TestCases;
+using System.Collections.Concurrent;
+using KBS.Benchmark;
+using KBS.TestCases.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -11,39 +10,26 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly IManager _manager;
-
-        public TestController(IManager manager)
-        {
-            _manager = manager;
-        }
+        private readonly ConcurrentBag<BenchmarkStateContext> benchmarks = new ConcurrentBag<BenchmarkStateContext>();
 
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public List<TestEnviroment> GetAll()
+        public ConcurrentBag<BenchmarkStateContext> GetAll()
         {
-            //return _manager.GetTests();
-            return null;
-        }
-
-        // Get api/test/{id}
-        [HttpGet, Route("{id}")]
-        [ProducesResponseType(404)]
-        public TestEnviroment GetTest(int id)
-        {
-            //return _manager.GetTest(id);
-            return null;
+            return benchmarks;
         }
 
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult Post([FromBody] TestCaseConfiguration configuration)
+        public ActionResult<BenchmarkStateContext> Post([FromBody] TestCaseConfiguration configuration)
         {
-            // _manager.CreateTest(configuration);
-            //return Ok();
-            return BadRequest();
+            var benchmark = new BenchmarkStateContext(configuration);
+            
+            benchmarks.Add(benchmark);
+            
+            return benchmark;
         }
     }
 }

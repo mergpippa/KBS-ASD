@@ -12,8 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KBS.Benchmark\KBS.Benchmark.csproj" />
     <ProjectReference Include="..\KBS.TestCases\KBS.TestCases.csproj" />
     <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Context" />
   </ItemGroup>
 
 </Project>
