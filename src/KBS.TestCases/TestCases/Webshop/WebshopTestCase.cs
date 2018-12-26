@@ -1,36 +1,38 @@
+using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.TestCases.Contracts;
+using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.Webshop.Consumers;
 using KBS.Topics.WebshopCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop
 {
-    internal class WebshopTestCase : AbstractTestCase, ITestCase
+    internal class WebshopTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
-        private const string _queueName = "webshop_queue";
+        private const string QueueName = "webshop_queue";
 
         /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
-        /// <param name="testCaseConfiguration"></param>
+        /// <param name="testCaseConfiguration">
+        /// </param>
         public WebshopTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
-        { }
-        
-        /// <inheritdoc />
+        {
+        }
+
         /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
         /// </param>
-        public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
+        public override void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
             busFactoryConfigurator.ReceiveEndpoint(
-                _queueName,
+                QueueName,
                 endpointConfigurator =>
                 {
                     endpointConfigurator.Consumer<Buyer>();
@@ -40,17 +42,25 @@ namespace KBS.TestCases.TestCases.Webshop
             );
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Creates a message object for given index
+        /// </summary>
+        /// <returns></returns>
+        protected override object CreateMessage(int index) =>
+            new {Id = index, CreatedAt = DateTime.UtcNow};
+
         /// <summary>
         /// Method to run the test case
         /// </summary>
-        /// <param name="busControl">The bus for the test case to use</param>
-        /// <param name="testCaseConfiguration">The configuration for this test case</param>
-        /// <returns></returns>
-        public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
+        /// <param name="busControl">
+        /// The bus for the test case to use
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public override async Task Run(BusControl busControl)
         {
-            await Benchmark(async _ => 
-                await busControl.Publish<ICatalogueRequest>(new { }).ConfigureAwait(false)
+            await Benchmark(message =>
+                busControl.Publish<ICatalogueRequest>(message).ConfigureAwait(false)
             );
         }
     }

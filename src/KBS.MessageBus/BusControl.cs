@@ -48,7 +48,7 @@ namespace KBS.MessageBus
           
             // Track message publish
 //            TelemetryClient.TrackEvent(
-//                "bus_published",
+//                "bus_publish_message",
 //                new Dictionary<string, string>
 //                {
 //                    { "startedAt", DateTime.Now }

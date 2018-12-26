@@ -1,27 +1,24 @@
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.TestCases.Contracts;
+using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.RequestResponse.Consumers;
 using KBS.Topics.RequestResponseCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse
 {
-    /// <inheritdoc cref="AbstractTestCase" />
-    ///    /// <summary>
+    /// <summary>
     /// Test case for request and response
     /// </summary>
-    internal class RequestResponseTestCase : AbstractTestCase, ITestCase
+    internal class RequestResponseTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case
         /// </summary>
         private const string QueueName = "request-response_queue";
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="testCaseConfiguration">
@@ -30,37 +27,34 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
         }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
         /// </param>
-        public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
+        public override void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
             busFactoryConfigurator.ReceiveEndpoint(QueueName, endpointConfigurator =>
                 endpointConfigurator.Consumer<RequestConsumer>()
             );
         }
 
+        protected override object CreateMessage(int index) =>
+            new { Id = index };
+
         /// <summary>
-        /// Methode to run the test case
+        /// Method to run the test case
         /// </summary>
         /// <param name="busControl">
         /// The bus for the test case to use
         /// </param>
-        /// <param name="testCaseConfiguration">
-        /// The configuration for this test case
-        /// </param>
         /// <returns>
         /// </returns>
-        public async Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
+        public override async Task Run(BusControl busControl)
         {
             Console.WriteLine("Initializing request/response test case");
 
             var hostUri = busControl.Instance.Address;
-
-            var receivedMessages = 0;
 
             var requestClient = busControl
                 .Instance
@@ -69,17 +63,9 @@ namespace KBS.TestCases.TestCases.RequestResponse
                     TimeSpan.FromSeconds(10)
                 );
 
-            await Benchmark(async index =>
-            {
-                var response = await requestClient.Request(new
-                {
-                    Id = index,
-                    Filler = new byte[testCaseConfiguration.FillerSize]
-                });
-                receivedMessages++;
-                await Console.Out.WriteLineAsync($"Response received {response.Id} - {response.Filler.Length} bytes");
-            });
-            Console.WriteLine($"Received {receivedMessages}/{testCaseConfiguration.MessagesCount} messages.");
+            await Benchmark(async message =>
+                await requestClient.Request(message)
+            );
         }
     }
 }

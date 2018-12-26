@@ -1,5 +1,6 @@
 using System;
-using KBS.TestCases.Contracts;
+using KBS.TestCases.Configuration;
+using KBS.TestCases.TestCases;
 using KBS.TestCases.TestCases.RequestResponse;
 using KBS.TestCases.TestCases.Webshop;
 
@@ -15,19 +16,19 @@ namespace KBS.TestCases
         /// <summary>
         /// Real world test case
         /// </summary>
-        Webshop = 1,
+        WebShop = 1,
     }
 
     public static class TestCaseFactory
     {
-        public static ITestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration)
+        public static TestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration)
         {
             switch (testCaseType)
             {
                 case TestCaseType.RequestResponse:
                     return new RequestResponseTestCase(testCaseConfiguration);
 
-                case TestCaseType.Webshop:
+                case TestCaseType.WebShop:
                     return new WebshopTestCase(testCaseConfiguration);
 
                 default:
