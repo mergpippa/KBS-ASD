@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using KBS.Benchmark;
 using KBS.TestCases.Configuration;
@@ -10,14 +11,12 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly ConcurrentBag<BenchmarkStateContext> benchmarks = new ConcurrentBag<BenchmarkStateContext>();
-
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public ConcurrentBag<BenchmarkStateContext> GetAll()
+        public BlockingCollection<BenchmarkStateContext> GetAll()
         {
-            return benchmarks;
+            throw new NotImplementedException();
         }
 
         // POST api/test
@@ -25,11 +24,7 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(400)]
         public ActionResult<BenchmarkStateContext> Post([FromBody] TestCaseConfiguration configuration)
         {
-            var benchmark = new BenchmarkStateContext(configuration);
-            
-            benchmarks.Add(benchmark);
-            
-            return benchmark;
+            return new BenchmarkStateContext(configuration);
         }
     }
 }
