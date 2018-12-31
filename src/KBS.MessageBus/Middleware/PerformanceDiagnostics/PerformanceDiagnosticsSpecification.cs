@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using GreenPipes;
-using Microsoft.ApplicationInsights;
+using KBS.Telemetry;
 
 namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 {
@@ -9,9 +9,9 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
         IPipeSpecification<T>
         where T : class, PipeContext
     {
-        private readonly TelemetryClient TelemetryClient;
+        private readonly ITelemetryClient TelemetryClient;
 
-        public PerformanceDiagnosticsSpecification(TelemetryClient telemetryClient)
+        public PerformanceDiagnosticsSpecification(ITelemetryClient telemetryClient)
         {
             TelemetryClient = telemetryClient;
         }

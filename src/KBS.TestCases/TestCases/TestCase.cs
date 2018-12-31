@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
+using KBS.Data.Constants;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
+using KBS.Telemetry;
 using KBS.TestCases.Configuration;
 using MassTransit;
-using MassTransit.Internals.Extensions;
 
 namespace KBS.TestCases.TestCases
 {
@@ -15,32 +15,45 @@ namespace KBS.TestCases.TestCases
     /// </summary>
     public abstract class TestCase : IMessageBusEndpointConfigurator
     {
+        /// <summary>
+        /// </summary>
         private readonly TestCaseConfiguration _testCaseConfiguration;
+
+        /// <summary>
+        /// </summary>
+        private readonly ITelemetryClient _telemetryClient;
 
         /// <summary>
         /// Abstract class with a Benchmark method that is used to call a callback on given test parameters
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        protected TestCase(TestCaseConfiguration testCaseConfiguration)
+        protected TestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
         {
             _testCaseConfiguration = testCaseConfiguration;
+            _telemetryClient = telemetryClient;
         }
 
         /// <summary>
         /// Method used to create a message object for given index
         /// </summary>
-        /// <param name="index"></param>
-        /// <returns></returns>
+        /// <param name="index">
+        /// </param>
+        /// <returns>
+        /// </returns>
         protected abstract object CreateMessage(int index);
-        
-        /// /// <summary>
+
+        /// ///
+        /// <summary>
         /// Method to run the test benchmark
         /// </summary>
-        /// <param name="busControl">The bus for the test case to use</param>
-        /// <returns></returns>
+        /// <param name="busControl">
+        /// The bus for the test case to use
+        /// </param>
+        /// <returns>
+        /// </returns>
         public abstract Task Run(BusControl busControl);
-        
+
         /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
@@ -72,22 +85,30 @@ namespace KBS.TestCases.TestCases
         /// </param>
         /// <returns>
         /// </returns>
-        protected async Task Benchmark(Action<object> callback)
+        protected async Task SendMessages(Action<object> callback)
         {
             // Force this method to run asynchronously
             await Task.Yield();
 
             // Generate messages beforehand to make sure that calculations that can impact the
             // benchmark don't affect the results
+            // TODO: Find a solution that won't hog the memory with benchmarks that send millions of messages
             var messages = GenerateMessages();
 
+            // Save start time of benchmark
             var startTime = DateTime.Now;
 
-            // Track event on benchmark start TelemetryClient.TrackEvent( "benchmark_start", new
-            // Dictionary<string, string> { { "startTime", startTime.ToString() } } );
-            
+            // Track event on benchmark start
+            _telemetryClient.TrackEvent(
+                TelemetryEventNames.BenchmarkStarted,
+                new Dictionary<string, string> {
+                    { TelemetryEventPropertyNames.StartedAt, startTime.ToString() }
+                }
+            );
+
+            // Create clients array
             var clients = new Task[_testCaseConfiguration.Clients];
-            
+
             // Amount of message that each client will send
             var messagesForEachClient = _testCaseConfiguration.MessagesCount / _testCaseConfiguration.Clients;
 
@@ -95,7 +116,7 @@ namespace KBS.TestCases.TestCases
             {
                 var startIndex = messagesForEachClient * i;
                 var endIndex = startIndex + messagesForEachClient;
-                
+
                 // Create a new client
                 clients[i] = Task.Run(() =>
                 {
@@ -105,10 +126,15 @@ namespace KBS.TestCases.TestCases
             }
 
             // Wait until all clients have sent their messages
-            await Task.WhenAll(clients);
+            await Task.WhenAll(clients).ConfigureAwait(false);
 
-            // Track event on benchmark end TelemetryClient.TrackEvent( "benchmark_end", new
-            // Dictionary<string, string> { { "endTime", (DateTime.Now - startTime).ToString() } } );
+            // Track event on benchmark end
+            _telemetryClient.TrackEvent(
+                 TelemetryEventNames.BenchmarkEnded,
+                new Dictionary<string, string> {
+                    { TelemetryEventPropertyNames.EndedAt, DateTime.Now.ToString() }
+                }
+            );
 
             Console.WriteLine($"Benchmark completed in: {DateTime.Now - startTime}");
         }

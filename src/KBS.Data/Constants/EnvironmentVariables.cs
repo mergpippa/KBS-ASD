@@ -1,7 +1,12 @@
-namespace KBS.MessageBus.Data
+namespace KBS.Data.Constants
 {
-    public static class EnvironmentVariable
+    public static class EnvironmentVariables
     {
+        /// <summary>
+        /// Test case type (See KBS.Data.Enum/TestCaseType.cs)
+        /// </summary>
+        public const string TestCaseType = "TEST_CASE_TYPE";
+
         public const string TransportType = "TRANSPORT_TYPE";
 
         public const string OperationTimeout = "OPERATION_TIMEOUT";

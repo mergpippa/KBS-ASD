@@ -1,6 +1,4 @@
 using System;
-using KBS.Benchmark;
-using KBS.Benchmark.States;
 
 namespace KBS.FauxApplication
 {
@@ -8,7 +6,7 @@ namespace KBS.FauxApplication
     {
         private static void Main()
         {
-            new BenchmarkStateContext();
+            new Benchmark.Benchmark();
 
             Console.WriteLine("Press any key to close the application");
             Console.ReadLine();

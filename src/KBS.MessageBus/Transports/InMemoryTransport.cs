@@ -1,4 +1,4 @@
-using KBS.MessageBus.Configurator;
+using System;
 using MassTransit;
 
 namespace KBS.MessageBus.Transports
@@ -8,13 +8,13 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// Creates a MassTransit instance using the InMemory transport
         /// </summary>
-        /// <param name="messageBusConfigurator">
+        /// <param name="baseBusFactoryConfigurator">
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(MessageBusConfigurator messageBusConfigurator)
+        public IBusControl GetBusControl(Action<IBusFactoryConfigurator> baseBusFactoryConfigurator)
         {
-            return Bus.Factory.CreateUsingInMemory(messageBusConfigurator.ApplyConfiguration);
+            return Bus.Factory.CreateUsingInMemory(baseBusFactoryConfigurator);
         }
     }
 }

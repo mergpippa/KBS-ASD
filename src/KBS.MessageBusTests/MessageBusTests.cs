@@ -1,3 +1,5 @@
+using System;
+using KBS.Data.Enum;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
 using MassTransit;
@@ -7,19 +9,20 @@ namespace KBS.MessageBusTests
 {
     public class TransportFactoryTests
     {
-        class ConcreteEndpointConfigurator : IMessageBusEndpointConfigurator
+        private class ConcreteEndpointConfigurator : IMessageBusEndpointConfigurator
         {
             public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
             {
+                throw new NotImplementedException();
             }
         }
 
         [Fact]
         public void Should_CreateMessageBusWithInMemoryTransport()
         {
-            var busControl = MessageBusTransportFactory.Create(
+            var busControl = TransportFactory.Create(
                 TransportType.InMemory,
-                new MessageBusConfigurator(new ConcreteEndpointConfigurator())
+                (_) => { }
             );
 
             Assert.IsType<MassTransitBus>(busControl);

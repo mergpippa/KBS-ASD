@@ -6,7 +6,8 @@ using MassTransit;
 namespace KBS.TestCases.TestCases.RequestResponse.Consumers
 {
     /// <inheritdoc />
-    ///    /// <summary>
+    ///    /// ///
+    /// <summary>
     /// Consumer of 'IRequestMessage' topics
     /// </summary>
     internal class RequestConsumer : IConsumer<IRequestMessage>
@@ -22,6 +23,7 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
             await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Id}. Responding immediately!");
+
             context.Respond((IResponseMessage)context.Message);
         }
     }

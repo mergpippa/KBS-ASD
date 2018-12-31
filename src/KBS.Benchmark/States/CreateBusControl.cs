@@ -1,14 +1,24 @@
 using KBS.MessageBus;
+using KBS.MessageBus.Middleware;
 
 namespace KBS.Benchmark.States
 {
     public class CreateBusControl : IBenchmarkStep
     {
-        public void Next(BenchmarkStateContext benchmarkStateContext)
+        public void Next(Benchmark benchmark)
         {
-            benchmarkStateContext.Context.BusControl = new BusControl(benchmarkStateContext.Context.TestCase);
-            
-            benchmarkStateContext.Next(new StartBenchmark());
+            benchmark.Context.BusControl = new BusControl(
+                (busFactoryConfigurator) =>
+                {
+                    // Add PerformanceDiagnostics middleware
+                    busFactoryConfigurator.UseMessagePerformanceDiagnostics(benchmark.Context.TelemetryClient);
+
+                    benchmark.Context.TestCase.ConfigureEndpoints(busFactoryConfigurator);
+                },
+                benchmark.Context.TelemetryClient
+            );
+
+            benchmark.Next(new StartBenchmark());
         }
     }
 }

@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GreenPipes;
+using KBS.Data.Constants;
+using KBS.Telemetry;
 using KBS.Topics;
 using MassTransit;
-using Microsoft.ApplicationInsights;
 
 namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 {
@@ -12,9 +13,9 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
         IFilter<T>
         where T : class, PipeContext
     {
-        private TelemetryClient TelemetryClient;
+        private ITelemetryClient TelemetryClient;
 
-        public PerformanceDiagnosticsFilter(TelemetryClient telemetryClient)
+        public PerformanceDiagnosticsFilter(ITelemetryClient telemetryClient)
         {
             TelemetryClient = telemetryClient;
         }
@@ -32,10 +33,10 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 
             // Track message send
             TelemetryClient.TrackEvent(
-                "bus_received",
+                TelemetryEventNames.MessageReceived,
                 new Dictionary<string, string>() {
-                    { "type", messageContext.Message.MessageType },
-                    { "id", messageContext.Message.Id.ToString() }
+                    { TelemetryEventPropertyNames.MessageType, messageContext.Message.MessageType },
+                    { TelemetryEventPropertyNames.MessageId, messageContext.Message.Id.ToString() }
                 }
             );
 

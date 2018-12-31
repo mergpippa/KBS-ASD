@@ -1,6 +1,5 @@
 using System;
-using KBS.MessageBus.Configurator;
-using KBS.MessageBus.Data;
+using KBS.Data.Constants;
 using MassTransit;
 using MassTransit.Azure.ServiceBus.Core;
 using Microsoft.Azure.ServiceBus.Primitives;
@@ -12,14 +11,14 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// URI to Azure Service Bus
         /// </summary>
-        private readonly Uri _uri = new Uri(Environment.GetEnvironmentVariable(EnvironmentVariable.AzureServiceBusHost));
+        private readonly Uri _uri = new Uri(Environment.GetEnvironmentVariable(EnvironmentVariables.AzureServiceBusHost));
 
         /// <summary>
         /// Private token that is used to authenticate this MassTransit client
         /// </summary>
         private readonly ITokenProvider _tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(
-            TokenProviderKeyName.RootManageSharedAccessKey,
-            Environment.GetEnvironmentVariable(EnvironmentVariable.AzureServiceBusToken)
+            TokenProviderKeyNames.RootManageSharedAccessKey,
+            Environment.GetEnvironmentVariable(EnvironmentVariables.AzureServiceBusToken)
         );
 
         /// <summary>
@@ -29,21 +28,20 @@ namespace KBS.MessageBus.Transports
         /// </param>
         /// <returns>
         /// </returns>
-        public IBusControl GetBusControl(MessageBusConfigurator messageBusConfigurator)
+        public IBusControl GetBusControl(Action<IBusFactoryConfigurator> baseBusFactoryConfigurator)
         {
             return Bus.Factory.CreateUsingAzureServiceBus(busFactoryConfigurator =>
             {
                 busFactoryConfigurator.Host(_uri, host =>
                 {
                     host.OperationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
-                        Environment.GetEnvironmentVariable(EnvironmentVariable.OperationTimeout)
+                        Environment.GetEnvironmentVariable(EnvironmentVariables.OperationTimeout)
                     ));
 
                     host.TokenProvider = _tokenProvider;
                 });
 
-                // Create receive endpoints for test case
-                messageBusConfigurator.ApplyConfiguration(busFactoryConfigurator);
+                baseBusFactoryConfigurator(busFactoryConfigurator);
             });
         }
     }

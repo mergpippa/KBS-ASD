@@ -1,20 +1,16 @@
 using System;
-using System.Threading;
 
 namespace KBS.Benchmark.States
 {
     public class Cleanup : IBenchmarkStep
     {
-        public void Next(BenchmarkStateContext benchmarkStateContext)
+        public async void Next(Benchmark benchmark)
         {
             // Stop bus control
-            benchmarkStateContext.Context.BusControl.Dispose();
+            benchmark.Context.BusControl.Dispose();
 
             // Flush in-memory data from telemetry client
-            benchmarkStateContext.Context.TelemetryClient.Flush();
-
-            // Allow some time for flushing before shutdown.
-            Thread.Sleep(5000);
+            await benchmark.Context.TelemetryClient.Flush();
 
             // Go to finished state
             Console.WriteLine("Benchmark finished");

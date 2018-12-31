@@ -1,16 +1,12 @@
-using KBS.MessageBus;
-
 namespace KBS.Benchmark.States
 {
     public class StartBenchmark : IBenchmarkStep
     {
-        public void Next(BenchmarkStateContext benchmarkStateContext)
+        public void Next(Benchmark benchmark)
         {
-            benchmarkStateContext.Context.BusControl = new BusControl(benchmarkStateContext.Context.TestCase);
-            
-            benchmarkStateContext.Context.TestCase.Run(benchmarkStateContext.Context.BusControl);
-            
-            benchmarkStateContext.Next(new WaitingForMessages());
+            benchmark.Context.TestCase.Run(benchmark.Context.BusControl);
+
+            benchmark.Next(new WaitForMessages());
         }
     }
 }

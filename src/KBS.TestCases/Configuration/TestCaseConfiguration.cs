@@ -19,7 +19,7 @@ namespace KBS.TestCases.Configuration
         /// <summary>
         /// Time before test should abort after last message was sent
         /// </summary>
-        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(30);
+        public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(15);
 
         #endregion general configuration
 

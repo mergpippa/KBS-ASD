@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.MessageBus.Configurator;
-using KBS.MessageBus.Data;
+using KBS.Data.Constants;
+using KBS.Data.Enum;
+using KBS.Telemetry;
 using MassTransit;
 
 namespace KBS.MessageBus
@@ -10,21 +12,30 @@ namespace KBS.MessageBus
     {
         public readonly IBusControl Instance;
 
+        private readonly ITelemetryClient _telemetryClient;
+
         /// <summary>
         /// Creates a new bus control with given test case
         /// </summary>
         /// <param name="testCaseConfigurator">
         /// </param>
-        public BusControl(IMessageBusEndpointConfigurator testCaseConfigurator)
+        /// <param name="telemetryClient">
+        /// </param>
+        public BusControl(
+            Action<IBusFactoryConfigurator> busFactoryConfigurator,
+            ITelemetryClient telemetryClient
+        )
         {
+            _telemetryClient = telemetryClient;
+
             // Get transport type from environment
             var transportType = (TransportType)Convert.ToInt32(
-                Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
+                Environment.GetEnvironmentVariable(EnvironmentVariables.TransportType)
             );
 
-            Instance = MessageBusTransportFactory.Create(
-                transportType, 
-                new MessageBusConfigurator(testCaseConfigurator)
+            Instance = TransportFactory.Create(
+                transportType,
+                busFactoryConfigurator
             );
 
             // Starts bus (The bus must be started before sending any messages!)
@@ -45,20 +56,19 @@ namespace KBS.MessageBus
         public Task Publish<T>(object message) where T : class
         {
             var task = Instance.Publish<T>(message);
-          
+
             // Track message publish
-//            TelemetryClient.TrackEvent(
-//                "bus_publish_message",
-//                new Dictionary<string, string>
-//                {
-//                    { "startedAt", DateTime.Now }
-//                }
-//            );
+            _telemetryClient.TrackEvent(
+                TelemetryEventNames.MessageSent,
+                new Dictionary<string, string>
+                {
+                    {TelemetryEventPropertyNames.SentAt, DateTime.Now.ToString()}
+                }
+            );
 
             return task;
         }
 
-        /// <inheritdoc />
         /// <summary>
         /// Stops bus control when this class is being disposed
         /// </summary>

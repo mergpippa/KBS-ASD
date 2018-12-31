@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using KBS.Benchmark;
 using KBS.TestCases.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +13,7 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public BlockingCollection<BenchmarkStateContext> GetAll()
+        public BlockingCollection<Benchmark.Benchmark> GetAll()
         {
             throw new NotImplementedException();
         }
@@ -22,9 +21,9 @@ namespace KBS.Controller.Controllers
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult<BenchmarkStateContext> Post([FromBody] TestCaseConfiguration configuration)
+        public ActionResult<Benchmark.Benchmark> Post([FromBody] TestCaseConfiguration configuration)
         {
-            return new BenchmarkStateContext(configuration);
+            return new Benchmark.Benchmark(configuration);
         }
     }
 }

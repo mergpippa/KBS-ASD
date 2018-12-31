@@ -4,15 +4,15 @@ namespace KBS.Benchmark.States
 {
     public class GetConfiguration : IBenchmarkStep
     {
-        public void Next(BenchmarkStateContext benchmarkStateContext)
+        public void Next(Benchmark benchmark)
         {
             // Create test case configuration
-            benchmarkStateContext.Context.TestCaseConfiguration = new TestCaseConfiguration();
-            
+            benchmark.Context.TestCaseConfiguration = new TestCaseConfiguration();
+
             // Fill test case configuration using environment
-            benchmarkStateContext.Context.TestCaseConfiguration.FillUsingEnvironment();
-            
-            benchmarkStateContext.Next(new Initialize());
+            benchmark.Context.TestCaseConfiguration.FillUsingEnvironment();
+
+            benchmark.Next(new CreateTelemetryClient());
         }
     }
 }

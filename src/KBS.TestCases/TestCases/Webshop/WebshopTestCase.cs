@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
+using KBS.Telemetry;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.Webshop.Consumers;
 using KBS.Topics.WebshopCase;
@@ -20,7 +21,8 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
+        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
+            : base(testCaseConfiguration, telemetryClient)
         {
         }
 
@@ -45,9 +47,10 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Creates a message object for given index
         /// </summary>
-        /// <returns></returns>
+        /// <returns>
+        /// </returns>
         protected override object CreateMessage(int index) =>
-            new {Id = index, CreatedAt = DateTime.UtcNow};
+            new { Id = index, CreatedAt = DateTime.UtcNow };
 
         /// <summary>
         /// Method to run the test case
@@ -59,7 +62,7 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </returns>
         public override async Task Run(BusControl busControl)
         {
-            await Benchmark(message =>
+            await SendMessages(message =>
                 busControl.Publish<ICatalogueRequest>(message).ConfigureAwait(false)
             );
         }

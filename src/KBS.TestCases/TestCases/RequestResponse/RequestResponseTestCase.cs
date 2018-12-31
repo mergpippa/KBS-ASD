@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
+using KBS.Telemetry;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.RequestResponse.Consumers;
 using KBS.Topics.RequestResponseCase;
@@ -23,7 +24,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration) : base(testCaseConfiguration)
+        public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
+            : base(testCaseConfiguration, telemetryClient)
         {
         }
 
@@ -63,7 +65,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
                     TimeSpan.FromSeconds(10)
                 );
 
-            await Benchmark(async message =>
+            await SendMessages(async message =>
                 await requestClient.Request(message)
             );
         }

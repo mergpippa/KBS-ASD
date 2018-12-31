@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KBS.Data\KBS.Data.csproj" />
     <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
   </ItemGroup>
 

@@ -1,50 +1,30 @@
-using KBS.Benchmark.States;
+using KBS.MessageBus;
+using KBS.Telemetry;
 using KBS.TestCases.Configuration;
+using KBS.TestCases.TestCases;
 
 namespace KBS.Benchmark
 {
-    public class BenchmarkStateContext
+    public class BenchmarkContext
     {
         /// <summary>
-        /// Variable that represents the current state
         /// </summary>
-        private IBenchmarkStep _currentState;
+        public BusControl BusControl;
 
         /// <summary>
-        /// 
         /// </summary>
-        public readonly BenchmarkContext Context;
+        public readonly MessageCaptureContext MessageCaptureContext;
 
         /// <summary>
-        /// TestCaseContext constructor
         /// </summary>
-        public BenchmarkStateContext(TestCaseConfiguration testCaseConfiguration)
-        {
-            Context = new BenchmarkContext { TestCaseConfiguration = testCaseConfiguration };
-
-            Next(new Initialize());
-        }
+        public ITelemetryClient TelemetryClient;
 
         /// <summary>
-        /// TestCaseContext constructor
         /// </summary>
-        public BenchmarkStateContext()
-        {
-            Context = new BenchmarkContext();
-
-            Next(new GetConfiguration());
-        }
+        public TestCaseConfiguration TestCaseConfiguration;
 
         /// <summary>
-        /// Method used to update the state of the TestCaseContext
         /// </summary>
-        /// <param name="newState"></param>
-        public void Next(IBenchmarkStep newState)
-        {
-            _currentState = newState;
-
-            // Process next step automatically
-            _currentState.Next(this);
-        }
+        public TestCase TestCase;
     }
 }
