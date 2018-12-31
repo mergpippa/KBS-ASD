@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace KBS.TestCases.Configuration
 {
@@ -15,6 +17,11 @@ namespace KBS.TestCases.Configuration
 
     public static class TestCaseConfigurationExtensionMethods
     {
+        /// <summary>
+        /// Fill configuration using system environment
+        /// </summary>
+        /// <param name="testCaseConfiguration">
+        /// </param>
         public static void FillUsingEnvironment(this TestCaseConfiguration testCaseConfiguration)
         {
             string GetVar(string variableName) => Environment.GetEnvironmentVariable(variableName);
@@ -50,6 +57,33 @@ namespace KBS.TestCases.Configuration
             {
                 testCaseConfiguration.Timeout = TimeSpan.FromSeconds(timeout);
             }
+        }
+
+        /// <summary>
+        /// Fill configuration using testCaseConfiguration.json in the root directory
+        /// </summary>
+        /// <param name="testCaseConfiguration">
+        /// </param>
+        public static void FillUsingConfigurationFile(this TestCaseConfiguration testCaseConfiguration, string path)
+        {
+            TestCaseConfiguration configurationFile;
+
+            using (var streamReader = new StreamReader(path))
+            {
+                configurationFile = JsonConvert.DeserializeObject<TestCaseConfiguration>(streamReader.ReadToEnd());
+            }
+
+            if (configurationFile.Clients != default(int))
+                testCaseConfiguration.Clients = configurationFile.Clients;
+
+            if (configurationFile.MessagesCount != default(int))
+                testCaseConfiguration.MessagesCount = configurationFile.MessagesCount;
+
+            if (configurationFile.FillerSize != default(int))
+                testCaseConfiguration.FillerSize = configurationFile.FillerSize;
+
+            if (configurationFile.Timeout != default(TimeSpan))
+                testCaseConfiguration.Timeout = configurationFile.Timeout;
         }
     }
 }

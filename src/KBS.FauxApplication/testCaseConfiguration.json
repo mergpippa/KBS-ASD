@@ -1,6 +1,6 @@
 {
     "MessagesCount": 100,
     "Clients": 4,
-    "Timeout": 30,
+    "Timeout": "00:00:15",
     "FillerSize": 15
 }
