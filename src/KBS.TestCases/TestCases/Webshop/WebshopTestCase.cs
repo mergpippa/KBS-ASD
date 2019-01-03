@@ -65,7 +65,7 @@ namespace KBS.TestCases.TestCases.Webshop
         public override async Task Run(BusControl busControl)
         {
             await SendMessages(message =>
-                busControl.Publish<ICatalogueRequest>(message).ConfigureAwait(false)
+                busControl.Instance.Publish<ICatalogueRequest>(message).ConfigureAwait(false)
             );
         }
     }

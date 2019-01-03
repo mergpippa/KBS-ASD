@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using KBS.Data.Constants;
 using KBS.Data.Enum;
 using KBS.Telemetry;
@@ -40,33 +38,6 @@ namespace KBS.MessageBus
 
             // Starts bus (The bus must be started before sending any messages!)
             Instance.Start();
-        }
-
-        /// <summary>
-        /// Publishes command onto bus control
-        /// </summary>
-        /// <typeparam name="T">
-        /// Should be an interface
-        /// </typeparam>
-        /// <param name="message">
-        /// Must be an anonymous type; explanation: "new { Val = 0 }"
-        /// </param>
-        /// <returns>
-        /// </returns>
-        public Task Publish<T>(object message) where T : class
-        {
-            var task = Instance.Publish<T>(message);
-
-            // Track message publish
-            _telemetryClient.TrackEvent(
-                TelemetryEventNames.MessageSent,
-                new Dictionary<string, string>
-                {
-                    {TelemetryEventPropertyNames.SentAt, DateTime.Now.ToString()}
-                }
-            );
-
-            return task;
         }
 
         /// <summary>
