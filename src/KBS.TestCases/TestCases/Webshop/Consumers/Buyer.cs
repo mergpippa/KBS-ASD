@@ -22,12 +22,12 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
-            var str = "";
+            var message = "";
 
             foreach (var item in context.Message.Catalogue)
-                str += "\t" + item + "\n";
+                message += "\t" + item + "\n";
 
-            await Console.Out.WriteAsync(str).ConfigureAwait(false);
+            await Console.Out.WriteAsync(message).ConfigureAwait(false);
         }
     }
 }

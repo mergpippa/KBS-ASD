@@ -130,7 +130,7 @@ namespace KBS.TestCases.TestCases
 
             // Track event on benchmark end
             _telemetryClient.TrackEvent(
-                 TelemetryEventNames.BenchmarkEnded,
+                TelemetryEventNames.BenchmarkEnded,
                 new Dictionary<string, string> {
                     { TelemetryEventPropertyNames.EndedAt, DateTime.Now.ToString() }
                 }

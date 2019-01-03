@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.Topics.WebshopCase;
 using MassTransit;
@@ -21,8 +20,6 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ITransaction> context)
         {
-            await Console.Out.WriteLineAsync("\tBank received transaction");
-
             await context.Publish<ITransactionValidation>(
                 new { Transaction = context.Message, IsValid = true }
             );

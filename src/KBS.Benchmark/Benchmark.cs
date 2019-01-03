@@ -1,5 +1,4 @@
 using KBS.Benchmark.States;
-using KBS.TestCases.Configuration;
 
 namespace KBS.Benchmark
 {
@@ -13,17 +12,7 @@ namespace KBS.Benchmark
         /// <summary>
         /// Current benchmark context
         /// </summary>
-        public readonly BenchmarkContext Context;
-
-        /// <summary>
-        /// Benchmark constructor
-        /// </summary>
-        public Benchmark(TestCaseConfiguration testCaseConfiguration)
-        {
-            Context = new BenchmarkContext { TestCaseConfiguration = testCaseConfiguration };
-
-            Next(new CreateTestCase());
-        }
+        public BenchmarkContext Context;
 
         /// <summary>
         /// Benchmark constructor

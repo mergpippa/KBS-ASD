@@ -1,12 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using KBS.Topics.RequestResponseCase;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse.Consumers
 {
-    /// <inheritdoc />
-    ///    /// ///
     /// <summary>
     /// Consumer of 'IRequestMessage' topics
     /// </summary>
@@ -20,11 +17,11 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         /// </param>
         /// <returns>
         /// </returns>
-        public async Task Consume(ConsumeContext<IRequestMessage> context)
+        public Task Consume(ConsumeContext<IRequestMessage> context)
         {
-            await Console.Out.WriteLineAsync($"Request received, Count: {context.Message.Id}. Responding immediately!");
-
             context.Respond((IResponseMessage)context.Message);
+
+            return null;
         }
     }
 }

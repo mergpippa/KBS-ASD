@@ -24,6 +24,8 @@ namespace KBS.TestCases.TestCases.Webshop
         public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
             : base(testCaseConfiguration, telemetryClient)
         {
+            if (testCaseConfiguration.MessagesCount > 500)
+                throw new ArgumentOutOfRangeException("The Webshop test case should only be used for presentational purposes");
         }
 
         /// <summary>

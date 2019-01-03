@@ -1,6 +1,4 @@
 using System;
-using KBS.Data.Constants;
-using KBS.Data.Enum;
 using KBS.TestCases;
 
 namespace KBS.Benchmark.States
@@ -14,7 +12,7 @@ namespace KBS.Benchmark.States
 
             // Create test case using test case factory
             benchmark.Context.TestCase = TestCaseFactory.Create(
-                (TestCaseType)int.Parse(Environment.GetEnvironmentVariable(EnvironmentVariables.TestCaseType)),
+                benchmark.Context.TestCaseConfiguration.TestCaseType,
                 benchmark.Context.TestCaseConfiguration,
                 benchmark.Context.TelemetryClient
             );

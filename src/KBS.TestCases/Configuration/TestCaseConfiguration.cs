@@ -1,10 +1,13 @@
 using System;
+using KBS.Data.Enum;
 
 namespace KBS.TestCases.Configuration
 {
     public class TestCaseConfiguration
     {
         #region general configuration
+
+        public TestCaseType TestCaseType { get; set; }
 
         /// <summary>
         /// Amount of messages to send

@@ -1,5 +1,7 @@
+using System;
 using System.IO;
 using KBS.TestCases.Configuration;
+using Newtonsoft.Json;
 
 namespace KBS.Benchmark.States
 {
@@ -20,6 +22,12 @@ namespace KBS.Benchmark.States
 
             // Fill test case configuration using environment
             benchmark.Context.TestCaseConfiguration.FillUsingEnvironment();
+
+            Console.WriteLine("Running test using following configuration:");
+            Console.WriteLine(JsonConvert.SerializeObject(benchmark.Context.TestCaseConfiguration));
+
+            // Create message capture context
+            benchmark.Context.MessageCaptureContext = new MessageCaptureContext(benchmark.Context.TestCaseConfiguration);
 
             benchmark.Next(new CreateTelemetryClient());
         }

@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KBS.Benchmark.States
@@ -7,33 +8,58 @@ namespace KBS.Benchmark.States
     {
         public async void Next(Benchmark benchmark)
         {
-            var receiveMessagesTask = CheckIfAllMessagesAreReceived();
-            var benchmarkTimeout = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.Timeout);
+            var cancellationTokenSource = new CancellationTokenSource();
 
-            if (await Task.WhenAny(receiveMessagesTask, benchmarkTimeout) == benchmarkTimeout)
+            var receiveMessagesTask = DidReceiveAllMessages(benchmark.Context.MessageCaptureContext, cancellationTokenSource.Token);
+            var benchmarkTimeoutTask = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.Timeout, cancellationTokenSource.Token);
+
+            if (await Task.WhenAny(receiveMessagesTask, benchmarkTimeoutTask) == benchmarkTimeoutTask)
             {
+                // Cancel benchmarkTimeoutTask
+                cancellationTokenSource.Cancel();
+
+                benchmark.Context.MessageCaptureContext.DidTimeoutWhenWaitingOnMessages = true;
+
                 benchmark.Next(new BenchmarkTimeout());
 
                 return;
             }
 
+            // Cancel receiveMessagesTask
             benchmark.Next(new Cleanup());
         }
 
-        private static async Task BenchmarkTimeout(TimeSpan timeSpan)
+        /// <summary>
+        /// Creates tasks that ends when the test case timeout has elapsed
+        /// </summary>
+        /// <param name="timeSpan">
+        /// </param>
+        /// <param name="cancellationToken">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private static async Task BenchmarkTimeout(TimeSpan timeSpan, CancellationToken cancellationToken)
         {
-            await Task.Delay(timeSpan);
+            await Task.Delay(timeSpan, cancellationToken);
         }
 
-        private static async Task CheckIfAllMessagesAreReceived()
+        /// <summary>
+        /// Creates tasks that polls the DidReceiveAllMessages property in MessageCaptureContext
+        /// </summary>
+        /// <param name="messageCaptureContext">
+        /// </param>
+        /// <param name="cancellationToken">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        private static async Task DidReceiveAllMessages(MessageCaptureContext messageCaptureContext, CancellationToken cancellationToken)
         {
-            // var testCaseConfiguration = new TestCaseConfiguration(); var messageCaptureContext =
-            // new TestCaseConfiguration();
-            //
-            // while (messageCaptureContext.ReceivedMessages < testCaseConfiguration.MessagesCount)
-            while (true)
+            if (cancellationToken.IsCancellationRequested)
+                return;
+
+            while (!messageCaptureContext.DidReceiveAllMessages)
             {
-                await Task.Delay(500);
+                await Task.Delay(500, cancellationToken);
             }
         }
     }

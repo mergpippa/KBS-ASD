@@ -5,7 +5,7 @@ using KBS.TestCases.TestCases;
 
 namespace KBS.Benchmark
 {
-    public class BenchmarkContext
+    public struct BenchmarkContext
     {
         /// <summary>
         /// </summary>
@@ -13,7 +13,7 @@ namespace KBS.Benchmark
 
         /// <summary>
         /// </summary>
-        public readonly MessageCaptureContext MessageCaptureContext;
+        public MessageCaptureContext MessageCaptureContext;
 
         /// <summary>
         /// </summary>

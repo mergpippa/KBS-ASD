@@ -54,8 +54,6 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </returns>
         public override async Task Run(BusControl busControl)
         {
-            Console.WriteLine("Initializing request/response test case");
-
             var hostUri = busControl.Instance.Address;
 
             var requestClient = busControl

@@ -23,7 +23,7 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(400)]
         public ActionResult<Benchmark.Benchmark> Post([FromBody] TestCaseConfiguration configuration)
         {
-            return new Benchmark.Benchmark(configuration);
+            return new Benchmark.Benchmark();
         }
     }
 }

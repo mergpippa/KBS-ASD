@@ -2,9 +2,9 @@ namespace KBS.Benchmark.States
 {
     public class StartBenchmark : IBenchmarkStep
     {
-        public void Next(Benchmark benchmark)
+        public async void Next(Benchmark benchmark)
         {
-            benchmark.Context.TestCase.Run(benchmark.Context.BusControl);
+            await benchmark.Context.TestCase.Run(benchmark.Context.BusControl);
 
             benchmark.Next(new WaitForMessages());
         }

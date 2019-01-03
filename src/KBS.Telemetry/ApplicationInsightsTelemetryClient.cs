@@ -28,8 +28,6 @@ namespace KBS.Telemetry
         /// </param>
         public void TrackEvent(string eventName, Dictionary<string, string> properties)
         {
-            Console.WriteLine($"Tracking event {eventName}");
-
             _telemetryClient.TrackEvent(eventName, properties);
         }
 

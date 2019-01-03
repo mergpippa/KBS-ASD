@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GreenPipes;
@@ -39,8 +38,6 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
                     { TelemetryEventPropertyNames.MessageId, messageContext.Message.Id.ToString() }
                 }
             );
-
-            await Console.Out.WriteLineAsync($"Tracing message! {typeof(T)} {messageContext.Message.Id}");
         }
 
         public void Probe(ProbeContext context)

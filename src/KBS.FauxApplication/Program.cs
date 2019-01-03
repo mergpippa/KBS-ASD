@@ -1,4 +1,4 @@
-using System;
+using System.Threading.Tasks;
 
 namespace KBS.FauxApplication
 {
@@ -6,10 +6,21 @@ namespace KBS.FauxApplication
     {
         private static void Main()
         {
-            new Benchmark.Benchmark();
+            var benchmark = new Benchmark.Benchmark();
 
-            Console.WriteLine("Press any key to close the application");
-            Console.ReadLine();
+            WaitBenchmarkAsync(benchmark).Wait();
+        }
+
+        private static async Task WaitBenchmarkAsync(Benchmark.Benchmark benchmark)
+        {
+            var messageCaptureContext = benchmark.Context.MessageCaptureContext;
+
+            while (!messageCaptureContext.DidReceiveAllMessages && !messageCaptureContext.DidTimeoutWhenWaitingOnMessages)
+            {
+                await Task.Delay(150);
+            }
+
+            return;
         }
     }
 }
