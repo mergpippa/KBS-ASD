@@ -8,6 +8,5 @@ namespace KBS.Telemetry
         Task Flush();
 
         void TrackEvent(string eventName, Dictionary<string, string> properties);
-
     }
 }

@@ -6,11 +6,11 @@ namespace KBS.Benchmark.States
     {
         public async void Next(Benchmark benchmark)
         {
-            // Stop bus control
-            benchmark.Context.BusControl.Dispose();
-
             // Flush in-memory data from telemetry client
             await benchmark.Context.TelemetryClient.Flush();
+
+            // Stop bus control
+            benchmark.Context.BusControl.Dispose();
 
             // Go to finished state
             Console.WriteLine("Benchmark finished");

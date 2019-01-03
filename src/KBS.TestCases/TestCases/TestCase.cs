@@ -121,7 +121,16 @@ namespace KBS.TestCases.TestCases
                 clients[i] = Task.Run(() =>
                 {
                     for (var j = startIndex; j < endIndex; j++)
+                    {
+                        // Send message
                         callback(messages[j]);
+
+                        // Track send message event
+                        _telemetryClient.TrackEvent(
+                            TelemetryEventNames.MessageSent,
+                            new Dictionary<string, string>()
+                        );
+                    }
                 });
             }
 

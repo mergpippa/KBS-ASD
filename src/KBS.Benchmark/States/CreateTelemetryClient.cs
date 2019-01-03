@@ -6,7 +6,7 @@ namespace KBS.Benchmark.States
     {
         public void Next(Benchmark benchmark)
         {
-            benchmark.Context.TelemetryClient = new ApplicationInsightsTelemetryClient();
+            benchmark.Context.TelemetryClient = new InMemoryTelemetryClient();
 
             benchmark.Next(new CreateTestCase());
         }

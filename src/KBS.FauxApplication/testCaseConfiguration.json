@@ -2,6 +2,6 @@
     "TestCaseType": 1,
     "MessagesCount": 10,
     "Clients": 4,
-    "Timeout": "00:00:15",
+    "Timeout": "00:00:3",
     "FillerSize": 15
 }
