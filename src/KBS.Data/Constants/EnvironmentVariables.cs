@@ -7,6 +7,15 @@ namespace KBS.Data.Constants
         /// </summary>
         public const string TestCaseType = "TEST_CASE_TYPE";
 
+        public const string Clients = "TEST_CASE_CLIENTS";
+
+        public const string MessageCount = "TEST_CASE_MESSAGE_COUNT";
+
+        public const string FillerSize = "TEST_CASE_FILLER_SIZE";
+
+        public const string Timeout = "TEST_CASE_TIMEOUT";
+
+        // Transport configuration
         public const string TransportType = "TRANSPORT_TYPE";
 
         public const string OperationTimeout = "OPERATION_TIMEOUT";

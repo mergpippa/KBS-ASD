@@ -1,18 +1,13 @@
 using System;
 using System.IO;
+using KBS.Data.Constants;
+using KBS.Data.Enum;
 using Newtonsoft.Json;
 
 namespace KBS.TestCases.Configuration
 {
     internal static class TestCaseConfigurationEnvironmentVariables
     {
-        public const string Clients = "TEST_CASE_CLIENTS";
-
-        public const string MessageCount = "TEST_CASE_MESSAGE_COUNT";
-
-        public const string FillerSize = "TEST_CASE_FILLER_SIZE";
-
-        public const string Timeout = "TEST_CASE_TIMEOUT";
     }
 
     public static class TestCaseConfigurationExtensionMethods
@@ -27,7 +22,15 @@ namespace KBS.TestCases.Configuration
             string GetVar(string variableName) => Environment.GetEnvironmentVariable(variableName);
 
             if (int.TryParse(
-                GetVar(TestCaseConfigurationEnvironmentVariables.Clients),
+                GetVar(EnvironmentVariables.TestCaseType),
+                out var testCaseType
+            ))
+            {
+                testCaseConfiguration.TestCaseType = (TestCaseType)testCaseType;
+            }
+
+            if (int.TryParse(
+                GetVar(EnvironmentVariables.TestCaseType),
                 out var clients
             ))
             {
@@ -35,7 +38,7 @@ namespace KBS.TestCases.Configuration
             }
 
             if (int.TryParse(
-                GetVar(TestCaseConfigurationEnvironmentVariables.MessageCount),
+                GetVar(EnvironmentVariables.MessageCount),
                 out var messageCount
             ))
             {
@@ -43,7 +46,7 @@ namespace KBS.TestCases.Configuration
             }
 
             if (int.TryParse(
-                GetVar(TestCaseConfigurationEnvironmentVariables.FillerSize),
+                GetVar(EnvironmentVariables.FillerSize),
                 out var fillerSize
             ))
             {
@@ -51,7 +54,7 @@ namespace KBS.TestCases.Configuration
             }
 
             if (int.TryParse(
-                GetVar(TestCaseConfigurationEnvironmentVariables.Timeout),
+                GetVar(EnvironmentVariables.Timeout),
                 out var timeout
             ))
             {
@@ -75,6 +78,9 @@ namespace KBS.TestCases.Configuration
 
             if (configurationFile.Clients != default(int))
                 testCaseConfiguration.Clients = configurationFile.Clients;
+
+            if (configurationFile.TestCaseType != default(int))
+                testCaseConfiguration.TestCaseType = configurationFile.TestCaseType;
 
             if (configurationFile.MessagesCount != default(int))
                 testCaseConfiguration.MessagesCount = configurationFile.MessagesCount;

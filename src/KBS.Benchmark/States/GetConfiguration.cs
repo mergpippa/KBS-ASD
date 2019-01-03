@@ -14,14 +14,14 @@ namespace KBS.Benchmark.States
             // Create test case configuration
             benchmark.Context.TestCaseConfiguration = new TestCaseConfiguration();
 
+            // Fill test case configuration using environment
+            benchmark.Context.TestCaseConfiguration.FillUsingEnvironment();
+
             // Fill configuration using configuration file if it exists
             if (File.Exists(_path))
             {
                 benchmark.Context.TestCaseConfiguration.FillUsingConfigurationFile(_path);
             }
-
-            // Fill test case configuration using environment
-            benchmark.Context.TestCaseConfiguration.FillUsingEnvironment();
 
             Console.WriteLine("Running test using following configuration:");
             Console.WriteLine(JsonConvert.SerializeObject(benchmark.Context.TestCaseConfiguration));
