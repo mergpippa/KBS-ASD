@@ -30,7 +30,15 @@ namespace KBS.TestCases.Configuration
             }
 
             if (int.TryParse(
-                GetVar(EnvironmentVariables.TestCaseType),
+                GetVar(EnvironmentVariables.TelemetryClientType),
+                out var telemetryClientType
+            ))
+            {
+                testCaseConfiguration.TelemetryClientType = (TelemetryClientType)telemetryClientType;
+            }
+
+            if (int.TryParse(
+                GetVar(EnvironmentVariables.Clients),
                 out var clients
             ))
             {
@@ -58,7 +66,7 @@ namespace KBS.TestCases.Configuration
                 out var timeout
             ))
             {
-                testCaseConfiguration.Timeout = TimeSpan.FromSeconds(timeout);
+                testCaseConfiguration.BenchmarkTimeout = TimeSpan.FromSeconds(timeout);
             }
         }
 
@@ -76,11 +84,14 @@ namespace KBS.TestCases.Configuration
                 configurationFile = JsonConvert.DeserializeObject<TestCaseConfiguration>(streamReader.ReadToEnd());
             }
 
-            if (configurationFile.Clients != default(int))
-                testCaseConfiguration.Clients = configurationFile.Clients;
-
             if (configurationFile.TestCaseType != default(int))
                 testCaseConfiguration.TestCaseType = configurationFile.TestCaseType;
+
+            if (configurationFile.TelemetryClientType != default(int))
+                testCaseConfiguration.TelemetryClientType = configurationFile.TelemetryClientType;
+
+            if (configurationFile.Clients != default(int))
+                testCaseConfiguration.Clients = configurationFile.Clients;
 
             if (configurationFile.MessagesCount != default(int))
                 testCaseConfiguration.MessagesCount = configurationFile.MessagesCount;
@@ -88,8 +99,8 @@ namespace KBS.TestCases.Configuration
             if (configurationFile.FillerSize != default(int))
                 testCaseConfiguration.FillerSize = configurationFile.FillerSize;
 
-            if (configurationFile.Timeout != default(TimeSpan))
-                testCaseConfiguration.Timeout = configurationFile.Timeout;
+            if (configurationFile.BenchmarkTimeout != default(TimeSpan))
+                testCaseConfiguration.BenchmarkTimeout = configurationFile.BenchmarkTimeout;
         }
     }
 }

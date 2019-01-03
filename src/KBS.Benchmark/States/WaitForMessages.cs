@@ -11,7 +11,7 @@ namespace KBS.Benchmark.States
             var cancellationTokenSource = new CancellationTokenSource();
 
             var receiveMessagesTask = DidReceiveAllMessages(benchmark.Context.MessageCaptureContext, cancellationTokenSource.Token);
-            var benchmarkTimeoutTask = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.Timeout, cancellationTokenSource.Token);
+            var benchmarkTimeoutTask = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.BenchmarkTimeout, cancellationTokenSource.Token);
 
             if (await Task.WhenAny(receiveMessagesTask, benchmarkTimeoutTask) == benchmarkTimeoutTask)
             {

@@ -7,12 +7,29 @@ namespace KBS.Data.Constants
         /// </summary>
         public const string TestCaseType = "TEST_CASE_TYPE";
 
+        /// <summary>
+        /// The telemetry client that is used to track events (See KBS.Data.Enum/TelemetryClientType.cs)
+        /// </summary>
+        public const string TelemetryClientType = "TELEMETRY_CLIENT_TYPE";
+
+        /// <summary>
+        /// The amout of clients that will simultaniuously send messages
+        /// </summary>
         public const string Clients = "TEST_CASE_CLIENTS";
 
+        /// <summary>
+        /// The total amount of messages that will be send during the benchmark
+        /// </summary>
         public const string MessageCount = "TEST_CASE_MESSAGE_COUNT";
 
+        /// <summary>
+        /// The amount of additional message data that will be included with the message
+        /// </summary>
         public const string FillerSize = "TEST_CASE_FILLER_SIZE";
 
+        /// <summary>
+        /// The total time before the benchmarks stops listening to messages
+        /// </summary>
         public const string Timeout = "TEST_CASE_TIMEOUT";
 
         // Transport configuration
