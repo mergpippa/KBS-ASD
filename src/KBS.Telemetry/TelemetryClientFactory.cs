@@ -16,7 +16,7 @@ namespace KBS.Telemetry
                     return new ApplicationInsightsTelemetryClient();
 
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    throw new ArgumentOutOfRangeException(nameof(telemetryClientType), telemetryClientType, null);
             }
         }
     }

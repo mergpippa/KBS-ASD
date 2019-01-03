@@ -1,6 +1,6 @@
 using System;
 using KBS.Data.Enum;
-using KBS.Telemetry;
+using KBS.MessageBus;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases;
 using KBS.TestCases.TestCases.RequestResponse;
@@ -10,15 +10,25 @@ namespace KBS.TestCases
 {
     public static class TestCaseFactory
     {
-        public static TestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
+        /// <summary>
+        /// </summary>
+        /// <param name="testCaseType">
+        /// </param>
+        /// <param name="testCaseConfiguration">
+        /// </param>
+        /// <param name="messageCaptureContext">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static TestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration, MessageCaptureContext messageCaptureContext)
         {
             switch (testCaseType)
             {
                 case TestCaseType.RequestResponse:
-                    return new RequestResponseTestCase(testCaseConfiguration, telemetryClient);
+                    return new RequestResponseTestCase(testCaseConfiguration, messageCaptureContext);
 
                 case TestCaseType.WebShop:
-                    return new WebshopTestCase(testCaseConfiguration, telemetryClient);
+                    return new WebshopTestCase(testCaseConfiguration, messageCaptureContext);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);

@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.Telemetry;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.Webshop.Consumers;
 using KBS.Topics.WebshopCase;
@@ -21,7 +20,7 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
+        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext telemetryClient)
             : base(testCaseConfiguration, telemetryClient)
         {
             if (testCaseConfiguration.MessagesCount > 500)

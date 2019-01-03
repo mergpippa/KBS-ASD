@@ -10,6 +10,7 @@
     
     <ItemGroup>
       <ProjectReference Include="..\KBS.Data\KBS.Data.csproj" />
+      <ProjectReference Include="..\KBS.Messages\KBS.Topics.csproj" />
     </ItemGroup>
     
     <ItemGroup>

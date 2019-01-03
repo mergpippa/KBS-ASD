@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.Data.Constants;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
-using KBS.Telemetry;
 using KBS.TestCases.Configuration;
 using MassTransit;
 
@@ -21,17 +18,20 @@ namespace KBS.TestCases.TestCases
 
         /// <summary>
         /// </summary>
-        private readonly ITelemetryClient _telemetryClient;
+        private readonly MessageCaptureContext _messageCaptureContext;
 
         /// <summary>
         /// Abstract class with a Benchmark method that is used to call a callback on given test parameters
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        protected TestCase(TestCaseConfiguration testCaseConfiguration, ITelemetryClient telemetryClient)
+        protected TestCase(
+            TestCaseConfiguration testCaseConfiguration,
+            MessageCaptureContext messageCaptureContext
+        )
         {
             _testCaseConfiguration = testCaseConfiguration;
-            _telemetryClient = telemetryClient;
+            _messageCaptureContext = messageCaptureContext;
         }
 
         /// <summary>
@@ -96,15 +96,10 @@ namespace KBS.TestCases.TestCases
             var messages = GenerateMessages();
 
             // Save start time of benchmark
-            var startTime = DateTime.Now;
+            var startTime = DateTime.UtcNow;
 
             // Track event on benchmark start
-            _telemetryClient.TrackEvent(
-                TelemetryEventNames.BenchmarkStarted,
-                new Dictionary<string, string> {
-                    { TelemetryEventPropertyNames.StartedAt, startTime.ToString() }
-                }
-            );
+            Console.WriteLine($"Start sending messages {startTime}");
 
             // Create clients array
             var clients = new Task[_testCaseConfiguration.Clients];
@@ -125,11 +120,8 @@ namespace KBS.TestCases.TestCases
                         // Send message
                         callback(messages[j]);
 
-                        // Track send message event
-                        _telemetryClient.TrackEvent(
-                            TelemetryEventNames.MessageSent,
-                            new Dictionary<string, string>()
-                        );
+                        // Handle sent message in message capture context
+                        _messageCaptureContext.HandleSentMessage(messages[j]);
                     }
                 });
             }
@@ -138,14 +130,7 @@ namespace KBS.TestCases.TestCases
             await Task.WhenAll(clients).ConfigureAwait(false);
 
             // Track event on benchmark end
-            _telemetryClient.TrackEvent(
-                TelemetryEventNames.BenchmarkEnded,
-                new Dictionary<string, string> {
-                    { TelemetryEventPropertyNames.EndedAt, DateTime.Now.ToString() }
-                }
-            );
-
-            Console.WriteLine($"Benchmark completed in: {DateTime.Now - startTime}");
+            Console.WriteLine($"Done sending messages {DateTime.UtcNow - startTime}");
         }
     }
 }

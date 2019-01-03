@@ -8,7 +8,9 @@ namespace KBS.FauxApplication
         {
             var benchmark = new Benchmark.Benchmark();
 
-            WaitBenchmarkAsync(benchmark).Wait();
+            System.Console.ReadLine();
+
+            // WaitBenchmarkAsync(benchmark).Wait();
         }
 
         private static async Task WaitBenchmarkAsync(Benchmark.Benchmark benchmark)

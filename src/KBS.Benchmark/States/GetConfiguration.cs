@@ -26,9 +26,6 @@ namespace KBS.Benchmark.States
             Console.WriteLine("Running test using following configuration:");
             Console.WriteLine(JsonConvert.SerializeObject(benchmark.Context.TestCaseConfiguration));
 
-            // Create message capture context
-            benchmark.Context.MessageCaptureContext = new MessageCaptureContext(benchmark.Context.TestCaseConfiguration);
-
             benchmark.Next(new CreateTelemetryClient());
         }
     }

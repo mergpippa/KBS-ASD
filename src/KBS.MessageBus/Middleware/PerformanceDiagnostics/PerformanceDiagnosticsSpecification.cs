@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using GreenPipes;
-using KBS.Telemetry;
 
 namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 {
@@ -9,16 +8,16 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
         IPipeSpecification<T>
         where T : class, PipeContext
     {
-        private readonly ITelemetryClient TelemetryClient;
+        private readonly MessageCaptureContext _messageCaptureContext;
 
-        public PerformanceDiagnosticsSpecification(ITelemetryClient telemetryClient)
+        public PerformanceDiagnosticsSpecification(MessageCaptureContext messageCaptureContext)
         {
-            TelemetryClient = telemetryClient;
+            _messageCaptureContext = messageCaptureContext;
         }
 
         public void Apply(IPipeBuilder<T> builder)
         {
-            builder.AddFilter(new PerformanceDiagnosticsFilter<T>(TelemetryClient));
+            builder.AddFilter(new PerformanceDiagnosticsFilter<T>(_messageCaptureContext));
         }
 
         public IEnumerable<ValidationResult> Validate()

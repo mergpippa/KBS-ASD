@@ -1,8 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using GreenPipes;
-using KBS.Data.Constants;
-using KBS.Telemetry;
 using KBS.Topics;
 using MassTransit;
 
@@ -12,11 +9,11 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
         IFilter<T>
         where T : class, PipeContext
     {
-        private ITelemetryClient TelemetryClient;
+        private readonly MessageCaptureContext _messageCaptureContext;
 
-        public PerformanceDiagnosticsFilter(ITelemetryClient telemetryClient)
+        public PerformanceDiagnosticsFilter(MessageCaptureContext messageCaptureContext)
         {
-            TelemetryClient = telemetryClient;
+            _messageCaptureContext = messageCaptureContext;
         }
 
         public async Task Send(T context, IPipe<T> next)
@@ -30,14 +27,8 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
             if (!consumeContext.TryGetMessage<IMessageDiagnostics>(out var messageContext))
                 return;
 
-            // Track message send
-            TelemetryClient.TrackEvent(
-                TelemetryEventNames.MessageReceived,
-                new Dictionary<string, string>() {
-                    { TelemetryEventPropertyNames.MessageType, messageContext.Message.MessageType },
-                    { TelemetryEventPropertyNames.MessageId, messageContext.Message.Id.ToString() }
-                }
-            );
+            // Handle message receive
+            _messageCaptureContext.HandleReceiveMessage(messageContext.Message);
         }
 
         public void Probe(ProbeContext context)

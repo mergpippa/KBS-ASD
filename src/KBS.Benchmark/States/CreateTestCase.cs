@@ -14,7 +14,7 @@ namespace KBS.Benchmark.States
             benchmark.Context.TestCase = TestCaseFactory.Create(
                 benchmark.Context.TestCaseConfiguration.TestCaseType,
                 benchmark.Context.TestCaseConfiguration,
-                benchmark.Context.TelemetryClient
+                benchmark.Context.MessageCaptureContext
             );
 
             // Set next state

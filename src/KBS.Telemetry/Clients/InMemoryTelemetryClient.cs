@@ -15,7 +15,7 @@ namespace KBS.Telemetry
             var json = JsonConvert.SerializeObject(_events);
 
             // Save output to text file
-            File.WriteAllText("./results.json", $"[{json}]");
+            File.WriteAllText("./results.json", json);
         }
 
         public async void TrackEvent(string eventName, Dictionary<string, string> properties)
