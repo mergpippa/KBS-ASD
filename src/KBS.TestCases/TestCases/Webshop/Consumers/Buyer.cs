@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.Topics.WebshopCase;
 using MassTransit;
@@ -22,12 +21,9 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueReply> context)
         {
-            var message = "";
+            await Task.Yield();
 
-            foreach (var item in context.Message.Catalogue)
-                message += "\t" + item + "\n";
-
-            await Console.Out.WriteAsync(message).ConfigureAwait(false);
+            // We don't have to do anything in here because the receive pipeline already handles tracing
         }
     }
 }
