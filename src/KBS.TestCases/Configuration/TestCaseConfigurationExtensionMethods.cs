@@ -84,6 +84,11 @@ namespace KBS.TestCases.Configuration
                 configurationFile = JsonConvert.DeserializeObject<TestCaseConfiguration>(streamReader.ReadToEnd());
             }
 
+            ValidateConfiguration(configurationFile);
+
+            if (configurationFile.Clients != default(int))
+                testCaseConfiguration.Clients = configurationFile.Clients;
+
             if (configurationFile.TestCaseType != default(int))
                 testCaseConfiguration.TestCaseType = configurationFile.TestCaseType;
 
@@ -101,6 +106,11 @@ namespace KBS.TestCases.Configuration
 
             if (configurationFile.BenchmarkTimeout != default(TimeSpan))
                 testCaseConfiguration.BenchmarkTimeout = configurationFile.BenchmarkTimeout;
+        }
+
+        private static void ValidateConfiguration(TestCaseConfiguration configurationFile)
+        {
+            if (configurationFile.MessagesCount % configurationFile.Clients != 0) { throw new Exception(); }
         }
     }
 }
