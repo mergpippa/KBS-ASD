@@ -56,15 +56,14 @@ namespace KBS.TestCases.TestCases.RequestResponse
         {
             var hostUri = busControl.Instance.Address;
 
-            var requestClient = busControl
-                .Instance
-                .CreateRequestClient<IRequestMessage, IResponseMessage>(
-                    new Uri($"{hostUri.Scheme}://{hostUri.Host}/{QueueName}"),
-                    TimeSpan.FromSeconds(10)
-                );
+            var address = new Uri($"{hostUri.Scheme}://{hostUri.Host}/{QueueName}");
+            var requestTimeout = TimeSpan.FromSeconds(30);
 
-            await SendMessages(async message =>
-                await requestClient.Request(message)
+            var requestClient =
+                new MessageRequestClient<IRequestMessage, IResponseMessage>(busControl.Instance, address, requestTimeout);
+
+            await SendMessages(message =>
+                requestClient.Request(message).ConfigureAwait(false)
             );
         }
     }

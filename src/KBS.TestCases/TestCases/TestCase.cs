@@ -122,7 +122,7 @@ namespace KBS.TestCases.TestCases
                         callback(messages[j]);
 
                         // Handle sent message in message capture context
-                        _messageCaptureContext.HandleSentMessage(messages[j]);
+                        _messageCaptureContext.HandleMessageSend(messages[j]);
                     }
                 });
             }

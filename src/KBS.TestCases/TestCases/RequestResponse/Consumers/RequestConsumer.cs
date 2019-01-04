@@ -17,11 +17,9 @@ namespace KBS.TestCases.TestCases.RequestResponse.Consumers
         /// </param>
         /// <returns>
         /// </returns>
-        public Task Consume(ConsumeContext<IRequestMessage> context)
+        public async Task Consume(ConsumeContext<IRequestMessage> context)
         {
-            context.Respond((IResponseMessage)context.Message);
-
-            return null;
+            await context.RespondAsync<IResponseMessage>((object)context.Message);
         }
     }
 }

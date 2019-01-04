@@ -28,6 +28,11 @@ namespace KBS.MessageBus
         private int _sentMessagesCount;
 
         /// <summary>
+        /// Count execeptions
+        /// </summary>
+        private int _exceptionCount;
+
+        /// <summary>
         /// Time when this instance was created
         /// </summary>
         private readonly DateTime _createdAt = DateTime.UtcNow;
@@ -68,8 +73,10 @@ namespace KBS.MessageBus
         /// Message receive handler, this method will increment a counter that keeps track of the
         /// amount of messages that have been received
         /// </summary>
-        public void HandleReceiveMessage(IMessageDiagnostics message)
+        public void HandleMessageReceived(IMessageDiagnostics message)
         {
+            Console.WriteLine(message);
+
             // Increment counter
             Interlocked.Increment(ref _receivedMessagesCount);
 
@@ -86,7 +93,7 @@ namespace KBS.MessageBus
             );
         }
 
-        public void HandleSentMessage(IMessageDiagnostics message)
+        public void HandleMessageSend(IMessageDiagnostics message)
         {
             Interlocked.Increment(ref _sentMessagesCount);
 
@@ -99,6 +106,28 @@ namespace KBS.MessageBus
                 {
                     { "MessageId", message.Id.ToString() },
                     { "SentAt", elapsedSpan.Ticks.ToString() }
+                }
+            );
+        }
+
+        /// <summary>
+        /// Message receive handler, this method will increment a counter that keeps track of the
+        /// amount of messages that have been received
+        /// </summary>
+        public void HandleMessageException(IMessageDiagnostics message)
+        {
+            // Increment counter
+            Interlocked.Increment(ref _exceptionCount);
+
+            var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
+
+            // Track message
+            _telemetryClient.TrackEvent(
+                TelemetryEventNames.MessageException,
+                new Dictionary<string, string>
+                {
+                    { "MessageId", message.Id.ToString() },
+                    { "ExceptionAt", elapsedSpan.Ticks.ToString() }
                 }
             );
         }

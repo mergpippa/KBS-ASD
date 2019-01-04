@@ -84,8 +84,6 @@ namespace KBS.TestCases.Configuration
                 configurationFile = JsonConvert.DeserializeObject<TestCaseConfiguration>(streamReader.ReadToEnd());
             }
 
-            ValidateConfiguration(configurationFile);
-
             if (configurationFile.Clients != default(int))
                 testCaseConfiguration.Clients = configurationFile.Clients;
 
@@ -108,9 +106,17 @@ namespace KBS.TestCases.Configuration
                 testCaseConfiguration.BenchmarkTimeout = configurationFile.BenchmarkTimeout;
         }
 
-        private static void ValidateConfiguration(TestCaseConfiguration configurationFile)
+        /// <summary>
+        /// Fill configuration using testCaseConfiguration.json in the root directory
+        /// </summary>
+        /// <param name="testCaseConfiguration">
+        /// </param>
+        public static void Validate(this TestCaseConfiguration testCaseConfiguration)
         {
-            if (configurationFile.MessagesCount % configurationFile.Clients != 0) { throw new Exception(); }
+            if (testCaseConfiguration.MessagesCount % testCaseConfiguration.Clients != 0)
+            {
+                throw new ArithmeticException("The MessagesCount doesn't match up with the ClientsCount");
+            }
         }
     }
 }

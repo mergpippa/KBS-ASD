@@ -23,6 +23,8 @@ namespace KBS.Benchmark.States
                 benchmark.Context.TestCaseConfiguration.FillUsingConfigurationFile(_path);
             }
 
+            benchmark.Context.TestCaseConfiguration.Validate();
+
             Console.WriteLine("Running test using following configuration:");
             Console.WriteLine(JsonConvert.SerializeObject(benchmark.Context.TestCaseConfiguration));
 

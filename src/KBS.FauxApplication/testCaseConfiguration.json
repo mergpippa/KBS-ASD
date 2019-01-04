@@ -1,8 +1,8 @@
 {
-    "TestCaseType": 1,
+    "TestCaseType": 0,
     "TelemetryClientType": 0,
-    "MessagesCount": 10,
+    "MessagesCount": 40,
     "Clients": 4,
-    "BenchmarkTimeout": "00:00:5",
+    "BenchmarkTimeout": "00:00:20",
     "FillerSize": 15
 }
