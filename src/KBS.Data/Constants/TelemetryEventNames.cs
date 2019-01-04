@@ -2,12 +2,12 @@ namespace KBS.Data.Constants
 {
     public static class TelemetryEventNames
     {
-        public const string MessageSent = "BusControl/MessageSent";
+        public const string MessageSent = "MessageSent";
 
-        public const string MessageReceived = "PerformanceDiagnosticsFilter/MessageReceived";
+        public const string MessageReceived = "MessageReceived";
 
-        public const string BenchmarkStarted = "TestCase/BenchmarkStarted";
+        public const string BenchmarkStarted = "BenchmarkStarted";
 
-        public const string BenchmarkEnded = "TestCase/BenchmarkEnded";
+        public const string BenchmarkEnded = "BenchmarkEnded";
     }
 }

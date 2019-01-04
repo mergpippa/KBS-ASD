@@ -5,8 +5,7 @@ using MassTransit;
 
 namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
 {
-    public class PerformanceDiagnosticsFilter<T> :
-        IFilter<T>
+    public class PerformanceDiagnosticsFilter<T> : IFilter<T>
         where T : class, PipeContext
     {
         private readonly MessageCaptureContext _messageCaptureContext;

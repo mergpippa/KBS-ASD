@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
 using KBS.TestCases.Configuration;
+using KBS.Topics;
 using MassTransit;
 
 namespace KBS.TestCases.TestCases
@@ -41,7 +42,7 @@ namespace KBS.TestCases.TestCases
         /// </param>
         /// <returns>
         /// </returns>
-        protected abstract object CreateMessage(int index);
+        protected abstract IMessageDiagnostics CreateMessage(int index);
 
         /// ///
         /// <summary>
@@ -66,9 +67,9 @@ namespace KBS.TestCases.TestCases
         /// </summary>
         /// <returns>
         /// </returns>
-        private object[] GenerateMessages()
+        private IMessageDiagnostics[] GenerateMessages()
         {
-            var messages = new object[_testCaseConfiguration.MessagesCount];
+            var messages = new IMessageDiagnostics[_testCaseConfiguration.MessagesCount];
 
             for (var i = 0; i < _testCaseConfiguration.MessagesCount; i++)
                 messages[i] = CreateMessage(i);
@@ -127,7 +128,7 @@ namespace KBS.TestCases.TestCases
             }
 
             // Wait until all clients have sent their messages
-            await Task.WhenAll(clients).ConfigureAwait(false);
+            await Task.WhenAll(clients);
 
             // Track event on benchmark end
             Console.WriteLine($"Done sending messages {DateTime.UtcNow - startTime}");

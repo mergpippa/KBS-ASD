@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.RequestResponse.Consumers;
+using KBS.Topics;
 using KBS.Topics.RequestResponseCase;
 using MassTransit;
 
@@ -40,8 +41,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
             );
         }
 
-        protected override object CreateMessage(int index) =>
-            new { Id = index };
+        protected override IMessageDiagnostics CreateMessage(int index) =>
+            new RequestMessage { Id = index };
 
         /// <summary>
         /// Method to run the test case
@@ -66,5 +67,12 @@ namespace KBS.TestCases.TestCases.RequestResponse
                 await requestClient.Request(message)
             );
         }
+    }
+
+    internal class RequestMessage : IRequestMessage
+    {
+        public int Id { get; set; }
+
+        public byte[] Filler { get; set; }
     }
 }

@@ -28,6 +28,11 @@ namespace KBS.MessageBus
         private int _sentMessagesCount;
 
         /// <summary>
+        /// Time when this instance was created
+        /// </summary>
+        private readonly DateTime _createdAt = DateTime.UtcNow;
+
+        /// <summary>
         /// MessageCaptureContext constructor
         /// </summary>
         /// <param name="testCaseConfiguration">
@@ -63,18 +68,12 @@ namespace KBS.MessageBus
         /// Message receive handler, this method will increment a counter that keeps track of the
         /// amount of messages that have been received
         /// </summary>
-        public void HandleReceiveMessage(dynamic anonymousMessage)
+        public void HandleReceiveMessage(IMessageDiagnostics message)
         {
             // Increment counter
             Interlocked.Increment(ref _receivedMessagesCount);
 
-            var message = anonymousMessage as IMessageDiagnostics;
-
-            if (message == null)
-            {
-                Console.WriteLine("[Receive] Unable to cast message");
-                return;
-            }
+            var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
 
             // Track message
             _telemetryClient.TrackEvent(
@@ -82,22 +81,16 @@ namespace KBS.MessageBus
                 new Dictionary<string, string>
                 {
                     { "MessageId", message.Id.ToString() },
-                    { "ReceivedAt", DateTime.UtcNow.ToString() }
+                    { "ReceivedAt", elapsedSpan.Ticks.ToString() }
                 }
             );
         }
 
-        public void HandleSentMessage(dynamic anonymousMessage)
+        public void HandleSentMessage(IMessageDiagnostics message)
         {
             Interlocked.Increment(ref _sentMessagesCount);
 
-            var message = anonymousMessage as IMessageDiagnostics;
-
-            if (message == null)
-            {
-                Console.WriteLine("[Sent] Unable to cast message");
-                return;
-            }
+            var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
 
             // Track message
             _telemetryClient.TrackEvent(
@@ -105,7 +98,7 @@ namespace KBS.MessageBus
                 new Dictionary<string, string>
                 {
                     { "MessageId", message.Id.ToString() },
-                    { "SentAt", DateTime.UtcNow.ToString() }
+                    { "SentAt", elapsedSpan.Ticks.ToString() }
                 }
             );
         }

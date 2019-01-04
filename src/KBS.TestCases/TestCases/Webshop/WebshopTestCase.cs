@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.Webshop.Consumers;
+using KBS.Topics;
 using KBS.Topics.WebshopCase;
 using MassTransit;
 
@@ -50,8 +51,8 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         /// <returns>
         /// </returns>
-        protected override object CreateMessage(int index) =>
-            new { Id = index, CreatedAt = DateTime.UtcNow };
+        protected override IMessageDiagnostics CreateMessage(int index) =>
+            new CatalogueRequest { Id = index };
 
         /// <summary>
         /// Method to run the test case
@@ -67,5 +68,12 @@ namespace KBS.TestCases.TestCases.Webshop
                 busControl.Instance.Publish<ICatalogueRequest>(message).ConfigureAwait(false)
             );
         }
+    }
+
+    internal class CatalogueRequest : ICatalogueRequest
+    {
+        public int Id { get; set; }
+
+        public byte[] Filler { get; set; }
     }
 }

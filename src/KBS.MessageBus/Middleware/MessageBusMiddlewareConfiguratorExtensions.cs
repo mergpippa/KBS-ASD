@@ -8,7 +8,7 @@ namespace KBS.MessageBus.Middleware
         public static void UseMessagePerformanceDiagnostics<T>(this IPipeConfigurator<T> configurator, MessageCaptureContext messageCaptureContext)
             where T : class, PipeContext
         {
-            configurator.AddPipeSpecification(new PerformanceDiagnosticsSpecification<T>(messageCaptureContext));
+            configurator.UseFilter(new PerformanceDiagnosticsFilter<T>(messageCaptureContext));
         }
     }
 }
