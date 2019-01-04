@@ -3,6 +3,7 @@ using KBS.Data.Enum;
 using KBS.MessageBus;
 using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases;
+using KBS.TestCases.TestCases.ConsumeConsumer;
 using KBS.TestCases.TestCases.RequestResponse;
 using KBS.TestCases.TestCases.Webshop;
 
@@ -26,6 +27,9 @@ namespace KBS.TestCases
             {
                 case TestCaseType.RequestResponse:
                     return new RequestResponseTestCase(testCaseConfiguration, messageCaptureContext);
+
+                case TestCaseType.ConsumeConsumer:
+                    return new ConsumeConsumerTestCase(testCaseConfiguration, messageCaptureContext);
 
                 case TestCaseType.WebShop:
                     return new WebshopTestCase(testCaseConfiguration, messageCaptureContext);

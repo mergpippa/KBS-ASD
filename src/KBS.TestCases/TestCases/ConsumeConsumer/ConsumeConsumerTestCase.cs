@@ -2,32 +2,27 @@ using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.Configuration;
-using KBS.TestCases.TestCases.RequestResponse.Consumers;
 using KBS.Topics;
-using KBS.Topics.RequestResponseCase;
+using KBS.Topics.ConsumerCase;
 using MassTransit;
 
-namespace KBS.TestCases.TestCases.RequestResponse
+namespace KBS.TestCases.TestCases.ConsumeConsumer
 {
-    /// <summary>
-    /// Test case for request and response
-    /// </summary>
-    internal class RequestResponseTestCase : TestCase
+    internal class ConsumeConsumerTestCase : TestCase
     {
         /// <summary>
-        /// Name of queue to use for test case
+        /// Name of queue to use for this test case
         /// </summary>
-        private const string QueueName = "request-response_queue";
+        private const string QueueName = "consume-consumer_queue";
 
         /// <summary>
-        /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
+        /// Constructor that passes the TestCaseConfiguration through to the AbstractTestCase
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext messageCaptureContext)
-            : base(testCaseConfiguration, messageCaptureContext)
-        {
-        }
+        public ConsumeConsumerTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext telemetryClient)
+            : base(testCaseConfiguration, telemetryClient)
+        { }
 
         /// <summary>
         /// Method used to configure the available endpoints for a test case
@@ -36,13 +31,19 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </param>
         public override void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
         {
-            busFactoryConfigurator.ReceiveEndpoint(QueueName, endpointConfigurator =>
-                endpointConfigurator.Consumer<RequestConsumer>()
+            busFactoryConfigurator.ReceiveEndpoint(
+                QueueName,
+                endpointConfigurator => endpointConfigurator.Consumer<Consumers.ConsumeConsumer>()
             );
         }
 
+        /// <summary>
+        /// Creates a message object for given index
+        /// </summary>
+        /// <returns>
+        /// </returns>
         protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
-            new RequestMessage
+            new ConsumeMessage
             {
                 Id = index,
                 TestCase = this.GetType(),
@@ -59,21 +60,13 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </returns>
         public override async Task Run(BusControl busControl)
         {
-            var hostUri = busControl.Instance.Address;
-
-            var address = new Uri($"{hostUri.Scheme}://{hostUri.Host}/{QueueName}");
-            var requestTimeout = TimeSpan.FromSeconds(30);
-
-            var requestClient =
-                new MessageRequestClient<IRequestMessage, IResponseMessage>(busControl.Instance, address, requestTimeout);
-
             await SendMessages(message =>
-                requestClient.Request(message).ConfigureAwait(false)
+                busControl.Instance.Publish<IConsumeMessage>(message).ConfigureAwait(false)
             );
         }
     }
 
-    internal class RequestMessage : IRequestMessage
+    internal class ConsumeMessage : IConsumeMessage
     {
         public int Id { get; set; }
 

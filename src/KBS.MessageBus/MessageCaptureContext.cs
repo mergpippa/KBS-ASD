@@ -88,6 +88,7 @@ namespace KBS.MessageBus
                 new Dictionary<string, string>
                 {
                     { "MessageId", message.Id.ToString() },
+                    { "TestCase", message.TestCase.ToString() },
                     { "ReceivedAt", elapsedSpan.Ticks.ToString() }
                 }
             );
@@ -105,6 +106,7 @@ namespace KBS.MessageBus
                 new Dictionary<string, string>
                 {
                     { "MessageId", message.Id.ToString() },
+                    { "TestCase", message.TestCase.ToString() },
                     { "SentAt", elapsedSpan.Ticks.ToString() }
                 }
             );
@@ -127,6 +129,7 @@ namespace KBS.MessageBus
                 new Dictionary<string, string>
                 {
                     { "MessageId", message.Id.ToString() },
+                    { "TestCase", message.TestCase.ToString() },
                     { "ExceptionAt", elapsedSpan.Ticks.ToString() }
                 }
             );

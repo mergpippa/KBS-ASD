@@ -42,7 +42,7 @@ namespace KBS.TestCases.TestCases
         /// </param>
         /// <returns>
         /// </returns>
-        protected abstract IMessageDiagnostics CreateMessage(int index);
+        protected abstract IMessageDiagnostics CreateMessage(int index, byte[] filler = null);
 
         /// ///
         /// <summary>

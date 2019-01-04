@@ -23,10 +23,7 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </param>
         public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext telemetryClient)
             : base(testCaseConfiguration, telemetryClient)
-        {
-            if (testCaseConfiguration.MessagesCount > 500)
-                throw new ArgumentOutOfRangeException("The Webshop test case should only be used for presentational purposes");
-        }
+        { }
 
         /// <summary>
         /// Method used to configure the available endpoints for a test case
@@ -51,8 +48,13 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         /// <returns>
         /// </returns>
-        protected override IMessageDiagnostics CreateMessage(int index) =>
-            new CatalogueRequest { Id = index };
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
+            new CatalogueRequest
+            {
+                Id = index,
+                TestCase = this.GetType(),
+                Filler = filler
+            };
 
         /// <summary>
         /// Method to run the test case
@@ -73,6 +75,8 @@ namespace KBS.TestCases.TestCases.Webshop
     internal class CatalogueRequest : ICatalogueRequest
     {
         public int Id { get; set; }
+
+        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

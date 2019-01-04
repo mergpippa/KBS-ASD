@@ -1,5 +1,5 @@
 {
-    "TestCaseType": 0,
+    "TestCaseType": 1,
     "TelemetryClientType": 0,
     "MessagesCount": 40,
     "Clients": 4,
