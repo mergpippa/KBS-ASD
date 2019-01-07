@@ -10,23 +10,21 @@ namespace KBS.Infrastructure.Resources
 {
     internal class AppServiceApp
     {
-        private readonly string subscriptionId = "60b91b72-e8f0-412f-99af-7349fd751812";
+        private readonly string subscriptionId = Environment.GetEnvironmentVariable("subscription_id");
 
-        private readonly string clientId = "15785e10-cd50-4151-89d7-480266cdac81";
+        private readonly string clientId = Environment.GetEnvironmentVariable("client_id");
 
-        private readonly string clientSecret = "oBexNPcDpVERex0uSFs0YLNMwMn3n3PNvQJTb9sUaAs=";
+        private readonly string clientSecret = Environment.GetEnvironmentVariable("client_secret");
 
-        private readonly string resourceGroupName = "AJTestCS";
+        private readonly string resourceGroupName = Environment.GetEnvironmentVariable("resource_group_name");
 
-        private readonly string deploymentName = "kbs-asd";
+        private readonly string tenantId = Environment.GetEnvironmentVariable("tenant_id");
 
-        private readonly string resourceGroupLocation = "West Europe";
+        private readonly string deploymentName = Environment.GetEnvironmentVariable("deployment_name");
 
         private readonly string pathToTemplateFile = "C:\\Users\\ArneJ\\source\\repos\\TestAzure\\TestAzure\\Template.json";
 
         private readonly string pathToParameterFile = "C:\\Users\\ArneJ\\source\\repos\\TestAzure\\TestAzure\\Parameters.json";
-
-        private readonly string tenantId = "89b6e630-670d-4944-aecf-0056f43045e9";
 
         /// <summary>
         /// Starts a template deployment.
