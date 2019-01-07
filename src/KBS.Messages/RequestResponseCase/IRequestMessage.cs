@@ -1,15 +1,9 @@
 namespace KBS.Topics.RequestResponseCase
 {
-    public interface IRequestMessage
+    /// <summary>
+    /// A request will contain the same properties as a response for this test case
+    /// </summary>
+    public interface IRequestMessage : IResponseMessage, IMessageDiagnostics
     {
-        /// <summary>
-        /// Amount of request left to be published
-        /// </summary>
-        int Count { get; }
-
-        /// <summary>
-        /// A filler of byte to increase the size of a message
-        /// </summary>
-        byte[] Filler { get; }
     }
 }

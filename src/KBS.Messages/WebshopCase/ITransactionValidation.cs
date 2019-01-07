@@ -3,7 +3,7 @@ namespace KBS.Topics.WebshopCase
     /// <summary>
     /// Transaction validation topic/interface
     /// </summary>
-    public interface ITransactionValidation
+    public interface ITransactionValidation : IMessageDiagnostics
     {
         /// <summary>
         /// Bank information from buyer that has now been checked

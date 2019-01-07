@@ -42,8 +42,6 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<ICatalogueRequest> context)
         {
-            await Console.Out.WriteLineAsync("\tReceived request for item list");
-
             await context.Publish<ICatalogueReply>(new { Catalogue = _items });
         }
 
@@ -58,8 +56,6 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// </returns>
         public async Task Consume(ConsumeContext<IOrder> context)
         {
-            await Console.Out.WriteLineAsync($"\tOrder received from {context.Message.Purchase.AccountId}");
-
             var orderedItem = context.Message.ItemName;
             var orderedQuantity = context.Message.Quantity;
 

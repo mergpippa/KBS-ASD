@@ -1,42 +1,38 @@
 using System;
-using KBS.MessageBus.Configurator;
+using KBS.Data.Enum;
 using KBS.MessageBus.Transports;
 using MassTransit;
 
 namespace KBS.MessageBus
 {
-    public enum TransportType
-    {
-        InMemory = 0,
-
-        RabbitMq = 1,
-
-        AzureServiceBus = 2,
-    }
-
     /// <summary>
-    /// Factory to create bus controler
+    /// Factory to create bus controller
     /// </summary>
-    public static class MessageBusTransportFactory
+    public static class TransportFactory
     {
         /// <summary>
-        /// Create the bus controler of a specified transport type with the given configurator
+        /// Create the bus controller of a specified transport type with the given configurator
         /// </summary>
-        /// <param name="transportType">Transport type (RabbitMQ, Azure Service Bus or in memory)</param>
-        /// <param name="testCase">Configuration of test case</param>
-        /// <returns></returns>
-        public static IBusControl Create(TransportType transportType, IMessageBusEndpointConfigurator testCase)
+        /// <param name="transportType">
+        /// Transport type (RabbitMQ, Azure Service Bus or in memory)
+        /// </param>
+        /// <param name="testCase">
+        /// Configuration of message bus
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static IBusControl Create(TransportType transportType, Action<IBusFactoryConfigurator> busFactoryConfigurator)
         {
             switch (transportType)
             {
                 case TransportType.InMemory:
-                    return new InMemoryTransport().GetBusControl(testCase);
+                    return new InMemoryTransport().GetBusControl(busFactoryConfigurator);
 
                 case TransportType.RabbitMq:
-                    return new RabbitMqTransport().GetBusControl(testCase);
+                    return new RabbitMqTransport().GetBusControl(busFactoryConfigurator);
 
                 case TransportType.AzureServiceBus:
-                    return new AzureServiceBusTransport().GetBusControl(testCase);
+                    return new AzureServiceBusTransport().GetBusControl(busFactoryConfigurator);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(transportType), transportType, null);

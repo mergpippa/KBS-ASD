@@ -5,7 +5,7 @@ namespace KBS.Topics.WebshopCase
     /// <summary>
     /// Complete item list from the webshop, received by buyer
     /// </summary>
-    public interface ICatalogueReply
+    public interface ICatalogueReply : IMessageDiagnostics
     {
         /// <summary>
         /// String array of all available items

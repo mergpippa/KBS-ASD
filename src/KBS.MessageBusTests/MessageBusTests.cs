@@ -1,29 +1,29 @@
-using System.Threading.Tasks;
+using System;
+using KBS.Data.Enum;
 using KBS.MessageBus;
-using KBS.TestCases;
-using KBS.TestCases.Contracts;
+using KBS.MessageBus.Configurator;
 using MassTransit;
 using Xunit;
 
 namespace KBS.MessageBusTests
 {
-    internal class TestCase : ITestCase
-    {
-        public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
-        { }
-
-        public Task Run(BusControl busControl, TestCaseConfiguration testCaseConfiguration)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-
     public class TransportFactoryTests
     {
+        private class ConcreteEndpointConfigurator : IMessageBusEndpointConfigurator
+        {
+            public void ConfigureEndpoints(IBusFactoryConfigurator busFactoryConfigurator)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         [Fact]
         public void Should_CreateMessageBusWithInMemoryTransport()
         {
-            var busControl = MessageBusTransportFactory.Create(TransportType.InMemory, new TestCase());
+            var busControl = TransportFactory.Create(
+                TransportType.InMemory,
+                (_) => { }
+            );
 
             Assert.IsType<MassTransitBus>(busControl);
         }

@@ -1,34 +1,38 @@
 using System;
-using KBS.TestCases.Contracts;
+using KBS.Data.Enum;
+using KBS.MessageBus;
+using KBS.TestCases.Configuration;
+using KBS.TestCases.TestCases;
+using KBS.TestCases.TestCases.ConsumeConsumer;
 using KBS.TestCases.TestCases.RequestResponse;
 using KBS.TestCases.TestCases.Webshop;
 
 namespace KBS.TestCases
 {
-    public enum TestCaseType
-    {
-        /// <summary>
-        /// Request response test case
-        /// </summary>
-        RequestResponse = 0,
-
-        /// <summary>
-        /// Real world test case
-        /// </summary>
-        Webshop = 1,
-    }
-
     public static class TestCaseFactory
     {
-        public static ITestCase Create(TestCaseType testCaseType)
+        /// <summary>
+        /// </summary>
+        /// <param name="testCaseType">
+        /// </param>
+        /// <param name="testCaseConfiguration">
+        /// </param>
+        /// <param name="messageCaptureContext">
+        /// </param>
+        /// <returns>
+        /// </returns>
+        public static TestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration, MessageCaptureContext messageCaptureContext)
         {
             switch (testCaseType)
             {
                 case TestCaseType.RequestResponse:
-                    return new RequestResponseTestCase();
+                    return new RequestResponseTestCase(testCaseConfiguration, messageCaptureContext);
 
-                case TestCaseType.Webshop:
-                    return new WebshopTestCase();
+                case TestCaseType.ConsumeConsumer:
+                    return new ConsumeConsumerTestCase(testCaseConfiguration, messageCaptureContext);
+
+                case TestCaseType.WebShop:
+                    return new WebshopTestCase(testCaseConfiguration, messageCaptureContext);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);

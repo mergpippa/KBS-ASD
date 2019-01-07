@@ -1,6 +1,6 @@
-namespace KBS.MessageBus.Data
+namespace KBS.Data.Constants
 {
-    internal static class TokenProviderKeyName
+    public static class TokenProviderKeyNames
     {
         public const string RootManageSharedAccessKey = "RootManageSharedAccessKey";
     }
