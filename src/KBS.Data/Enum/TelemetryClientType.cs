@@ -2,8 +2,8 @@ namespace KBS.Data.Enum
 {
     public enum TelemetryClientType
     {
-        InMemory = 0,
+        InMemory = 1,
 
-        ApplicationInsights = 1,
+        ApplicationInsights = 2,
     }
 }

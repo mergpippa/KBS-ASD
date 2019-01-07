@@ -18,10 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Context" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="testCaseConfiguration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

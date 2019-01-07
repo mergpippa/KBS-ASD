@@ -7,7 +7,7 @@ using Xunit;
 
 namespace KBS.MessageBusTests
 {
-    public class TransportFactoryTests
+    public class BusControlTests
     {
         private class ConcreteEndpointConfigurator : IMessageBusEndpointConfigurator
         {

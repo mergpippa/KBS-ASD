@@ -1,4 +1,3 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using KBS.MessageBus;
@@ -12,7 +11,7 @@ namespace KBS.Benchmark.States
             var cancellationTokenSource = new CancellationTokenSource();
 
             var receiveMessagesTask = DidReceiveAllMessages(benchmark.Context.MessageCaptureContext, cancellationTokenSource.Token);
-            var benchmarkTimeoutTask = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.BenchmarkTimeout, cancellationTokenSource.Token);
+            var benchmarkTimeoutTask = Task.Delay(benchmark.Context.TestCaseConfiguration.BenchmarkTimeout, cancellationTokenSource.Token);
 
             if (await Task.WhenAny(receiveMessagesTask, benchmarkTimeoutTask) == benchmarkTimeoutTask)
             {
@@ -28,20 +27,6 @@ namespace KBS.Benchmark.States
 
             // Cancel receiveMessagesTask
             benchmark.Next(new Cleanup());
-        }
-
-        /// <summary>
-        /// Creates tasks that ends when the test case timeout has elapsed
-        /// </summary>
-        /// <param name="timeSpan">
-        /// </param>
-        /// <param name="cancellationToken">
-        /// </param>
-        /// <returns>
-        /// </returns>
-        private static async Task BenchmarkTimeout(TimeSpan timeSpan, CancellationToken cancellationToken)
-        {
-            await Task.Delay(timeSpan, cancellationToken);
         }
 
         /// <summary>

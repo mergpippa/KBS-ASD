@@ -1,0 +1,15 @@
+{
+    "transportConfiguration": {
+
+        // General
+        "useExpress": false,
+
+        // Transport type specific configuration
+        "inMemoryBus": {
+        },
+        "azureServiceBus": {
+        },
+        "rabbitMqServiceBus": {
+        }
+    }
+}

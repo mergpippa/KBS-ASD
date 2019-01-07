@@ -29,6 +29,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Telemetry", "src\KBS.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Data", "src\KBS.Data\KBS.Data.csproj", "{D374BD8B-2CD2-4E8C-A517-3A0156151A7D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.Configuration", "src\Configuration\KBS.Configuration.csproj", "{0EB1AC7B-B0BF-4753-9944-38F0E6082709}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.ConfigurationTests", "KBS.ConfigurationTests\KBS.ConfigurationTests.csproj", "{82C01682-63D0-431D-8A90-D92B8FAC5AC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +91,14 @@ Global
 		{D374BD8B-2CD2-4E8C-A517-3A0156151A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D374BD8B-2CD2-4E8C-A517-3A0156151A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D374BD8B-2CD2-4E8C-A517-3A0156151A7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB1AC7B-B0BF-4753-9944-38F0E6082709}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB1AC7B-B0BF-4753-9944-38F0E6082709}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB1AC7B-B0BF-4753-9944-38F0E6082709}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB1AC7B-B0BF-4753-9944-38F0E6082709}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82C01682-63D0-431D-8A90-D92B8FAC5AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82C01682-63D0-431D-8A90-D92B8FAC5AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82C01682-63D0-431D-8A90-D92B8FAC5AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82C01682-63D0-431D-8A90-D92B8FAC5AC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
