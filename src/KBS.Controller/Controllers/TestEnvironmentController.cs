@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using KBS.Infrastructure;
 using KBS.Infrastructure.Models;
@@ -20,14 +21,14 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(404)]
         public List<TestEnvironment> GetTestEnvironments()
         {
-            return _manager.GetTestEnvironments();
+            throw new NotImplementedException();
         }
 
         [HttpGet, Route("{id}")]
         [ProducesResponseType(404)]
         public TestEnvironment GetTestEnvironment(string name)
         {
-            return _manager.GetTestEnvironment(name);
+            throw new NotImplementedException();
         }    
 
         [HttpPost]
@@ -37,7 +38,7 @@ namespace KBS.Controller.Controllers
             /*if (!ModelState.IsValid)
                 return BadRequest(ModelState);*/
 
-            return _manager.CreateTestEnvironment(configuration);
+            throw new NotImplementedException();
         }
 
     }
