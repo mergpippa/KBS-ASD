@@ -12,6 +12,8 @@ namespace KBS.Telemetry
 
         public async Task Flush()
         {
+            await Task.Yield();
+
             var json = JsonConvert.SerializeObject(_events);
 
             // Save output to text file
