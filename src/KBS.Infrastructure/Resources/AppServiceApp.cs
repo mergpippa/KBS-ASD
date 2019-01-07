@@ -22,9 +22,15 @@ namespace KBS.Infrastructure.Resources
 
         private readonly string deploymentName = Environment.GetEnvironmentVariable("deployment_name");
 
-        private readonly string pathToTemplateFile = "C:\\Users\\ArneJ\\source\\repos\\TestAzure\\TestAzure\\Template.json";
+        /// <summary>
+        /// This file contains the script to build a app service plan and app service
+        /// </summary>
+        private readonly string pathToTemplateFile = Path.Combine(Directory.GetCurrentDirectory(), "\\Automation scripts\\Template.json");
 
-        private readonly string pathToParameterFile = "C:\\Users\\ArneJ\\source\\repos\\TestAzure\\TestAzure\\Parameters.json";
+        /// <summary>
+        /// This file contains variable names for the app service plan and app service
+        /// </summary>
+        private readonly string pathToParameterFile = Path.Combine(Directory.GetCurrentDirectory(), "\\Automation scripts\\Parameters.json");
 
         /// <summary>
         /// Starts a template deployment.
