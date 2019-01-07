@@ -114,7 +114,7 @@ namespace KBS.MessageBus
         /// Message receive handler, this method will increment a counter that keeps track of the
         /// amount of messages that have been received
         /// </summary>
-        public void HandleMessageException(IMessageDiagnostics message)
+        public void HandleMessageException()
         {
             // Increment counter
             Interlocked.Increment(ref _exceptionCount);
@@ -126,11 +126,18 @@ namespace KBS.MessageBus
                 TelemetryEventNames.MessageException,
                 new Dictionary<string, string>
                 {
-                    { "MessageId", message.Id.ToString() },
-                    { "TestCase", message.TestCase.ToString() },
                     { "ExceptionAt", elapsedSpan.Ticks.ToString() }
                 }
             );
         }
+
+        /// <summary>
+        /// Create benchmark statistics string
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString() => 
+            $"Messages received: {_receivedMessagesCount} \n" +
+            $"Messages sent: {_sentMessagesCount} \n" +
+            $"Messages exceptions {_exceptionCount} \n";
     }
 }
