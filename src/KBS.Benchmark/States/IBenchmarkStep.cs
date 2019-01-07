@@ -1,7 +1,9 @@
+using System.Threading.Tasks;
+
 namespace KBS.Benchmark.States
 {
     public interface IBenchmarkStep
     {
-        void Next(Benchmark benchmark);
+        Task Next(Benchmark benchmark);
     }
 }
