@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using KBS.TestCases.Configuration;
 using Newtonsoft.Json;
 
@@ -9,7 +10,7 @@ namespace KBS.Benchmark.States
     {
         private const string _path = "./testCaseConfiguration.json";
 
-        public void Next(Benchmark benchmark)
+        public async Task Next(Benchmark benchmark)
         {
             // Create test case configuration
             benchmark.Context.TestCaseConfiguration = new TestCaseConfiguration();
@@ -28,7 +29,7 @@ namespace KBS.Benchmark.States
             Console.WriteLine("Running test using following configuration:");
             Console.WriteLine(JsonConvert.SerializeObject(benchmark.Context.TestCaseConfiguration));
 
-            benchmark.Next(new CreateTelemetryClient());
+            await benchmark.SetNext(new CreateTelemetryClient());
         }
     }
 }

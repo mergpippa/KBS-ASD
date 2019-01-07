@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using KBS.Benchmark.States;
 
 namespace KBS.Benchmark
@@ -14,14 +15,11 @@ namespace KBS.Benchmark
         /// </summary>
         public BenchmarkContext Context;
 
-        /// <summary>
-        /// Benchmark constructor
-        /// </summary>
-        public Benchmark()
+        public async Task Run()
         {
             Context = new BenchmarkContext();
 
-            Next(new GetConfiguration());
+            await SetNext(new GetConfiguration());
         }
 
         /// <summary>
@@ -29,12 +27,12 @@ namespace KBS.Benchmark
         /// </summary>
         /// <param name="newState">
         /// </param>
-        public void Next(IBenchmarkStep newState)
+        public async Task SetNext(IBenchmarkStep newState)
         {
             _currentState = newState;
 
             // Process next step automatically
-            _currentState.Next(this);
+            await _currentState.Next(this);
         }
     }
 }
