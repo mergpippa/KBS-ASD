@@ -1,7 +1,6 @@
-using System.Collections.Generic;
-using KBS.Infrastructure;
-using KBS.Infrastructure.Models;
-using KBS.TestCases;
+using System;
+using System.Collections.Concurrent;
+using KBS.TestCases.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -11,39 +10,20 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private readonly IManager _manager;
-
-        public TestController(IManager manager)
-        {
-            _manager = manager;
-        }
-
         // GET api/test
         [HttpGet]
         [ProducesResponseType(404)]
-        public List<TestEnviroment> GetAll()
+        public BlockingCollection<Benchmark.Benchmark> GetAll()
         {
-            //return _manager.GetTests();
-            return null;
-        }
-
-        // Get api/test/{id}
-        [HttpGet, Route("{id}")]
-        [ProducesResponseType(404)]
-        public TestEnviroment GetTest(int id)
-        {
-            //return _manager.GetTest(id);
-            return null;
+            throw new NotImplementedException();
         }
 
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult Post([FromBody] TestCaseConfiguration configuration)
+        public ActionResult<Benchmark.Benchmark> Post([FromBody] TestCaseConfiguration configuration)
         {
-            // _manager.CreateTest(configuration);
-            //return Ok();
-            return BadRequest();
+            return new Benchmark.Benchmark();
         }
     }
 }

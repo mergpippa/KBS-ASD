@@ -3,7 +3,7 @@ namespace KBS.Topics.WebshopCase
     /// <summary>
     /// Bank information from buyer
     /// </summary>
-    public interface ITransaction
+    public interface ITransaction : IMessageDiagnostics
     {
         /// <summary>
         /// Account ID number

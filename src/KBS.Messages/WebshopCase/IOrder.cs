@@ -3,7 +3,7 @@ namespace KBS.Topics.WebshopCase
     /// <summary>
     /// The order message as made by a buyer
     /// </summary>
-    public interface IOrder
+    public interface IOrder : IMessageDiagnostics
     {
         /// <summary>
         /// Unique name of the item

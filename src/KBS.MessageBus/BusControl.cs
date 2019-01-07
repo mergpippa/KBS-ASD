@@ -1,47 +1,43 @@
 using System;
-using System.Threading.Tasks;
-using KBS.MessageBus.Configurator;
-using KBS.MessageBus.Data;
+using KBS.Data.Constants;
+using KBS.Data.Enum;
+using KBS.Telemetry;
 using MassTransit;
 
 namespace KBS.MessageBus
 {
     public class BusControl : IDisposable
     {
-        private static IBusControl _busControl;
+        public readonly IBusControl Instance;
+
+        private readonly ITelemetryClient _telemetryClient;
 
         /// <summary>
         /// Creates a new bus control with given test case
         /// </summary>
-        /// <param name="testCase">
+        /// <param name="testCaseConfigurator">
         /// </param>
-        public BusControl(IMessageBusEndpointConfigurator testCase)
+        /// <param name="telemetryClient">
+        /// </param>
+        public BusControl(
+            Action<IBusFactoryConfigurator> busFactoryConfigurator,
+            ITelemetryClient telemetryClient
+        )
         {
+            _telemetryClient = telemetryClient;
+
             // Get transport type from environment
             var transportType = (TransportType)Convert.ToInt32(
-                Environment.GetEnvironmentVariable(EnvironmentVariable.TransportType)
+                Environment.GetEnvironmentVariable(EnvironmentVariables.TransportType)
             );
 
-            _busControl = MessageBusTransportFactory.Create(transportType, testCase);
+            Instance = TransportFactory.Create(
+                transportType,
+                busFactoryConfigurator
+            );
 
             // Starts bus (The bus must be started before sending any messages!)
-            _busControl.Start();
-        }
-
-        /// <summary>
-        /// Publishes command onto bus control
-        /// </summary>
-        /// <typeparam name="T">
-        /// Should be an interface
-        /// </typeparam>
-        /// <param name="message">
-        /// Must be an anonymous type; expl: "new { Val = 0 }"
-        /// </param>
-        /// <returns>
-        /// </returns>
-        public Task Publish<T>(object message) where T : class
-        {
-            return _busControl.Publish<T>(message);
+            Instance.Start();
         }
 
         /// <summary>
@@ -49,7 +45,7 @@ namespace KBS.MessageBus
         /// </summary>
         public void Dispose()
         {
-            _busControl.Stop();
+            Instance.Stop();
         }
     }
 }

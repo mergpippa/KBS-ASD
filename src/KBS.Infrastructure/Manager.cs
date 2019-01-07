@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Infrastructure.Models;
 using KBS.TestCases;
+using KBS.TestCases.Configuration;
 
 namespace KBS.Infrastructure
 {

@@ -1,10 +1,10 @@
-using KBS.MessageBus.Configurator;
+using System;
 using MassTransit;
 
 namespace KBS.MessageBus.Transports
 {
     internal interface ITransport
     {
-        IBusControl GetBusControl(IMessageBusEndpointConfigurator messageBusEndpointConfigurator);
+        IBusControl GetBusControl(Action<IBusFactoryConfigurator> baseBusFactoryConfigurator);
     }
 }
