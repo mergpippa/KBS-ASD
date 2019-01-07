@@ -75,8 +75,6 @@ namespace KBS.MessageBus
         /// </summary>
         public void HandleMessageReceived(IMessageDiagnostics message)
         {
-            Console.WriteLine(message);
-
             // Increment counter
             Interlocked.Increment(ref _receivedMessagesCount);
 
