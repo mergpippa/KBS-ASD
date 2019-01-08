@@ -1,3 +1,5 @@
+using System;
+using KBS.Configuration;
 using KBS.Data.Enum;
 using KBS.MessageBus;
 using MassTransit;
@@ -7,6 +9,18 @@ namespace KBS.MessageBusTests
 {
     public class TransportFactoryTests
     {
+        public TransportFactoryTests()
+        {
+            BaseConfiguration.SetCommandLineArgsConfiguration("{}");
+
+            Environment.SetEnvironmentVariable("AzureServiceBusUri", "amqp://azureservicebus.url");
+            Environment.SetEnvironmentVariable("AzureServiceBusToken", "testToken");
+
+            Environment.SetEnvironmentVariable("RabbitMqHost", "rabbitmq://rabbitmq.validurl");
+            Environment.SetEnvironmentVariable("RabbitMqUsername", "rabbitMqUsername");
+            Environment.SetEnvironmentVariable("RabbitMqPassword", "rabbitMqPassword");
+        }
+
         [Fact]
         public void Should_CreateMessageBusWithInMemoryTransport()
         {
