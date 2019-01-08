@@ -2,10 +2,10 @@ namespace KBS.Data.Enum
 {
     public enum TransportType
     {
-        InMemory = 0,
+        InMemory = 1,
 
-        RabbitMq = 1,
+        RabbitMq = 2,
 
-        AzureServiceBus = 2,
+        AzureServiceBus = 3,
     }
 }

@@ -134,8 +134,7 @@ namespace KBS.MessageBus
         /// <summary>
         /// Create benchmark statistics string
         /// </summary>
-        /// <returns></returns>
-        public override string ToString() => 
+        public override string ToString() =>
             $"Messages received: {_receivedMessagesCount} \n" +
             $"Messages sent: {_sentMessagesCount} \n" +
             $"Messages exceptions {_exceptionCount} \n";

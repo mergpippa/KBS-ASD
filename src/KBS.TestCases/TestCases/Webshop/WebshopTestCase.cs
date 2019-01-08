@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.Webshop.Consumers;
 using KBS.Topics;
 using KBS.Topics.WebshopCase;
@@ -19,10 +18,9 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
-        /// <param name="testCaseConfiguration">
+        /// <param name="telemetryClient">
         /// </param>
-        public WebshopTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext telemetryClient)
-            : base(testCaseConfiguration, telemetryClient)
+        public WebshopTestCase(MessageCaptureContext telemetryClient) : base(telemetryClient)
         { }
 
         /// <summary>
@@ -46,8 +44,6 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Creates a message object for given index
         /// </summary>
-        /// <returns>
-        /// </returns>
         protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
             new CatalogueRequest
             {
@@ -62,8 +58,6 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <param name="busControl">
         /// The bus for the test case to use
         /// </param>
-        /// <returns>
-        /// </returns>
         public override async Task Run(BusControl busControl)
         {
             await SendMessages(message =>
@@ -72,6 +66,9 @@ namespace KBS.TestCases.TestCases.Webshop
         }
     }
 
+    /// <summary>
+    /// Class used to create concrete message instances
+    /// </summary>
     internal class CatalogueRequest : ICatalogueRequest
     {
         public int Id { get; set; }

@@ -19,7 +19,7 @@ namespace KBS.Benchmark
         {
             Context = new BenchmarkContext();
 
-            await SetNext(new GetConfiguration());
+            await SetNext(new CreateTelemetryClient());
         }
 
         /// <summary>

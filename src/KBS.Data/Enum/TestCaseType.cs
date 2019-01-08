@@ -2,10 +2,10 @@ namespace KBS.Data.Enum
 {
     public enum TestCaseType
     {
-        RequestResponse = 0,
+        RequestResponse = 1,
 
-        ConsumeConsumer = 1,
+        ConsumeConsumer = 2,
 
-        WebShop = 2,
+        WebShop = 3,
     }
 }

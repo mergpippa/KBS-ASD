@@ -1,6 +1,5 @@
 using KBS.MessageBus;
 using KBS.Telemetry;
-using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases;
 
 namespace KBS.Benchmark
@@ -18,10 +17,6 @@ namespace KBS.Benchmark
         /// <summary>
         /// </summary>
         public ITelemetryClient TelemetryClient;
-
-        /// <summary>
-        /// </summary>
-        public TestCaseConfiguration TestCaseConfiguration;
 
         /// <summary>
         /// </summary>

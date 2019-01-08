@@ -1,5 +1,4 @@
-using System;
-using System.IO;
+using KBS.Configuration;
 
 namespace KBS.FauxApplication
 {
@@ -7,7 +6,7 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine(args[0]);
+            BaseConfiguration.SetCommandLineArgsConfiguration(args[0]);
 
             new Benchmark.Benchmark().Run().Wait();
         }

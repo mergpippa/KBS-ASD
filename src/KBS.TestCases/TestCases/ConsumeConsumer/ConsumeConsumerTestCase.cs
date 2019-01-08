@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.TestCases.Configuration;
 using KBS.Topics;
 using KBS.Topics.ConsumerCase;
 using MassTransit;
@@ -18,10 +17,9 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
         /// <summary>
         /// Constructor that passes the TestCaseConfiguration through to the AbstractTestCase
         /// </summary>
-        /// <param name="testCaseConfiguration">
+        /// <param name="telemetryClient">
         /// </param>
-        public ConsumeConsumerTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext telemetryClient)
-            : base(testCaseConfiguration, telemetryClient)
+        public ConsumeConsumerTestCase(MessageCaptureContext telemetryClient) : base(telemetryClient)
         { }
 
         /// <summary>
@@ -66,6 +64,9 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
         }
     }
 
+    /// <summary>
+    /// Class used to create concrete message instances
+    /// </summary>
     internal class ConsumeMessage : IConsumeMessage
     {
         public int Id { get; set; }

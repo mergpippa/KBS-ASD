@@ -1,18 +1,22 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
+using KBS.Configuration;
 using KBS.MessageBus;
 
 namespace KBS.Benchmark.States
 {
     public class WaitForMessages : IBenchmarkStep
     {
+        /// <summary>
+        /// </summary>
+        /// <param name="benchmark">
+        /// </param>
         public async Task Next(Benchmark benchmark)
         {
             var cancellationTokenSource = new CancellationTokenSource();
 
             var receiveMessagesTask = DidReceiveAllMessages(benchmark.Context.MessageCaptureContext, cancellationTokenSource.Token);
-            var benchmarkTimeoutTask = BenchmarkTimeout(benchmark.Context.TestCaseConfiguration.BenchmarkTimeout, cancellationTokenSource.Token);
+            var benchmarkTimeoutTask = Task.Delay(BenchmarkConfiguration.Timeout, cancellationTokenSource.Token);
 
             if (await Task.WhenAny(receiveMessagesTask, benchmarkTimeoutTask) == benchmarkTimeoutTask)
             {
@@ -31,28 +35,12 @@ namespace KBS.Benchmark.States
         }
 
         /// <summary>
-        /// Creates tasks that ends when the test case timeout has elapsed
-        /// </summary>
-        /// <param name="timeSpan">
-        /// </param>
-        /// <param name="cancellationToken">
-        /// </param>
-        /// <returns>
-        /// </returns>
-        private static async Task BenchmarkTimeout(TimeSpan timeSpan, CancellationToken cancellationToken)
-        {
-            await Task.Delay(timeSpan, cancellationToken);
-        }
-
-        /// <summary>
         /// Creates tasks that polls the DidReceiveAllMessages property in MessageCaptureContext
         /// </summary>
         /// <param name="messageCaptureContext">
         /// </param>
         /// <param name="cancellationToken">
         /// </param>
-        /// <returns>
-        /// </returns>
         private static async Task DidReceiveAllMessages(MessageCaptureContext messageCaptureContext, CancellationToken cancellationToken)
         {
             if (cancellationToken.IsCancellationRequested)
@@ -60,7 +48,7 @@ namespace KBS.Benchmark.States
 
             while (!messageCaptureContext.DidReceiveAllMessages)
             {
-                await Task.Delay(500, cancellationToken);
+                await Task.Delay(250, cancellationToken);
             }
         }
     }
