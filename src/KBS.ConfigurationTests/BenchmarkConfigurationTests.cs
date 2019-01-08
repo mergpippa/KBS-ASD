@@ -11,7 +11,7 @@ namespace KBS.ConfigurationTests
         {
             var value = BenchmarkConfiguration.MessagesCount;
 
-            Assert.Equal(100, value);
+            Assert.Equal(1000, value);
             Assert.IsType<int>(value);
         }
 
