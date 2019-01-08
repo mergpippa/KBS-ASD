@@ -1,4 +1,5 @@
 using System;
+using KBS.Configuration;
 using KBS.Data.Constants;
 using MassTransit;
 using MassTransit.Azure.ServiceBus.Core;
@@ -11,14 +12,14 @@ namespace KBS.MessageBus.Transports
         /// <summary>
         /// URI to Azure Service Bus
         /// </summary>
-        private readonly Uri _uri = new Uri(Environment.GetEnvironmentVariable(EnvironmentVariables.AzureServiceBusHost));
+        private readonly Uri _uri = new Uri(TransportConfiguration.AzureServiceBusUri);
 
         /// <summary>
         /// Private token that is used to authenticate this MassTransit client
         /// </summary>
         private readonly ITokenProvider _tokenProvider = TokenProvider.CreateSharedAccessSignatureTokenProvider(
             TokenProviderKeyNames.RootManageSharedAccessKey,
-            Environment.GetEnvironmentVariable(EnvironmentVariables.AzureServiceBusToken)
+            TransportConfiguration.AzureServiceBusToken
         );
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace KBS.MessageBus.Transports
                 busFactoryConfigurator.Host(_uri, host =>
                 {
                     host.OperationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
-                        Environment.GetEnvironmentVariable(EnvironmentVariables.OperationTimeout)
+                        TransportConfiguration.AzureServiceBusOperationTimeout
                     ));
 
                     host.TokenProvider = _tokenProvider;

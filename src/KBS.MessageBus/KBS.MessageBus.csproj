@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KBS.Configuration\KBS.Configuration.csproj" />
     <ProjectReference Include="..\KBS.Data\KBS.Data.csproj" />
     <ProjectReference Include="..\KBS.Messages\KBS.Topics.csproj" />
     <ProjectReference Include="..\KBS.Telemetry\KBS.Telemetry.csproj" />

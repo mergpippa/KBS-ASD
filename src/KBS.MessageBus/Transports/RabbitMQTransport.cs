@@ -1,5 +1,5 @@
 using System;
-using KBS.Data.Constants;
+using KBS.Configuration;
 using MassTransit;
 
 namespace KBS.MessageBus.Transports
@@ -18,11 +18,11 @@ namespace KBS.MessageBus.Transports
             return Bus.Factory.CreateUsingRabbitMq(busFactoryConfigurator =>
             {
                 busFactoryConfigurator.Host(
-                    new Uri(Environment.GetEnvironmentVariable(EnvironmentVariables.RabbitMqHost)),
+                    new Uri(TransportConfiguration.RabbitMqHost),
                     host =>
                     {
-                        host.Username(Environment.GetEnvironmentVariable(EnvironmentVariables.RabbitMqUsername));
-                        host.Password(Environment.GetEnvironmentVariable(EnvironmentVariables.RabbitMqPassword));
+                        host.Username(TransportConfiguration.RabbitMqUsername);
+                        host.Password(TransportConfiguration.RabbitMqPassword);
                     }
                 );
 

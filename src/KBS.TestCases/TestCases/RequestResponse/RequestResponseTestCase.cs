@@ -1,7 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
-using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases.RequestResponse.Consumers;
 using KBS.Topics;
 using KBS.Topics.RequestResponseCase;
@@ -22,12 +21,10 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
-        /// <param name="testCaseConfiguration">
+        /// <param name="messageCaptureContext">
         /// </param>
-        public RequestResponseTestCase(TestCaseConfiguration testCaseConfiguration, MessageCaptureContext messageCaptureContext)
-            : base(testCaseConfiguration, messageCaptureContext)
-        {
-        }
+        public RequestResponseTestCase(MessageCaptureContext messageCaptureContext) : base(messageCaptureContext)
+        { }
 
         /// <summary>
         /// Method used to configure the available endpoints for a test case
@@ -41,6 +38,12 @@ namespace KBS.TestCases.TestCases.RequestResponse
             );
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="index">
+        /// </param>
+        /// <param name="filler">
+        /// </param>
         protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
             new RequestMessage
             {
@@ -55,8 +58,6 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// <param name="busControl">
         /// The bus for the test case to use
         /// </param>
-        /// <returns>
-        /// </returns>
         public override async Task Run(BusControl busControl)
         {
             var hostUri = busControl.Instance.Address;
@@ -73,6 +74,9 @@ namespace KBS.TestCases.TestCases.RequestResponse
         }
     }
 
+    /// <summary>
+    /// Class used to create concrete message instances
+    /// </summary>
     internal class RequestMessage : IRequestMessage
     {
         public int Id { get; set; }

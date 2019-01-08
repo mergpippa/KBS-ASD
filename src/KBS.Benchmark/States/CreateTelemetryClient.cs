@@ -1,3 +1,4 @@
+using KBS.Configuration;
 using KBS.MessageBus;
 using KBS.Telemetry;
 
@@ -7,12 +8,11 @@ namespace KBS.Benchmark.States
     {
         public void Next(Benchmark benchmark)
         {
-            benchmark.Context.TelemetryClient =
-                TelemetryClientFactory.Create(benchmark.Context.TestCaseConfiguration.TelemetryClientType);
+            benchmark.Context.TelemetryClient = TelemetryClientFactory.Create(TestCaseConfiguration.TelemetryClientType);
 
             // Create message capture context
             benchmark.Context.MessageCaptureContext = new MessageCaptureContext(
-                benchmark.Context.TestCaseConfiguration.MessagesCount,
+                BenchmarkConfiguration.MessagesCount,
                 benchmark.Context.TelemetryClient
             );
 

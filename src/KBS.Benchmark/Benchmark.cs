@@ -21,7 +21,7 @@ namespace KBS.Benchmark
         {
             Context = new BenchmarkContext();
 
-            Next(new GetConfiguration());
+            Next(new CreateTelemetryClient());
         }
 
         /// <summary>

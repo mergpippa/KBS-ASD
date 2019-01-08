@@ -1,8 +1,8 @@
 using System;
 using System.Threading.Tasks;
+using KBS.Configuration;
 using KBS.MessageBus;
 using KBS.MessageBus.Configurator;
-using KBS.TestCases.Configuration;
 using KBS.Topics;
 using MassTransit;
 
@@ -15,10 +15,6 @@ namespace KBS.TestCases.TestCases
     {
         /// <summary>
         /// </summary>
-        private readonly TestCaseConfiguration _testCaseConfiguration;
-
-        /// <summary>
-        /// </summary>
         private readonly MessageCaptureContext _messageCaptureContext;
 
         /// <summary>
@@ -26,12 +22,8 @@ namespace KBS.TestCases.TestCases
         /// </summary>
         /// <param name="testCaseConfiguration">
         /// </param>
-        protected TestCase(
-            TestCaseConfiguration testCaseConfiguration,
-            MessageCaptureContext messageCaptureContext
-        )
+        protected TestCase(MessageCaptureContext messageCaptureContext)
         {
-            _testCaseConfiguration = testCaseConfiguration;
             _messageCaptureContext = messageCaptureContext;
         }
 
@@ -69,9 +61,9 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         private IMessageDiagnostics[] GenerateMessages()
         {
-            var messages = new IMessageDiagnostics[_testCaseConfiguration.MessagesCount];
+            var messages = new IMessageDiagnostics[BenchmarkConfiguration.MessagesCount];
 
-            for (var i = 0; i < _testCaseConfiguration.MessagesCount; i++)
+            for (var i = 0; i < BenchmarkConfiguration.MessagesCount; i++)
                 messages[i] = CreateMessage(i);
 
             return messages;
@@ -103,12 +95,12 @@ namespace KBS.TestCases.TestCases
             Console.WriteLine($"Start sending messages {startTime}");
 
             // Create clients array
-            var clients = new Task[_testCaseConfiguration.Clients];
+            var clients = new Task[BenchmarkConfiguration.ClientsCount];
 
             // Amount of message that each client will send
-            var messagesForEachClient = _testCaseConfiguration.MessagesCount / _testCaseConfiguration.Clients;
+            var messagesForEachClient = BenchmarkConfiguration.MessagesCount / BenchmarkConfiguration.ClientsCount;
 
-            for (var i = 0; i < _testCaseConfiguration.Clients; i++)
+            for (var i = 0; i < BenchmarkConfiguration.ClientsCount; i++)
             {
                 var startIndex = messagesForEachClient * i;
                 var endIndex = startIndex + messagesForEachClient;

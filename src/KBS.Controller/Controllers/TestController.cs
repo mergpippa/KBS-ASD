@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Concurrent;
-using KBS.TestCases.Configuration;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KBS.Controller.Controllers
@@ -21,7 +20,7 @@ namespace KBS.Controller.Controllers
         // POST api/test
         [HttpPost]
         [ProducesResponseType(400)]
-        public ActionResult<Benchmark.Benchmark> Post([FromBody] TestCaseConfiguration configuration)
+        public ActionResult<Benchmark.Benchmark> Post([FromBody] dynamic configuration)
         {
             return new Benchmark.Benchmark();
         }
