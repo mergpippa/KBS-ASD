@@ -25,7 +25,7 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
                 _messageCaptureContext.HandleMessageException();
                 throw new System.Exception("Invalid message");
             }
-                
+
             await next.Send(context);
 
             _messageCaptureContext.HandleMessageReceived(messageContext.Message);

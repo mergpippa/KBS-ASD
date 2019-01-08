@@ -1,5 +1,5 @@
-using KBS.Configuration;
 using System.Threading.Tasks;
+using KBS.Configuration;
 using KBS.MessageBus;
 using KBS.Telemetry;
 
