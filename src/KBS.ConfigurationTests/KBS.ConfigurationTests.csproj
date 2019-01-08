@@ -13,7 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Configuration.cs\Configuration.csproj" />
+    <ProjectReference Include="..\KBS.Configuration\KBS.Configuration.csproj" />
+    <ProjectReference Include="..\KBS.TestCases\KBS.TestCases.csproj" />
   </ItemGroup>
 
 </Project>

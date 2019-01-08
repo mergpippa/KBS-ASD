@@ -17,11 +17,11 @@ namespace KBS.Configuration
         /// <summary>
         /// Amounts of threads to use to send messages
         /// </summary>
-        public static int Clients { get => GetFromAny<int>("Clients", 2); }
+        public static int ClientsCount { get => GetFromAny<int>("Clients", 2); }
 
         /// <summary>
         /// Time before test should abort after last message was sent
         /// </summary>
-        public static TimeSpan BenchmarkTimeout { get => GetFromAny("BenchmarkTimeout", TimeSpan.FromMinutes(1)); }
+        public static TimeSpan Timeout { get => GetFromAny("BenchmarkTimeout", TimeSpan.FromMinutes(1)); }
     }
 }

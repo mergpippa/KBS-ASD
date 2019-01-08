@@ -27,7 +27,7 @@ namespace KBS.ConfigurationTests
         [Fact]
         public void Should_GetClients()
         {
-            var value = BenchmarkConfiguration.Clients;
+            var value = BenchmarkConfiguration.ClientsCount;
 
             Assert.Equal(2, value);
             Assert.IsType<int>(value);
@@ -36,7 +36,7 @@ namespace KBS.ConfigurationTests
         [Fact]
         public void Should_GetBenchmarkTimeout()
         {
-            var value = BenchmarkConfiguration.BenchmarkTimeout;
+            var value = BenchmarkConfiguration.Timeout;
 
             Assert.Equal(TimeSpan.FromMinutes(1), value);
             Assert.IsType<TimeSpan>(value);
