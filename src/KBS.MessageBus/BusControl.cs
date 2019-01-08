@@ -1,6 +1,5 @@
 using System;
-using KBS.Data.Constants;
-using KBS.Data.Enum;
+using KBS.Configuration;
 using KBS.Telemetry;
 using MassTransit;
 
@@ -15,8 +14,6 @@ namespace KBS.MessageBus
         /// <summary>
         /// Creates a new bus control with given test case
         /// </summary>
-        /// <param name="testCaseConfigurator">
-        /// </param>
         /// <param name="telemetryClient">
         /// </param>
         public BusControl(
@@ -26,13 +23,8 @@ namespace KBS.MessageBus
         {
             _telemetryClient = telemetryClient;
 
-            // Get transport type from environment
-            var transportType = (TransportType)Convert.ToInt32(
-                Environment.GetEnvironmentVariable(EnvironmentVariables.TransportType)
-            );
-
             Instance = TransportFactory.Create(
-                transportType,
+                TestCaseConfiguration.TransportType,
                 busFactoryConfigurator
             );
 

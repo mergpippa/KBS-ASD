@@ -13,12 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\KBS.Configuration\KBS.Configuration.csproj" />
     <ProjectReference Include="..\KBS.TestCases\KBS.TestCases.csproj" />
-    <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="MassTransit, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa" />
   </ItemGroup>
 
 </Project>

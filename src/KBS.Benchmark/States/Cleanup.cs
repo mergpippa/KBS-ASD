@@ -14,6 +14,7 @@ namespace KBS.Benchmark.States
             benchmark.Context.BusControl.Dispose();
 
             Console.WriteLine(benchmark.Context.MessageCaptureContext);
+
             // Go to finished state
             Console.WriteLine("Benchmark finished");
         }

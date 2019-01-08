@@ -1,7 +1,6 @@
 using System;
 using KBS.Data.Enum;
 using KBS.MessageBus;
-using KBS.TestCases.Configuration;
 using KBS.TestCases.TestCases;
 using KBS.TestCases.TestCases.ConsumeConsumer;
 using KBS.TestCases.TestCases.RequestResponse;
@@ -21,18 +20,18 @@ namespace KBS.TestCases
         /// </param>
         /// <returns>
         /// </returns>
-        public static TestCase Create(TestCaseType testCaseType, TestCaseConfiguration testCaseConfiguration, MessageCaptureContext messageCaptureContext)
+        public static TestCase Create(TestCaseType testCaseType, MessageCaptureContext messageCaptureContext)
         {
             switch (testCaseType)
             {
                 case TestCaseType.RequestResponse:
-                    return new RequestResponseTestCase(testCaseConfiguration, messageCaptureContext);
+                    return new RequestResponseTestCase(messageCaptureContext);
 
                 case TestCaseType.ConsumeConsumer:
-                    return new ConsumeConsumerTestCase(testCaseConfiguration, messageCaptureContext);
+                    return new ConsumeConsumerTestCase(messageCaptureContext);
 
                 case TestCaseType.WebShop:
-                    return new WebshopTestCase(testCaseConfiguration, messageCaptureContext);
+                    return new WebshopTestCase(messageCaptureContext);
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(testCaseType), testCaseType, null);
