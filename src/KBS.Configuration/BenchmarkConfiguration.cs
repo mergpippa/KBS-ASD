@@ -7,7 +7,7 @@ namespace KBS.Configuration
         /// <summary>
         /// Amount of messages to send during the benchmark
         /// </summary>
-        public static int MessagesCount { get => GetFromAny<int>("MessagesCount", 100); }
+        public static int MessagesCount { get => GetFromAny<int>("MessagesCount", 1000); }
 
         /// <summary>
         /// Message size in bytes (a message will be filled with a byte array of the given size)

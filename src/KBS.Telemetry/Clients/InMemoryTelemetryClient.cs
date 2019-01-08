@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using KBS.Configuration;
 using Newtonsoft.Json;
 
 namespace KBS.Telemetry
@@ -14,10 +15,22 @@ namespace KBS.Telemetry
         {
             await Task.Yield();
 
-            var json = JsonConvert.SerializeObject(_events);
+            var data = new
+            {
+                configuration = new
+                {
+                    messagesCount = BenchmarkConfiguration.MessagesCount,
+                    fillerSize = BenchmarkConfiguration.FillerSize,
+                    clientsCount = BenchmarkConfiguration.ClientsCount,
+                    testCaseType = TestCaseConfiguration.TestCaseType,
+                    transportType = TestCaseConfiguration.TransportType,
+                    useExpress = TransportConfiguration.UseExpress,
+                },
+                events = _events
+            };
 
             // Save output to text file
-            File.WriteAllText("./results.json", json);
+            File.WriteAllText("./results.json", JsonConvert.SerializeObject(data));
         }
 
         public async void TrackEvent(string eventName, Dictionary<string, string> properties)

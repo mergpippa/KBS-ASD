@@ -17,10 +17,4 @@
     <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="testCaseConfiguration.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
