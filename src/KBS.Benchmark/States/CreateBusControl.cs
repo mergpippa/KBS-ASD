@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.MessageBus.Middleware;
 
@@ -5,7 +6,7 @@ namespace KBS.Benchmark.States
 {
     public class CreateBusControl : IBenchmarkStep
     {
-        public void Next(Benchmark benchmark)
+        public async Task Next(Benchmark benchmark)
         {
             benchmark.Context.BusControl = new BusControl(
                 (busFactoryConfigurator) =>
@@ -18,7 +19,7 @@ namespace KBS.Benchmark.States
                 benchmark.Context.TelemetryClient
             );
 
-            benchmark.Next(new StartBenchmark());
+            await benchmark.SetNext(new StartBenchmark());
         }
     }
 }

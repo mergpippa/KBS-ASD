@@ -1,12 +1,14 @@
+using System.Threading.Tasks;
+
 namespace KBS.Benchmark.States
 {
     public class StartBenchmark : IBenchmarkStep
     {
-        public async void Next(Benchmark benchmark)
+        public async Task Next(Benchmark benchmark)
         {
             await benchmark.Context.TestCase.Run(benchmark.Context.BusControl);
 
-            benchmark.Next(new WaitForMessages());
+            await benchmark.SetNext(new WaitForMessages());
         }
     }
 }

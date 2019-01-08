@@ -21,8 +21,11 @@ namespace KBS.MessageBus.Middleware.PerformanceDiagnostics
             consumeContext.TryGetMessage<IMessageDiagnostics>(out var messageContext);
 
             if (messageContext.Message == null)
+            {
+                _messageCaptureContext.HandleMessageException();
                 throw new System.Exception("Invalid message");
-
+            }
+                
             await next.Send(context);
 
             _messageCaptureContext.HandleMessageReceived(messageContext.Message);

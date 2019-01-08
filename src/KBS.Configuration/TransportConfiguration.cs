@@ -20,7 +20,7 @@ namespace KBS.Configuration
 
         /// <summary>
         /// </summary>
-        public static int AzureServiceBusOperationTimeout { get => GetFromArguments<int>("OperationTimeout"); }
+        public static TimeSpan AzureServiceBusOperationTimeout { get => GetFromArguments<TimeSpan>("OperationTimeout"); }
 
         #endregion azure service bus
 

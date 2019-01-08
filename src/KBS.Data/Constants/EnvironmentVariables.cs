@@ -32,24 +32,44 @@ namespace KBS.Data.Constants
         /// </summary>
         public const string Timeout = "TEST_CASE_TIMEOUT";
 
-        // Transport configuration
+        ///<summary>
+        /// Transport configuration
+        /// </summary>
         public const string TransportType = "TRANSPORT_TYPE";
 
-        public const string OperationTimeout = "OPERATION_TIMEOUT";
+        /// <summary>
+        /// The operation timeout of the Azure service bus.
+        /// </summary>
+        public const string AzureServiceBusOperationTimeout = "AZURE_SERVICE_BUS_OPERATION_TIMEOUT";
 
-        //
+        /// <summary>
+        /// The secret Azure service primary key.
+        /// </summary>
         public const string AzureServiceBusToken = "AZURE_SERVICE_BUS_PRIMARY_KEY";
 
+        /// <summary>
+        /// The azure service bus host.
+        /// </summary>
         public const string AzureServiceBusHost = "AZURE_SERVICE_BUS_HOST";
 
-        //
+        /// <summary>
+        /// The rabbit mq host.
+        /// </summary>
         public const string RabbitMqHost = "RABBIT_MQ_HOST";
 
+        /// <summary>
+        /// The rabbit mq username.
+        /// </summary>
         public const string RabbitMqUsername = "RABBIT_MQ_USERNAME";
 
+        /// <summary>
+        /// The rabbit mq password.
+        /// </summary>
         public const string RabbitMqPassword = "RABBIT_MQ_PASSWORD";
 
-        //
+        /// <summary>
+        /// The app insights instrumentation key (indentifier for appinsights instance).
+        /// </summary>
         public const string AppInsightsInstrumentationKey = "APPINSIGHTS_INSTRUMENTATIONKEY";
     }
 }

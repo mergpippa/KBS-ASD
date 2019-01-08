@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 using KBS.Configuration;
+=======
+using System.Threading.Tasks;
+>>>>>>> develop
 using KBS.MessageBus;
 using KBS.Telemetry;
 
@@ -6,7 +10,7 @@ namespace KBS.Benchmark.States
 {
     public class CreateTelemetryClient : IBenchmarkStep
     {
-        public void Next(Benchmark benchmark)
+        public async Task Next(Benchmark benchmark)
         {
             benchmark.Context.TelemetryClient = TelemetryClientFactory.Create(TestCaseConfiguration.TelemetryClientType);
 
@@ -16,7 +20,7 @@ namespace KBS.Benchmark.States
                 benchmark.Context.TelemetryClient
             );
 
-            benchmark.Next(new CreateTestCase());
+            await benchmark.SetNext(new CreateTestCase());
         }
     }
 }

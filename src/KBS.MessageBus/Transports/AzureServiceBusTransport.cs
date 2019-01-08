@@ -35,9 +35,7 @@ namespace KBS.MessageBus.Transports
             {
                 busFactoryConfigurator.Host(_uri, host =>
                 {
-                    host.OperationTimeout = TimeSpan.FromSeconds(Convert.ToDouble(
-                        TransportConfiguration.AzureServiceBusOperationTimeout
-                    ));
+                    host.OperationTimeout = TransportConfiguration.AzureServiceBusOperationTimeout;
 
                     host.TokenProvider = _tokenProvider;
                 });

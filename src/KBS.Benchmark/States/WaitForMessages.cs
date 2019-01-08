@@ -7,11 +7,15 @@ namespace KBS.Benchmark.States
 {
     public class WaitForMessages : IBenchmarkStep
     {
+<<<<<<< HEAD
         /// <summary>
         /// </summary>
         /// <param name="benchmark">
         /// </param>
         public async void Next(Benchmark benchmark)
+=======
+        public async Task Next(Benchmark benchmark)
+>>>>>>> develop
         {
             var cancellationTokenSource = new CancellationTokenSource();
 
@@ -25,13 +29,13 @@ namespace KBS.Benchmark.States
 
                 benchmark.Context.MessageCaptureContext.DidTimeoutWhenWaitingOnMessages = true;
 
-                benchmark.Next(new BenchmarkTimeout());
+                await benchmark.SetNext(new BenchmarkTimeout());
 
                 return;
             }
 
             // Cancel receiveMessagesTask
-            benchmark.Next(new Cleanup());
+            await benchmark.SetNext(new Cleanup());
         }
 
         /// <summary>

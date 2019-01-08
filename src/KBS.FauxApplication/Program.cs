@@ -4,9 +4,7 @@ namespace KBS.FauxApplication
     {
         private static void Main()
         {
-            var benchmark = new Benchmark.Benchmark();
-
-            System.Console.ReadLine();
+            new Benchmark.Benchmark().Run().Wait();
         }
     }
 }

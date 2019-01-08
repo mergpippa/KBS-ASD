@@ -1,12 +1,16 @@
 using System;
+<<<<<<< HEAD
 using KBS.Configuration;
+=======
+using System.Threading.Tasks;
+>>>>>>> develop
 using KBS.TestCases;
 
 namespace KBS.Benchmark.States
 {
     public class CreateTestCase : IBenchmarkStep
     {
-        public void Next(Benchmark benchmark)
+        public async Task Next(Benchmark benchmark)
         {
             Console.WriteLine(benchmark.Context.TelemetryClient);
 
@@ -17,7 +21,7 @@ namespace KBS.Benchmark.States
             );
 
             // Set next state
-            benchmark.Next(new CreateBusControl());
+            await benchmark.SetNext(new CreateBusControl());
         }
     }
 }
