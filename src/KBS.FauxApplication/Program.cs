@@ -1,14 +1,13 @@
 using System;
+using System.IO;
 
 namespace KBS.FauxApplication
 {
     internal static class Program
     {
-        private static void Main()
+        private static void Main(string[] args)
         {
-            var environment = Environment.GetEnvironmentVariable("");
-
-            Console.WriteLine(environment);
+            Console.WriteLine(args[0]);
 
             new Benchmark.Benchmark().Run().Wait();
         }
