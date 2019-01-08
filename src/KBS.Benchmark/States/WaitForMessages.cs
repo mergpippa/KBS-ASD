@@ -7,15 +7,11 @@ namespace KBS.Benchmark.States
 {
     public class WaitForMessages : IBenchmarkStep
     {
-<<<<<<< HEAD
         /// <summary>
         /// </summary>
         /// <param name="benchmark">
         /// </param>
-        public async void Next(Benchmark benchmark)
-=======
         public async Task Next(Benchmark benchmark)
->>>>>>> develop
         {
             var cancellationTokenSource = new CancellationTokenSource();
 

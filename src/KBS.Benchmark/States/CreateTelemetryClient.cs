@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 using KBS.Configuration;
-=======
 using System.Threading.Tasks;
->>>>>>> develop
 using KBS.MessageBus;
 using KBS.Telemetry;
 

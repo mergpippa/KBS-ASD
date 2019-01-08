@@ -1,9 +1,6 @@
 using System;
-<<<<<<< HEAD
 using KBS.Configuration;
-=======
 using System.Threading.Tasks;
->>>>>>> develop
 using KBS.TestCases;
 
 namespace KBS.Benchmark.States
