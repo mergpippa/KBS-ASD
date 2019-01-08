@@ -1,3 +1,5 @@
+using System;
+
 namespace KBS.Configuration
 {
     public class TransportConfiguration : BaseConfiguration
