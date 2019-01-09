@@ -39,7 +39,13 @@ namespace KBS.Controller.Controllers
         TransportType TransportType { get; set; }
 
         /// <summary>
+        /// Value used to set the maximum duration of an operation when using the azure service bus transport
         /// </summary>
         TimeSpan AzureServiceBusOperationTimeout { get; set; }
+
+        /// <summary>
+        /// Value used to choose whether transport should run in "Express" or "Durable" mode
+        /// </summary>
+        bool UseExpress { get; set; }
     }
 }

@@ -61,9 +61,9 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         private IMessageDiagnostics[] GenerateMessages()
         {
-            var messages = new IMessageDiagnostics[BenchmarkConfiguration.MessagesCount];
+            var messages = new IMessageDiagnostics[BenchmarkConfiguration.MessageCount];
 
-            for (var i = 0; i < BenchmarkConfiguration.MessagesCount; i++)
+            for (var i = 0; i < BenchmarkConfiguration.MessageCount; i++)
                 messages[i] = CreateMessage(i);
 
             return messages;
@@ -95,12 +95,12 @@ namespace KBS.TestCases.TestCases
             Console.WriteLine($"Start sending messages {startTime}");
 
             // Create clients array
-            var clients = new Task[BenchmarkConfiguration.ClientsCount];
+            var clients = new Task[BenchmarkConfiguration.ClientCount];
 
             // Amount of message that each client will send
-            var messagesForEachClient = BenchmarkConfiguration.MessagesCount / BenchmarkConfiguration.ClientsCount;
+            var messagesForEachClient = BenchmarkConfiguration.MessageCount / BenchmarkConfiguration.ClientCount;
 
-            for (var i = 0; i < BenchmarkConfiguration.ClientsCount; i++)
+            for (var i = 0; i < BenchmarkConfiguration.ClientCount; i++)
             {
                 var startIndex = messagesForEachClient * i;
                 var endIndex = startIndex + messagesForEachClient;

@@ -19,9 +19,9 @@ namespace KBS.Telemetry
             {
                 configuration = new
                 {
-                    messagesCount = BenchmarkConfiguration.MessagesCount,
+                    messagesCount = BenchmarkConfiguration.MessageCount,
                     fillerSize = BenchmarkConfiguration.FillerSize,
-                    clientsCount = BenchmarkConfiguration.ClientsCount,
+                    clientsCount = BenchmarkConfiguration.ClientCount,
                     testCaseType = TestCaseConfiguration.TestCaseType,
                     transportType = TestCaseConfiguration.TransportType,
                     useExpress = TransportConfiguration.UseExpress,

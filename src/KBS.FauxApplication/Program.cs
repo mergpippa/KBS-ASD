@@ -19,9 +19,4 @@ namespace KBS.FauxApplication
                 .Wait();
         }
     }
-
-    public class SimpleBenchmarkConfiguration
-    {
-        public TimeSpan Timeout { get; set; }
-    }
 }
