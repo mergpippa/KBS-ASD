@@ -1,3 +1,5 @@
+using System;
+using System.Text;
 using KBS.Configuration;
 
 namespace KBS.FauxApplication
@@ -6,9 +8,15 @@ namespace KBS.FauxApplication
     {
         private static void Main(string[] args)
         {
-            BaseConfiguration.SetCommandLineArgsConfiguration(args[0]);
+            var byteArray = Convert.FromBase64String(args[0]);
+            var jsonString = Encoding.UTF8.GetString(byteArray);
 
-            new Benchmark.Benchmark().Run().Wait();
+            BaseConfiguration.SetCommandLineArgsConfiguration(jsonString);
+
+            new Benchmark
+                .Benchmark()
+                .Run()
+                .Wait();
         }
     }
 }

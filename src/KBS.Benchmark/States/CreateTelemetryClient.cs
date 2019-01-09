@@ -13,7 +13,7 @@ namespace KBS.Benchmark.States
 
             // Create message capture context
             benchmark.Context.MessageCaptureContext = new MessageCaptureContext(
-                BenchmarkConfiguration.MessagesCount,
+                BenchmarkConfiguration.MessageCount,
                 benchmark.Context.TelemetryClient
             );
 

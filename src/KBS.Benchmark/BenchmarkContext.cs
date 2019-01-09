@@ -1,5 +1,5 @@
 using KBS.MessageBus;
-using KBS.Telemetry;
+using KBS.Telemetry.Clients;
 using KBS.TestCases.TestCases;
 
 namespace KBS.Benchmark

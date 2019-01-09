@@ -21,8 +21,9 @@ namespace KBS.Controller
         {
             #region snippet_SetCompatibilityVersion
 
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #endregion snippet_SetCompatibilityVersion
 
@@ -48,15 +49,20 @@ namespace KBS.Controller
                 app.UseHsts();
             }
 
+            AddSwagger(app);
+
+            app.UseHttpsRedirection();
+            app.UseMvc();
+        }
+
+        private static void AddSwagger(IApplicationBuilder app)
+        {
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "KBS-ASD Controller v1");
                 c.RoutePrefix = string.Empty;
             });
-
-            app.UseHttpsRedirection();
-            app.UseMvc();
         }
     }
 }

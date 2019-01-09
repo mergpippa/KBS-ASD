@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace KBS.Telemetry
+namespace KBS.Telemetry.Clients
 {
     public interface ITelemetryClient
     {

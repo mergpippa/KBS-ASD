@@ -51,7 +51,7 @@ namespace KBS.MessageBusTests
                 (_) => { }
             );
 
-            System.Console.WriteLine(busControl.GetType());
+            Console.WriteLine(busControl.GetType());
 
             Assert.IsType<MassTransitBus>(busControl);
         }

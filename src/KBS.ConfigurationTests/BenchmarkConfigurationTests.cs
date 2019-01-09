@@ -9,7 +9,7 @@ namespace KBS.ConfigurationTests
         [Fact]
         public void Should_GetMessagesCount()
         {
-            var value = BenchmarkConfiguration.MessagesCount;
+            var value = BenchmarkConfiguration.MessageCount;
 
             Assert.Equal(1000, value);
             Assert.IsType<int>(value);
@@ -27,7 +27,7 @@ namespace KBS.ConfigurationTests
         [Fact]
         public void Should_GetClients()
         {
-            var value = BenchmarkConfiguration.ClientsCount;
+            var value = BenchmarkConfiguration.ClientCount;
 
             Assert.Equal(2, value);
             Assert.IsType<int>(value);

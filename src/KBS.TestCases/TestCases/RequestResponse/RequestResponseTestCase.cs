@@ -8,7 +8,8 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse
 {
-    /// <summary>
+    /// <inheritdoc />
+    ///    /// <summary>
     /// Test case for request and response
     /// </summary>
     internal class RequestResponseTestCase : TestCase
@@ -18,7 +19,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </summary>
         private const string QueueName = "request-response_queue";
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="messageCaptureContext">
@@ -26,7 +28,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         public RequestResponseTestCase(MessageCaptureContext messageCaptureContext) : base(messageCaptureContext)
         { }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -38,21 +41,23 @@ namespace KBS.TestCases.TestCases.RequestResponse
             );
         }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// </summary>
         /// <param name="index">
         /// </param>
         /// <param name="filler">
         /// </param>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
             new RequestMessage
             {
                 Id = index,
-                TestCase = this.GetType(),
+                TestCase = GetType(),
                 Filler = filler
             };
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method to run the test case
         /// </summary>
         /// <param name="busControl">
@@ -74,7 +79,8 @@ namespace KBS.TestCases.TestCases.RequestResponse
         }
     }
 
-    /// <summary>
+    /// <inheritdoc />
+    ///    /// <summary>
     /// Class used to create concrete message instances
     /// </summary>
     internal class RequestMessage : IRequestMessage

@@ -15,8 +15,7 @@ namespace KBS.Benchmark.States
                     busFactoryConfigurator.UseMessagePerformanceDiagnostics(benchmark.Context.MessageCaptureContext);
 
                     benchmark.Context.TestCase.ConfigureEndpoints(busFactoryConfigurator);
-                },
-                benchmark.Context.TelemetryClient
+                }
             );
 
             await benchmark.SetNext(new StartBenchmark());

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using KBS.Configuration;
 using Newtonsoft.Json;
 
-namespace KBS.Telemetry
+namespace KBS.Telemetry.Clients
 {
     public class InMemoryTelemetryClient : ITelemetryClient
     {
@@ -19,9 +19,9 @@ namespace KBS.Telemetry
             {
                 configuration = new
                 {
-                    messagesCount = BenchmarkConfiguration.MessagesCount,
+                    messagesCount = BenchmarkConfiguration.MessageCount,
                     fillerSize = BenchmarkConfiguration.FillerSize,
-                    clientsCount = BenchmarkConfiguration.ClientsCount,
+                    clientsCount = BenchmarkConfiguration.ClientCount,
                     testCaseType = TestCaseConfiguration.TestCaseType,
                     transportType = TestCaseConfiguration.TransportType,
                     useExpress = TransportConfiguration.UseExpress,

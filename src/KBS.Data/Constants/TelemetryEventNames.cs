@@ -8,8 +8,6 @@ namespace KBS.Data.Constants
 
         public const string MessageException = "MessageException";
 
-        public const string BenchmarkStarted = "BenchmarkStarted";
-
-        public const string BenchmarkEnded = "BenchmarkEnded";
+        public const string ExceptionAt = "ExceptionAt";
     }
 }

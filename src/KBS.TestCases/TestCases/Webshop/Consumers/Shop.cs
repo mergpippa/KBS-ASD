@@ -21,7 +21,7 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
         /// <summary>
         /// The List of orders that have been made
         /// </summary>
-        private static readonly List<IOrder> _orders = new List<IOrder>();
+        private static readonly List<IOrder> Orders = new List<IOrder>();
 
         /// <summary>
         /// Constructor of the shop, sets the starting conditions for the shop
@@ -69,7 +69,7 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
             {
                 ITransaction transaction = context.Message.Purchase;
 
-                _orders.Add(context.Message);
+                Orders.Add(context.Message);
 
                 await Console.Out.WriteLineAsync("\tPublishing transaction");
 
@@ -92,8 +92,8 @@ namespace KBS.TestCases.TestCases.Webshop.Consumers
             if (context.Message.IsValid)
             {
                 await Console.Out.WriteLineAsync("VALID");
-                var order = _orders.Find(o => o.Purchase.AccountId == context.Message.Transaction.AccountId);
-                _orders.Remove(order);
+                var order = Orders.Find(o => o.Purchase.AccountId == context.Message.Transaction.AccountId);
+                Orders.Remove(order);
                 await Console.Out.WriteLineAsync($"\t{order.Quantity} {order.ItemName} purchased by {order.Purchase.AccountId} for ${order.Purchase.Withdrawal}");
             }
             else

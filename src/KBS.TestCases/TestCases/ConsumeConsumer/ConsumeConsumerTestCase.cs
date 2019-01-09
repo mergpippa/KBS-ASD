@@ -14,7 +14,8 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
         /// </summary>
         private const string QueueName = "consume-consumer_queue";
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Constructor that passes the TestCaseConfiguration through to the AbstractTestCase
         /// </summary>
         /// <param name="telemetryClient">
@@ -22,7 +23,8 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
         public ConsumeConsumerTestCase(MessageCaptureContext telemetryClient) : base(telemetryClient)
         { }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -35,20 +37,22 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
             );
         }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Creates a message object for given index
         /// </summary>
         /// <returns>
         /// </returns>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
             new ConsumeMessage
             {
                 Id = index,
-                TestCase = this.GetType(),
+                TestCase = GetType(),
                 Filler = filler
             };
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method to run the test case
         /// </summary>
         /// <param name="busControl">

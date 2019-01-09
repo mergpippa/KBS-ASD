@@ -14,8 +14,6 @@ namespace KBS.TestCases
         /// </summary>
         /// <param name="testCaseType">
         /// </param>
-        /// <param name="testCaseConfiguration">
-        /// </param>
         /// <param name="messageCaptureContext">
         /// </param>
         /// <returns>
