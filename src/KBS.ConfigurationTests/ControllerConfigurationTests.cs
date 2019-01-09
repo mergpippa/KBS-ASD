@@ -8,7 +8,7 @@ namespace KBS.ConfigurationTests
     {
         public ControllerConfigurationTests()
         {
-            Environment.SetEnvironmentVariable("WebJobHost", "https://kbs-asd-test.azurewebsites.net/");
+            Environment.SetEnvironmentVariable("KuduHost", "https://kbs-asd-test.azurewebsites.net/");
         }
 
         [Fact]
