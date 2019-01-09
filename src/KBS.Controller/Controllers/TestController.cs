@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace KBS.Controller.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/benchmark")]
     [ApiController]
     public class TestController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace KBS.Controller.Controllers
         // GET api/test
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<string> GetWebJobHistory()
+        public async Task<string> GetWebJob()
         {
             var response = await KuduHttpClient.GetAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}"
@@ -44,10 +44,23 @@ namespace KBS.Controller.Controllers
             return await response.Content.ReadAsStringAsync();
         }
 
+        // GET api/test
+        [HttpGet]
+        [Route("history")]
+        [ProducesResponseType(200)]
+        public async Task<string> GetWebJobHistory()
+        {
+            var response = await KuduHttpClient.GetAsync(
+                $"triggeredwebjobs/{ControllerConfiguration.WebJobName}/history"
+            );
+
+            return await response.Content.ReadAsStringAsync();
+        }
+
         // POST api/test
         [HttpPost]
         [ProducesResponseType(200)]
-        public async Task<string> TriggerWebjob([FromBody] ISimpleBenchmarkConfiguration configuration)
+        public async Task<string> TriggerWebjob([FromBody] SimpleBenchmarkConfiguration configuration)
         {
             var jsonConfiguration = JsonConvert.SerializeObject(configuration);
 
