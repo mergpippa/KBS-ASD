@@ -8,7 +8,7 @@ namespace KBS.ConfigurationTests
     {
         public TransportConfigurationTests()
         {
-            Environment.SetEnvironmentVariable("AzureServiceBusUri", "testUri");
+            Environment.SetEnvironmentVariable("AzureServiceBusUri", "amqp://myservicebus.url");
             Environment.SetEnvironmentVariable("AzureServiceBusToken", "testToken");
         }
 
@@ -17,7 +17,7 @@ namespace KBS.ConfigurationTests
         {
             var value = TransportConfiguration.AzureServiceBusUri;
 
-            Assert.Equal("testUri", value);
+            Assert.Equal("amqp://myservicebus.url", value);
         }
 
         [Fact]
