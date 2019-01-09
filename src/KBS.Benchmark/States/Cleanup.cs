@@ -17,6 +17,8 @@ namespace KBS.Benchmark.States
 
             // Go to finished state
             Console.WriteLine("Benchmark finished");
+
+            await Task.Delay(500);
         }
     }
 }

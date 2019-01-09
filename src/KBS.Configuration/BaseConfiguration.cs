@@ -126,6 +126,9 @@ namespace KBS.Configuration
         /// </returns>
         public static void SetCommandLineArgsConfiguration(string jsonString)
         {
+            if (jsonString == String.Empty)
+                return;
+
             // Memoize the deserialized object because it can take over 100ms to finish this operation
             _commandLineArgumentConfiguration = JsonConvert.DeserializeObject<dynamic>(jsonString);
         }
