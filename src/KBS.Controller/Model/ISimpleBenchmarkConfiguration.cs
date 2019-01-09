@@ -1,7 +1,7 @@
 using System;
 using KBS.Data.Enum;
 
-namespace KBS.Controller.Controllers
+namespace KBS.Controller.Model
 {
     /// <summary>
     /// Configuration class that is used to

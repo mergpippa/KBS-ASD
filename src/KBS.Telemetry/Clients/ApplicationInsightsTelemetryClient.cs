@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using KBS.Data.Constants;
 using Microsoft.ApplicationInsights;
 
-namespace KBS.Telemetry
+namespace KBS.Telemetry.Clients
 {
     public class ApplicationInsightsTelemetryClient : ITelemetryClient
     {

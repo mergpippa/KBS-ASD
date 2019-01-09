@@ -1,5 +1,6 @@
 using System;
 using KBS.Data.Enum;
+using KBS.Telemetry.Clients;
 
 namespace KBS.Telemetry
 {

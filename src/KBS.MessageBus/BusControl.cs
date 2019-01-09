@@ -1,6 +1,7 @@
 using System;
 using KBS.Configuration;
 using KBS.Telemetry;
+using KBS.Telemetry.Clients;
 using MassTransit;
 
 namespace KBS.MessageBus

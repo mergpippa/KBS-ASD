@@ -4,6 +4,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using KBS.Configuration;
+using KBS.Controller.Model;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -14,11 +15,11 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class TestController : ControllerBase
     {
-        private static readonly HttpClient _kuduHttpClient;
+        private static readonly HttpClient KuduHttpClient;
 
         static TestController()
         {
-            _kuduHttpClient = new HttpClient
+            KuduHttpClient = new HttpClient
             {
                 BaseAddress = new Uri(ControllerConfiguration.KuduHost)
             };
@@ -27,7 +28,7 @@ namespace KBS.Controller.Controllers
                 $"{ControllerConfiguration.KuduUsername}:{ControllerConfiguration.KuduPassword}"
             );
 
-            _kuduHttpClient.DefaultRequestHeaders.Authorization =
+            KuduHttpClient.DefaultRequestHeaders.Authorization =
                 new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }
 
@@ -36,7 +37,7 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(200)]
         public async Task<string> GetWebJobHistory()
         {
-            var response = await _kuduHttpClient.GetAsync(
+            var response = await KuduHttpClient.GetAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}"
             );
 
@@ -52,7 +53,7 @@ namespace KBS.Controller.Controllers
 
             var byteArray = Encoding.UTF8.GetBytes(jsonConfiguration);
 
-            var response = await _kuduHttpClient.PostAsync(
+            var response = await KuduHttpClient.PostAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}/run?arguments={Convert.ToBase64String(byteArray)}",
                 null
             );
@@ -65,7 +66,7 @@ namespace KBS.Controller.Controllers
         [ProducesResponseType(204)]
         public async Task<string> DeleteWebjob()
         {
-            var response = await _kuduHttpClient.DeleteAsync(
+            var response = await KuduHttpClient.DeleteAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}"
             );
 

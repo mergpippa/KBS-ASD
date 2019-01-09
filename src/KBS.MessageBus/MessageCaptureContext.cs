@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using KBS.Data.Constants;
 using KBS.Telemetry;
+using KBS.Telemetry.Clients;
 using KBS.Topics;
 
 namespace KBS.MessageBus

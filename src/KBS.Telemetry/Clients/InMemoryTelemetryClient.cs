@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using KBS.Configuration;
 using Newtonsoft.Json;
 
-namespace KBS.Telemetry
+namespace KBS.Telemetry.Clients
 {
     public class InMemoryTelemetryClient : ITelemetryClient
     {
