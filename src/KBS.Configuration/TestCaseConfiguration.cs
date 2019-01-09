@@ -7,12 +7,12 @@ namespace KBS.Configuration
         /// <summary>
         /// Value that is used to choose the test case that is used to run the benchmark
         /// </summary>
-        public static TestCaseType TestCaseType { get => GetFromAny("TestCaseType", TestCaseType.ConsumeConsumer); }
+        public static TestCaseType TestCaseType { get => GetFromArguments("TestCaseType", TestCaseType.ConsumeConsumer); }
 
         /// <summary>
         /// Value that is used to choose between the different BusControl transports
         /// </summary>
-        public static TransportType TransportType { get => GetFromAny("TransportType", TransportType.InMemory); }
+        public static TransportType TransportType { get => GetFromArguments("TransportType", TransportType.InMemory); }
 
         /// <summary>
         /// Value that is used to choose the telemetry client that is used to track events

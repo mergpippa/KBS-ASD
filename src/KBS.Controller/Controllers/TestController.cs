@@ -46,7 +46,7 @@ namespace KBS.Controller.Controllers
         // POST api/test
         [HttpPost]
         [ProducesResponseType(200)]
-        public async Task<string> TriggerWebjob([FromBody] SimpleBenchmarkConfiguration configuration)
+        public async Task<string> TriggerWebjob([FromBody] ISimpleBenchmarkConfiguration configuration)
         {
             var jsonConfiguration = JsonConvert.SerializeObject(configuration);
 
@@ -71,10 +71,5 @@ namespace KBS.Controller.Controllers
 
             return await response.Content.ReadAsStringAsync();
         }
-    }
-
-    public class SimpleBenchmarkConfiguration
-    {
-        public TimeSpan Timeout { get; set; }
     }
 }
