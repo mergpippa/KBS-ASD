@@ -35,7 +35,8 @@ namespace KBS.TestCases.Utilities
             _noiseValue = NextDouble;
         }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// The randomizer for generating noise or other random values for simulation
         /// </summary>
         /// <param name="lowerLimit">
@@ -91,6 +92,6 @@ namespace KBS.TestCases.Utilities
         /// <summary>
         /// Random double within the limits given in the contructor, this is NO noise!
         /// </summary>
-        private double NextDouble { get => _random.NextDouble() * (UpperLimit - LowerLimit) + LowerLimit; }
+        private double NextDouble => _random.NextDouble() * (UpperLimit - LowerLimit) + LowerLimit;
     }
 }

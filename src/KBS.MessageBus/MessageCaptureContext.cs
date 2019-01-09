@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using KBS.Data.Constants;
-using KBS.Telemetry;
 using KBS.Telemetry.Clients;
 using KBS.Topics;
 
@@ -41,7 +40,9 @@ namespace KBS.MessageBus
         /// <summary>
         /// MessageCaptureContext constructor
         /// </summary>
-        /// <param name="testCaseConfiguration">
+        /// <param name="messagesCount">
+        /// </param>
+        /// <param name="telemetryClient">
         /// </param>
         public MessageCaptureContext(int messagesCount, ITelemetryClient telemetryClient)
         {
@@ -52,18 +53,7 @@ namespace KBS.MessageBus
         /// <summary>
         /// Checks if all messages have been received
         /// </summary>
-        public bool DidReceiveAllMessages
-        {
-            get => _receivedMessagesCount >= _messagesCount;
-        }
-
-        /// <summary>
-        /// Checks if all messages have been received
-        /// </summary>
-        public bool DidSendAllMessages
-        {
-            get => _sentMessagesCount >= _messagesCount;
-        }
+        public bool DidReceiveAllMessages => _receivedMessagesCount >= _messagesCount;
 
         /// <summary>
         /// Property that indicates whether the benchmark timed out when waiting for messages
@@ -86,9 +76,9 @@ namespace KBS.MessageBus
                 TelemetryEventNames.MessageReceived,
                 new Dictionary<string, string>
                 {
-                    { "MessageId", message.Id.ToString() },
-                    { "TestCase", message.TestCase.ToString() },
-                    { "ReceivedAt", elapsedSpan.Ticks.ToString() }
+                    { TelemetryEventPropertyNames.MessageId, message.Id.ToString() },
+                    { TelemetryEventPropertyNames.TestCase, message.TestCase.ToString() },
+                    { TelemetryEventPropertyNames.ReceivedAt, elapsedSpan.Ticks.ToString() }
                 }
             );
         }
@@ -104,9 +94,9 @@ namespace KBS.MessageBus
                 TelemetryEventNames.MessageSent,
                 new Dictionary<string, string>
                 {
-                    { "MessageId", message.Id.ToString() },
-                    { "TestCase", message.TestCase.ToString() },
-                    { "SentAt", elapsedSpan.Ticks.ToString() }
+                    { TelemetryEventPropertyNames.MessageId, message.Id.ToString() },
+                    { TelemetryEventPropertyNames.TestCase, message.TestCase.ToString() },
+                    { TelemetryEventPropertyNames.SendAt, elapsedSpan.Ticks.ToString() }
                 }
             );
         }
@@ -127,7 +117,7 @@ namespace KBS.MessageBus
                 TelemetryEventNames.MessageException,
                 new Dictionary<string, string>
                 {
-                    { "ExceptionAt", elapsedSpan.Ticks.ToString() }
+                    { TelemetryEventNames.ExceptionAt, elapsedSpan.Ticks.ToString() }
                 }
             );
         }

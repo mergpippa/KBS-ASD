@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using KBS.Data.Constants;
+using KBS.Configuration;
 using Microsoft.ApplicationInsights;
 
 namespace KBS.Telemetry.Clients
@@ -16,7 +16,7 @@ namespace KBS.Telemetry.Clients
         public ApplicationInsightsTelemetryClient()
         {
             // Check if app insight instrumentation key is set
-            Environment.GetEnvironmentVariable(EnvironmentVariables.AppInsightsInstrumentationKey);
+            Environment.GetEnvironmentVariable(TelemetryClientConfiguration.AppInsightsInstrumentationKey);
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace KBS.Telemetry.Clients
         /// </returns>
         public async Task Flush()
         {
-            Console.WriteLine($"Flushing telemetry client");
+            Console.WriteLine("Flushing telemetry client");
 
             _telemetryClient.Flush();
 

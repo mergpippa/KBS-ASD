@@ -15,7 +15,8 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         private const string QueueName = "webshop_queue";
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="telemetryClient">
@@ -23,7 +24,8 @@ namespace KBS.TestCases.TestCases.Webshop
         public WebshopTestCase(MessageCaptureContext telemetryClient) : base(telemetryClient)
         { }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -44,11 +46,11 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Creates a message object for given index
         /// </summary>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
             new CatalogueRequest
             {
                 Id = index,
-                TestCase = this.GetType(),
+                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -66,7 +68,8 @@ namespace KBS.TestCases.TestCases.Webshop
         }
     }
 
-    /// <summary>
+    /// <inheritdoc />
+    ///    /// <summary>
     /// Class used to create concrete message instances
     /// </summary>
     internal class CatalogueRequest : ICatalogueRequest

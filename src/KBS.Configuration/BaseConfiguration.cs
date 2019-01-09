@@ -10,7 +10,7 @@ namespace KBS.Configuration
         /// </summary>
         private static dynamic _commandLineArgumentConfiguration = JsonConvert.DeserializeObject("{}");
 
-        public static T GetFromAny<T>(string key)
+        private static T GetFromAny<T>(string key)
         {
             var value = GetFromArguments<T>(key);
 
@@ -25,10 +25,7 @@ namespace KBS.Configuration
         {
             var value = GetFromAny<T>(key);
 
-            if (value.Equals(default(T)))
-                return fallback;
-
-            return value;
+            return value.Equals(default(T)) ? fallback : value;
         }
 
         /// <summary>
@@ -58,16 +55,15 @@ namespace KBS.Configuration
         /// </typeparam>
         /// <param name="key">
         /// </param>
+        /// <param name="fallback">
+        /// </param>
         /// <returns>
         /// </returns>
         public static T GetFromEnvironment<T>(string key, T fallback)
         {
             var value = GetFromArguments<T>(key);
 
-            if (value.Equals(default(T)))
-                return fallback;
-
-            return value;
+            return value.Equals(default(T)) ? fallback : value;
         }
 
         /// <summary>
@@ -105,10 +101,7 @@ namespace KBS.Configuration
         {
             var value = GetFromArguments<T>(key);
 
-            if (value.Equals(default(T)))
-                return fallback;
-
-            return value;
+            return value.Equals(default(T)) ? fallback : value;
         }
 
         /// <summary>
@@ -116,17 +109,14 @@ namespace KBS.Configuration
         /// configuration values. This value is memoized because it can take over 100ms to
         /// deserialize jsonString.
         /// </summary>
-        /// <typeparam name="T">
-        /// </typeparam>
-        /// <param name="key">
-        /// </param>
-        /// <param name="fallback">
+        /// ///
+        /// <param name="jsonString">
         /// </param>
         /// <returns>
         /// </returns>
         public static void SetCommandLineArgsConfiguration(string jsonString)
         {
-            if (jsonString == String.Empty)
+            if (jsonString == string.Empty)
                 return;
 
             // Memoize the deserialized object because it can take over 100ms to finish this operation

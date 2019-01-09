@@ -1,7 +1,5 @@
 using System;
 using KBS.Configuration;
-using KBS.Telemetry;
-using KBS.Telemetry.Clients;
 using MassTransit;
 
 namespace KBS.MessageBus
@@ -10,20 +8,13 @@ namespace KBS.MessageBus
     {
         public readonly IBusControl Instance;
 
-        private readonly ITelemetryClient _telemetryClient;
-
         /// <summary>
         /// Creates a new bus control with given test case
         /// </summary>
-        /// <param name="telemetryClient">
+        /// <param name="busFactoryConfigurator">
         /// </param>
-        public BusControl(
-            Action<IBusFactoryConfigurator> busFactoryConfigurator,
-            ITelemetryClient telemetryClient
-        )
+        public BusControl(Action<IBusFactoryConfigurator> busFactoryConfigurator)
         {
-            _telemetryClient = telemetryClient;
-
             Instance = TransportFactory.Create(
                 TestCaseConfiguration.TransportType,
                 busFactoryConfigurator
@@ -33,7 +24,8 @@ namespace KBS.MessageBus
             Instance.Start();
         }
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Stops bus control when this class is being disposed
         /// </summary>
         public void Dispose()

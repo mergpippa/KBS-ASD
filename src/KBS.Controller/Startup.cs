@@ -21,8 +21,9 @@ namespace KBS.Controller
         {
             #region snippet_SetCompatibilityVersion
 
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services
+                .AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             #endregion snippet_SetCompatibilityVersion
 
@@ -54,7 +55,7 @@ namespace KBS.Controller
             app.UseMvc();
         }
 
-        private void AddSwagger(IApplicationBuilder app)
+        private static void AddSwagger(IApplicationBuilder app)
         {
             app.UseSwagger();
             app.UseSwaggerUI(c =>

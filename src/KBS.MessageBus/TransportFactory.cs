@@ -16,8 +16,7 @@ namespace KBS.MessageBus
         /// <param name="transportType">
         /// Transport type (RabbitMQ, Azure Service Bus or in memory)
         /// </param>
-        /// <param name="testCase">
-        /// Configuration of message bus
+        /// <param name="busFactoryConfigurator">
         /// </param>
         /// <returns>
         /// </returns>

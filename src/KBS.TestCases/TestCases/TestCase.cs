@@ -20,7 +20,7 @@ namespace KBS.TestCases.TestCases
         /// <summary>
         /// Abstract class with a Benchmark method that is used to call a callback on given test parameters
         /// </summary>
-        /// <param name="testCaseConfiguration">
+        /// <param name="messageCaptureContext">
         /// </param>
         protected TestCase(MessageCaptureContext messageCaptureContext)
         {
@@ -31,6 +31,8 @@ namespace KBS.TestCases.TestCases
         /// Method used to create a message object for given index
         /// </summary>
         /// <param name="index">
+        /// </param>
+        /// <param name="filler">
         /// </param>
         /// <returns>
         /// </returns>
@@ -47,7 +49,8 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         public abstract Task Run(BusControl busControl);
 
-        /// <summary>
+        /// <inheritdoc />
+        ///        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
