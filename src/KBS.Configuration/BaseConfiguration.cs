@@ -8,7 +8,7 @@ namespace KBS.Configuration
         /// <summary>
         /// Memoized version of the GetCommandLineArgs string that is converted to a JSON object
         /// </summary>
-        private static dynamic _commandLineArgumentConfiguration;
+        private static dynamic _commandLineArgumentConfiguration = JsonConvert.DeserializeObject("{}");
 
         public static T GetFromAny<T>(string key)
         {
