@@ -11,7 +11,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
     /// <summary>
     /// Test case for request and response
     /// </summary>
-    internal class RequestResponseTestCase : TestCase
+    public class RequestResponseTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case

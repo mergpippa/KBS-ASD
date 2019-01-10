@@ -7,7 +7,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.ConsumeConsumer
 {
-    internal class ConsumeConsumerTestCase : TestCase
+    public class ConsumeConsumerTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for this test case

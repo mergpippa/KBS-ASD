@@ -8,7 +8,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop
 {
-    internal class WebshopTestCase : TestCase
+    public class WebshopTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case
