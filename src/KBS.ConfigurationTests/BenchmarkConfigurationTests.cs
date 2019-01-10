@@ -10,7 +10,6 @@ namespace KBS.ConfigurationTests
         public void Should_GetMessagesCount()
         {
             var value = BenchmarkConfiguration.MessageCount;
-
             Assert.Equal(1000, value);
             Assert.IsType<int>(value);
         }

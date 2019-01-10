@@ -4,9 +4,9 @@ using KBS.Configuration;
 
 namespace KBS.FauxApplication
 {
-    internal static class Program
+    public static class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var byteArray = Convert.FromBase64String(args[0]);
             var jsonString = Encoding.UTF8.GetString(byteArray);
