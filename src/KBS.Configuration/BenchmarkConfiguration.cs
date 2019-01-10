@@ -4,10 +4,12 @@ namespace KBS.Configuration
 {
     public class BenchmarkConfiguration : BaseConfiguration
     {
+        private static readonly string InitializedAt = DateTime.UtcNow.ToString("o");
+        
         /// <summary>
         /// Unique benchmark name
         /// </summary>
-        public static string Name => GetFromArguments("Name", DateTime.UtcNow.ToString("o"));
+        public static string Name => GetFromArguments("Name", InitializedAt);
 
         /// <summary>
         /// Amount of messages to send during the benchmark
