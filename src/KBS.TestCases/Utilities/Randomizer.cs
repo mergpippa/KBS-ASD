@@ -35,8 +35,7 @@ namespace KBS.TestCases.Utilities
             _noiseValue = NextDouble;
         }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// The randomizer for generating noise or other random values for simulation
         /// </summary>
         /// <param name="lowerLimit">

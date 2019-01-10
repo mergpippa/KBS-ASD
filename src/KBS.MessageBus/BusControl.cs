@@ -24,8 +24,7 @@ namespace KBS.MessageBus
             Instance.Start();
         }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Stops bus control when this class is being disposed
         /// </summary>
         public void Dispose()

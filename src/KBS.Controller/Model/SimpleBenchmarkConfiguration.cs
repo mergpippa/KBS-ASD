@@ -11,6 +11,10 @@ namespace KBS.Controller.Model
         /// <summary>
         /// Amount of messages to send during the benchmark
         /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// </summary>
         public int MessagesCount { get; set; }
 
         /// <summary>

@@ -11,6 +11,8 @@ namespace KBS.FauxApplication
             var byteArray = Convert.FromBase64String(args[0]);
             var jsonString = Encoding.UTF8.GetString(byteArray);
 
+            Console.WriteLine($"Configuration: {jsonString}");
+
             BaseConfiguration.SetCommandLineArgsConfiguration(jsonString);
 
             new Benchmark

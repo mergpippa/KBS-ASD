@@ -15,8 +15,7 @@ namespace KBS.TestCases.TestCases.Webshop
         /// </summary>
         private const string QueueName = "webshop_queue";
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="telemetryClient">
@@ -24,8 +23,7 @@ namespace KBS.TestCases.TestCases.Webshop
         public WebshopTestCase(MessageCaptureContext telemetryClient) : base(telemetryClient)
         { }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -68,8 +66,7 @@ namespace KBS.TestCases.TestCases.Webshop
         }
     }
 
-    /// <inheritdoc />
-    ///    /// <summary>
+    /// <summary>
     /// Class used to create concrete message instances
     /// </summary>
     internal class CatalogueRequest : ICatalogueRequest

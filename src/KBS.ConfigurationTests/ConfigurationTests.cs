@@ -11,7 +11,9 @@ namespace KBS.ConfigurationTests
             Environment.SetEnvironmentVariable("myEnvVarString", "myRandomValue");
             Environment.SetEnvironmentVariable("myEnvVarInt", 54125.ToString());
 
-            BaseConfiguration.SetCommandLineArgsConfiguration("{myArg:\"A string\",myOtherArg:\"12345\"}");
+            BaseConfiguration.SetCommandLineArgsConfiguration(
+                "{myArg:\"A string\",myOtherArg:\"12345\",myNullArg:null}"
+            );
         }
 
         [Fact]
@@ -46,6 +48,16 @@ namespace KBS.ConfigurationTests
             const int expectedValue = 12345;
 
             var value = BaseConfiguration.GetFromArguments("myOtherArg", default(int));
+
+            Assert.Equal(expectedValue, value);
+        }
+
+        [Fact]
+        public void Should_ReturnConvertValueToCorrectType_When_ArgumentIsNull()
+        {
+            const string expectedValue = "myFallBack";
+
+            var value = BaseConfiguration.GetFromArguments("myNullArg", expectedValue);
 
             Assert.Equal(expectedValue, value);
         }
