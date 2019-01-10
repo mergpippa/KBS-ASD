@@ -10,14 +10,14 @@ using Newtonsoft.Json;
 
 namespace KBS.Controller.Controllers
 {
-    [Produces("application/json")]
     [Route("api/benchmark")]
+    [Produces("application/json")]
     [ApiController]
-    public class TestController : ControllerBase
+    public class BenchmarkController : ControllerBase
     {
         private static readonly HttpClient KuduHttpClient;
 
-        static TestController()
+        static BenchmarkController()
         {
             KuduHttpClient = new HttpClient
             {
@@ -69,18 +69,6 @@ namespace KBS.Controller.Controllers
             var response = await KuduHttpClient.PostAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}/run?arguments={Convert.ToBase64String(byteArray)}",
                 null
-            );
-
-            return await response.Content.ReadAsStringAsync();
-        }
-
-        // DELETE api/test
-        [HttpDelete]
-        [ProducesResponseType(204)]
-        public async Task<string> DeleteWebjob()
-        {
-            var response = await KuduHttpClient.DeleteAsync(
-                $"triggeredwebjobs/{ControllerConfiguration.WebJobName}"
             );
 
             return await response.Content.ReadAsStringAsync();

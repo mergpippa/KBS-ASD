@@ -8,8 +8,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.RequestResponse
 {
-    /// <inheritdoc />
-    ///    /// <summary>
+    /// <summary>
     /// Test case for request and response
     /// </summary>
     internal class RequestResponseTestCase : TestCase
@@ -19,8 +18,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         /// </summary>
         private const string QueueName = "request-response_queue";
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Constructor that passes the TestCaseConfiguration to the AbstractTestCase
         /// </summary>
         /// <param name="messageCaptureContext">
@@ -28,8 +26,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         public RequestResponseTestCase(MessageCaptureContext messageCaptureContext) : base(messageCaptureContext)
         { }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">
@@ -41,8 +38,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
             );
         }
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// </summary>
         /// <param name="index">
         /// </param>
@@ -56,8 +52,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
                 Filler = filler
             };
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Method to run the test case
         /// </summary>
         /// <param name="busControl">
@@ -79,8 +74,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
         }
     }
 
-    /// <inheritdoc />
-    ///    /// <summary>
+    /// <summary>
     /// Class used to create concrete message instances
     /// </summary>
     internal class RequestMessage : IRequestMessage

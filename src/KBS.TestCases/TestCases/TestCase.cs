@@ -38,7 +38,6 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         protected abstract IMessageDiagnostics CreateMessage(int index, byte[] filler = null);
 
-        /// ///
         /// <summary>
         /// Method to run the test benchmark
         /// </summary>
@@ -49,8 +48,7 @@ namespace KBS.TestCases.TestCases
         /// </returns>
         public abstract Task Run(BusControl busControl);
 
-        /// <inheritdoc />
-        ///        /// <summary>
+        /// <summary>
         /// Method used to configure the available endpoints for a test case
         /// </summary>
         /// <param name="busFactoryConfigurator">

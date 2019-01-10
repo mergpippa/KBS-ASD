@@ -10,7 +10,14 @@ namespace KBS.Configuration
         /// </summary>
         private static dynamic _commandLineArgumentConfiguration = JsonConvert.DeserializeObject("{}");
 
-        private static T GetFromAny<T>(string key)
+        /// <summary>
+        /// Tries to get the value matching given key from arguments first, then from environment.
+        /// </summary>
+        /// <typeparam name="T">
+        /// </typeparam>
+        /// <param name="key">
+        /// </param>
+        public static T GetFromAny<T>(string key)
         {
             var value = GetFromArguments<T>(key);
 
@@ -21,6 +28,16 @@ namespace KBS.Configuration
             return value;
         }
 
+        /// <summary>
+        /// Tries to get the value matching given key from arguments first, then from environment.
+        /// The fallback will be returned if the value is the default of specified type
+        /// </summary>
+        /// <typeparam name="T">
+        /// </typeparam>
+        /// <param name="key">
+        /// </param>
+        /// <param name="fallback">
+        /// </param>
         public static T GetFromAny<T>(string key, T fallback)
         {
             var value = GetFromAny<T>(key);
@@ -35,8 +52,6 @@ namespace KBS.Configuration
         /// </typeparam>
         /// <param name="key">
         /// </param>
-        /// <returns>
-        /// </returns>
         public static T GetFromEnvironment<T>(string key)
         {
             var value = Environment.GetEnvironmentVariable(key);
@@ -57,8 +72,8 @@ namespace KBS.Configuration
         /// </param>
         /// <param name="fallback">
         /// </param>
-        /// <returns>
-        /// </returns>
+        /// <param name="fallback">
+        /// </param>
         public static T GetFromEnvironment<T>(string key, T fallback)
         {
             var value = GetFromArguments<T>(key);
@@ -73,8 +88,6 @@ namespace KBS.Configuration
         /// </typeparam>
         /// <param name="key">
         /// </param>
-        /// <returns>
-        /// </returns>
         public static T GetFromArguments<T>(string key)
         {
             var value = _commandLineArgumentConfiguration[key];
@@ -89,19 +102,18 @@ namespace KBS.Configuration
         /// Gets value from command line arguments. The fallback will be returned if the value is the
         /// default of specified type type of T
         /// </summary>
-        /// <typeparam name="T">
-        /// </typeparam>
         /// <param name="key">
         /// </param>
         /// <param name="fallback">
         /// </param>
-        /// <returns>
-        /// </returns>
         public static T GetFromArguments<T>(string key, T fallback)
         {
             var value = GetFromArguments<T>(key);
 
-            return value.Equals(default(T)) ? fallback : value;
+            if (value == null || value.Equals(default(T)))
+                return fallback;
+
+            return value;
         }
 
         /// <summary>
@@ -109,11 +121,8 @@ namespace KBS.Configuration
         /// configuration values. This value is memoized because it can take over 100ms to
         /// deserialize jsonString.
         /// </summary>
-        /// ///
         /// <param name="jsonString">
         /// </param>
-        /// <returns>
-        /// </returns>
         public static void SetCommandLineArgsConfiguration(string jsonString)
         {
             if (jsonString == string.Empty)

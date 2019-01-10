@@ -1,13 +1,19 @@
 namespace KBS.Configuration
 {
-    public static class ControllerConfiguration
+    public class ControllerConfiguration : BaseConfiguration
     {
-        public static string KuduHost => BaseConfiguration.GetFromEnvironment<string>("KuduHost");
+        public static string KuduHost => GetFromEnvironment<string>("KuduHost");
 
-        public static string KuduUsername => BaseConfiguration.GetFromEnvironment<string>("KuduUsername");
+        public static string KuduUsername => GetFromEnvironment<string>("KuduUsername");
 
-        public static string KuduPassword => BaseConfiguration.GetFromEnvironment<string>("KuduPassword");
+        public static string KuduPassword => GetFromEnvironment<string>("KuduPassword");
 
-        public static string WebJobName => BaseConfiguration.GetFromEnvironment<string>("WebJobName");
+        public static string WebJobName => GetFromEnvironment<string>("WebJobName");
+
+        public static string StorageAccountConnectionString => GetFromEnvironment<string>("StorageAccountConnectionString");
+
+        public static string StorageAccountContainerName => GetFromEnvironment<string>("StorageAccountContainerName");
+
+        public static string StorageAccountName => GetFromEnvironment<string>("StorageAccountName");
     }
 }

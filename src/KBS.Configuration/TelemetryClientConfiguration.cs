@@ -1,7 +1,7 @@
 namespace KBS.Configuration
 {
-    public static class TelemetryClientConfiguration
+    public class TelemetryClientConfiguration : BaseConfiguration
     {
-        public static readonly string AppInsightsInstrumentationKey = BaseConfiguration.GetFromArguments<string>("APPINSIGHTS_INSTRUMENTATIONKEY");
+        public static readonly string AppInsightsInstrumentationKey = GetFromArguments<string>("AppInsightsInstrumentationKey");
     }
 }
