@@ -4,18 +4,20 @@ using KBS.Data.Enum;
 namespace KBS.Controller.Model
 {
     /// <summary>
-    /// Configuration class that is used to
+    /// Configuration class that is used as a model for the JSON body for the webjob trigger request
     /// </summary>
     public class SimpleBenchmarkConfiguration
     {
         /// <summary>
-        /// Amount of messages to send during the benchmark
+        /// The benchmark run name, the benchmark result will be saved in a json file with this name.
+        /// ISO DateTime is used when this value is not defined.
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
+        /// Amount of messages to send during the benchmark
         /// </summary>
-        public int MessagesCount { get; set; }
+        public int MessageCount { get; set; }
 
         /// <summary>
         /// Message size in bytes (a message will be filled with a byte array of the given size)
@@ -25,25 +27,33 @@ namespace KBS.Controller.Model
         /// <summary>
         /// Amounts of threads to use to send messages
         /// </summary>
-        public int ClientsCount { get; set; }
+        public int ClientCount { get; set; }
 
         /// <summary>
-        /// Time before test should abort after last message was sent
+        /// Time before test should abort after last message was sent. String should match TimeSpan
+        /// pattern. https://docs.microsoft.com/en-us/dotnet/api/system.timespan.tostring#System_TimeSpan_ToString
         /// </summary>
         public TimeSpan Timeout { get; set; }
 
         /// <summary>
         /// Value that is used to choose the test case that is used to run the benchmark
+        /// - RequestResponse = 1
+        /// - ConsumeConsumer = 2
+        /// - WebShop = 3,
         /// </summary>
         public TestCaseType TestCaseType { get; set; }
 
         /// <summary>
         /// Value that is used to choose between the different BusControl transports
+        /// - InMemory = 1
+        /// - RabbitMq = 2
+        /// - AzureServiceBus = 3
         /// </summary>
         public TransportType TransportType { get; set; }
 
         /// <summary>
-        /// Value used to set the maximum duration of an operation when using the azure service bus transport
+        /// Value used to set the maximum duration of an operation when using the azure service bus
+        /// transport. String should match TimeSpan pattern. https://docs.microsoft.com/en-us/dotnet/api/system.timespan.tostring#System_TimeSpan_ToString
         /// </summary>
         public TimeSpan AzureServiceBusOperationTimeout { get; set; }
 

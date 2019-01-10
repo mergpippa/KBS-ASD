@@ -9,7 +9,7 @@ namespace KBS.Configuration
         /// <summary>
         /// Variable used to indicate whether transport should run in "Express" or "Durable" mode
         /// </summary>
-        public static string UseExpress => GetFromArguments<string>("UseExpress");
+        public static bool UseExpress => GetFromArguments<bool>("UseExpress");
 
         #endregion general
 

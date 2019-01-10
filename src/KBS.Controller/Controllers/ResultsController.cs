@@ -13,9 +13,11 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class ResultsController : ControllerBase
     {
-        // GET api/test
+        /// <summary>
+        /// Returns filenames that are saved in the Azure Storage Container
+        /// </summary>
         [HttpGet]
-        [ProducesResponseType(302)]
+        [ProducesResponseType(200)]
         public async Task<List<string>> GetAll()
         {
             var account = CloudStorageAccount.Parse(ControllerConfiguration.StorageAccountConnectionString);
@@ -43,16 +45,14 @@ namespace KBS.Controller.Controllers
             return results;
         }
 
+        /// <summary>
+        /// Redirects absolute file location on Azure Storage Container
+        /// </summary>
         [HttpGet]
         [Route("{fileName}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(302)]
         public RedirectResult Get(string fileName)
         {
-            /*if (fileName == string.Empty)
-            {
-                throw new NullReferenceException("fileName");
-            }*/
-
             return new RedirectResult(
                 $"https://{ControllerConfiguration.StorageAccountName}.blob.core.windows.net/{ControllerConfiguration.StorageAccountContainerName}/{fileName}"
             );
