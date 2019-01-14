@@ -11,6 +11,7 @@ namespace KBS.TestCases
     public static class TestCaseFactory
     {
         /// <summary>
+        /// Create TestCase of given test case type
         /// </summary>
         /// <param name="testCaseType">
         /// </param>

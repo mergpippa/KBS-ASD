@@ -18,8 +18,6 @@ namespace KBS.Telemetry.Clients
         /// <summary>
         /// Saves tracking data to a file or in the azure storage container
         /// </summary>
-        /// <returns>
-        /// </returns>
         public async Task Flush()
         {
             var data = new
@@ -52,10 +50,8 @@ namespace KBS.Telemetry.Clients
         /// </param>
         /// <param name="properties">
         /// </param>
-        public async void TrackEvent(string eventName, Dictionary<string, string> properties)
+        public void TrackEvent(string eventName, Dictionary<string, string> properties)
         {
-            await Task.Yield();
-
             var newEvent = new { eventName, properties };
 
             _events.Add(newEvent);

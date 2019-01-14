@@ -1,5 +1,7 @@
-using System;
 using KBS.TestCases.TestCases;
+using KBS.TestCases.TestCases.ConsumeConsumer;
+using KBS.TestCases.TestCases.RequestResponse;
+using KBS.TestCases.TestCases.Webshop;
 using Xunit;
 
 namespace KBS.TestCasesTests
@@ -7,21 +9,27 @@ namespace KBS.TestCasesTests
     public class TestCasesTests
     {
         [Fact]
-        public void RequestResponseTestCaseShouldExtendTestCase()
+        public void Should_BeOfTypeTestCase_When_CreatingRequestResponseTestCase()
         {
-            Assert.IsAssignableFrom<TestCase>(new TestCases.TestCases.RequestResponse.RequestResponseTestCase(null));
+            var testCase = new RequestResponseTestCase(null);
+
+            Assert.IsAssignableFrom<TestCase>(testCase);
         }
 
         [Fact]
-        public void ConsumeConsumerTestCaseShouldExtendTestCase()
+        public void Should_BeOfTypeTestCase_When_CreatingConsumeConsumerTestCase()
         {
-            Assert.IsAssignableFrom<TestCase>(new TestCases.TestCases.ConsumeConsumer.ConsumeConsumerTestCase(null));
+            var testCase = new ConsumeConsumerTestCase(null);
+
+            Assert.IsAssignableFrom<TestCase>(testCase);
         }
 
         [Fact]
-        public void WebshopTestCaseShouldExtendTestCase()
+        public void Should_BeOfTypeTestCase_When_CreatingWebshopTestCase()
         {
-            Assert.IsAssignableFrom<TestCase>(new TestCases.TestCases.Webshop.WebshopTestCase(null));
+            var testCase = new WebshopTestCase(null);
+
+            Assert.IsAssignableFrom<TestCase>(testCase);
         }
     }
 }

@@ -19,13 +19,13 @@ namespace KBS.Configuration
         /// <summary>
         /// Azure service bus location
         /// </summary>
-        public static string AzureServiceBusUri =
+        public static string AzureServiceBusUri =>
             GetFromEnvironment<string>("AzureServiceBusUri");
 
         /// <summary>
         /// Value used to authenticate when using the azure service bus transport
         /// </summary>
-        public static string AzureServiceBusToken =
+        public static string AzureServiceBusToken =>
             GetFromEnvironment<string>("AzureServiceBusToken");
 
         /// <summary>
@@ -41,19 +41,19 @@ namespace KBS.Configuration
         /// <summary>
         /// RabbitMQ location
         /// </summary>
-        public static string RabbitMqHost =
+        public static string RabbitMqHost =>
             GetFromEnvironment<string>("RabbitMqHost");
 
         /// <summary>
         /// RabbitMQ username that is used for authentication when using the RabbitMq transport
         /// </summary>
-        public static string RabbitMqUsername =
+        public static string RabbitMqUsername =>
             GetFromEnvironment<string>("RabbitMqUsername");
 
         /// <summary>
         /// RabbitMQ password that is used for authentication when using the RabbitMq transport
         /// </summary>
-        public static string RabbitMqPassword =
+        public static string RabbitMqPassword =>
             GetFromEnvironment<string>("RabbitMqPassword");
 
         #endregion rabbit mq

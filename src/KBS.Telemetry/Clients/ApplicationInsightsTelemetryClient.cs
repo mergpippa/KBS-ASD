@@ -41,11 +41,8 @@ namespace KBS.Telemetry.Clients
         /// </param>
         /// <param name="properties">
         /// </param>
-        public async void TrackEvent(string eventName, Dictionary<string, string> properties)
+        public void TrackEvent(string eventName, Dictionary<string, string> properties)
         {
-            // Force this method to be async
-            await Task.Yield();
-
             _telemetryClient.TrackEvent(eventName, properties);
         }
     }

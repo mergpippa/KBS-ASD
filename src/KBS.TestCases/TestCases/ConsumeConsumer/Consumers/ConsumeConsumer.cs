@@ -1,3 +1,5 @@
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
+
 using System.Threading.Tasks;
 using KBS.Topics.ConsumerCase;
 using MassTransit;
@@ -8,9 +10,7 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer.Consumers
     {
         public async Task Consume(ConsumeContext<IConsumeMessage> context)
         {
-            await Task.Yield();
-
-            // The consumer doesn't have to do anything :)
+            // Message receive is handled by PerformanceDiagnosticsFilter
         }
     }
 }

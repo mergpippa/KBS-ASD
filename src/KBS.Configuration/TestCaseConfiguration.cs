@@ -19,7 +19,7 @@ namespace KBS.Configuration
         /// <summary>
         /// Value that is used to choose the telemetry client that is used to track events
         /// </summary>
-        public static TelemetryClientType TelemetryClientType =
+        public static TelemetryClientType TelemetryClientType =>
             (TelemetryClientType)GetFromEnvironment("TelemetryClientType", (int)TelemetryClientType.InMemory);
     }
 }

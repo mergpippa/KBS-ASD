@@ -44,7 +44,7 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Creates a message object for given index
         /// </summary>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
             new CatalogueRequest
             {
                 Id = index,
