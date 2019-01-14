@@ -15,7 +15,7 @@ namespace KBS.Controller.Model
 
         /// <summary>
         /// </summary>
-        public int MessagesCount { get; set; }
+        public int MessageCount { get; set; }
 
         /// <summary>
         /// Message size in bytes (a message will be filled with a byte array of the given size)
@@ -25,7 +25,7 @@ namespace KBS.Controller.Model
         /// <summary>
         /// Amounts of threads to use to send messages
         /// </summary>
-        public int ClientsCount { get; set; }
+        public int ClientCount { get; set; }
 
         /// <summary>
         /// Time before test should abort after last message was sent
