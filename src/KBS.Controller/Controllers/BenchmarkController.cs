@@ -37,13 +37,15 @@ namespace KBS.Controller.Controllers
         /// </summary>
         [HttpGet]
         [ProducesResponseType(200)]
-        public async Task<string> GetWebJob()
+        public async Task<object> GetWebJob()
         {
             var response = await KuduHttpClient.GetAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}"
             );
 
-            return await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject(result);
         }
 
         /// <summary>
@@ -52,13 +54,15 @@ namespace KBS.Controller.Controllers
         [HttpGet]
         [Route("history")]
         [ProducesResponseType(200)]
-        public async Task<string> GetWebJobHistory()
+        public async Task<object> GetWebJobHistory()
         {
             var response = await KuduHttpClient.GetAsync(
                 $"triggeredwebjobs/{ControllerConfiguration.WebJobName}/history"
             );
 
-            return await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject(result);
         }
 
         /// <summary>
@@ -66,7 +70,7 @@ namespace KBS.Controller.Controllers
         /// </summary>
         [HttpPost]
         [ProducesResponseType(200)]
-        public async Task<string> TriggerWebjob([FromBody] SimpleBenchmarkConfiguration configuration)
+        public async Task<object> TriggerWebjob([FromBody] SimpleBenchmarkConfiguration configuration)
         {
             var jsonConfiguration = JsonConvert.SerializeObject(configuration);
 
@@ -77,7 +81,9 @@ namespace KBS.Controller.Controllers
                 null
             );
 
-            return await response.Content.ReadAsStringAsync();
+            var result = await response.Content.ReadAsStringAsync();
+
+            return JsonConvert.DeserializeObject(result);
         }
     }
 }
