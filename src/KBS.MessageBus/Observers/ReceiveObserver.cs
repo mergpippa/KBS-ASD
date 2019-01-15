@@ -36,7 +36,7 @@ namespace KBS.MessageBus.Observers
             _messageCaptureContext.HandleEvent(
                 TelemetryEventType.ConsumeFault,
                 context.MessageId,
-                context.Message
+                (IMessageDiagnostics)context.Message
             );
 
             return Task.CompletedTask;
@@ -58,7 +58,7 @@ namespace KBS.MessageBus.Observers
             _messageCaptureContext.HandleEvent(
                 TelemetryEventType.PostConsume,
                 context.MessageId,
-                context.Message
+                (IMessageDiagnostics)context.Message
             );
 
             return Task.CompletedTask;

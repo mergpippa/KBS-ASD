@@ -6,32 +6,13 @@ using MassTransit;
 
 namespace KBS.MessageBus.Observers
 {
-    public class PublishObserver : IPublishObserver
+    public class SendObserver : ISendObserver
     {
         private readonly MessageCaptureContext _messageCaptureContext;
 
-        public PublishObserver(MessageCaptureContext messageCaptureContext)
+        public SendObserver(MessageCaptureContext messageCaptureContext)
         {
             _messageCaptureContext = messageCaptureContext;
-        }
-
-        /// <summary>
-        /// Called before the message is sent to the transport
-        /// </summary>
-        /// <typeparam name="T">
-        /// The message type
-        /// </typeparam>
-        /// <param name="context">
-        /// The message send context
-        /// </param>
-        public Task PrePublish<T>(PublishContext<T> context)
-            where T : class
-        {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
-
-            _messageCaptureContext.HandleEvent(TelemetryEventType.PrePublish, context.MessageId, (IMessageDiagnostics)context.Message);
-
-            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -43,12 +24,29 @@ namespace KBS.MessageBus.Observers
         /// <param name="context">
         /// The message send context
         /// </param>
-        public Task PostPublish<T>(PublishContext<T> context)
-            where T : class
+        public Task PostSend<T>(SendContext<T> context) where T : class
         {
             context.TryGetPayload<IMessageDiagnostics>(out var payload);
 
-            _messageCaptureContext.HandleEvent(TelemetryEventType.PostPublish, context.MessageId, (IMessageDiagnostics)context.Message);
+            _messageCaptureContext.HandleEvent(TelemetryEventType.PostSend, context.MessageId, (IMessageDiagnostics)context.Message);
+
+            return Task.CompletedTask;
+        }
+
+        /// <summary>
+        /// Called before the message is sent to the transport
+        /// </summary>
+        /// <typeparam name="T">
+        /// The message type
+        /// </typeparam>
+        /// <param name="context">
+        /// The message send context
+        /// </param>
+        public Task PreSend<T>(SendContext<T> context) where T : class
+        {
+            context.TryGetPayload<IMessageDiagnostics>(out var payload);
+
+            _messageCaptureContext.HandleEvent(TelemetryEventType.PreSend, context.MessageId, (IMessageDiagnostics)context.Message);
 
             return Task.CompletedTask;
         }
@@ -65,10 +63,11 @@ namespace KBS.MessageBus.Observers
         /// <param name="exception">
         /// The exception from the transport
         /// </param>
-        public Task PublishFault<T>(PublishContext<T> context, Exception exception)
-            where T : class
+        public Task SendFault<T>(SendContext<T> context, Exception exception) where T : class
         {
-            _messageCaptureContext.HandleEvent(TelemetryEventType.PublishFault, context.MessageId, (IMessageDiagnostics)context.Message);
+            context.TryGetPayload<IMessageDiagnostics>(out var payload);
+
+            _messageCaptureContext.HandleEvent(TelemetryEventType.SendFault, context.MessageId, (IMessageDiagnostics)context.Message);
 
             return Task.CompletedTask;
         }

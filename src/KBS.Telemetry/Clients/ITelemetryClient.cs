@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.Data.Enum;
 
@@ -7,6 +8,6 @@ namespace KBS.Telemetry.Clients
     {
         Task Flush();
 
-        void TrackEvent(TelemetryEventType telemetryEventType, object value);
+        void TrackEvent(TelemetryEventType telemetryEventType, Guid messageId, object value);
     }
 }

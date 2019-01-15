@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using KBS.Data.Enum;
 using KBS.Telemetry.Clients;
+using KBS.Topics;
 
 namespace KBS.MessageBus
 {
@@ -20,7 +21,7 @@ namespace KBS.MessageBus
         /// <summary>
         /// Amount of messages that are received
         /// </summary>
-        private int _preReceivedMessagesCount;
+        private int _postReceivedMessagesCount;
 
         /// <summary>
         /// Time when this instance was created
@@ -43,28 +44,28 @@ namespace KBS.MessageBus
         /// <summary>
         /// Checks if all messages have been received
         /// </summary>
-        public bool DidReceiveAllMessages => _preReceivedMessagesCount >= _messagesCount;
+        public bool DidReceiveAllMessages => _postReceivedMessagesCount >= _messagesCount;
 
         /// <summary>
         /// Message receive handler, this method will increment a counter that keeps track of the
         /// amount of messages that have been received
         /// </summary>
-        public void HandleEvent(TelemetryEventType telemetryEventType, Guid? messageId, object message = null)
+        public void HandleEvent(TelemetryEventType telemetryEventType, Guid? messageId, IMessageDiagnostics message)
         {
             var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
 
-            if (telemetryEventType == TelemetryEventType.PreReceive)
+            if (telemetryEventType == TelemetryEventType.PostReceive)
             {
-                Interlocked.Increment(ref _preReceivedMessagesCount);
+                Interlocked.Increment(ref _postReceivedMessagesCount);
             }
 
             _telemetryClient.TrackEvent(
                 telemetryEventType,
+                messageId ?? Guid.Empty,
                 new
                 {
-                    MessageId = messageId,
                     CreatedAt = elapsedSpan.Ticks,
-                    Message = message
+                    Message = new { message.Id }
                 }
             );
         }

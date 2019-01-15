@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,17 +15,20 @@ namespace KBS.Telemetry.Clients
         /// Used to store all events. Events are tracked asynchronously on multiple threads, this
         /// means that we have to use the ConcurrentBag type
         /// </summary>
-        private readonly Dictionary<TelemetryEventType, ConcurrentBag<object>> _events =
-            new Dictionary<TelemetryEventType, ConcurrentBag<object>>
+        private readonly Dictionary<TelemetryEventType, ConcurrentDictionary<Guid, object>> _events =
+            new Dictionary<TelemetryEventType, ConcurrentDictionary<Guid, object>>
             {
-                { TelemetryEventType.PrePublish, new ConcurrentBag<object>() },
-                { TelemetryEventType.PostPublish, new ConcurrentBag<object>() },
-                { TelemetryEventType.PublishFault, new ConcurrentBag<object>() },
-                { TelemetryEventType.PreReceive, new ConcurrentBag<object>() },
-                { TelemetryEventType.PostConsume, new ConcurrentBag<object>() },
-                { TelemetryEventType.PostReceive, new ConcurrentBag<object>() },
-                { TelemetryEventType.ReceiveFault, new ConcurrentBag<object>() },
-                { TelemetryEventType.ConsumeFault, new ConcurrentBag<object>() }
+                { TelemetryEventType.PrePublish, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostPublish, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PublishFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PreReceive, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostConsume, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostReceive, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.ReceiveFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.ConsumeFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PreSend, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostSend, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.SendFault, new ConcurrentDictionary<Guid, object>() },
             };
 
         /// <summary>
@@ -35,7 +39,11 @@ namespace KBS.Telemetry.Clients
             var storageClient = StorageClientFactory.Create(ControllerConfiguration.StorageClientType);
 
             await storageClient.WriteText(
-                JsonConvert.SerializeObject(_events),
+                JsonConvert.SerializeObject(new
+                {
+                    configuration = new { },
+                    events = _events,
+                }),
                 $"{BenchmarkConfiguration.Name}.json"
             );
         }
@@ -47,11 +55,11 @@ namespace KBS.Telemetry.Clients
         /// </param>
         /// <param name="value">
         /// </param>
-        public void TrackEvent(TelemetryEventType telemetryEventType, object value)
+        public void TrackEvent(TelemetryEventType telemetryEventType, Guid messageId, object value)
         {
             var eventBag = _events.GetValueOrDefault(telemetryEventType);
 
-            eventBag.Add(value);
+            eventBag.TryAdd(messageId, value);
         }
     }
 }

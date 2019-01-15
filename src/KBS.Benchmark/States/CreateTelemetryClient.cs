@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using KBS.Configuration;
 using KBS.MessageBus;
@@ -9,6 +10,8 @@ namespace KBS.Benchmark.States
     {
         public async Task Next(Benchmark benchmark)
         {
+            Console.WriteLine(TestCaseConfiguration.TelemetryClientType);
+
             benchmark.Context.TelemetryClient = TelemetryClientFactory.Create(TestCaseConfiguration.TelemetryClientType);
 
             // Create message capture context
