@@ -22,14 +22,6 @@ namespace KBS.TelemetryTest
         }
 
         [Fact]
-        public void Should_CreateTelemetryClientOfTypeApplicationInsightsTelemetryClient()
-        {
-            var testCase = TelemetryClientFactory.Create(TelemetryClientType.ApplicationInsights);
-
-            Assert.IsType<ApplicationInsightsTelemetryClient>(testCase);
-        }
-
-        [Fact]
         public void Should_ThrowErrorWhenTryingToCreateUndefinedTelemetryClient()
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => TelemetryClientFactory.Create(0));
