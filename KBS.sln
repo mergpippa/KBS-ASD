@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.Exceptions", "src\KBS.E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.StorageTests", "src\KBS.StorageTests\KBS.StorageTests.csproj", "{0197611F-19F4-4D80-BEB3-927ECB761626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.TelemetryTest", "src\KBS.TelemetryTest\KBS.TelemetryTest.csproj", "{F59646C6-E1EF-4145-A643-DA9C4F45A588}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KBS.TelemetryTest", "src\KBS.TelemetryTest\KBS.TelemetryTest.csproj", "{F59646C6-E1EF-4145-A643-DA9C4F45A588}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KBS.BenchmarkTests", "src\KBS.BenchmarkTests\KBS.BenchmarkTests.csproj", "{80800946-EE40-4E91-94A3-2EB55DFD7392}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{F59646C6-E1EF-4145-A643-DA9C4F45A588}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F59646C6-E1EF-4145-A643-DA9C4F45A588}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F59646C6-E1EF-4145-A643-DA9C4F45A588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80800946-EE40-4E91-94A3-2EB55DFD7392}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80800946-EE40-4E91-94A3-2EB55DFD7392}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80800946-EE40-4E91-94A3-2EB55DFD7392}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80800946-EE40-4E91-94A3-2EB55DFD7392}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
