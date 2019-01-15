@@ -9,12 +9,6 @@ namespace KBS.Controller.Model
     public class SimpleBenchmarkConfiguration
     {
         /// <summary>
-        /// The benchmark run name, the benchmark result will be saved in a json file with this name.
-        /// ISO DateTime is used when this value is not defined.
-        /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
         /// Amount of messages to send during the benchmark
         /// </summary>
         public int MessageCount { get; set; }

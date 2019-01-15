@@ -8,5 +8,7 @@ namespace KBS.Storage.Clients
         Task WriteText(string text, string fileName);
 
         Task<List<string>> GetAll();
+
+        Task Delete(string fileName);
     }
 }

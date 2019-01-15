@@ -31,5 +31,14 @@ namespace KBS.Controller.Controllers
         public RedirectResult Get(string fileName) => new RedirectResult(
             $"https://{ControllerConfiguration.StorageAccountName}.blob.core.windows.net/{ControllerConfiguration.StorageAccountContainerName}/{fileName}"
         );
+
+        /// <summary>
+        /// Redirects absolute file location on Azure Storage Container
+        /// </summary>
+        [HttpDelete]
+        [Route("{fileName}")]
+        [ProducesResponseType(204)]
+        public async Task Delete(string fileName) =>
+            await _storageClient.Delete(fileName);
     }
 }

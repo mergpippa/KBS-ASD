@@ -21,8 +21,6 @@ namespace KBS.Storage.Clients
         /// <summary>
         /// Gets all files from storage container
         /// </summary>
-        /// <returns>
-        /// </returns>
         public async Task<List<string>> GetAll()
         {
             var blobContainer = _cloudBlobClient.GetContainerReference(ControllerConfiguration.StorageAccountContainerName);
@@ -54,8 +52,6 @@ namespace KBS.Storage.Clients
         /// </param>
         /// <param name="fileName">
         /// </param>
-        /// <returns>
-        /// </returns>
         public async Task WriteText(string text, string fileName)
         {
             var blobContainer = _cloudBlobClient.GetContainerReference(ControllerConfiguration.StorageAccountContainerName);
@@ -65,6 +61,20 @@ namespace KBS.Storage.Clients
             await blobContainer
                 .GetBlockBlobReference(fileName)
                 .UploadTextAsync(text);
+        }
+
+        /// <summary>
+        /// Removes blob matching given name.
+        /// </summary>
+        /// <param name="fileName">
+        /// </param>
+        public async Task Delete(string fileName)
+        {
+            var blobContainer = _cloudBlobClient.GetContainerReference(ControllerConfiguration.StorageAccountContainerName);
+
+            var blob = await blobContainer.GetBlobReferenceFromServerAsync(fileName);
+
+            await blob.DeleteIfExistsAsync();
         }
     }
 }

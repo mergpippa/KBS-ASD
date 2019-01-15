@@ -7,6 +7,9 @@ namespace KBS.Storage.Clients
 {
     public class FileStorageClient : IStorageClient
     {
+        public Task Delete(string fileName) =>
+            throw new NotImplementedByDesignException();
+
         /// <summary>
         /// FileStorageClient shouldn't implement the GetAll method because the FileStorageClient is
         /// only used for testing purposes
