@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.TestCases.Webshop.Consumers;
@@ -48,7 +47,6 @@ namespace KBS.TestCases.TestCases.Webshop
             new CatalogueRequest
             {
                 Id = index,
-                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -72,8 +70,6 @@ namespace KBS.TestCases.TestCases.Webshop
     internal class CatalogueRequest : ICatalogueRequest
     {
         public int Id { get; set; }
-
-        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

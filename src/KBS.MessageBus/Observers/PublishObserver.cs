@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using KBS.Data.Enum;
 using KBS.Topics;
 using MassTransit;
 
@@ -7,6 +8,13 @@ namespace KBS.MessageBus.Observers
 {
     public class PublishObserver : IPublishObserver
     {
+        private readonly MessageCaptureContext _messageCaptureContext;
+
+        public PublishObserver(MessageCaptureContext messageCaptureContext)
+        {
+            _messageCaptureContext = messageCaptureContext;
+        }
+
         /// <summary>
         /// Called before the message is sent to the transport
         /// </summary>
@@ -21,8 +29,7 @@ namespace KBS.MessageBus.Observers
         {
             context.TryGetPayload<IMessageDiagnostics>(out var payload);
 
-            Console.Write("PrePublish: ");
-            Console.WriteLine(payload);
+            _messageCaptureContext.HandleEvent(TelemetryEventType.PrePublish, context.MessageId, context.Message);
 
             return Task.CompletedTask;
         }
@@ -41,8 +48,7 @@ namespace KBS.MessageBus.Observers
         {
             context.TryGetPayload<IMessageDiagnostics>(out var payload);
 
-            Console.Write("PostPublish: ");
-            Console.WriteLine(payload);
+            _messageCaptureContext.HandleEvent(TelemetryEventType.PostPublish, context.MessageId, context.Message);
 
             return Task.CompletedTask;
         }
@@ -62,10 +68,7 @@ namespace KBS.MessageBus.Observers
         public Task PublishFault<T>(PublishContext<T> context, Exception exception)
             where T : class
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
-
-            Console.Write("PublishFault: ");
-            Console.WriteLine(payload);
+            _messageCaptureContext.HandleEvent(TelemetryEventType.PublishFault, context.MessageId, context.Message);
 
             return Task.CompletedTask;
         }

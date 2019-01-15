@@ -1,0 +1,1615 @@
+[33mcommit d2b49cd0033d9c34f3526badd17d5f36a455ccc6[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/benchmark-delete[m[33m)[m
+Merge: aeb4ee1 9b41179
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 15 14:16:27 2019 +0100
+
+    Merge branch 'develop' into feature/benchmark-delete
+
+[33mcommit aeb4ee17a1ab09e02fb0581e88e967f74b972bbf[m[33m ([m[1;31morigin/feature/benchmark-delete[m[33m, [m[1;32mfeature/add-buscontrol-observers[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 15 14:11:50 2019 +0100
+
+    Add delete method to benchmark controller
+
+[33mcommit 9b4117930e99061c518e2ff37ba5facd30490189[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mdevelop[m[33m)[m
+Merge: ed02803 b0ea356
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Jan 14 14:50:10 2019 +0100
+
+    Merge pull request #74 from KBS-ASD/feature/fix-configuration-name-controller
+    
+    Fix configuration names in KBS.Controller
+
+[33mcommit ed028033a2b6251c67bdcf9b58428a038406c66a[m
+Merge: 583d332 d0e50d7
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Jan 14 14:49:59 2019 +0100
+
+    Merge pull request #73 from KBS-ASD/bug/escaped_json
+    
+    Escaped json fix
+
+[33mcommit b0ea3567a13b03211caab8998d9bf79c0d445f57[m[33m ([m[1;31morigin/feature/fix-configuration-name-controller[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 14 14:44:20 2019 +0100
+
+    Fix configuration names in KBS.Controller
+
+[33mcommit 157a753e444f66d8cce7e4c338a2b1449b1b201a[m[33m ([m[1;31morigin/feature/add-buscontrol-observers[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 14 09:40:21 2019 +0100
+
+    Create initial buscontrol observers
+
+[33mcommit c2c77b92c176972b62cf45d6a728503e10943cda[m[33m ([m[1;31morigin/feature/create-unit-tests[m[33m, [m[1;32mfeature/create-unit-tests[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 14 09:38:59 2019 +0100
+
+    Create testcases for KBS.TestCases and KBS.Telemetry
+
+[33mcommit d0e50d7d1d42a247d8a5bc83bb0b3e8dbb814c76[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Fri Jan 11 16:30:40 2019 +0000
+
+    escaped json fix
+
+[33mcommit 9a794860a3122d884ceca71d4996701cb0627682[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 18:42:02 2019 +0100
+
+    Create unit tests for TestCaseFactory
+
+[33mcommit f61d77822acedd07711e3472ee9eeb8c6921c3e3[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 18:36:41 2019 +0100
+
+    Remove unused project
+
+[33mcommit 0c189afaacdb6d4267b70efeaee427af7ca53b10[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 18:31:02 2019 +0100
+
+    Improve configuration and make abstraction for telemetry file IO
+
+[33mcommit f418e8081cf2b34847c125a5ab2f676176d4ac5b[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Jan 10 17:09:49 2019 +0100
+
+    Added unit test for KBS.TestCases
+    All test cases should extend TestCase
+
+[33mcommit 49310e404b750b4e679a3dac4a81a0e4e4c10dc8[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Jan 10 16:42:40 2019 +0100
+
+    Added unit tests for KBS.Topics
+    Every topic should extend IMessageDiagnostics
+
+[33mcommit 6276ff47371c119f9a31a82e4802fac295fa144a[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 15:51:43 2019 +0100
+
+    Automatically generate xmldocs
+
+[33mcommit 583d332ae8d2995a7c661e8ba5bbc7f61ac6767a[m
+Merge: 4e2613e 8a28492
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Jan 10 15:07:04 2019 +0100
+
+    Merge pull request #72 from KBS-ASD/feature/save-result-azure-storage-blobs
+    
+    Feature/save result azure storage blobs
+
+[33mcommit 8a2849256db59a23f4ba6adb1187edac40e6f27d[m[33m ([m[1;31morigin/feature/save-result-azure-storage-blobs[m[33m, [m[1;32mfeature/save-result-azure-storage-blobs[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 14:45:53 2019 +0100
+
+    Make datetime fallback static
+
+[33mcommit e70a9975c3e64d0a85cb91d5a088c7b5e50ca21a[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 14:40:42 2019 +0100
+
+    Remove unnecessary package reference
+
+[33mcommit 45da56af181c1fbe103f7eac15aca63db53ab9b2[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 10 14:38:34 2019 +0100
+
+    Save results to blob container
+
+[33mcommit 4e2613e10069509627fa3ad7e8f6aa3857680d84[m
+Merge: 586a423 3e8681c
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Wed Jan 9 16:27:49 2019 +0100
+
+    Merge pull request #71 from KBS-ASD/feature/api-controller-fix
+    
+    Fix api controller and rename base
+
+[33mcommit 3e8681ca688bc41bcdc9d860e20e0c68dd82b1c4[m[33m ([m[1;32mfeature/webjob-run-trigger[m[33m, [m[1;32mfeature/api-controller-fix[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 16:21:23 2019 +0100
+
+    Fix api controller and rename base
+
+[33mcommit 586a423a74ffa681e599fe10682abc88a97fc95b[m
+Merge: 9bf7c06 4f4facb
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Wed Jan 9 15:16:20 2019 +0100
+
+    Merge pull request #70 from KBS-ASD/feature/webjob-run-trigger
+    
+    Trigger webjob using controller
+
+[33mcommit 4f4facb0f64441184531923bcf2aa971ecbbc8fd[m
+Author: Ruben Pannen <ruben@gaaf-online.nl>
+Date:   Wed Jan 9 14:07:07 2019 +0100
+
+    Code cleanup. (Pls dont be broken)
+
+[33mcommit 9969dc3200b4bd67ee4b3afee7f4fd5f666eebf9[m
+Author: Ruben Pannen <ruben@gaaf-online.nl>
+Date:   Wed Jan 9 13:05:46 2019 +0100
+
+    Fixed namespaces & code style issues.
+
+[33mcommit 98bd4cfc2cdcb06deb7bc4087bdac2d5f8f33906[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 12:37:44 2019 +0100
+
+    Update configuration properties
+
+[33mcommit 1aca394745f36c80728297d2525649ed7d01db1e[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 12:20:56 2019 +0100
+
+    Run CodeMaid
+
+[33mcommit 48e181771e35c79a8faddf01d12dfabb52ea3741[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 12:13:43 2019 +0100
+
+    Add all configuration options to ISimleBenchmarkConfiguration.cs
+
+[33mcommit 7bed1e51beef19d86219c04c2eda449e456eb764[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 11:50:33 2019 +0100
+
+    Fix unit tests
+
+[33mcommit 15f6e38af3aa61faf858cc976dfc6f1360bf0959[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 11:45:09 2019 +0100
+
+    Create new endpoints for controller
+
+[33mcommit 193ed300bb03e5b61633e34479e31d7d6fad02ed[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Wed Jan 9 11:43:02 2019 +0100
+
+    Trigger webjob using controller
+
+[33mcommit 9bf7c060ed319f8c0b6e5f1aa03f4fce47cbd0f2[m
+Merge: 6994c04 868ab4e
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Tue Jan 8 16:10:35 2019 +0100
+
+    Merge pull request #69 from KBS-ASD/azure-pipeline-test-task
+    
+    Update azure-pipelines.yml for Azure Pipelines
+
+[33mcommit 868ab4e1be1434188c5a1f00f3d5de090d266775[m[33m ([m[1;32mazure-pipeline-test-task[m[33m)[m
+Merge: 94fad7b e3d1a7d
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 15:17:36 2019 +0100
+
+    Merge branch 'feature/create-unit-tests' into azure-pipeline-test-task
+
+[33mcommit 94fad7b2933b4d47722cdd6a7164053d658ffd37[m
+Author: azure-pipelines[bot] <azure-pipelines[bot]@users.noreply.github.com>
+Date:   Tue Jan 8 13:19:00 2019 +0000
+
+    Update azure-pipelines.yml for Azure Pipelines
+
+[33mcommit e3d1a7d88679a1f4f08d4a3e2c39013a17f58eb9[m[33m ([m[1;32mfeature/configuration-update[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 13:37:28 2019 +0100
+
+    Fix failing unit tests
+
+[33mcommit 6994c04b97bc267c4b06c28145720e4881087b73[m
+Merge: 7fdb81e d517b21
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Jan 8 13:26:50 2019 +0100
+
+    Merge pull request #68 from KBS-ASD/feature/configuration-update
+    
+    Feature/configuration update
+
+[33mcommit d517b219f0aebc1691ee676e7754e2cbe510ef62[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 12:21:18 2019 +0100
+
+    Fix unit test
+
+[33mcommit 01f4c457811202f9dca2a93821c524d439e66fdf[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 12:20:03 2019 +0100
+
+    Run Codemaid and set cmd args in FauxApp
+
+[33mcommit b85c93e3aa7450250faacf0df0c071ed6b611242[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:57:12 2019 +0100
+
+    Run CodeMaid
+
+[33mcommit 257a1ef60d3ffa17b75d2c62531faeeb646e41c1[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:40:22 2019 +0100
+
+    Add missing using statement
+
+[33mcommit 61012b21ad4e752d30028d763efee56cb92ed860[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:39:11 2019 +0100
+
+    Fix merge issues
+
+[33mcommit 593c882f0c41f8aca02cd7da132a06b7ee740e31[m
+Merge: 0e7fbcb 7fdb81e
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:37:26 2019 +0100
+
+    Merge branch 'develop' into feature/configuration-update
+
+[33mcommit 0e7fbcb56d6d6adcb5c7db7c5f8cc613da300000[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:29:40 2019 +0100
+
+    Remove unused using statement
+
+[33mcommit e37988c6e6afebbec3da25c894419247f3b67df5[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:28:44 2019 +0100
+
+    Implement new configuration method
+
+[33mcommit 8f3ed3bba308f6226d6bdd532a2ee708a077601b[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Tue Jan 8 10:28:30 2019 +0100
+
+    Clean up new configuration implementation
+
+[33mcommit c9e9085301a418cf25b0d3fe23c114a981e5ff05[m[33m ([m[1;32mfeature/configuratio-update[m[33m, [m[1;32mfeature/#57-create-diagnostics-receive-pipeline-filter[m[33m)[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 7 23:52:13 2019 +0100
+
+    Create configuration classes
+
+[33mcommit 7fdb81e5d06a80f14cc770162023d2936ed69468[m
+Merge: afbd564 f0a940e
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Jan 7 14:23:18 2019 +0100
+
+    Merge pull request #67 from KBS-ASD/feature/#65-remove-consolereadline
+    
+    #65 remove console readline
+
+[33mcommit afbd564e6d963e0eed86ec5d53e019e1195e853f[m
+Merge: 7df673d 6a8b2a6
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Jan 7 14:22:48 2019 +0100
+
+    Merge pull request #66 from KBS-ASD/feature/log-message-diagnostics
+    
+    Log message diagnostics
+
+[33mcommit f0a940e0c1dda7eac9c604dd93e02349f80b0ca0[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Jan 7 14:16:13 2019 +0100
+
+    #65 remove console readline
+
+[33mcommit 6a8b2a638ba042b3a9162a4a059dbaa48a3c6e74[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 7 13:59:06 2019 +0100
+
+    Log message diagnostics
+
+[33mcommit 7df673d631b82fdf183c57c94c5c12662704df6c[m
+Merge: 944352f d894219
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 12:07:19 2019 +0100
+
+    Merge pull request #64 from KBS-ASD/feature/remove-console-writeline
+    
+    Remove unnecessary console write
+
+[33mcommit d89421908c89537bad06b852e28c7137f73b1583[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Jan 7 12:00:53 2019 +0100
+
+    Remove unnecessary console write
+
+[33mcommit 944352fe0ed2022ebc51c36ba79389e6dcf3faf9[m
+Merge: deb899b 0f0029a
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 11:44:45 2019 +0100
+
+    Merge pull request #63 from KBS-ASD/feature/#57-create-diagnostics-receive-pipeline-filter
+    
+    Feature/#57 create diagnostics receive pipeline filter and add tracking
+
+[33mcommit 0f0029a521e5c9c548bd383c9ad5f9f097f252d0[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 11:39:39 2019 +0100
+
+    Fix async/await error
+
+[33mcommit 5c661c21433ae7a567efe0404616feccbd78a380[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 11:36:37 2019 +0100
+
+    Remove unused project
+
+[33mcommit ef9cb371af8583f3ed60f2fdb989eea2eaaa51d2[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 11:30:23 2019 +0100
+
+    Remove old project
+
+[33mcommit 75c5661e856b704789fb86b1572d2315eda7bf07[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Jan 7 11:07:26 2019 +0100
+
+    add xml documentation in environmentvariables and adden newtonsoft.json nuget
+
+[33mcommit 4524641cd5e409a163bd2db9db1c6e2da45d8f71[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Sat Jan 5 00:20:25 2019 +0100
+
+    Create simple Consume/Consumer test case
+
+[33mcommit b13e8644c1130902c2797b1a5f52cfe2120d5a05[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Sat Jan 5 00:00:12 2019 +0100
+
+    Fix Request/Response case
+
+[33mcommit 5f04bf008290eef611d7dcc23899e3207f2bba87[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Fri Jan 4 23:07:55 2019 +0100
+
+    Give messages a concrete type to fix casting issue in MessageCaptureContext
+
+[33mcommit 10b18c8a212e6e132d0a854fbd1a34f3537da5d1[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 23:51:40 2019 +0100
+
+    Remove unnecessary console write statements
+
+[33mcommit a69c594c8462467662230fe76ff0dfd392a155b3[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 23:44:16 2019 +0100
+
+    Fix MessageCaptureContext
+
+[33mcommit be8594e7be6511279bb4d4a1784f80acc9cf93f2[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Thu Jan 3 22:45:32 2019 +0100
+
+    small validation on configuration to make sure no messages are lost because they cant be spread over the clients
+
+[33mcommit d2093cbeb9f28eb65d7112e4ce0b845c56804254[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 22:41:00 2019 +0100
+
+    Remove publish facade from buscontrol
+
+[33mcommit b411f590ce0553f3e8da80bc82f4a7afdff10c70[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 22:37:11 2019 +0100
+
+    Create telemetryclient factory and add telemetryclient type to configuration
+
+[33mcommit 5fd4b80bbe04807ff47bf158b9272ab4a558233e[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 22:23:11 2019 +0100
+
+    Create InMemoryTelemetryClient
+
+[33mcommit 09000df805a1e42b16a809395cf372433028646d[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 21:11:26 2019 +0100
+
+    Fix testCaseType configuration
+
+[33mcommit 08f853d78be334eed0389f4085f8480c45e5b560[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Thu Jan 3 20:35:44 2019 +0100
+
+    Start with MessageCaptureContext
+
+[33mcommit 0694e4802178ecdc6bfd573f07a8d4cb97168bf7[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Mon Dec 31 14:40:52 2018 +0100
+
+    #57 Add test case file configuration
+
+[33mcommit 05a8d76b5d1265e08c564182c7d0849681170d70[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Mon Dec 31 02:35:44 2018 +0100
+
+    #57 Decouple telemetry client
+
+[33mcommit d3473bf1cfd73f23c4ba5fdc331c9746f588d8d0[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 27 00:20:04 2018 +0100
+
+    #57 Run benchmark using controller
+
+[33mcommit 0da312a99988508a2567a8029d43995afd18c082[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 27 00:06:48 2018 +0100
+
+    #57 Create state machine to run the benchmark step by step
+
+[33mcommit dd2773738a4c51211f70dc247961b78d0bf945ea[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 27 00:06:33 2018 +0100
+
+    #57 Clean up configuration
+
+[33mcommit 827547b5487114fcfe4d4809a32042f5c79f4dd6[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Wed Dec 26 17:08:05 2018 +0100
+
+    implemented very basic message received counter
+
+[33mcommit 087c1630ea2a9171b2d1eea8b444abc9ee7780ca[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Sun Dec 23 20:43:00 2018 +0100
+
+    #57 Add events in comments
+
+[33mcommit 34514beb9e018361f4c84209e650d7bcc9b7a3b9[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Sun Dec 23 16:55:28 2018 +0100
+
+    #57 Remove duration from test configuration and track total test duration
+
+[33mcommit e261eff3cfb4b7acc984cd922241a685b973c788[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Sun Dec 23 16:33:27 2018 +0100
+
+    #57 Fix error
+
+[33mcommit 5376a401ba3a9a31460681992e5597ad12998014[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Sun Dec 23 16:31:54 2018 +0100
+
+    #57 Await all callbacks when running benchmarks
+
+[33mcommit 96a169b77be14a403557fa54a7ac546971a3a80f[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Sun Dec 23 16:14:45 2018 +0100
+
+    implemented basic total duration timer
+
+[33mcommit eda08e545c0216f3f0d1d39a71377188b856a685[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 20 00:57:00 2018 +0100
+
+    #57 Add initial tracking setup
+
+[33mcommit 04efd43814c5902f7f7669e244789bf50c22678f[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 20 00:16:20 2018 +0100
+
+    #57 Improve variable naming
+
+[33mcommit f249e14ad3df5cad9f32d6ac296bcc6f1831fb68[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 20 00:09:04 2018 +0100
+
+    #57 Use general configurator class for message bus
+
+[33mcommit a126b90e20a292f8bb176d3ac33a2ff479859f8d[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 20 00:07:54 2018 +0100
+
+    #57 Fix messageInterval
+
+[33mcommit 38feadd54e60a97952d238a6bd455d1f7e0a3c29[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Thu Dec 20 00:07:02 2018 +0100
+
+    #57 Create request/response client uri dynamically
+
+[33mcommit 57523403848746b0c1de7146de2442e6527a6919[m
+Merge: e846f03 dc38623
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 17:07:38 2018 +0100
+
+    Merge branch 'feature/#24-request-response-test-case-rework' into feature/#57-create-diagnostics-receive-pipeline-filter
+    
+    # Conflicts:
+    #       src/KBS.MessageBus/BusControl.cs
+    #       src/KBS.MessageBus/TransportFactory.cs
+    #       src/KBS.TestCases/TestCases/RequestResponse/Consumers/RequestConsumer.cs
+    #       src/KBS.TestCases/TestCases/RequestResponse/RequestResponseTestCase.cs
+
+[33mcommit dc386236907b556701bf2806574d75cfdd3eeade[m[33m ([m[1;32mfeature/#24-request-response-test-case-rework[m[33m)[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:54:23 2018 +0100
+
+    #24 Improve property attributes
+
+[33mcommit 2e00da337e3b448e8361f7e0bb7b2697e34ed174[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:54:17 2018 +0100
+
+    #24 Remove unused using statement
+
+[33mcommit 40a84028febb42b8bfd6b94a23f73bce45b96f27[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:48:38 2018 +0100
+
+    #24 Add xml documentation
+
+[33mcommit 96459c1ac74ac779b3757bb120bab02895ddc7fd[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:48:03 2018 +0100
+
+    #24 Use dynamic host address in request response test case client
+
+[33mcommit 116e080451f2fde323070bc1572b18a50e71105b[m
+Merge: 8629652 195bd00
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 19 16:46:37 2018 +0100
+
+    Merge branch 'feature/#24-faux-applications-send-messages' of https://github.com/KBS-ASD/message-bus-performance-testing into feature/#24-faux-applications-send-messages
+
+[33mcommit 862965260874380bb8d58595c78a146ac6ae2d2b[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 19 16:45:40 2018 +0100
+
+    Merge
+
+[33mcommit 2a1ea70b74b0151df20e3b5e14f39173265f8e61[m
+Merge: 3bbe2d4 72db09d
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 19 16:45:24 2018 +0100
+
+    MErge
+
+[33mcommit 195bd00f24d9662fb14186b041b460cedfece15a[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:41:04 2018 +0100
+
+    #24 Remove unnecessary Task.Delay
+
+[33mcommit 3bbe2d48884185b64ab4f0189ce3ba6925e99dc9[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 19 16:40:34 2018 +0100
+
+    Cleaned up consumers
+
+[33mcommit 72db09d26c4155aee3846fcaa19d1faf03ab4018[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:20:54 2018 +0100
+
+    #24 Update console copy in FauxApplication
+
+[33mcommit 615810e5fb2c57883c357851c0a2d72c9eb99bfe[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 16:19:06 2018 +0100
+
+    #24 Add configurable message count
+
+[33mcommit 39f99f7928c1b5f272e2b6add7bca31193e12640[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 19 15:31:49 2018 +0100
+
+    #24 Remove unused code and decouple request client from BusControl
+
+[33mcommit 42c5712b9c37519cf0f65fed196e19d98eac3a8a[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 19 14:22:56 2018 +0100
+
+    Added none permanent good request response
+
+[33mcommit 8fc691e7b0d8c345b5c3d269686d1db11de46ffc[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 16:39:30 2018 +0100
+
+    Request response, deadletter
+
+[33mcommit 20df99cc5740c7791f39bc7090d7b65bb02bdbd9[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 15:21:04 2018 +0100
+
+    Using 'context.Respond'
+
+[33mcommit deb899bc4feaae2ea73f143fe28c5e952f5c7679[m
+Merge: 63769b0 eb4eea6
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Tue Dec 18 14:34:45 2018 +0100
+
+    Merge pull request #60 from KBS-ASD/feature/#24-faux-applications-send-messages
+    
+    Feature/#24 faux applications send messages
+
+[33mcommit eb4eea6cc973b61d2492b8bec7b8f9d4030ae51f[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 14:30:28 2018 +0100
+
+    XML docs to TransportFactory
+
+[33mcommit e846f03bb9be92b970dde4e7c3a8f526971e6861[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 14:15:04 2018 +0100
+
+    #57 Create performance diagnostics pipeline
+
+[33mcommit 44dd3d17d0ecc91ce48872c59e513ce7db4aa419[m
+Merge: fec97bd b013a5e
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 12:25:45 2018 +0100
+
+    Merge
+
+[33mcommit fec97bdea2842c08a61f186e3541e951dac5d715[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 12:24:19 2018 +0100
+
+    Merge
+
+[33mcommit 619469b63180090cd97e299b2b0300b8d2e7b66d[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 12:19:12 2018 +0100
+
+    Added byte filler to request response case
+
+[33mcommit b013a5e65a653129533ed6b282724a7727c72acf[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 12:17:09 2018 +0100
+
+    #24 Move project to the right directory
+
+[33mcommit 1c127458331132840195713a88d33af34b47ee84[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 11:50:52 2018 +0100
+
+    xml doc added
+
+[33mcommit ea0cb62f287c6e2a8d3c0cfd97583b1cb8f81dbe[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 11:07:57 2018 +0100
+
+    #24 Create InMemoryTransport unit tests
+
+[33mcommit d3313db3dffb9cec09f5d812697a656b212bdefa[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 11:03:40 2018 +0100
+
+    #24 Improve property accessors and naming
+
+[33mcommit 47e470032b7ab21f1320ad50568665dcbab093a0[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 11:02:45 2018 +0100
+
+    #24 Rename KBS.Messages to KBS.Topics
+
+[33mcommit 304a35365253671ab04d9b3501bc728d088eea25[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 10:59:32 2018 +0100
+
+    Conflict resolve
+
+[33mcommit a51a46ea5d241c92207a5ca2835bb2090957f170[m
+Merge: f49b878 a5811bd
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 10:55:54 2018 +0100
+
+    Merge
+
+[33mcommit f49b878fe5fd8b42755ac7bc1c7505ec9fcb777c[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 10:52:59 2018 +0100
+
+    Duration made TimeSpan
+
+[33mcommit a5811bdbb95d9a11700c41073549cf7ffd0a8135[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 10:41:40 2018 +0100
+
+    #24 Replace custom exception with build-in system exception
+
+[33mcommit 6472062c3a57a796d952bb049bfdc822d6ec406b[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 10:39:30 2018 +0100
+
+    #24 Add whitespaces between method invocation
+
+[33mcommit de29da87c94907697a09b95f946f9027cfd824a2[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 10:38:18 2018 +0100
+
+    #24 Improve variable naming and remove
+
+[33mcommit 7b295f35a900899a3835200dc7eadd8a751d3ed1[m
+Merge: 31bf4a0 64c8afa
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 10:26:22 2018 +0100
+
+    Merge branch 'feature/#24-faux-applications-send-messages' of github.com:KBS-ASD/message-bus-performance-testing into feature/#24-faux-applications-send-messages
+
+[33mcommit 31bf4a0bee49f90bfa7b66b567eb88d1e8f48ac0[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 18 10:22:55 2018 +0100
+
+    #24 Move TestCases to their own project and create KBS.CLI
+
+[33mcommit 64c8afa3a6791ed3620398d907c35f3d94d7f120[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 09:51:19 2018 +0100
+
+    Fixed refactoring error
+
+[33mcommit 2bb612caafd33a5f1dbd1ab1415c3efb0fe6dd2b[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 18 09:45:43 2018 +0100
+
+    Interfaces to seperate files
+
+[33mcommit 8d8b429352aa7aa1387b34d40e8ab6f79e89370f[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 18 09:41:11 2018 +0100
+
+    Update src/KBS.Messages/WebshopCase/ICatalogue.cs
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit 8abf1ebb619161b07ea6564614cb9ec4033e9436[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 18 09:40:55 2018 +0100
+
+    Update src/KBS.FauxApplication/TestCases/RequestResponse/Consumers/ResponseConsumer.cs
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit 935bc3fb1c92e3f70f6a7a355975966ddbd1641b[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Mon Dec 17 20:40:23 2018 +0100
+
+    #24 Fix incorrect type
+
+[33mcommit f12add9d49f8ed3cac9622e95bc7ca3ccdb81ff6[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Mon Dec 17 20:37:38 2018 +0100
+
+    #24 Improve test case configuration
+
+[33mcommit 97d32df97b98329ced66763451a18821d9074b03[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Mon Dec 17 20:37:15 2018 +0100
+
+    #24 Remove Console.ForegroundColor overrides
+
+[33mcommit 9092355be0bd5ac75f5f6f24b4110b3c58eff097[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 17 15:30:20 2018 +0100
+
+    Make request response test case
+
+[33mcommit 52ea3168fd452cbb7c7873a33add34aabe46eeaf[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 17 14:31:36 2018 +0100
+
+    Implement webshop test case
+
+[33mcommit e17ae80ae548f42ffb8df272124f882695cc313a[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 17 11:29:53 2018 +0100
+
+    #24 Make testcase run abstraction
+
+[33mcommit ad7068cdf6b39110285ac6b7c501f528cab1f9bd[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Sun Dec 16 23:56:41 2018 +0100
+
+    #24 Fix endpoint configuration and add configurable test cases
+
+[33mcommit 9dabde4cb3510d5558b5d72bf65b68fdeb46ef43[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 12 14:47:53 2018 +0100
+
+    #24 Cleanup azure service bus transport configuration
+
+[33mcommit e5abfd3d8d09ea7c2b1ef0b4aa3555c9834d9b20[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 12 14:47:31 2018 +0100
+
+    #24 Update environment variable keyname
+
+[33mcommit 182abba68870284ac3d099b93271b37e70c9b65c[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Fri Dec 14 15:29:56 2018 +0100
+
+    Consumers work, something is wrong in the bus configurator
+
+[33mcommit ca14f5f4b090bf44a57fc7736d048af776d44375[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Thu Dec 13 15:59:22 2018 +0100
+
+    Fix messagebus connection, almost
+
+[33mcommit 0aba194c7cdcc02fba7ebd15bb7e6e893f4e0054[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Thu Dec 13 14:03:42 2018 +0100
+
+    Pointing webshop objects to busControl after construction
+
+[33mcommit ae471e2efdc6afacfd54abf029f959ea4d41e963[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Thu Dec 13 12:50:26 2018 +0100
+
+    Buyer and BuyerConsumer back together
+
+[33mcommit 63769b0dd7fb3d2bb84f3d88ceb6f6f9bbef3ba8[m
+Merge: 506eba8 3f5bc15
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Thu Dec 13 12:42:07 2018 +0100
+
+    Merge pull request #59 from KBS-ASD/feature/#58-add-codemaid-config
+    
+    #54 Add CodeMaid config file
+
+[33mcommit 8335bd1975d6a8050678f7ad9a4b940eb754e352[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 19:12:58 2018 +0100
+
+    Set host in AzureServiceBusTransport
+
+[33mcommit 135c53752e31f49434488da9ffffe92eaedbe11e[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 17:06:53 2018 +0100
+
+    Notes in comments
+
+[33mcommit 85b7e1b68c2be79eb751511795fd7871ffbd7f0d[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 17:03:17 2018 +0100
+
+    Webshop case started using BusControl
+
+[33mcommit 3f5bc156021fa475f23479c2d39f9c2cb703cd9a[m[33m ([m[1;32mfeature/#58-add-codemaid-config[m[33m)[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 12 16:59:44 2018 +0100
+
+    #54 Add CodeMaid config file
+
+[33mcommit db5ee271168e9c19ad724e22b082b8f14feb8e00[m
+Merge: 6123ba7 86044c3
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 11:17:18 2018 +0100
+
+    Merge branch 'feature/#24-faux-applications-send-messages' of https://github.com/KBS-ASD/message-bus-performance-testing into feature/#24-faux-applications-send-messages
+
+[33mcommit 6123ba7fd2c4d2e2d65df4f4a55d504b5fb9b437[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 11:16:42 2018 +0100
+
+    MessageBUs.MessageBus to MessageBus.BusControl
+
+[33mcommit 86044c3998670c47ecb3e5f23ccbd51d40f4ad6e[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Wed Dec 12 11:11:20 2018 +0100
+
+    #24 Replace magic string
+
+[33mcommit 1e679451ce539e30aadb3b46e111a2b7594568ff[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Wed Dec 12 11:01:50 2018 +0100
+
+    MessageBus.Publish() to take anonymous type objects
+    Added green to webshop case
+
+[33mcommit e2e0f1c61e21229806afc2393dc703195e3cbe91[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 11 17:19:49 2018 +0100
+
+    #24 Rename environment variable keys
+
+[33mcommit 60711ffaa65118fdeff748401183586a3849e30c[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 11 17:14:14 2018 +0100
+
+    #24 Create publish method for the message bus
+
+[33mcommit af7bc94cfaaf584820f281b52aec1dbbd328fe70[m
+Merge: d29ad9e c15178f
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 17:00:24 2018 +0100
+
+    Merge branch 'feature/#24-faux-applications-send-messages' of https://github.com/KBS-ASD/message-bus-performance-testing into feature/#24-faux-applications-send-messages
+
+[33mcommit d29ad9e032eedc0d9f838b22d95f582d881be388[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 16:59:46 2018 +0100
+
+    Implemented ICatalogueReply
+
+[33mcommit c15178fe7defdad5990a4ac70dc24084c58fb342[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 11 16:52:34 2018 +0100
+
+    #24 Create abstract MassTransit message bus implementation
+
+[33mcommit 074bcc76c096e5479e60acc8073633c3ba50764c[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 16:14:38 2018 +0100
+
+    Consumers added, not yet implemented
+
+[33mcommit 951b00f6e55937ec935219fb7676e7669b647d9e[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 15:37:02 2018 +0100
+
+    Topics for webshop case added
+
+[33mcommit 2ed90a5da1c246242dc9d2798cda2f490d1eadfb[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 14:56:29 2018 +0100
+
+    Setup new case "Webshop"
+
+[33mcommit d5601e323bc1f29f9652fbe4ff0d5c9319197eed[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 12:12:23 2018 +0100
+
+    Working consumers
+
+[33mcommit 8b5eed4eaab73f82585399e4ca3b6190dfe9cd23[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 11 10:46:29 2018 +0100
+
+    Thread works, Task doesn't
+
+[33mcommit 268b10ef99ccd7d6d5cb221e8f0d255f0111fb41[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 10 15:19:22 2018 +0100
+
+    Async likes, LikeAppClient now a Consumer of ILikeCount
+
+[33mcommit a1e055bc791044493eb1064f1c24930190753f17[m
+Merge: 268028f 506eba8
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Dec 6 16:50:23 2018 +0100
+
+    Merge pull request #50 from KBS-ASD/develop
+    
+    Update branch feature/#24
+
+[33mcommit 268028f0ae79e7425e24a62e91742ee0138eac53[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Dec 6 16:49:52 2018 +0100
+
+    Resolve conflict
+
+[33mcommit 8ed9f7b925f31911f3156489a161d4f7da75f457[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Dec 6 16:37:38 2018 +0100
+
+    Liker pushes like, counter counts and publishes new count
+    ¡¡¡WHY NO WORK NO MORE!!!
+
+[33mcommit 48f6b1a10bdb12c36ca01136f587a885bc5fb259[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Dec 6 12:01:11 2018 +0100
+
+    CodeMaid cleanup
+
+[33mcommit deb81aa110d0b451d6bee532fcfda91292b4ba22[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Dec 6 11:59:24 2018 +0100
+
+    Working async likers with like counter, in Azure service bus
+
+[33mcommit eb1fd801bca1655760aa1de434ccb94a9ba1d806[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 4 22:40:53 2018 +0100
+
+    No more singelton
+
+[33mcommit 9620b21ae2e5191d3f3d71017f0f2ca754f6bb22[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Tue Dec 4 14:12:05 2018 +0100
+
+    More explanation SingleBusControl
+
+[33mcommit 506eba8d2542379bd810371375df3048b76a6651[m[33m ([m[1;31morigin/feature/old-#11-auto-create-test-environments[m[33m, [m[1;32mfeature/old-#11-auto-create-test-environments[m[33m)[m
+Merge: 4d3ac37 6e9c477
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 13:30:17 2018 +0100
+
+    Merge pull request #49 from KBS-ASD/#42-rename-manager
+    
+    #42 Rename manager
+
+[33mcommit 6e9c4777da7d72959d5a41986022a7dedcbfeefe[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 13:24:18 2018 +0100
+
+    Error build fix (missing reference + wrong implementation)
+
+[33mcommit b593a19c2aa15f971c5f6fbfc9845c405b4c196a[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 13:07:19 2018 +0100
+
+    Update src/KBS.Infrastructure/ITestEnviroment.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 49ba8338867b092ba3d5d24037790c1b3c0326bf[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 13:04:38 2018 +0100
+
+    Update src/KBS.Infrastructure/IManager.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 7e8795c04fb4743aa7ff016e94312988e9a9bf75[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 13:04:31 2018 +0100
+
+    Update src/KBS.Infrastructure/IManager.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 74f5a376ab7942c8f5d0a688bf706c4ecebe680c[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 13:04:23 2018 +0100
+
+    Update src/KBS.Infrastructure/IManager.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 67d14a4884cf7a103d4442fb7769a49968aa7125[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 12:17:53 2018 +0100
+
+    Fixed namespaces
+
+[33mcommit 383ab4a6091ac2ffcfa5cab3d7275600c7aadcaa[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 12:12:51 2018 +0100
+
+    moved testenviroment to infratstructure
+
+[33mcommit 13f7ab024110a35b540fe4979d9395b33c8b5697[m
+Merge: a35570d 4d3ac37
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 12:06:53 2018 +0100
+
+    Merge branch 'develop' of github.com:KBS-ASD/message-bus-performance-testing into #42-rename-manager
+
+[33mcommit a35570d10267e7830e3cb96ff721f7f33385f1b7[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 12:02:33 2018 +0100
+
+    disabled function call until further implementation
+
+[33mcommit d8fdc7f84a84d72216fb9a2180637745361916be[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 12:00:58 2018 +0100
+
+    renamed diverse methods and return types.
+
+[33mcommit 4d3ac372fa594635751abc76f522ae105c39180f[m
+Merge: bb95f31 1d3fdf7
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Tue Dec 4 11:33:31 2018 +0100
+
+    Merge pull request #48 from KBS-ASD/feature/#47-update-build-status-badge
+    
+    Update README.md
+
+[33mcommit 1d3fdf770a291a4fd7ebd692efbefd549e4d0169[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 11:32:05 2018 +0100
+
+    Update README.md
+
+[33mcommit bb95f3168c50cec210ef08d6eeeabd14b787a12e[m
+Merge: 4bd1445 5b082a2
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Tue Dec 4 11:22:16 2018 +0100
+
+    Merge pull request #46 from KBS-ASD/feature/#24-faux-application-setup
+    
+    Feature/#24 faux application setup
+
+[33mcommit 5b082a2135c27ecc4512a088d44d079bcb80512d[m
+Merge: a3925b5 4bd1445
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Tue Dec 4 10:11:11 2018 +0100
+
+    Merge branch 'develop' into feature/faux-application-setup-#24
+
+[33mcommit 4bd144581069a7c21ae68707c4886126f5f97fe3[m
+Merge: 3de52ed 7758a2d
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Tue Dec 4 09:47:23 2018 +0100
+
+    Merge pull request #44 from KBS-ASD/feature/add-swagger-#43
+    
+    Add Swagger and rename Configuration to TestConfiguration
+
+[33mcommit 7758a2d24a47bd8fc1d1a44e98e1257d679b5bb3[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Dec 4 09:39:42 2018 +0100
+
+    Add Swagger and rename Configuration to TestConfiguration
+
+[33mcommit 3de52ed870755738d63da6ac4051a5b78b56f074[m
+Merge: 7473201 1ef5b0d
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 19:57:29 2018 +0100
+
+    Merge pull request #41 from KBS-ASD/feature/update-ci-pipeline
+    
+    Update CI Pipeline
+
+[33mcommit 1ef5b0dc4ccce778eec4a00144c1dafb62a6ce0f[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 16:19:47 2018 +0100
+
+    Update azure-pipelines.yml
+
+[33mcommit a1fff2c0f936e25c81c11f3fcd717f6a0ded03cf[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 12:06:34 2018 +0100
+
+    Update src/KBS.FauxApplication/Configuration.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit b08e9103f994894a9aa32854a4ddc9ce3755b467[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Dec 3 11:59:34 2018 +0100
+
+    Add web.config
+
+[33mcommit f038c9fc6c938e408373fddb33423efd10abf02f[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:52:50 2018 +0100
+
+    renamed and moved files, also added some xml documentation
+
+[33mcommit 42fb4f99c965bcb67a85296c74103eb0c4022541[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:28:44 2018 +0100
+
+    renaming IManager in infrastructure
+
+[33mcommit 39a7885ec0824de2a64eac9eaa1ced8fca396aad[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Thu Nov 29 15:51:31 2018 +0100
+
+    #21 start api controller, connected infrastructure to controller.
+
+[33mcommit a3925b59647a3c410b4d006b9dd6ebeb78496664[m
+Merge: a34939b 7473201
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 15:35:49 2018 +0100
+
+    Merge branch 'develop' into feature/faux-application-setup-#24
+
+[33mcommit a34939b9517496bb712bba61f8f87933da07ed3c[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 3 14:08:12 2018 +0100
+
+    Added randomizer with noise generator
+
+[33mcommit d2468b0cf15c0217f098f398da55e13e628a4cce[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 12:06:34 2018 +0100
+
+    Update src/KBS.FauxApplication/Configuration.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 15d6c9c766f74a683524694299f5f5a1f499d94a[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Dec 3 11:59:34 2018 +0100
+
+    Add web.config
+
+[33mcommit e91c77f3e18eaf6abfe8875064bc47f3ee74525c[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:52:50 2018 +0100
+
+    renamed and moved files, also added some xml documentation
+
+[33mcommit 0cbd248f9f462cb73ce6df692f9bf15b07251bcb[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:28:44 2018 +0100
+
+    renaming IManager in infrastructure
+
+[33mcommit 200681b2837401166a07ff71030a638664b725f8[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Thu Nov 29 15:51:31 2018 +0100
+
+    #21 start api controller, connected infrastructure to controller.
+
+[33mcommit faf4d95dbda3a2b6bb666b9b0df0b28bd3db56c3[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Wed Nov 28 15:16:10 2018 +0100
+
+    #33 Set up CI with Azure Pipelines
+
+[33mcommit ba5d1f6fbf1c7377fe3262764d50eba91aedf15f[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 3 14:09:39 2018 +0100
+
+    CodeMaid cleanup
+
+[33mcommit 127cdced043401d26bb5e814da9627796cbb5a22[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 3 14:08:12 2018 +0100
+
+    Added randomizer with noise generator
+
+[33mcommit 74732011e4cb0d37e85cff475c090332a9f0a9da[m
+Merge: a8cb398 ec68d64
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 12:09:07 2018 +0100
+
+    Merge pull request #39 from GerwinvBeek/feature/#21-api-controller
+    
+    #21 start api controller, connected infrastructure to controller.
+
+[33mcommit ec68d646e0dd7195b9c97bcfcef047d46df3a6c9[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 12:06:34 2018 +0100
+
+    Update src/KBS.FauxApplication/Configuration.cs
+    
+    Co-Authored-By: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+
+[33mcommit 94e34e5bddde70e970df9b636f3d158327fa9b61[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Dec 3 11:59:34 2018 +0100
+
+    Add web.config
+
+[33mcommit 20314325a0a02a53e8281c2b8c5890bb1d6a0ead[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:52:50 2018 +0100
+
+    renamed and moved files, also added some xml documentation
+
+[33mcommit b456476a9343ad483c262834a4e876c37a439ce5[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Mon Dec 3 11:28:44 2018 +0100
+
+    renaming IManager in infrastructure
+
+[33mcommit 2cda6b01d2f5eb74ef11c7e4d782473fa0759135[m
+Author: Leroy Korterink <leroy@mediamonks.com>
+Date:   Mon Dec 3 11:16:22 2018 +0100
+
+    Update CI Pipeline
+
+[33mcommit f908fd391daa7747fcf6430bf7aeb05ff157031b[m
+Author: Bram Pieters <s1110012@student.windesheim.nl>
+Date:   Mon Dec 3 10:48:17 2018 +0100
+
+    Run CodeMaid and rename variables
+
+[33mcommit 566e61e4dd206d5ee39bde059fe8e6e18f42e95e[m
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Dec 3 10:37:50 2018 +0100
+
+    No RabbitMQ
+
+[33mcommit 5f0ce6adcb65b774d12f72bd9aaa3a2b545b5cc0[m
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Dec 3 10:31:50 2018 +0100
+
+    Clarification of temporality of the like counter
+
+[33mcommit d445c2929e2289dbd7ac803885c9e91511d92323[m
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Mon Dec 3 10:28:18 2018 +0100
+
+    Added TODO
+
+[33mcommit d1742e35a5518ae70fd511ddadaf45c1323f3616[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 10:23:04 2018 +0100
+
+    Update src/KBS.Messages/IFauxMessage.cs
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit 8ac4239bd34a145a1e8ddda39a33ee106bb63bbc[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 10:22:54 2018 +0100
+
+    Update src/KBS.FauxApplication/FauxApp.cs
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit 3c20ebdf12b84a74670439199585f556aaf9377c[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 10:22:39 2018 +0100
+
+    Update src/KBS.FauxApplication/FauxApp.cs
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit 1b617614d69fe53cc048a6d1b09f194200b6f57f[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Dec 3 10:21:21 2018 +0100
+
+    Update src/KBS.FauxApplication/SingleBusControl.cs
+    
+    GetNewBus() to CreateBusControl, method name
+    
+    Co-Authored-By: BramblePie <43555369+BramblePie@users.noreply.github.com>
+
+[33mcommit ee85f1d083d04061cbb9efce03cd5d7d1a53dde1[m
+Author: Gerwin <gerwinvanbeek97@hotmail.com>
+Date:   Thu Nov 29 15:51:31 2018 +0100
+
+    #21 start api controller, connected infrastructure to controller.
+
+[33mcommit 6201d9211b7218941c7d02daf47d874e2a6add72[m
+Merge: 2f0063a 9e4190a
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Nov 29 15:48:00 2018 +0100
+
+    Merge pull request #5 from BramblePie/develop
+    
+    #bug; BusControl was never stopped
+
+[33mcommit 9e4190aef23930f66b02423de619b991f819e5af[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Nov 29 15:46:09 2018 +0100
+
+    BusControl needs to be stopped
+
+[33mcommit 2f0063a7e6a363480992de43072966feda424b76[m
+Merge: 64b8d4d ac8faf6
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Nov 29 15:28:26 2018 +0100
+
+    Merge pull request #4 from BramblePie/develop
+    
+    Master
+
+[33mcommit ac8faf62f24a77402146b9435b85e8ca9dce791a[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Nov 29 15:26:19 2018 +0100
+
+    Added singleton bus control, publish byte array and publish a like to count
+
+[33mcommit 64b8d4ddec1e7e883414ec800cd38c1a4b77989e[m
+Merge: 9ac9ea7 e7ec184
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Nov 29 10:43:23 2018 +0100
+
+    Merge pull request #3 from BramblePie/develop
+    
+    master
+
+[33mcommit e7ec1849b01660f7bf730a8c74b9322f36bb1fa8[m
+Merge: 153bb3d ac7da65
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Nov 29 10:41:01 2018 +0100
+
+    Merge branch 'develop' of https://github.com/BramblePie/message-bus-performance-testing into develop
+
+[33mcommit 153bb3d6ce36cfd8de77f272ab5d352d5e17d8b1[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Nov 29 10:36:35 2018 +0100
+
+    Test commit to fork Bram
+
+[33mcommit ac7da656b29d23cc4a475471092e502a6f18925c[m
+Author: BramblePie <bram95pieters@gmail.com>
+Date:   Thu Nov 29 10:36:35 2018 +0100
+
+    Test commit to fork Bram
+
+[33mcommit a8cb3986538c313ab2bb16d954e63c378f122675[m
+Merge: bdb03a4 a851916
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Thu Nov 29 10:23:27 2018 +0100
+
+    Merge pull request #35 from KBS-ASD/#33-azure-pipelines
+    
+    #33 Set up CI with Azure Pipelines
+
+[33mcommit 9ac9ea74324bff6a5b309baa0322e650bd3b9ed8[m
+Merge: 39b41d5 ac43a2a
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Nov 29 10:23:08 2018 +0100
+
+    Merge pull request #2 from BramblePie/develop
+    
+    To my master in fork
+
+[33mcommit ac43a2a728ad2c7eba264ea45f3ba08859ca321f[m
+Merge: 5499c58 bdb03a4
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Thu Nov 29 10:17:41 2018 +0100
+
+    Merge pull request #1 from KBS-ASD/develop
+    
+    My fork is empty
+
+[33mcommit a851916b6ea84aee9a12a505064b881d599ea133[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Wed Nov 28 15:16:10 2018 +0100
+
+    #33 Set up CI with Azure Pipelines
+
+[33mcommit bdb03a43d4afe1727151d44bd4fa9cfca3e66e29[m
+Merge: f34ba02 f072696
+Author: BramblePie <43555369+BramblePie@users.noreply.github.com>
+Date:   Wed Nov 28 11:14:06 2018 +0100
+
+    Merge pull request #32 from mergpippa/feature/#31-fix-build-cache
+    
+    #31 Fix build cache configuration
+
+[33mcommit f0726964d12c6c5e053b5c0f7ad331f5c8729dcb[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 14:42:57 2018 +0100
+
+    #31 Fix build cache configuration
+
+[33mcommit f34ba026a2d86a609d01407fa999cbe11268f775[m
+Merge: 0c60607 11f0f6b
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Tue Nov 27 12:14:29 2018 +0100
+
+    Merge pull request #30 from mergpippa/feature/#27-create-projects
+    
+    #27 Create initial projects for solution
+
+[33mcommit 11f0f6b32e3663a34405bc23941dade271936931[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 12:12:01 2018 +0100
+
+    Cache downloaded packages
+
+[33mcommit 30a9624010dc7fec2c37ad7976334380f3f04f3c[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 12:05:48 2018 +0100
+
+    #27 Use Visual Studio 2017 image when building in appveyor
+
+[33mcommit 5b3216e1c1c94430cf907d254cad0f5f642bf91c[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 11:55:11 2018 +0100
+
+    #27 Add default configuration rules to appveyor.yml
+
+[33mcommit 4d242576661046eb970d70df3249070c47a55e6e[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 11:37:02 2018 +0100
+
+    #27 Add initial appveyor configuration
+
+[33mcommit 0c60607ef57d067152638ff60872b86feeee6291[m
+Merge: bbbc82b 7f72c1a
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Tue Nov 27 11:11:42 2018 +0100
+
+    Merge pull request #29 from mergpippa/feature/#28-add-linting-rules-to-editorconfig
+    
+    #28 Add linting rules to editorconfig
+
+[33mcommit 0c698732c471f9f691cd2246f1eba0eafd611d9f[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 11:07:28 2018 +0100
+
+    #27 Create initial projects for solution
+
+[33mcommit 7f72c1aa0f2e1f0c6f145ae2f43dd9c97f7ee4db[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Tue Nov 27 11:04:04 2018 +0100
+
+    #28 Add linting rules to editorconfig
+
+[33mcommit bbbc82be2871b5df42cab921cff8bf34ffc0f004[m
+Merge: 5499c58 6e176b6
+Author: GerwinvBeek <gerwinvanbeek97@hotmail.com>
+Date:   Mon Nov 26 14:42:47 2018 +0100
+
+    Merge pull request #19 from KBS-ASD/story-issue-template
+    
+    Create story.md issue template
+
+[33mcommit 6e176b61192f6b67191bc3ac4e548cff92fb9752[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Nov 26 14:40:43 2018 +0100
+
+    Update story.md
+
+[33mcommit 43f95f2708ce8bae6f39c7d50425ce93d09e75b0[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Nov 26 14:35:57 2018 +0100
+
+    Create story.md issue template
+
+[33mcommit 5499c586f9ad889f3e2a22750f393180dd5d3958[m
+Merge: b7e7ec7 3badee8
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Fri Nov 16 14:35:52 2018 +0100
+
+    Merge pull request #10 from mergpippa/feature/add-editor-config-#5
+    
+    #5 Add editorconfig file
+
+[33mcommit 3badee8aecaa71dcde06ed697bef33271dce00a3[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Fri Nov 16 14:32:54 2018 +0100
+
+    #5 Add editorconfig file
+
+[33mcommit b7e7ec70a80fb916d61ac3dd59666a2b6b882e3c[m
+Merge: fa48dd9 677b026
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Fri Nov 16 14:21:36 2018 +0100
+
+    Merge pull request #9 from mergpippa/feature/add-rosylnator-configuration-#4
+    
+    #4 Add Rosylnator configuration file
+
+[33mcommit fa48dd90bd7663f41ede60f93464aa15327dca5e[m
+Merge: 39b41d5 3faef33
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Fri Nov 16 14:02:37 2018 +0100
+
+    Merge pull request #6 from mergpippa/feature/create-solution-#1
+    
+    #1 Create solution
+
+[33mcommit 677b026991dbafca1b4df834856fbb783f2f88b0[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Fri Nov 16 12:22:33 2018 +0100
+
+    #4 Add Rosylnator configuration file
+
+[33mcommit 3faef332d65424abcdc7793531d3265238c35213[m
+Author: Leroy Korterink <s1105266@student.windesheim.bl>
+Date:   Fri Nov 16 12:06:25 2018 +0100
+
+    #1 Create solution
+
+[33mcommit 39b41d5b3b97aa058ca72fad454c2ebadc169c48[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Thu Nov 15 13:58:34 2018 +0100
+
+    Update issue templates
+
+[33mcommit 624eadedd5703e23ebfc0be6fdd830ade9bb5439[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Wed Nov 14 17:23:58 2018 +0100
+
+    Add AppVeyor status icon to REAMDE.md
+
+[33mcommit 3149bc1f18ef09732a46a008c631739fb1a44722[m
+Author: Leroy Korterink <mergpippa@users.noreply.github.com>
+Date:   Mon Nov 12 18:08:17 2018 +0100
+
+    Initial commit

@@ -1,5 +1,5 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
+using KBS.Data.Enum;
 
 namespace KBS.Telemetry.Clients
 {
@@ -7,6 +7,6 @@ namespace KBS.Telemetry.Clients
     {
         Task Flush();
 
-        void TrackEvent(string eventName, Dictionary<string, string> properties);
+        void TrackEvent(TelemetryEventType telemetryEventType, object value);
     }
 }

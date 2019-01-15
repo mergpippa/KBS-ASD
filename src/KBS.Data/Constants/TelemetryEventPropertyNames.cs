@@ -4,10 +4,6 @@ namespace KBS.Data.Constants
     {
         public const string MessageId = "MessageId";
 
-        public const string TestCase = "TestCase";
-
-        public const string ReceivedAt = "ReceivedAt";
-
-        public const string SendAt = "SendAt";
+        public const string CreatedAt = "CreatedAt";
     }
 }

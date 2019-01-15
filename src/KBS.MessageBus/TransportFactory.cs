@@ -18,8 +18,6 @@ namespace KBS.MessageBus
         /// </param>
         /// <param name="busFactoryConfigurator">
         /// </param>
-        /// <returns>
-        /// </returns>
         public static IBusControl Create(TransportType transportType, Action<IBusFactoryConfigurator> busFactoryConfigurator)
         {
             switch (transportType)

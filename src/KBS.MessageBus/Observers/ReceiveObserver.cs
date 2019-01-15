@@ -1,12 +1,23 @@
 using System;
 using System.Threading.Tasks;
+using KBS.Data.Enum;
 using KBS.Topics;
 using MassTransit;
+using MassTransit.Serialization;
 
 namespace KBS.MessageBus.Observers
 {
     public class ReceiveObserver : IReceiveObserver
     {
+        private readonly MessageCaptureContext _messageCaptureContext;
+
+        private readonly IMessageDeserializer _deserializer = new JsonMessageDeserializer(JsonMessageSerializer.Deserializer);
+
+        public ReceiveObserver(MessageCaptureContext messageCaptureContext)
+        {
+            _messageCaptureContext = messageCaptureContext;
+        }
+
         /// <summary>
         /// Called immediately after the message was delivery by the transport
         /// </summary>
@@ -22,10 +33,11 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task ConsumeFault<T>(ConsumeContext<T> context, TimeSpan duration, string consumerType, Exception exception) where T : class
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
-
-            Console.Write("ConsumeFault: ");
-            Console.WriteLine(payload);
+            _messageCaptureContext.HandleEvent(
+                TelemetryEventType.ConsumeFault,
+                context.MessageId,
+                context.Message
+            );
 
             return Task.CompletedTask;
         }
@@ -43,10 +55,11 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task PostConsume<T>(ConsumeContext<T> context, TimeSpan duration, string consumerType) where T : class
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
-
-            Console.Write("PostConsume: ");
-            Console.WriteLine(payload);
+            _messageCaptureContext.HandleEvent(
+                TelemetryEventType.PostConsume,
+                context.MessageId,
+                context.Message
+            );
 
             return Task.CompletedTask;
         }
@@ -58,10 +71,15 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task PostReceive(ReceiveContext context)
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
+            var consumeContext = _deserializer.Deserialize(context);
 
-            Console.Write("PostReceive: ");
-            Console.WriteLine(payload);
+            consumeContext.TryGetMessage<IMessageDiagnostics>(out var messageContext);
+
+            _messageCaptureContext.HandleEvent(
+                TelemetryEventType.PostReceive,
+                messageContext.MessageId,
+                messageContext.Message
+            );
 
             return Task.CompletedTask;
         }
@@ -73,10 +91,15 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task PreReceive(ReceiveContext context)
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
+            var consumeContext = _deserializer.Deserialize(context);
 
-            Console.Write("PreReceive: ");
-            Console.WriteLine(payload);
+            consumeContext.TryGetMessage<IMessageDiagnostics>(out var messageContext);
+
+            _messageCaptureContext.HandleEvent(
+                TelemetryEventType.PreReceive,
+                messageContext.MessageId,
+                messageContext.Message
+            );
 
             return Task.CompletedTask;
         }
@@ -90,10 +113,15 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task ReceiveFault(ReceiveContext context, Exception exception)
         {
-            context.TryGetPayload<IMessageDiagnostics>(out var payload);
+            var consumeContext = _deserializer.Deserialize(context);
 
-            Console.Write("ReceiveFault: ");
-            Console.WriteLine(payload);
+            consumeContext.TryGetMessage<IMessageDiagnostics>(out var messageContext);
+
+            _messageCaptureContext.HandleEvent(
+                TelemetryEventType.ReceiveFault,
+                messageContext.MessageId,
+                messageContext.Message
+            );
 
             return Task.CompletedTask;
         }

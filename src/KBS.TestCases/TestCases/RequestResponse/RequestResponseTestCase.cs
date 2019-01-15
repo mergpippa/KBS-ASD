@@ -49,7 +49,6 @@ namespace KBS.TestCases.TestCases.RequestResponse
             new RequestMessage
             {
                 Id = index,
-                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -81,8 +80,6 @@ namespace KBS.TestCases.TestCases.RequestResponse
     internal class RequestMessage : IRequestMessage
     {
         public int Id { get; set; }
-
-        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

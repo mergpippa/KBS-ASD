@@ -109,9 +109,6 @@ namespace KBS.TestCases.TestCases
                     {
                         // Send message
                         callback(messages[j]);
-
-                        // Handle sent message in message capture context
-                        _messageCaptureContext.HandleMessageSend(messages[j]);
                     }
                 });
             }

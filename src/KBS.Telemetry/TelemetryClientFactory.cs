@@ -13,9 +13,6 @@ namespace KBS.Telemetry
                 case TelemetryClientType.InMemory:
                     return new InMemoryTelemetryClient();
 
-                case TelemetryClientType.ApplicationInsights:
-                    return new ApplicationInsightsTelemetryClient();
-
                 default:
                     throw new ArgumentOutOfRangeException(nameof(telemetryClientType), telemetryClientType, null);
             }

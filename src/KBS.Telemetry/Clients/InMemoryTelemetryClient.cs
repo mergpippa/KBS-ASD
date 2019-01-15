@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Configuration;
+using KBS.Data.Enum;
 using KBS.Storage;
 using Newtonsoft.Json;
 
@@ -13,32 +14,28 @@ namespace KBS.Telemetry.Clients
         /// Used to store all events. Events are tracked asynchronously on multiple threads, this
         /// means that we have to use the ConcurrentBag type
         /// </summary>
-        private readonly ConcurrentBag<object> _events = new ConcurrentBag<object>();
+        private readonly Dictionary<TelemetryEventType, ConcurrentBag<object>> _events =
+            new Dictionary<TelemetryEventType, ConcurrentBag<object>>
+            {
+                { TelemetryEventType.PrePublish, new ConcurrentBag<object>() },
+                { TelemetryEventType.PostPublish, new ConcurrentBag<object>() },
+                { TelemetryEventType.PublishFault, new ConcurrentBag<object>() },
+                { TelemetryEventType.PreReceive, new ConcurrentBag<object>() },
+                { TelemetryEventType.PostConsume, new ConcurrentBag<object>() },
+                { TelemetryEventType.PostReceive, new ConcurrentBag<object>() },
+                { TelemetryEventType.ReceiveFault, new ConcurrentBag<object>() },
+                { TelemetryEventType.ConsumeFault, new ConcurrentBag<object>() }
+            };
 
         /// <summary>
         /// Saves tracking data to a file or in the azure storage container
         /// </summary>
         public async Task Flush()
         {
-            var data = new
-            {
-                configuration = new
-                {
-                    name = BenchmarkConfiguration.Name,
-                    messagesCount = BenchmarkConfiguration.MessageCount,
-                    fillerSize = BenchmarkConfiguration.FillerSize,
-                    clientsCount = BenchmarkConfiguration.ClientCount,
-                    testCaseType = TestCaseConfiguration.TestCaseType,
-                    transportType = TestCaseConfiguration.TransportType,
-                    useExpress = TransportConfiguration.UseExpress,
-                },
-                events = _events
-            };
-
             var storageClient = StorageClientFactory.Create(ControllerConfiguration.StorageClientType);
 
             await storageClient.WriteText(
-                JsonConvert.SerializeObject(data),
+                JsonConvert.SerializeObject(_events),
                 $"{BenchmarkConfiguration.Name}.json"
             );
         }
@@ -46,15 +43,15 @@ namespace KBS.Telemetry.Clients
         /// <summary>
         /// Saves event to _events bag
         /// </summary>
-        /// <param name="eventName">
+        /// <param name="telemetryEventType">
         /// </param>
-        /// <param name="properties">
+        /// <param name="value">
         /// </param>
-        public void TrackEvent(string eventName, Dictionary<string, string> properties)
+        public void TrackEvent(TelemetryEventType telemetryEventType, object value)
         {
-            var newEvent = new { eventName, properties };
+            var eventBag = _events.GetValueOrDefault(telemetryEventType);
 
-            _events.Add(newEvent);
+            eventBag.Add(value);
         }
     }
 }

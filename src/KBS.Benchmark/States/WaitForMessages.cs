@@ -23,8 +23,6 @@ namespace KBS.Benchmark.States
                 // Cancel benchmarkTimeoutTask
                 cancellationTokenSource.Cancel();
 
-                benchmark.Context.MessageCaptureContext.DidTimeoutWhenWaitingOnMessages = true;
-
                 await benchmark.SetNext(new BenchmarkTimeout());
 
                 return;

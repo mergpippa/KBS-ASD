@@ -19,19 +19,19 @@ namespace KBS.Configuration
         /// Amount of messages to send during the benchmark
         /// </summary>
         public static int MessageCount =>
-            GetFromArguments("MessageCount", 1000);
+            GetFromArguments("MessageCount", 5);
 
         /// <summary>
         /// Message size in bytes (a message will be filled with a byte array of the given size)
         /// </summary>
         public static int FillerSize =>
-            GetFromArguments<int>("FillerSize");
+            GetFromArguments<int>("FillerSize", 50);
 
         /// <summary>
         /// Amounts of threads to use to send messages
         /// </summary>
         public static int ClientCount =>
-            GetFromArguments("ClientCount", 2);
+            GetFromArguments("ClientCount", 1);
 
         /// <summary>
         /// Time before test should abort after last message was sent

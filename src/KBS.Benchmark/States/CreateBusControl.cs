@@ -11,9 +11,8 @@ namespace KBS.Benchmark.States
             benchmark.Context.BusControl = new BusControl(
                 (busControl) =>
                 {
-                    busControl.ConnectReceiveObserver(new ReceiveObserver());
-                    busControl.ConnectSendObserver(new SendObserver());
-                    busControl.ConnectPublishObserver(new PublishObserver());
+                    busControl.ConnectReceiveObserver(new ReceiveObserver(benchmark.Context.MessageCaptureContext));
+                    busControl.ConnectPublishObserver(new PublishObserver(benchmark.Context.MessageCaptureContext));
                 },
                 (busFactoryConfigurator) =>
                 {
