@@ -1,6 +1,8 @@
+using System;
 using System.Threading.Tasks;
+using KBS.Configuration;
 using KBS.MessageBus;
-using KBS.MessageBus.Middleware;
+using KBS.MessageBus.Observers;
 
 namespace KBS.Benchmark.States
 {
@@ -8,12 +10,17 @@ namespace KBS.Benchmark.States
     {
         public async Task Next(Benchmark benchmark)
         {
+            Console.WriteLine(TestCaseConfiguration.TransportType);
+
             benchmark.Context.BusControl = new BusControl(
+                (busControl) =>
+                {
+                    busControl.ConnectReceiveObserver(new ReceiveObserver(benchmark.Context.MessageCaptureContext));
+                    busControl.ConnectSendObserver(new SendObserver(benchmark.Context.MessageCaptureContext));
+                    busControl.ConnectPublishObserver(new PublishObserver(benchmark.Context.MessageCaptureContext));
+                },
                 (busFactoryConfigurator) =>
                 {
-                    // Add PerformanceDiagnostics middleware
-                    busFactoryConfigurator.UseMessagePerformanceDiagnostics(benchmark.Context.MessageCaptureContext);
-
                     benchmark.Context.TestCase.ConfigureEndpoints(busFactoryConfigurator);
                 }
             );

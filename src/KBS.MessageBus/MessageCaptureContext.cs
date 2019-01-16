@@ -1,7 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Threading;
-using KBS.Data.Constants;
+using KBS.Data.Enum;
 using KBS.Telemetry.Clients;
 using KBS.Topics;
 
@@ -10,27 +9,19 @@ namespace KBS.MessageBus
     public class MessageCaptureContext
     {
         /// <summary>
+        /// Client that is used to track events
         /// </summary>
         private readonly ITelemetryClient _telemetryClient;
 
         /// <summary>
+        /// Number of messages that are sent during the benchmark
         /// </summary>
         private readonly int _messagesCount;
 
         /// <summary>
         /// Amount of messages that are received
         /// </summary>
-        private int _receivedMessagesCount;
-
-        /// <summary>
-        /// Amount of messages that are sent
-        /// </summary>
-        private int _sentMessagesCount;
-
-        /// <summary>
-        /// Count execeptions
-        /// </summary>
-        private int _exceptionCount;
+        private int _postReceivedMessagesCount;
 
         /// <summary>
         /// Time when this instance was created
@@ -53,81 +44,30 @@ namespace KBS.MessageBus
         /// <summary>
         /// Checks if all messages have been received
         /// </summary>
-        public bool DidReceiveAllMessages => _receivedMessagesCount >= _messagesCount;
-
-        /// <summary>
-        /// Property that indicates whether the benchmark timed out when waiting for messages
-        /// </summary>
-        public bool DidTimeoutWhenWaitingOnMessages { get; set; }
+        public bool DidReceiveAllMessages => _postReceivedMessagesCount >= _messagesCount;
 
         /// <summary>
         /// Message receive handler, this method will increment a counter that keeps track of the
         /// amount of messages that have been received
         /// </summary>
-        public void HandleMessageReceived(IMessageDiagnostics message)
+        public void HandleEvent(TelemetryEventType telemetryEventType, Guid? messageId, IMessageDiagnostics message)
         {
-            // Increment counter
-            Interlocked.Increment(ref _receivedMessagesCount);
-
             var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
 
-            // Track message
+            if (telemetryEventType == TelemetryEventType.PostReceive)
+            {
+                Interlocked.Increment(ref _postReceivedMessagesCount);
+            }
+
             _telemetryClient.TrackEvent(
-                TelemetryEventNames.MessageReceived,
-                new Dictionary<string, string>
+                telemetryEventType,
+                messageId ?? Guid.Empty,
+                new
                 {
-                    { TelemetryEventPropertyNames.MessageId, message.Id.ToString() },
-                    { TelemetryEventPropertyNames.TestCase, message.TestCase.ToString() },
-                    { TelemetryEventPropertyNames.ReceivedAt, elapsedSpan.Ticks.ToString() }
+                    CreatedAt = elapsedSpan.Ticks,
+                    Message = new { message.Id }
                 }
             );
         }
-
-        public void HandleMessageSend(IMessageDiagnostics message)
-        {
-            Interlocked.Increment(ref _sentMessagesCount);
-
-            var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
-
-            // Track message
-            _telemetryClient.TrackEvent(
-                TelemetryEventNames.MessageSent,
-                new Dictionary<string, string>
-                {
-                    { TelemetryEventPropertyNames.MessageId, message.Id.ToString() },
-                    { TelemetryEventPropertyNames.TestCase, message.TestCase.ToString() },
-                    { TelemetryEventPropertyNames.SendAt, elapsedSpan.Ticks.ToString() }
-                }
-            );
-        }
-
-        /// <summary>
-        /// Message receive handler, this method will increment a counter that keeps track of the
-        /// amount of messages that have been received
-        /// </summary>
-        public void HandleMessageException()
-        {
-            // Increment counter
-            Interlocked.Increment(ref _exceptionCount);
-
-            var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
-
-            // Track message
-            _telemetryClient.TrackEvent(
-                TelemetryEventNames.MessageException,
-                new Dictionary<string, string>
-                {
-                    { TelemetryEventNames.ExceptionAt, elapsedSpan.Ticks.ToString() }
-                }
-            );
-        }
-
-        /// <summary>
-        /// Create benchmark statistics string
-        /// </summary>
-        public override string ToString() =>
-            $"Messages received: {_receivedMessagesCount} \n" +
-            $"Messages sent: {_sentMessagesCount} \n" +
-            $"Messages exceptions {_exceptionCount} \n";
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.TestCases.TestCases.Webshop.Consumers;
@@ -8,7 +7,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.Webshop
 {
-    internal class WebshopTestCase : TestCase
+    public class WebshopTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case
@@ -44,11 +43,10 @@ namespace KBS.TestCases.TestCases.Webshop
         /// <summary>
         /// Creates a message object for given index
         /// </summary>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
             new CatalogueRequest
             {
                 Id = index,
-                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -72,8 +70,6 @@ namespace KBS.TestCases.TestCases.Webshop
     internal class CatalogueRequest : ICatalogueRequest
     {
         public int Id { get; set; }
-
-        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

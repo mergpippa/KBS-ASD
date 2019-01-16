@@ -1,10 +1,9 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using KBS.Configuration;
+using KBS.Storage;
+using KBS.Storage.Clients;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.WindowsAzure.Storage;
-using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace KBS.Controller.Controllers
 {
@@ -13,49 +12,33 @@ namespace KBS.Controller.Controllers
     [ApiController]
     public class ResultsController : ControllerBase
     {
-        // GET api/test
+        private readonly IStorageClient _storageClient = StorageClientFactory.Create(ControllerConfiguration.StorageClientType);
+
+        /// <summary>
+        /// Returns filenames that are saved in the Azure Storage Container
+        /// </summary>
         [HttpGet]
-        [ProducesResponseType(302)]
-        public async Task<List<string>> GetAll()
-        {
-            var account = CloudStorageAccount.Parse(ControllerConfiguration.StorageAccountConnectionString);
-            var serviceClient = account.CreateCloudBlobClient();
+        [ProducesResponseType(200)]
+        public async Task<List<string>> GetAll() =>
+            await _storageClient.GetAll();
 
-            var blobContainer = serviceClient.GetContainerReference(ControllerConfiguration.StorageAccountContainerName);
-
-            var results = new List<string>();
-            BlobContinuationToken continuationToken = null;
-
-            do
-            {
-                var response = await blobContainer.ListBlobsSegmentedAsync(continuationToken);
-                continuationToken = response.ContinuationToken;
-
-                var blobNames = response.Results
-                    .OfType<CloudBlockBlob>()
-                    .Select(b => b.Name)
-                    .ToList();
-
-                results.AddRange(blobNames);
-            }
-            while (continuationToken != null);
-
-            return results;
-        }
-
+        /// <summary>
+        /// Redirects absolute file location on Azure Storage Container
+        /// </summary>
         [HttpGet]
         [Route("{fileName}")]
-        [ProducesResponseType(200)]
-        public RedirectResult Get(string fileName)
-        {
-            /*if (fileName == string.Empty)
-            {
-                throw new NullReferenceException("fileName");
-            }*/
+        [ProducesResponseType(302)]
+        public RedirectResult Get(string fileName) => new RedirectResult(
+            $"https://{ControllerConfiguration.StorageAccountName}.blob.core.windows.net/{ControllerConfiguration.StorageAccountContainerName}/{fileName}"
+        );
 
-            return new RedirectResult(
-                $"https://{ControllerConfiguration.StorageAccountName}.blob.core.windows.net/{ControllerConfiguration.StorageAccountContainerName}/{fileName}"
-            );
-        }
+        /// <summary>
+        /// Redirects absolute file location on Azure Storage Container
+        /// </summary>
+        [HttpDelete]
+        [Route("{fileName}")]
+        [ProducesResponseType(204)]
+        public async Task Delete(string fileName) =>
+            await _storageClient.Delete(fileName);
     }
 }

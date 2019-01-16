@@ -14,6 +14,7 @@ namespace KBS.TestCases.TestCases
     public abstract class TestCase : IMessageBusEndpointConfigurator
     {
         /// <summary>
+        /// Class that is used to track messages that are being sent
         /// </summary>
         private readonly MessageCaptureContext _messageCaptureContext;
 
@@ -34,9 +35,7 @@ namespace KBS.TestCases.TestCases
         /// </param>
         /// <param name="filler">
         /// </param>
-        /// <returns>
-        /// </returns>
-        protected abstract IMessageDiagnostics CreateMessage(int index, byte[] filler = null);
+        protected abstract IMessageDiagnostics CreateMessage(int index, byte[] filler);
 
         /// <summary>
         /// Method to run the test benchmark
@@ -44,8 +43,6 @@ namespace KBS.TestCases.TestCases
         /// <param name="busControl">
         /// The bus for the test case to use
         /// </param>
-        /// <returns>
-        /// </returns>
         public abstract Task Run(BusControl busControl);
 
         /// <summary>
@@ -58,14 +55,13 @@ namespace KBS.TestCases.TestCases
         /// <summary>
         /// Method used to generated messages that will be sent during the benchmark
         /// </summary>
-        /// <returns>
-        /// </returns>
         private IMessageDiagnostics[] GenerateMessages()
         {
             var messages = new IMessageDiagnostics[BenchmarkConfiguration.MessageCount];
+            var filler = new byte[BenchmarkConfiguration.FillerSize];
 
             for (var i = 0; i < BenchmarkConfiguration.MessageCount; i++)
-                messages[i] = CreateMessage(i);
+                messages[i] = CreateMessage(i, filler);
 
             return messages;
         }
@@ -113,9 +109,6 @@ namespace KBS.TestCases.TestCases
                     {
                         // Send message
                         callback(messages[j]);
-
-                        // Handle sent message in message capture context
-                        _messageCaptureContext.HandleMessageSend(messages[j]);
                     }
                 });
             }

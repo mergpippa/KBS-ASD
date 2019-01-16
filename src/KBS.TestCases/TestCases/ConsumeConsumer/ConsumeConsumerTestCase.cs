@@ -1,4 +1,3 @@
-using System;
 using System.Threading.Tasks;
 using KBS.MessageBus;
 using KBS.Topics;
@@ -7,7 +6,7 @@ using MassTransit;
 
 namespace KBS.TestCases.TestCases.ConsumeConsumer
 {
-    internal class ConsumeConsumerTestCase : TestCase
+    public class ConsumeConsumerTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for this test case
@@ -44,7 +43,6 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
             new ConsumeMessage
             {
                 Id = index,
-                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -70,8 +68,6 @@ namespace KBS.TestCases.TestCases.ConsumeConsumer
     internal class ConsumeMessage : IConsumeMessage
     {
         public int Id { get; set; }
-
-        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using KBS.Configuration;
-using Microsoft.WindowsAzure.Storage;
+using KBS.Data.Enum;
+using KBS.Storage;
 using Newtonsoft.Json;
 
 namespace KBS.Telemetry.Clients
@@ -12,85 +12,54 @@ namespace KBS.Telemetry.Clients
     public class InMemoryTelemetryClient : ITelemetryClient
     {
         /// <summary>
+        /// Used to store all events. Events are tracked asynchronously on multiple threads, this
+        /// means that we have to use the ConcurrentBag type
         /// </summary>
-        private readonly ConcurrentBag<object> _events = new ConcurrentBag<object>();
-
-        /// <summary>
-        /// </summary>
-        /// <returns>
-        /// </returns>
-        public async Task Flush()
-        {
-            await Task.Yield();
-
-            var data = new
+        private readonly Dictionary<TelemetryEventType, ConcurrentDictionary<Guid, object>> _events =
+            new Dictionary<TelemetryEventType, ConcurrentDictionary<Guid, object>>
             {
-                configuration = new
-                {
-                    name = BenchmarkConfiguration.Name,
-                    messagesCount = BenchmarkConfiguration.MessageCount,
-                    fillerSize = BenchmarkConfiguration.FillerSize,
-                    clientsCount = BenchmarkConfiguration.ClientCount,
-                    testCaseType = TestCaseConfiguration.TestCaseType,
-                    transportType = TestCaseConfiguration.TransportType,
-                    useExpress = TransportConfiguration.UseExpress,
-                },
-                events = _events
+                { TelemetryEventType.PrePublish, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostPublish, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PublishFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PreReceive, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostConsume, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostReceive, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.ReceiveFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.ConsumeFault, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PreSend, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PostSend, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.SendFault, new ConcurrentDictionary<Guid, object>() },
             };
 
-            var jsonString = JsonConvert.SerializeObject(data);
+        /// <summary>
+        /// Saves tracking data to a file or in the azure storage container
+        /// </summary>
+        public async Task Flush()
+        {
+            var storageClient = StorageClientFactory.Create(ControllerConfiguration.StorageClientType);
 
-            if (ControllerConfiguration.StorageAccountConnectionString != null)
-            {
-                await UploadToStorageAccount(jsonString);
-
-                // No need to save to file because the results are saved in storage account
-                return;
-            }
-
-            // Save output to text file if StorageConnectionString is not defined
-            File.WriteAllText($"./{BenchmarkConfiguration.Name}.json", jsonString);
+            await storageClient.WriteText(
+                JsonConvert.SerializeObject(new
+                {
+                    configuration = new { },
+                    events = _events,
+                }),
+                $"{BenchmarkConfiguration.Name}.json"
+            );
         }
 
         /// <summary>
+        /// Saves event to _events bag
         /// </summary>
-        /// <param name="eventName">
+        /// <param name="telemetryEventType">
         /// </param>
-        /// <param name="properties">
+        /// <param name="value">
         /// </param>
-        public async void TrackEvent(string eventName, Dictionary<string, string> properties)
+        public void TrackEvent(TelemetryEventType telemetryEventType, Guid messageId, object value)
         {
-            await Task.Yield();
+            var eventBag = _events.GetValueOrDefault(telemetryEventType);
 
-            var newEvent = new { eventName, properties };
-
-            _events.Add(newEvent);
-        }
-
-        /// <summary>
-        /// Upload given jsonString to new file on storage container
-        /// </summary>
-        /// <param name="jsonString">
-        /// </param>
-        /// <returns>
-        /// </returns>
-        private async Task UploadToStorageAccount(string jsonString)
-        {
-            var account = CloudStorageAccount.Parse(ControllerConfiguration.StorageAccountConnectionString);
-            var serviceClient = account.CreateCloudBlobClient();
-
-            // Create container. Name must be lower case.
-            Console.WriteLine("Creating container...");
-            var blobContainer = serviceClient.GetContainerReference("benchmarkresults");
-
-            //
-            await blobContainer.CreateIfNotExistsAsync();
-
-            // This also does not make a service call, it only creates a local object.
-            var blob = blobContainer.GetBlockBlobReference($"{BenchmarkConfiguration.Name}.json");
-
-            // This transfers data in the file to the blob on the service.
-            await blob.UploadTextAsync(jsonString);
+            eventBag.TryAdd(messageId, value);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace KBS.Benchmark.States
     {
         public async Task Next(Benchmark benchmark)
         {
-            Console.WriteLine(benchmark.Context.TelemetryClient);
+            Console.WriteLine(TestCaseConfiguration.TestCaseType);
 
             // Create test case using test case factory
             benchmark.Context.TestCase = TestCaseFactory.Create(

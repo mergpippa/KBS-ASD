@@ -13,8 +13,6 @@ namespace KBS.Benchmark.States
             // Stop bus control
             benchmark.Context.BusControl.Dispose();
 
-            Console.WriteLine(benchmark.Context.MessageCaptureContext);
-
             // Go to finished state
             Console.WriteLine("Benchmark finished");
 

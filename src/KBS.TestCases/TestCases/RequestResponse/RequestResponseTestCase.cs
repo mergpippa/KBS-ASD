@@ -11,7 +11,7 @@ namespace KBS.TestCases.TestCases.RequestResponse
     /// <summary>
     /// Test case for request and response
     /// </summary>
-    internal class RequestResponseTestCase : TestCase
+    public class RequestResponseTestCase : TestCase
     {
         /// <summary>
         /// Name of queue to use for test case
@@ -39,16 +39,16 @@ namespace KBS.TestCases.TestCases.RequestResponse
         }
 
         /// <summary>
+        /// Used to prepare messages that will be sent to the service bus.
         /// </summary>
         /// <param name="index">
         /// </param>
         /// <param name="filler">
         /// </param>
-        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler = null) =>
+        protected override IMessageDiagnostics CreateMessage(int index, byte[] filler) =>
             new RequestMessage
             {
                 Id = index,
-                TestCase = GetType(),
                 Filler = filler
             };
 
@@ -75,13 +75,11 @@ namespace KBS.TestCases.TestCases.RequestResponse
     }
 
     /// <summary>
-    /// Class used to create concrete message instances
+    /// Class used to create message instances
     /// </summary>
     internal class RequestMessage : IRequestMessage
     {
         public int Id { get; set; }
-
-        public Type TestCase { get; set; }
 
         public byte[] Filler { get; set; }
     }

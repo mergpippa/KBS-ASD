@@ -72,11 +72,9 @@ namespace KBS.Configuration
         /// </param>
         /// <param name="fallback">
         /// </param>
-        /// <param name="fallback">
-        /// </param>
         public static T GetFromEnvironment<T>(string key, T fallback)
         {
-            var value = GetFromArguments<T>(key);
+            var value = GetFromEnvironment<T>(key);
 
             return value.Equals(default(T)) ? fallback : value;
         }

@@ -13,12 +13,14 @@ namespace KBS.MessageBus
         /// </summary>
         /// <param name="busFactoryConfigurator">
         /// </param>
-        public BusControl(Action<IBusFactoryConfigurator> busFactoryConfigurator)
+        public BusControl(Action<IBusControl> busControlConfigurator, Action<IBusFactoryConfigurator> busFactoryConfigurator)
         {
             Instance = TransportFactory.Create(
                 TestCaseConfiguration.TransportType,
                 busFactoryConfigurator
             );
+
+            busControlConfigurator(Instance);
 
             // Starts bus (The bus must be started before sending any messages!)
             Instance.Start();

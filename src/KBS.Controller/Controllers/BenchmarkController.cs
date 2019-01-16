@@ -32,7 +32,9 @@ namespace KBS.Controller.Controllers
                 new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }
 
-        // GET api/test
+        /// <summary>
+        /// Returns status of webjob that is used to run the benchmarks
+        /// </summary>
         [HttpGet]
         [ProducesResponseType(200)]
         public async Task<object> GetWebJob()
@@ -46,7 +48,9 @@ namespace KBS.Controller.Controllers
             return JsonConvert.DeserializeObject(result);
         }
 
-        // GET api/test
+        /// <summary>
+        /// Returns runs history of webjob that is used to run the benchmarks
+        /// </summary>
         [HttpGet]
         [Route("history")]
         [ProducesResponseType(200)]
@@ -61,7 +65,9 @@ namespace KBS.Controller.Controllers
             return JsonConvert.DeserializeObject(result);
         }
 
-        // POST api/test
+        /// <summary>
+        /// Triggers the webjob to run a new benchmark with the given configuration
+        /// </summary>
         [HttpPost]
         [ProducesResponseType(200)]
         public async Task<object> TriggerWebjob([FromBody] SimpleBenchmarkConfiguration configuration)
