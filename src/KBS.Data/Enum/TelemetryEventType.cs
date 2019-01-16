@@ -23,5 +23,7 @@ namespace KBS.Data.Enum
         PostSend = 10,
 
         SendFault = 11,
+
+        PreConsume = 12,
     }
 }
