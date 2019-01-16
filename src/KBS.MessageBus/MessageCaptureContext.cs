@@ -21,7 +21,7 @@ namespace KBS.MessageBus
         /// <summary>
         /// Amount of messages that are received
         /// </summary>
-        private int _postReceivedMessagesCount;
+        private int _postConsumeMessagesCount;
 
         /// <summary>
         /// Time when this instance was created
@@ -44,7 +44,7 @@ namespace KBS.MessageBus
         /// <summary>
         /// Checks if all messages have been received
         /// </summary>
-        public bool DidReceiveAllMessages => _postReceivedMessagesCount >= _messagesCount;
+        public bool DidReceiveAllMessages => _postConsumeMessagesCount >= _messagesCount;
 
         /// <summary>
         /// Message receive handler, this method will increment a counter that keeps track of the
@@ -54,9 +54,9 @@ namespace KBS.MessageBus
         {
             var elapsedSpan = new TimeSpan(DateTime.UtcNow.Ticks - _createdAt.Ticks);
 
-            if (telemetryEventType == TelemetryEventType.PostReceive)
+            if (telemetryEventType == TelemetryEventType.PostConsume)
             {
-                Interlocked.Increment(ref _postReceivedMessagesCount);
+                Interlocked.Increment(ref _postConsumeMessagesCount);
             }
 
             _telemetryClient.TrackEvent(

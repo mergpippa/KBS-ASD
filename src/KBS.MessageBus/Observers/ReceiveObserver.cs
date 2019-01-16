@@ -33,12 +33,6 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task ConsumeFault<T>(ConsumeContext<T> context, TimeSpan duration, string consumerType, Exception exception) where T : class
         {
-            _messageCaptureContext.HandleEvent(
-                TelemetryEventType.ConsumeFault,
-                context.MessageId,
-                (IMessageDiagnostics)context.Message
-            );
-
             return Task.CompletedTask;
         }
 
@@ -55,12 +49,6 @@ namespace KBS.MessageBus.Observers
         /// </param>
         public Task PostConsume<T>(ConsumeContext<T> context, TimeSpan duration, string consumerType) where T : class
         {
-            _messageCaptureContext.HandleEvent(
-                TelemetryEventType.PostConsume,
-                context.MessageId,
-                (IMessageDiagnostics)context.Message
-            );
-
             return Task.CompletedTask;
         }
 
@@ -85,7 +73,7 @@ namespace KBS.MessageBus.Observers
         }
 
         /// <summary>
-        /// Called when the message is consumed but the consumer throws an exception
+        /// Called immediately after the message was delivery by the transport
         /// </summary>
         /// <param name="context">
         /// </param>

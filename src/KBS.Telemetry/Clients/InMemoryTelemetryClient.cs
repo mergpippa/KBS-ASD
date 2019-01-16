@@ -23,6 +23,7 @@ namespace KBS.Telemetry.Clients
                 { TelemetryEventType.PostPublish, new ConcurrentDictionary<Guid, object>() },
                 { TelemetryEventType.PublishFault, new ConcurrentDictionary<Guid, object>() },
                 { TelemetryEventType.PreReceive, new ConcurrentDictionary<Guid, object>() },
+                { TelemetryEventType.PreConsume, new ConcurrentDictionary<Guid, object>() },
                 { TelemetryEventType.PostConsume, new ConcurrentDictionary<Guid, object>() },
                 { TelemetryEventType.PostReceive, new ConcurrentDictionary<Guid, object>() },
                 { TelemetryEventType.ReceiveFault, new ConcurrentDictionary<Guid, object>() },
