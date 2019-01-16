@@ -8,7 +8,7 @@ namespace KBS.Configuration
         /// <summary>
         /// Memoized version of the GetCommandLineArgs string that is converted to a JSON object
         /// </summary>
-        private static dynamic _commandLineArgumentConfiguration = JsonConvert.DeserializeObject("{}");
+        public static dynamic CommandLineArgumentConfiguration = JsonConvert.DeserializeObject("{}");
 
         /// <summary>
         /// Tries to get the value matching given key from arguments first, then from environment.
@@ -88,7 +88,7 @@ namespace KBS.Configuration
         /// </param>
         public static T GetFromArguments<T>(string key)
         {
-            var value = _commandLineArgumentConfiguration[key];
+            var value = CommandLineArgumentConfiguration[key];
 
             if (value == null)
                 return default(T);
@@ -127,7 +127,7 @@ namespace KBS.Configuration
                 return;
 
             // Memoize the deserialized object because it can take over 100ms to finish this operation
-            _commandLineArgumentConfiguration = JsonConvert.DeserializeObject<dynamic>(jsonString);
+            CommandLineArgumentConfiguration = JsonConvert.DeserializeObject<dynamic>(jsonString);
         }
     }
 }
