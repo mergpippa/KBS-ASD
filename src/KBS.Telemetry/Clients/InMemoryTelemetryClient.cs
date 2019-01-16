@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using KBS.Configuration;
 using KBS.Data.Enum;
+using KBS.Data.Model;
 using KBS.Storage;
 using Newtonsoft.Json;
 
@@ -41,7 +42,17 @@ namespace KBS.Telemetry.Clients
             await storageClient.WriteText(
                 JsonConvert.SerializeObject(new
                 {
-                    configuration = new { },
+                    configuration = new SimpleBenchmarkConfiguration
+                    {
+                        TestCaseType = TestCaseConfiguration.TestCaseType,
+                        TransportType = TestCaseConfiguration.TransportType,
+                        MessageCount = BenchmarkConfiguration.MessageCount,
+                        FillerSize = BenchmarkConfiguration.FillerSize,
+                        ClientCount = BenchmarkConfiguration.ClientCount,
+                        Timeout = BenchmarkConfiguration.Timeout,
+                        AzureServiceBusOperationTimeout = TransportConfiguration.AzureServiceBusOperationTimeout,
+                        UseExpress = TransportConfiguration.UseExpress,
+                    },
                     events = _events,
                 }),
                 $"{BenchmarkConfiguration.Name}.json"
