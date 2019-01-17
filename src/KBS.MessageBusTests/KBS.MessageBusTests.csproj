@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KBS.TestCases\KBS.TestCases.csproj" />
+    <ProjectReference Include="..\KBS.MessageBus\KBS.MessageBus.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MassTransit, Version=5.1.5.1633, Culture=neutral, PublicKeyToken=b8e0e9f2f1e657fa" />
+  </ItemGroup>
+
+</Project>

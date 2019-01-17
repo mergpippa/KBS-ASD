@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="5.1.5" />
+    <PackageReference Include="MassTransit.Azure.ServiceBus.Core" Version="5.1.5" />
+    <PackageReference Include="MassTransit.RabbitMQ" Version="5.1.5" />
+    <PackageReference Include="Microsoft.ApplicationInsights" Version="2.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KBS.Configuration\KBS.Configuration.csproj" />
+    <ProjectReference Include="..\KBS.Data\KBS.Data.csproj" />
+    <ProjectReference Include="..\KBS.Messages\KBS.Topics.csproj" />
+    <ProjectReference Include="..\KBS.Telemetry\KBS.Telemetry.csproj" />
+  </ItemGroup>
+
+</Project>
